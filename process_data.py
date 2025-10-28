@@ -1,118 +1,89 @@
+import csv
+from difflib import SequenceMatcher
 from fontTools.ttLib import TTFont
 import json
+from NoIndentEncoder import NoIndent, NoIndentEncoder
 from pathlib import Path
 import re
 import requests
-
-def split_by(xs, f):
-    ys = [[]]
-    for i in range(0, len(xs)):
-        ys[-1].append(xs[i])
-        if i < len(xs)-1 and f(xs[i]):
-            ys.append([])
-    return ys
+import unicodedata
 
 src_p = Path('./tikkun.io/src/data')
+bsb_p = Path('./berean.bible/bsb_tables.tsv')
 dst_p = Path('./src/data')
-
-pages_data = { 'torah': [], 'esther': [] }
-lookup_data = { 'torah': {}, 'esther': {} }
-
-last_seen_verse = {}
-
 
 shlomo = TTFont('./tikkun.io/assets/fonts/Shlomosemistam.ttf')
 garamondItalic = TTFont('./assets/fonts/AGaramondPro-Italic.otf')
 garamond = TTFont('./assets/fonts/AGaramondPro-Regular.otf')
 
+pages_data = { 'torah': [], 'esther': [] }
+lookup_data = { 'torah': {}, 'esther': {} }
+bsb_data = { 'torah': [], 'esther': [] }
+
+
+def is_hyphen(c):
+    return unicodedata.category(c) == 'Pd'
+
 def width_in_font(font, c):
     glyph_name = font.getBestCmap()[ord(c)]
     return font['hmtx'][glyph_name][0]
 
-
-translations = { "torah": [], "esther": [] }
-
-hyphens = r'\-\‐\‑\‒\–\—\―'
-
-def html_re(body):
-    return r'<br>|<[^>]+>{}<\/[^>]+>'.format(body,body)
-
-sefaria_html_re = html_re(r'(?:[^<]+|{})*'.format(html_re(r'[^<]*')))
-sefaria_split_re = r'((?:[^<\s{}]+|{})+[\s{}]*)'\
-                   .format(hyphens, sefaria_html_re, hyphens)
-
-def split_sefaria(line):
-    line = re.sub(r'(<br>)([^$\s])', r'\1 \2', line)
-    words = re.findall(sefaria_split_re, line)
-    total_len, ret = 0, []
-    for w in words:
-        repl_i = re.sub(r'<i>([^<]*)<\/?i>', r'#(\1)', w)
-        repl_i_no_tags = re.sub(sefaria_html_re, '', repl_i)
-        split_by_i = re.split(r'#\(([^<]*)\)', repl_i_no_tags)
-        word_len = 0
-        for i in range(0, len(split_by_i)):
-            font = garamond if i % 2 == 0 else garamondItalic
-            for c in split_by_i[i]:
-                if c == 'י' or c == 'ו': c = 'l'
-                if c == 'ה': c = 'H'
-                if c == 'ḥ': c = 'h'
-                word_len += width_in_font(font, c)
-        total_len += word_len
-        ret.append((word_len, w))
-    return [ (l / total_len, w) for (l, w) in ret ]
-
-def fetch_sefaria_data(scroll, book):
-    url = f'https://www.sefaria.org/api/v3/texts/{book}?version=english'
-    headers = {"accept": "application/json"}
-    response = requests.get(url, headers).json()
-    text = response["versions"][0]["text"]
-    text = [ [ split_sefaria(v) for v in ch ] for ch in text ]
-    translations[scroll].append(text)
-
-print("Fetching data from Sefaria...")
-fetch_sefaria_data('torah', 'Genesis'),
-fetch_sefaria_data('torah', 'Exodus'),
-fetch_sefaria_data('torah', 'Leviticus'),
-fetch_sefaria_data('torah', 'Numbers'),
-fetch_sefaria_data('torah', 'Deuteronomy')
-fetch_sefaria_data('esther', 'Esther')
+def ktiv(s):
+    s = s.replace(r'־', ' ')
+    s = re.sub(r'#\[[^]]*\]', '', s)
+    s = re.sub(r'[^א-ת\\s׆]', '', s)
+    s = re.sub(r'\s{2,}', ' ', s)
+    return s
 
 
-def process_by_line(scroll, page, line_num, line):
+last_seen_verse = {}
+def tikkun_io_by_line(scroll, page, line_num, line):
     global last_seen_verse
     width = [0]
     ends_with_sof_pasuk = False
     num_sof_pasuk = 0
 
+    columns = []
     for col in range(0, len(line["text"])):
         fragments = line["text"][col]
         for i in range(0, len(fragments)):
 
-            fragments[i] = fragments[i] \
-                .replace('#(פ)', '') \
-                .replace('(׆)#', '׆ ') \
-                .replace('#(׆)', ' ׆')
-
-            no_sp_nun_haf = fragments[i].replace(' ', '').replace('׆', '')
-            if len(no_sp_nun_haf) > 0:
-                ends_with_sof_pasuk = no_sp_nun_haf.endswith('׃')
-            
-            verse_fragments = fragments[i].split('׃')
-            for j in range(0, len(verse_fragments)):
-                if j > 0:
-                    width.append(0)
-                ktiv = verse_fragments[j].replace(r'־', ' ')
-                ktiv = re.sub(r'#\[[^]]*\]', ' ', ktiv)
-                ktiv = re.sub(r'[^א-ת\\s׆]', '', ktiv)
-                ktiv = re.sub(r'\s{2,}', ' ', ktiv)
-                width[-1] += sum( width_in_font(shlomo, c) for c in ktiv )
-                if j < len(verse_fragments) - 1:
-                    verse_fragments[j] += '׃'
+            verse_fragments = []
+            spl = re.split(r'(׃(?:\s*#\('+'׆'+r'\))?)', fragments[i])
+            for j in range(0, len(spl)):
+                if j % 2 == 1:
+                    continue
+                v = spl[j] + (spl[j+1] if j < len(spl)-1 else '')
+                verse_fragments.append(v.replace('#(פ)', '')
+                                        .replace('(׆)#', '׆ ')
+                                        .replace('#(׆)', ' ׆'))
 
             num_sof_pasuk += len(verse_fragments) - 1
 
-        line["text"][col] = ' {ס}'.join(line["text"][col])
-    line["text"] = ' {ש} '.join(line["text"])
+            ends_with_sof_pasuk = len(verse_fragments) > 0 and \
+                                  len(verse_fragments[-1]) == 0
+            if ends_with_sof_pasuk:
+                verse_fragments.pop()
+
+            fragments[i] = []
+            for j in range(0, len(verse_fragments)):
+                if j > 0:
+                    width.append(0)
+                width[-1] += sum( width_in_font(shlomo, c) for c in ktiv(verse_fragments[j]) )
+
+                words_with_seps = re.split(r'([^\s׀־׆#]+(?:#\[[^]]*\][^\sא-ת׀־׆#]*)?)', verse_fragments[j])
+                words = [ words_with_seps[i-1] + words_with_seps[i] for i in range(1, len(words_with_seps), 2) ]
+                if len(words_with_seps) > 1:
+                    words[-1] += words_with_seps[-1]
+
+                fragments[i].append({ "he": NoIndent(words), "en": [] })
+
+            if ends_with_sof_pasuk:
+                width.append(0)
+
+
+        columns.append(fragments)
+    line["text"] = columns
 
     for i in range(0, len(line["verses"])):
         line["verses"][i]['start'] = True
@@ -124,7 +95,7 @@ def process_by_line(scroll, page, line_num, line):
 
     if len(line["verses"]) > 0:
         last_seen_verse = { **line["verses"][-1], 'start': False }
-    
+
     for i in range(0, len(line["verses"])):
         v = line["verses"][i]
         v["width"] = width[i]
@@ -137,46 +108,21 @@ def process_by_line(scroll, page, line_num, line):
         ref = { "page": page, "line": line_num+1, "index": i+1 }
         lookup_data[scroll][v["book"]][v["chapter"]][v["verse"]].append(ref)
 
+    verse_index = 0
+    for col in range(0, len(line["text"])):
+        fragments = line["text"][col]
+        for i in range(0, len(fragments)):
+            for j in range(0, len(fragments[i])):
+                if j == len(fragments[i])-1 and len(fragments[i][j]["he"].value) == 0:
+                    fragments[i].pop()
+                    break
+                fragments[i][j]["verseIndex"] = verse_index
+                if j < len(fragments[i]) - 1 and verse_index < len(line["verses"])-1:
+                    verse_index += 1
+
     del line["aliyot"]
 
-    saved = { "isPetucha": None, "verses": None }
-    for k in saved:
-        saved[k] = line[k]
-        del line[k]
-
-    line["translation"] = ''
-
-    for k in saved:
-        line[k] = saved[k]
-
-    parts = re.split(r'׃\s*({[סש]}|׆)?\s*', line["text"])
-    split_parts = []
-    for i in range(0, len(parts)):
-        if i % 2 == 1:
-            split_parts.append(parts[i])
-        if i % 2 == 0:
-            split_parts.append(re.split(r' ({[סש]}) ', parts[i]))
-    all_parts = []
-    for i in range(0, len(split_parts)):
-        if i % 2 == 1:
-            continue
-        if i == len(split_parts)-1 and len(split_parts[i][0]) == 0:
-            break
-        if i // 2 >= len(line["verses"]):
-            for j in range(i-1, len(split_parts)):
-                if j % 2 == 1:
-                    all_parts[i-2].append(split_parts[j])
-                if j % 2 == 0:
-                    all_parts[i-2].extend(split_parts[j])
-            break
-        if i > 0:
-            all_parts.append(split_parts[i-1])
-        all_parts.append(split_parts[i])
-    line["parts"] = all_parts
-    line["hasSpecialFormatting"] = \
-        any(len(part) > 1 for i,part in enumerate(all_parts) if i % 2 == 0)
-
-def process_by_verse(scroll, book, chapter, verse, refs):
+def tikkun_io_by_verse(scroll, book, chapter, verse, refs):
     total_width = 0
     for ref in refs:
         line = pages_data[scroll][ref["page"]-1][ref["line"]-1]
@@ -185,53 +131,116 @@ def process_by_verse(scroll, book, chapter, verse, refs):
         line = pages_data[scroll][ref["page"]-1][ref["line"]-1]
         line["verses"][ref["index"]-1]["width"] /= total_width
 
-def add_translation(scroll, page, line_num, lines):
-    line, next_line = lines[line_num], lines[min(line_num+1, len(lines)-1)]
-    for i in range(0, len(line["parts"])):
-        if i % 2 == 1:
-            if line["parts"][i] is not None:
-                if len(line["translation"]) > 0 and \
-                   line["translation"][-1] != ' ':
-                    line["translations"] += ' '
-                line["translation"] += line["parts"][i].replace('ס', 's') \
-                                               .replace('ש', 'S') + ' '
-            continue
-        if len(line["parts"][i]) == 0:
-            continue
+last_seen_book = ''
+def bsb_by_word(entry_obj):
+    global last_seen_book
 
-        v = line["verses"][i // 2]
-        tr = translations[scroll][v["book"]-1][v["chapter"]-1][v["verse"]-1]
-        total_width = 0
+    he = entry_obj['WLC / Nestle Base TR RP WH NE NA SBL']
+    if entry_obj['Language'] != 'Hebrew' or len(he) == 0:
+        return
 
-        if line["hasSpecialFormatting"]:
-            tr_by_br        = split_by(tr, lambda lw: '<br>' in lw[1])
-            tr_by_period    = split_by(tr, lambda lw: '.'    in lw[1])
-            tr_by_semicolon = split_by(tr, lambda lw: ';'    in lw[1])
-            tr_parts = tr_by_br if len(tr_by_br) > 1 else \
-                       tr_by_period if len(tr_by_period) > 1 else \
-                       tr_by_semicolon
-            print("[-]", scroll, page, line_num, line["text"])
-            # for j in range(0, len(line["parts"][i])-1):
-            #     print(line["parts"], [ [ w for l,w in part ] for part in tr_parts])
-            #     for k in range(0, len(tr_parts[j])):
-            #         l, w = tr_parts[j][k]
-            #         tr.pop(0)
-            #         total_width += l
-            #         line["translation"] += w
-            line["translation"] += " {FIXME} "
-        elif next_line["hasSpecialFormatting"]:
-            print("[v]", scroll, page, line_num, line["text"])
-        while len(tr) > 0:
-            l, w = tr[0]
-            if total_width + l > v["width"]:
-                if total_width > v['width'] or \
-                   total_width + l / 2 > v['width']:
-                    break
-            tr.pop(0)
-            total_width += l
-            line["translation"] += w
-            if len(tr) == 0 and w[-1] not in hyphens:
-                line["translation"] += ' '
+    if len(entry_obj['VerseId']) > 0:
+        last_seen_book = entry_obj['VerseId'].split(' ')[0]
+    scroll = None
+    if last_seen_book in ['Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy']:
+        scroll = 'torah'
+    elif last_seen_book == 'Esther':
+        scroll = 'esther'
+    else:
+        return
+
+    en = entry_obj[' BSB version '].strip().removeprefix('. . .')
+    if en in ['-', 'vvv']: en = ''
+
+    bsb_data[scroll].append({
+        "heWord": entry_obj['Heb Sort'],
+        "enWord": entry_obj['BSB Sort'],
+        "he": he,
+        "en": entry_obj['begQ'].strip() + en + \
+              entry_obj['pnc'].strip() + \
+              entry_obj['endQ'].strip() + \
+              entry_obj['End text'].strip(),
+        "hasContent": len(en) == 0,
+    })
+
+def bsb_by_hebrew_word(scroll, page, line_num, line):
+    global bsb_data_index
+    if page == 1 and line_num == 0:
+        bsb_data_index = 0
+    for col in range(0, len(line["text"])):
+        fragments = line["text"][col]
+        for i in range(0, len(fragments)):
+            for j in range(0, len(fragments[i])):
+                words = fragments[i][j]["he"].value
+                if len(words) > 0 and len(words[-1]) == 0:
+                    words.pop()
+                for k, word in enumerate(words):
+                    if word.endswith('פ') or word.endswith('ס'):
+                        word = word[:-1]
+                    bsb_word = bsb_data[scroll][bsb_data_index]["he"]
+                    if bsb_word.endswith('פ') or bsb_word.endswith('ס'):
+                        bsb_word = bsb_word[:-1]
+                    if ktiv(word) != ktiv(bsb_word):
+                        diff = SequenceMatcher(None, ktiv(word), ktiv(bsb_word))
+                        changes = sum(max(i2 - i1, j2 - j1)
+                                      for (tag,i1,i2,j1,j2) in diff.get_opcodes()
+                                      if tag != 'equal')
+                        # print(scroll, page, line_num, word, bsb_word, bsb_data[scroll][bsb_data_index]["heWord"], diff.ratio(), changes)
+                        if changes > 2:
+                            # print('-------')
+                            bsb_data[scroll][bsb_data_index+1]["he"] = \
+                                bsb_data[scroll][bsb_data_index]["he"] + \
+                                bsb_data[scroll][bsb_data_index+1]["he"]
+                            sep = ''
+                            if len(bsb_data[scroll][bsb_data_index]["en"]) > 0 and \
+                               not is_hyphen(bsb_data[scroll][bsb_data_index]["en"][-1]) and \
+                               len(bsb_data[scroll][bsb_data_index+1]["en"]) > 0:
+                                sep = ' '
+                            bsb_data[scroll][bsb_data_index+1]["en"] = \
+                                bsb_data[scroll][bsb_data_index]["en"] + sep + \
+                                bsb_data[scroll][bsb_data_index+1]["en"]
+                            bsb_data[scroll][bsb_data_index+1]["hasContent"] = \
+                                bsb_data[scroll][bsb_data_index]["hasContent"] | \
+                                bsb_data[scroll][bsb_data_index+1]["hasContent"]
+                            bsb_data_index += 1
+                    bsb_data[scroll][bsb_data_index]["tikkun"] = {
+                        "page": page,
+                        "line": line_num+1,
+                        "word": k+1
+                    }
+                    del bsb_data[scroll][bsb_data_index]["heWord"]
+                    bsb_data_index += 1
+
+def bsb_by_english_word(scroll, page, line_num, line):
+    global bsb_data_index
+    if page == 1 and line_num == 0:
+        bsb_data_index = 0
+    for col in range(0, len(line["text"])):
+        fragments = line["text"][col]
+        for i in range(0, len(fragments)):
+            for j in range(0, len(fragments[i])):
+                for k in range(0, len(fragments[i][j]["he"].value)):
+                    fragments[i][j]["en"].append(NoIndent({
+                        "words": bsb_data[scroll][bsb_data_index]["en"],
+                        "page": bsb_data[scroll][bsb_data_index]["tikkun"]["page"],
+                        "line": bsb_data[scroll][bsb_data_index]["tikkun"]["line"],
+                        "word": bsb_data[scroll][bsb_data_index]["tikkun"]["word"]
+                    }))
+                    bsb_data_index += 1
+
+def repair_by_line(scroll, page, line_num, line):
+    global bsb_data_index
+    if page == 1 and line_num == 0:
+        bsb_data_index = 0
+    for col in range(0, len(line["text"])):
+        fragments = line["text"][col]
+        for i in range(0, len(fragments)):
+            for j in range(0, len(fragments[i])):
+                if not any( re.search('[0-9A-Za-z]', obj.value["words"]) for obj in fragments[i][j]["en"]):
+                    print(scroll, page, line_num+1, [obj.value["words"] for obj in fragments[i][j]["en"]])
+
+
+
 
 
 print("Processing tikkun.io data...")
@@ -242,30 +251,57 @@ for scroll in pages_data:
         with (src_p / book_p / f'{page}.json').open() as f:
             lines = json.load(f)
             for line_num in range(0, len(lines)):
-                process_by_line(scroll, page, line_num, lines[line_num])
+                tikkun_io_by_line(scroll, page, line_num, lines[line_num])
             pages_data[scroll].append(lines)
         page += 1
     for book in lookup_data[scroll]:
         for chapter in lookup_data[scroll][book]:
             for verse in lookup_data[scroll][book][chapter]:
-                process_by_verse(scroll, int(book), int(chapter), int(verse), lookup_data[scroll][book][chapter][verse])
+                tikkun_io_by_verse(scroll, int(book), int(chapter), int(verse), lookup_data[scroll][book][chapter][verse])
+
+print("Processing Berean Standard Bible data...")
+with bsb_p.open() as f:
+    bsb_headers, got_header = [], False
+    for entry in csv.reader(f, delimiter='\t'):
+        if not got_header:
+            bsb_headers = list(entry)
+            # print(bsb_headers)
+            got_header = True
+            continue
+        entry_obj = { bsb_headers[i]: entry[i] for i in range(0, len(entry)) }
+        bsb_by_word(entry_obj)
+
+print("Combining data...")
+for scroll in pages_data:
+    list.sort(bsb_data[scroll], key=lambda obj: float(obj['heWord']))
     for page, lines in enumerate(pages_data[scroll]):
         for line_num in range(0, len(lines)):
-            add_translation(scroll, page+1, line_num, lines)
-
-
+            bsb_by_hebrew_word(scroll, page+1, line_num, lines[line_num])
+    bsb_data[scroll] = [ entry for entry in bsb_data[scroll] if "tikkun" in entry ]
+    list.sort(bsb_data[scroll], key=lambda obj: float(obj['enWord']))
+    for page, lines in enumerate(pages_data[scroll]):
+        for line_num in range(0, len(lines)):
+            bsb_by_english_word(scroll, page+1, line_num, lines[line_num])
+    for page, lines in enumerate(pages_data[scroll]):
+        for line_num in range(0, len(lines)):
+            repair_by_line(scroll, page+1, line_num, lines[line_num])
 
 print("Saving results...")
-for scroll, pages in pages_data.items():
-    book_p = Path('pages') / scroll
-    (dst_p / book_p).mkdir(parents=True, exist_ok=True)
-    for i in range(0, len(pages)):
-        with (dst_p / book_p / f'{i+1}.json').open('w') as f:
-            json.dump(pages[i], f, ensure_ascii=False, indent=2)
-for scroll, lookup in lookup_data.items():
+for scroll in pages_data:
+    pages_p = Path('pages') / scroll
+    (dst_p / pages_p).mkdir(parents=True, exist_ok=True)
+    for i in range(0, len(pages_data[scroll])):
+        with (dst_p / pages_p / f'{i+1}.json').open('w') as f:
+            json.dump(pages_data[scroll][i], f, ensure_ascii=False, indent=2, cls=NoIndentEncoder)
+
     lookup_p = Path('lookup')
     (dst_p / lookup_p).mkdir(parents=True, exist_ok=True)
     with (dst_p / lookup_p / f'{scroll}.json').open('w') as f:
-        json.dump(lookup, f, ensure_ascii=False, indent=2)
+        json.dump(lookup_data[scroll], f, ensure_ascii=False, indent=2, cls=NoIndentEncoder)
+
+    english_p = Path('english')
+    (dst_p / english_p).mkdir(parents=True, exist_ok=True)
+    with (dst_p / english_p/ f'{scroll}.json').open('w') as f:
+        json.dump(bsb_data[scroll], f, ensure_ascii=False, indent=2, cls=NoIndentEncoder)
 
 
