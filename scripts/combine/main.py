@@ -2,19 +2,21 @@ import csv
 from difflib import SequenceMatcher
 from fontTools.ttLib import TTFont
 import json
-from NoIndentEncoder import NoIndent, NoIndentEncoder
+from .NoIndentEncoder import NoIndent, NoIndentEncoder
 from pathlib import Path
 import re
 import requests
 import unicodedata
 
-src_p = Path('./tikkun.io/src/data')
-bsb_p = Path('./berean.bible/bsb_tables.tsv')
-dst_p = Path('./src/data')
+top_level = Path(__file__).parent.parent.parent
 
-shlomo = TTFont('./tikkun.io/assets/fonts/Shlomosemistam.ttf')
-garamondItalic = TTFont('./assets/fonts/AGaramondPro-Italic.otf')
-garamond = TTFont('./assets/fonts/AGaramondPro-Regular.otf')
+src_p = top_level / 'tikkun.io' / 'src' / 'data'
+bsb_p = top_level / 'berean.bible' / 'bsb_tables.tsv'
+dst_p = top_level / 'src' / 'data'
+
+shlomo = TTFont(top_level / 'tikkun.io' / 'assets' / 'fonts' / 'Shlomosemistam.ttf')
+garamondItalic = TTFont(top_level / 'assets' / 'fonts' / 'AGaramondPro-Italic.otf')
+garamond = TTFont(top_level / 'assets' / 'fonts' / 'AGaramondPro-Regular.otf')
 
 pages_data = { 'torah': [], 'esther': [] }
 lookup_data = { 'torah': {}, 'esther': {} }
@@ -240,68 +242,67 @@ def repair_by_line(scroll, page, line_num, line):
                     print(scroll, page, line_num+1, [obj.value["words"] for obj in fragments[i][j]["en"]])
 
 
-
-
-
-print("Processing tikkun.io data...")
-for scroll in pages_data:
-    book_p = Path('pages') / scroll
-    page = 1
-    while (src_p / book_p / f'{page}.json').exists():
-        with (src_p / book_p / f'{page}.json').open() as f:
-            lines = json.load(f)
+def main():
+    print("Processing tikkun.io data...")
+    for scroll in pages_data:
+        book_p = Path('pages') / scroll
+        page = 1
+        while (src_p / book_p / f'{page}.json').exists():
+            with (src_p / book_p / f'{page}.json').open() as f:
+                lines = json.load(f)
+                for line_num in range(0, len(lines)):
+                    tikkun_io_by_line(scroll, page, line_num, lines[line_num])
+                pages_data[scroll].append(lines)
+            page += 1
+        for book in lookup_data[scroll]:
+            for chapter in lookup_data[scroll][book]:
+                for verse in lookup_data[scroll][book][chapter]:
+                    tikkun_io_by_verse(scroll, int(book), int(chapter), int(verse), lookup_data[scroll]    [book][chapter][verse])
+    
+    print("Processing Berean Standard Bible data...")
+    with bsb_p.open() as f:
+        bsb_headers, got_header = [], False
+        for entry in csv.reader(f, delimiter='\t'):
+            if not got_header:
+                bsb_headers = list(entry)
+                # print(bsb_headers)
+                got_header = True
+                continue
+            entry_obj = { bsb_headers[i]: entry[i] for i in range(0, len(entry)) }
+            bsb_by_word(entry_obj)
+    
+    print("Combining data...")
+    for scroll in pages_data:
+        list.sort(bsb_data[scroll], key=lambda obj: float(obj['heWord']))
+        for page, lines in enumerate(pages_data[scroll]):
             for line_num in range(0, len(lines)):
-                tikkun_io_by_line(scroll, page, line_num, lines[line_num])
-            pages_data[scroll].append(lines)
-        page += 1
-    for book in lookup_data[scroll]:
-        for chapter in lookup_data[scroll][book]:
-            for verse in lookup_data[scroll][book][chapter]:
-                tikkun_io_by_verse(scroll, int(book), int(chapter), int(verse), lookup_data[scroll][book][chapter][verse])
+                bsb_by_hebrew_word(scroll, page+1, line_num, lines[line_num])
+        bsb_data[scroll] = [ entry for entry in bsb_data[scroll] if "tikkun" in entry ]
+        list.sort(bsb_data[scroll], key=lambda obj: float(obj['enWord']))
+        for page, lines in enumerate(pages_data[scroll]):
+            for line_num in range(0, len(lines)):
+                bsb_by_english_word(scroll, page+1, line_num, lines[line_num])
+        for page, lines in enumerate(pages_data[scroll]):
+            for line_num in range(0, len(lines)):
+                repair_by_line(scroll, page+1, line_num, lines[line_num])
+    
+    print("Saving results...")
+    for scroll in pages_data:
+        pages_p = Path('pages') / scroll
+        (dst_p / pages_p).mkdir(parents=True, exist_ok=True)
+        for i in range(0, len(pages_data[scroll])):
+            with (dst_p / pages_p / f'{i+1}.json').open('w') as f:
+                json.dump(pages_data[scroll][i], f, ensure_ascii=False, indent=2, cls=NoIndentEncoder)
+    
+        lookup_p = Path('lookup')
+        (dst_p / lookup_p).mkdir(parents=True, exist_ok=True)
+        with (dst_p / lookup_p / f'{scroll}.json').open('w') as f:
+            json.dump(lookup_data[scroll], f, ensure_ascii=False, indent=2, cls=NoIndentEncoder)
+    
+        english_p = Path('english')
+        (dst_p / english_p).mkdir(parents=True, exist_ok=True)
+        with (dst_p / english_p/ f'{scroll}.json').open('w') as f:
+            json.dump(bsb_data[scroll], f, ensure_ascii=False, indent=2, cls=NoIndentEncoder)
 
-print("Processing Berean Standard Bible data...")
-with bsb_p.open() as f:
-    bsb_headers, got_header = [], False
-    for entry in csv.reader(f, delimiter='\t'):
-        if not got_header:
-            bsb_headers = list(entry)
-            # print(bsb_headers)
-            got_header = True
-            continue
-        entry_obj = { bsb_headers[i]: entry[i] for i in range(0, len(entry)) }
-        bsb_by_word(entry_obj)
-
-print("Combining data...")
-for scroll in pages_data:
-    list.sort(bsb_data[scroll], key=lambda obj: float(obj['heWord']))
-    for page, lines in enumerate(pages_data[scroll]):
-        for line_num in range(0, len(lines)):
-            bsb_by_hebrew_word(scroll, page+1, line_num, lines[line_num])
-    bsb_data[scroll] = [ entry for entry in bsb_data[scroll] if "tikkun" in entry ]
-    list.sort(bsb_data[scroll], key=lambda obj: float(obj['enWord']))
-    for page, lines in enumerate(pages_data[scroll]):
-        for line_num in range(0, len(lines)):
-            bsb_by_english_word(scroll, page+1, line_num, lines[line_num])
-    for page, lines in enumerate(pages_data[scroll]):
-        for line_num in range(0, len(lines)):
-            repair_by_line(scroll, page+1, line_num, lines[line_num])
-
-print("Saving results...")
-for scroll in pages_data:
-    pages_p = Path('pages') / scroll
-    (dst_p / pages_p).mkdir(parents=True, exist_ok=True)
-    for i in range(0, len(pages_data[scroll])):
-        with (dst_p / pages_p / f'{i+1}.json').open('w') as f:
-            json.dump(pages_data[scroll][i], f, ensure_ascii=False, indent=2, cls=NoIndentEncoder)
-
-    lookup_p = Path('lookup')
-    (dst_p / lookup_p).mkdir(parents=True, exist_ok=True)
-    with (dst_p / lookup_p / f'{scroll}.json').open('w') as f:
-        json.dump(lookup_data[scroll], f, ensure_ascii=False, indent=2, cls=NoIndentEncoder)
-
-    english_p = Path('english')
-    (dst_p / english_p).mkdir(parents=True, exist_ok=True)
-    with (dst_p / english_p/ f'{scroll}.json').open('w') as f:
-        json.dump(bsb_data[scroll], f, ensure_ascii=False, indent=2, cls=NoIndentEncoder)
-
-
+if __name__ == "__main__":
+    main()
