@@ -1,21 +1,12 @@
-[
-  {
+{
+  "length": 42,
+  "0": {
     "text": [
       [
         [
           {
-            "he": ["וְאִ֨ם", "־עַד", "־אֵ֔לֶּה", " לֹ֥א", " תִשְׁמְע֖וּ", " לִ֑י", " וְיָסַפְתִּי֙", " לְיַסְּרָ֣ה", " אֶתְכֶ֔ם"],
-            "en": [
-              {"words": "And if", "page": 146, "line": 1, "word": 1},
-              {"words": "after", "page": 146, "line": 1, "word": 2},
-              {"words": "all this", "page": 146, "line": 1, "word": 3},
-              {"words": "you will not", "page": 146, "line": 1, "word": 4},
-              {"words": "obey", "page": 146, "line": 1, "word": 5},
-              {"words": "Me,", "page": 146, "line": 1, "word": 6},
-              {"words": "I will proceed", "page": 146, "line": 1, "word": 7},
-              {"words": "to punish", "page": 146, "line": 1, "word": 8},
-              {"words": "you", "page": 146, "line": 1, "word": 9}
-            ],
+            "he": ["וְאִ֨ם־", "עַד־", "אֵ֔לֶּה", " לֹ֥א", " תִשְׁמְע֖וּ", " לִ֑י", " וְיָסַפְתִּי֙", " לְיַסְּרָ֣ה", " אֶתְכֶ֔ם"],
+            "en": [["And if", [0]], ["up to", [1]], ["these {things}", [2]], ["you will", [4]], ["not", [3]], ["listen", [4]], ["to me,", [5]], ["then I will continue", [6]], ["to discipline", [7]], ["you", [8]]],
             "verseIndex": 0
           }
         ]
@@ -26,34 +17,23 @@
         "book": 3,
         "chapter": 26,
         "verse": 18,
-        "start": true,
-        "width": 0.7126049146473162
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "1": {
     "text": [
       [
         [
           {
-            "he": ["שֶׁ֖בַע", " עַל", "־חַטֹּאתֵיכֶֽם׃"],
-            "en": [
-              {"words": "sevenfold", "page": 146, "line": 2, "word": 1},
-              {"words": "for", "page": 146, "line": 2, "word": 2},
-              {"words": "your sins.", "page": 146, "line": 2, "word": 3}
-            ],
+            "he": ["שֶׁ֖בַע", " עַל־", "חַטֹּאתֵיכֶֽם׃"],
+            "en": [["seven {times}", [0]], ["for", [1]], ["your sins.", [2]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְשָׁבַרְתִּ֖י", " אֶת", "־גְּא֣וֹן", " עֻזְּכֶ֑ם", " וְנָתַתִּ֤י"],
-            "en": [
-              {"words": "I will break down", "page": 146, "line": 2, "word": 1},
-              {"words": "", "page": 146, "line": 2, "word": 2},
-              {"words": "your stubborn", "page": 146, "line": 2, "word": 4},
-              {"words": "pride", "page": 146, "line": 2, "word": 3},
-              {"words": "and make", "page": 146, "line": 2, "word": 5}
-            ],
+            "he": [" וְשָׁבַרְתִּ֖י", " אֶת־", "גְּא֣וֹן", " עֻזְּכֶ֑ם", " וְנָתַתִּ֤י"],
+            "en": [["Then I will break", [0]], ["the pride of", [1, 2]], ["your strength,", [3]], ["and I will make", [4]]],
             "verseIndex": 1
           }
         ]
@@ -64,41 +44,29 @@
         "book": 3,
         "chapter": 26,
         "verse": 18,
-        "start": false,
-        "width": 0.2873950853526837
+        "indexOfFirstWord": 9
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 19,
-        "start": true,
-        "width": 0.42013928314598237
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "2": {
     "text": [
       [
         [
           {
-            "he": ["אֶת", "־שְׁמֵיכֶם֙", " כַּבַּרְזֶ֔ל", " וְאֶֽת", "־אַרְצְכֶ֖ם", " כַּנְּחֻשָֽׁה׃"],
-            "en": [
-              {"words": "", "page": 146, "line": 3, "word": 1},
-              {"words": "your sky", "page": 146, "line": 3, "word": 2},
-              {"words": "like iron", "page": 146, "line": 3, "word": 3},
-              {"words": "", "page": 146, "line": 3, "word": 4},
-              {"words": "and your land", "page": 146, "line": 3, "word": 5},
-              {"words": "like bronze,", "page": 146, "line": 3, "word": 6}
-            ],
+            "he": ["אֶת־", "שְׁמֵיכֶם֙", " כַּבַּרְזֶ֔ל", " וְאֶֽת־", "אַרְצְכֶ֖ם", " כַּנְּחֻשָֽׁה׃"],
+            "en": [["your heavens", [0, 1]], ["like iron", [2]], ["and", [3]], ["your land", [4]], ["like bronze.", [5]]],
             "verseIndex": 0
           },
           {
             "he": [" וְתַ֥ם", " לָרִ֖יק"],
-            "en": [
-              {"words": "and your strength", "page": 146, "line": 4, "word": 1},
-              {"words": "will be spent", "page": 146, "line": 3, "word": 1}
-            ],
+            "en": [["And", [0]], ["your strength", [[146, 3, 0, 0]]], ["shall be exhausted", [0]]],
             "verseIndex": 1
           }
         ]
@@ -109,36 +77,24 @@
         "book": 3,
         "chapter": 26,
         "verse": 19,
-        "start": false,
-        "width": 0.5798607168540176
+        "indexOfFirstWord": 5
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 20,
-        "start": true,
-        "width": 0.15406108857077241
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "3": {
     "text": [
       [
         [
           {
-            "he": ["כֹּחֲכֶ֑ם", " וְלֹֽא", "־תִתֵּ֤ן", " אַרְצְכֶם֙", " אֶת", "־יְבוּלָ֔הּ", " וְעֵ֣ץ", " הָאָ֔רֶץ", " לֹ֥א"],
-            "en": [
-              {"words": "in vain.", "page": 146, "line": 3, "word": 2},
-              {"words": "For your land", "page": 146, "line": 4, "word": 4},
-              {"words": "will not", "page": 146, "line": 4, "word": 2},
-              {"words": "yield", "page": 146, "line": 4, "word": 3},
-              {"words": "its", "page": 146, "line": 4, "word": 5},
-              {"words": "produce,", "page": 146, "line": 4, "word": 6},
-              {"words": "and the trees", "page": 146, "line": 4, "word": 7},
-              {"words": "of the land", "page": 146, "line": 4, "word": 8},
-              {"words": "will not", "page": 146, "line": 4, "word": 9}
-            ],
+            "he": ["כֹּחֲכֶ֑ם", " וְלֹֽא־", "תִתֵּ֤ן", " אַרְצְכֶם֙", " אֶת־", "יְבוּלָ֔הּ", " וְעֵ֣ץ", " הָאָ֔רֶץ", " לֹ֥א"],
+            "en": [["{in} vain,", [[146, 2, 1, 1]]], ["and", [1]], ["your land", [3]], ["shall", [2]], ["not", [1]], ["give", [2]], ["its produce,", [4, 5]], ["and the tree of", [6]], ["the land", [7]], ["shall", [[146, 4, 0, 0]]]],
             "verseIndex": 0
           }
         ]
@@ -149,36 +105,23 @@
         "book": 3,
         "chapter": 26,
         "verse": 20,
-        "start": false,
-        "width": 0.7155132817882569
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "4": {
     "text": [
       [
         [
           {
             "he": ["יִתֵּ֖ן", " פִּרְיֽוֹ׃"],
-            "en": [
-              {"words": "bear", "page": 146, "line": 5, "word": 1},
-              {"words": "their fruit.", "page": 146, "line": 5, "word": 2}
-            ],
+            "en": [["not", [[146, 3, 0, 8]]], ["give", [0]], ["its fruit.", [1]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְאִם", "־תֵּֽלְכ֤וּ", " עִמִּי֙", " קֶ֔רִי", " וְלֹ֥א", " תֹאב֖וּ", " לִשְׁמֹ֣עַֽ", " לִ֑י"],
-            "en": [
-              {"words": "If", "page": 146, "line": 5, "word": 1},
-              {"words": "you walk", "page": 146, "line": 5, "word": 2},
-              {"words": "in hostility", "page": 146, "line": 5, "word": 4},
-              {"words": "toward Me", "page": 146, "line": 5, "word": 3},
-              {"words": "and refuse", "page": 146, "line": 5, "word": 5},
-              {"words": "", "page": 146, "line": 5, "word": 6},
-              {"words": "to obey", "page": 146, "line": 5, "word": 7},
-              {"words": "Me,", "page": 146, "line": 5, "word": 8}
-            ],
+            "he": [" וְאִם־", "תֵּֽלְכ֤וּ", " עִמִּי֙", " קֶ֔רִי", " וְלֹ֥א", " תֹאב֖וּ", " לִשְׁמֹ֣עַֽ", " לִ֑י"],
+            "en": [["And if", [0]], ["you walk", [1]], ["with me", [2]], ["{in} hostility", [3]], ["and", [4]], ["are", [5]], ["not", [4]], ["willing", [5]], ["to listen", [6]], ["to me,", [7]]],
             "verseIndex": 1
           }
         ]
@@ -189,39 +132,29 @@
         "book": 3,
         "chapter": 26,
         "verse": 20,
-        "start": false,
-        "width": 0.13042562964097068
+        "indexOfFirstWord": 11
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 21,
-        "start": true,
-        "width": 0.5001600916735478
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "5": {
     "text": [
       [
         [
           {
             "he": ["וְיָסַפְתִּ֤י", " עֲלֵיכֶם֙", " מַכָּ֔ה", " שֶׁ֖בַע", " כְּחַטֹּאתֵיכֶֽם׃"],
-            "en": [
-              {"words": "I will multiply", "page": 146, "line": 6, "word": 1},
-              {"words": "", "page": 146, "line": 6, "word": 2},
-              {"words": "your plagues", "page": 146, "line": 6, "word": 3},
-              {"words": "seven times,", "page": 146, "line": 6, "word": 4},
-              {"words": "according to your sins.", "page": 146, "line": 6, "word": 5}
-            ],
+            "en": [["then I will add", [0]], ["on you", [1]], ["a plague", [2]], ["seven {times}", [3]], ["according to your sins.", [4]]],
             "verseIndex": 0
           },
           {
             "he": [" וְהִשְׁלַחְתִּ֨י"],
-            "en": [
-              {"words": "I will send", "page": 146, "line": 6, "word": 1}
-            ],
+            "en": [["And I will send", [0]]],
             "verseIndex": 1
           }
         ]
@@ -232,35 +165,24 @@
         "book": 3,
         "chapter": 26,
         "verse": 21,
-        "start": false,
-        "width": 0.4998399083264522
+        "indexOfFirstWord": 8
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 22,
-        "start": true,
-        "width": 0.10429974499457166
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "6": {
     "text": [
       [
         [
           {
-            "he": ["בָכֶ֜ם", " אֶת", "־חַיַּ֤ת", " הַשָּׂדֶה֙", " וְשִׁכְּלָ֣ה", " אֶתְכֶ֔ם", " וְהִכְרִ֙יתָה֙", " אֶת־"],
-            "en": [
-              {"words": "", "page": 146, "line": 7, "word": 2},
-              {"words": "wild", "page": 146, "line": 7, "word": 4},
-              {"words": "animals", "page": 146, "line": 7, "word": 3},
-              {"words": "against you", "page": 146, "line": 7, "word": 1},
-              {"words": "to rob you of your children,", "page": 146, "line": 7, "word": 5},
-              {"words": "", "page": 146, "line": 7, "word": 6},
-              {"words": "destroy", "page": 146, "line": 7, "word": 7},
-              {"words": "", "page": 146, "line": 7, "word": 8}
-            ],
+            "he": ["בָכֶ֜ם", " אֶת־", "חַיַּ֤ת", " הַשָּׂדֶה֙", " וְשִׁכְּלָ֣ה", " אֶתְכֶ֔ם", " וְהִכְרִ֙יתָה֙", " אֶת־"],
+            "en": [["the animal of", [1, 2]], ["the field", [3]], ["against you,", [0]], ["and it will bereave", [4]], ["you,", [5]], ["and it will cut off", [6]], ["your", [7, []]]],
             "verseIndex": 0
           }
         ]
@@ -271,32 +193,23 @@
         "book": 3,
         "chapter": 26,
         "verse": 22,
-        "start": false,
-        "width": 0.4736410230514808
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "7": {
     "text": [
       [
         [
           {
             "he": ["בְּהֶמְתְּכֶ֔ם", " וְהִמְעִ֖יטָה", " אֶתְכֶ֑ם", " וְנָשַׁ֖מּוּ", " דַּרְכֵיכֶֽם׃"],
-            "en": [
-              {"words": "your livestock,", "page": 146, "line": 8, "word": 1},
-              {"words": "and reduce", "page": 146, "line": 8, "word": 2},
-              {"words": "your numbers,", "page": 146, "line": 8, "word": 3},
-              {"words": "until your roads", "page": 146, "line": 8, "word": 5},
-              {"words": "lie desolate.", "page": 146, "line": 8, "word": 4}
-            ],
+            "en": [["cattle,", [[], 0]], ["and it will make", [1]], ["you", [2]], ["few,", [1]], ["and", [3]], ["your roads", [4]], ["will be desolate.", [3]]],
             "verseIndex": 0
           },
           {
             "he": [" וְאִ֨ם־"],
-            "en": [
-              {"words": "And if", "page": 146, "line": 8, "word": 1}
-            ],
+            "en": [["And if", [0]]],
             "verseIndex": 1
           }
         ]
@@ -307,42 +220,29 @@
         "book": 3,
         "chapter": 26,
         "verse": 22,
-        "start": false,
-        "width": 0.4220592319539475
+        "indexOfFirstWord": 9
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 23,
-        "start": true,
-        "width": 0.10042188895390017
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "8": {
     "text": [
       [
         [
           {
             "he": ["בְּאֵ֔לֶּה", " לֹ֥א", " תִוָּסְר֖וּ", " לִ֑י", " וַהֲלַכְתֶּ֥ם", " עִמִּ֖י", " קֶֽרִי׃"],
-            "en": [
-              {"words": "in spite of these", "page": 146, "line": 9, "word": 1},
-              {"words": "things you do not", "page": 146, "line": 9, "word": 2},
-              {"words": "accept My discipline", "page": 146, "line": 9, "word": 3},
-              {"words": ",", "page": 146, "line": 9, "word": 4},
-              {"words": "but continue to walk", "page": 146, "line": 9, "word": 5},
-              {"words": "in hostility", "page": 146, "line": 9, "word": 7},
-              {"words": "toward Me,", "page": 146, "line": 9, "word": 6}
-            ],
+            "en": [["by these {things}", [0]], ["you will", [2]], ["not", [1]], ["accept", [2]], ["my discipline", [3]], ["but walk", [4]], ["with me", [5]], ["{in} hostility,", [6]]],
             "verseIndex": 0
           },
           {
             "he": [" וְהָלַכְתִּ֧י", " אַף־"],
-            "en": [
-              {"words": "then I", "page": 146, "line": 10, "word": 1},
-              {"words": "will act", "page": 146, "line": 9, "word": 1}
-            ],
+            "en": [["then I", [0]], ["myself", [[146, 9, 0, 0]]], ["will", [0]], ["also", [1]]],
             "verseIndex": 1
           }
         ]
@@ -353,36 +253,24 @@
         "book": 3,
         "chapter": 26,
         "verse": 23,
-        "start": false,
-        "width": 0.8995781110460999
+        "indexOfFirstWord": 1
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 24,
-        "start": true,
-        "width": 0.17420870191123825
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "9": {
     "text": [
       [
         [
           {
-            "he": ["אֲנִ֛י", " עִמָּכֶ֖ם", " בְּקֶ֑רִי", " וְהִכֵּיתִ֤י", " אֶתְכֶם֙", " גַּם", "־אָ֔נִי", " שֶׁ֖בַע", " עַל־"],
-            "en": [
-              {"words": "", "page": 146, "line": 9, "word": 2},
-              {"words": "with hostility", "page": 146, "line": 10, "word": 3},
-              {"words": "toward you,", "page": 146, "line": 10, "word": 2},
-              {"words": "and", "page": 146, "line": 10, "word": 6},
-              {"words": "I", "page": 146, "line": 10, "word": 7},
-              {"words": "will strike", "page": 146, "line": 10, "word": 4},
-              {"words": "you", "page": 146, "line": 10, "word": 5},
-              {"words": "sevenfold", "page": 146, "line": 10, "word": 8},
-              {"words": "for", "page": 146, "line": 10, "word": 9}
-            ],
+            "he": ["אֲנִ֛י", " עִמָּכֶ֖ם", " בְּקֶ֑רִי", " וְהִכֵּיתִ֤י", " אֶתְכֶם֙", " גַּם־", "אָ֔נִי", " שֶׁ֖בַע", " עַל־"],
+            "en": [["walk", [[146, 8, 1, 0]]], ["with you", [1]], ["in hostility,", [2]], ["and I", [3]], ["myself", [6]], ["will", [3]], ["also", [5]], ["strike", [3]], ["you", [4]], ["seven {times}", [7]], ["for", [8]]],
             "verseIndex": 0
           }
         ]
@@ -393,33 +281,23 @@
         "book": 3,
         "chapter": 26,
         "verse": 24,
-        "start": false,
-        "width": 0.6627393783266721
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "10": {
     "text": [
       [
         [
           {
             "he": ["חַטֹּאתֵיכֶֽם׃"],
-            "en": [
-              {"words": "your sins.", "page": 146, "line": 11, "word": 1}
-            ],
+            "en": [["your sins.", [0]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְהֵבֵאתִ֨י", " עֲלֵיכֶ֜ם", " חֶ֗רֶב", " נֹקֶ֙מֶת֙", " נְקַם", "־בְּרִ֔ית"],
-            "en": [
-              {"words": "And I will bring", "page": 146, "line": 11, "word": 1},
-              {"words": "a sword", "page": 146, "line": 11, "word": 3},
-              {"words": "against you", "page": 146, "line": 11, "word": 2},
-              {"words": "to execute", "page": 146, "line": 11, "word": 4},
-              {"words": "the vengeance", "page": 146, "line": 11, "word": 5},
-              {"words": "of the covenant.", "page": 146, "line": 11, "word": 6}
-            ],
+            "he": [" וְהֵבֵאתִ֨י", " עֲלֵיכֶ֜ם", " חֶ֗רֶב", " נֹקֶ֙מֶת֙", " נְקַם־", "בְּרִ֔ית"],
+            "en": [["And I will bring", [0]], ["upon you", [1]], ["a sword", [2]], ["avenging", [3]], ["the vengeance of", [4]], ["the covenant,", [5]]],
             "verseIndex": 1
           }
         ]
@@ -430,34 +308,24 @@
         "book": 3,
         "chapter": 26,
         "verse": 24,
-        "start": false,
-        "width": 0.16305191976208966
+        "indexOfFirstWord": 11
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 25,
-        "start": true,
-        "width": 0.3826418432796014
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "11": {
     "text": [
       [
         [
           {
-            "he": ["וְנֶאֱסַפְתֶּ֖ם", " אֶל", "־עָרֵיכֶ֑ם", " וְשִׁלַּ֤חְתִּי", " דֶ֙בֶר֙", " בְּת֣וֹכְכֶ֔ם", " וְנִתַּתֶּ֖ם"],
-            "en": [
-              {"words": "Though you withdraw", "page": 146, "line": 12, "word": 1},
-              {"words": "into", "page": 146, "line": 12, "word": 2},
-              {"words": "your cities,", "page": 146, "line": 12, "word": 3},
-              {"words": "I will send", "page": 146, "line": 12, "word": 4},
-              {"words": "a plague", "page": 146, "line": 12, "word": 5},
-              {"words": "among you,", "page": 146, "line": 12, "word": 6},
-              {"words": "and you will be delivered", "page": 146, "line": 12, "word": 7}
-            ],
+            "he": ["וְנֶאֱסַפְתֶּ֖ם", " אֶל־", "עָרֵיכֶ֑ם", " וְשִׁלַּ֤חְתִּי", " דֶ֙בֶר֙", " בְּת֣וֹכְכֶ֔ם", " וְנִתַּתֶּ֖ם"],
+            "en": [["and you will be gathered", [0]], ["into", [1]], ["your cities.", [2]], ["And I will send", [3]], ["pestilence", [4]], ["into your midst,", [5]], ["and you will be given", [6]]],
             "verseIndex": 0
           }
         ]
@@ -468,35 +336,23 @@
         "book": 3,
         "chapter": 26,
         "verse": 25,
-        "start": false,
-        "width": 0.521121996279094
+        "indexOfFirstWord": 6
       }
     ],
     "isPetucha": false
   },
-  {
+  "12": {
     "text": [
       [
         [
           {
-            "he": ["בְּיַד", "־אוֹיֵֽב׃"],
-            "en": [
-              {"words": "into the hand", "page": 146, "line": 13, "word": 1},
-              {"words": "of the enemy.", "page": 146, "line": 13, "word": 2}
-            ],
+            "he": ["בְּיַד־", "אוֹיֵֽב׃"],
+            "en": [["into the hand of", [0]], ["an enemy.", [1]]],
             "verseIndex": 0
           },
           {
-            "he": [" בְּשִׁבְרִ֣י", " לָכֶם֮", " מַטֵּה", "־לֶ֒חֶם֒", " וְ֠אָפ֠וּ", " עֶ֣שֶׂר", " נָשִׁ֤ים"],
-            "en": [
-              {"words": "When I cut off", "page": 146, "line": 13, "word": 1},
-              {"words": "your", "page": 146, "line": 13, "word": 2},
-              {"words": "supply", "page": 146, "line": 13, "word": 3},
-              {"words": "of bread,", "page": 146, "line": 13, "word": 4},
-              {"words": "ten", "page": 146, "line": 13, "word": 6},
-              {"words": "women", "page": 146, "line": 13, "word": 7},
-              {"words": "will bake", "page": 146, "line": 13, "word": 5}
-            ],
+            "he": [" בְּשִׁבְרִ֣י", " לָכֶם֮", " מַטֵּה־", "לֶ֒חֶם֒", " וְ֠אָפ֠וּ", " עֶ֣שֶׂר", " נָשִׁ֤ים"],
+            "en": [["When I break", [0]], ["to you", [1]], ["the staff of", [2]], ["bread,", [3]], ["then", [4]], ["ten", [5]], ["women", [6]], ["will bake", [4]]],
             "verseIndex": 1
           }
         ]
@@ -507,33 +363,24 @@
         "book": 3,
         "chapter": 26,
         "verse": 25,
-        "start": false,
-        "width": 0.09623616044130466
+        "indexOfFirstWord": 13
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 26,
-        "start": true,
-        "width": 0.36767231993806404
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "13": {
     "text": [
       [
         [
           {
             "he": ["לַחְמְכֶם֙", " בְּתַנּ֣וּר", " אֶחָ֔ד", " וְהֵשִׁ֥יבוּ", " לַחְמְכֶ֖ם", " בַּמִּשְׁקָ֑ל"],
-            "en": [
-              {"words": "your bread", "page": 146, "line": 14, "word": 1},
-              {"words": "in a single", "page": 146, "line": 14, "word": 3},
-              {"words": "oven", "page": 146, "line": 14, "word": 2},
-              {"words": "and dole out", "page": 146, "line": 14, "word": 4},
-              {"words": "your bread", "page": 146, "line": 14, "word": 5},
-              {"words": "by weight,", "page": 146, "line": 14, "word": 6}
-            ],
+            "en": [["your bread", [0]], ["in", [1]], ["one", [2]], ["oven,", [1]], ["and they will return", [3]], ["your bread", [4]], ["by weight,", [5]]],
             "verseIndex": 0
           }
         ]
@@ -544,33 +391,26 @@
         "book": 3,
         "chapter": 26,
         "verse": 26,
-        "start": false,
-        "width": 0.43259623061476304
+        "indexOfFirstWord": 7
       }
     ],
     "isPetucha": false
   },
-  {
+  "14": {
     "text": [
       [
         [
           {
             "he": ["וַאֲכַלְתֶּ֖ם", " וְלֹ֥א", " תִשְׂבָּֽעוּ׃"],
-            "en": [
-              {"words": "so that you will eat", "page": 146, "line": 15, "word": 1},
-              {"words": "but not", "page": 146, "line": 15, "word": 2},
-              {"words": "be satisfied.", "page": 146, "line": 15, "word": 3}
-            ],
+            "en": [["and you will eat", [0]], ["but not", [1]], ["be satisfied.", [2]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" וְאִ֨ם־"],
-            "en": [
-              {"words": "But if", "page": 146, "line": 15, "word": 1}
-            ],
-            "verseIndex": 0
+            "en": [["And if", [0]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -580,41 +420,29 @@
         "book": 3,
         "chapter": 26,
         "verse": 26,
-        "start": false,
-        "width": 0.19973144944717297
+        "indexOfFirstWord": 13
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 27,
-        "start": true,
-        "width": 0.09649641948274841
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "15": {
     "text": [
       [
         [
           {
             "he": ["בְּזֹ֔את", " לֹ֥א", " תִשְׁמְע֖וּ", " לִ֑י", " וַהֲלַכְתֶּ֥ם", " עִמִּ֖י", " בְּקֶֽרִי׃"],
-            "en": [
-              {"words": "in spite of all this", "page": 146, "line": 16, "word": 1},
-              {"words": "you do not", "page": 146, "line": 16, "word": 2},
-              {"words": "obey", "page": 146, "line": 16, "word": 3},
-              {"words": "Me,", "page": 146, "line": 16, "word": 4},
-              {"words": "but continue to walk", "page": 146, "line": 16, "word": 5},
-              {"words": "in hostility", "page": 146, "line": 16, "word": 7},
-              {"words": "toward Me,", "page": 146, "line": 16, "word": 6}
-            ],
+            "en": [["in spite of this", [0]], ["you will", [2]], ["not", [1]], ["listen", [2]], ["to me", [3]], ["but walk", [4]], ["with me", [5]], ["in hostility,", [6]]],
             "verseIndex": 0
           },
           {
             "he": [" וְהָלַכְתִּ֥י"],
-            "en": [
-              {"words": "then I will walk", "page": 146, "line": 16, "word": 1}
-            ],
+            "en": [["then I will walk", [0]]],
             "verseIndex": 1
           }
         ]
@@ -625,36 +453,24 @@
         "book": 3,
         "chapter": 26,
         "verse": 27,
-        "start": false,
-        "width": 0.9035035805172515
+        "indexOfFirstWord": 1
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 28,
-        "start": true,
-        "width": 0.12876129106495598
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "16": {
     "text": [
       [
         [
           {
-            "he": ["עִמָּכֶ֖ם", " בַּחֲמַת", "־קֶ֑רִי", " וְיִסַּרְתִּ֤י", " אֶתְכֶם֙", " אַף", "־אָ֔נִי", " שֶׁ֖בַע", " עַל־"],
-            "en": [
-              {"words": "in fury", "page": 146, "line": 17, "word": 2},
-              {"words": "against", "page": 146, "line": 17, "word": 3},
-              {"words": "you,", "page": 146, "line": 17, "word": 1},
-              {"words": "and I,", "page": 146, "line": 17, "word": 7},
-              {"words": "even I,", "page": 146, "line": 17, "word": 6},
-              {"words": "will punish", "page": 146, "line": 17, "word": 4},
-              {"words": "you", "page": 146, "line": 17, "word": 5},
-              {"words": "sevenfold", "page": 146, "line": 17, "word": 8},
-              {"words": "for", "page": 146, "line": 17, "word": 9}
-            ],
+            "he": ["עִמָּכֶ֖ם", " בַּחֲמַת־", "קֶ֑רִי", " וְיִסַּרְתִּ֤י", " אֶתְכֶם֙", " אַף־", "אָ֔נִי", " שֶׁ֖בַע", " עַל־"],
+            "en": [["with you", [0]], ["in the heat of", [1]], ["hostility,", [2]], ["and I", [3]], ["myself", [6]], ["will", [3]], ["also", [5]], ["discipline", [3]], ["you", [4]], ["seven {times}", [7]], ["for", [8]]],
             "verseIndex": 0
           }
         ]
@@ -665,32 +481,23 @@
         "book": 3,
         "chapter": 26,
         "verse": 28,
-        "start": false,
-        "width": 0.7061542297144391
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "17": {
     "text": [
       [
         [
           {
             "he": ["חַטֹּאתֵיכֶֽם׃"],
-            "en": [
-              {"words": "your sins.", "page": 146, "line": 18, "word": 1}
-            ],
+            "en": [["your sins.", [0]]],
             "verseIndex": 0
           },
           {
             "he": [" וַאֲכַלְתֶּ֖ם", " בְּשַׂ֣ר", " בְּנֵיכֶ֑ם", " וּבְשַׂ֥ר", " בְּנֹתֵיכֶ֖ם"],
-            "en": [
-              {"words": "You will eat", "page": 146, "line": 18, "word": 1},
-              {"words": "the flesh", "page": 146, "line": 18, "word": 2},
-              {"words": "of your own sons", "page": 146, "line": 18, "word": 3},
-              {"words": "", "page": 146, "line": 19, "word": 1},
-              {"words": "[and]", "page": 146, "line": 18, "word": 4}
-            ],
+            "en": [["And you will eat", [0]], ["the flesh of", [1]], ["your sons,", [2]], ["and the flesh of", [3]], ["your daughters", [4]]],
             "verseIndex": 1
           }
         ]
@@ -701,40 +508,29 @@
         "book": 3,
         "chapter": 26,
         "verse": 28,
-        "start": false,
-        "width": 0.16508447922060487
+        "indexOfFirstWord": 10
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 29,
-        "start": true,
-        "width": 0.8286682638929469
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "18": {
     "text": [
       [
         [
           {
             "he": ["תֹּאכֵֽלוּ׃"],
-            "en": [
-              {"words": "daughters.", "page": 146, "line": 18, "word": 5}
-            ],
+            "en": [["you will eat.", [0]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְהִשְׁמַדְתִּ֞י", " אֶת", "־בָּמֹֽתֵיכֶ֗ם", " וְהִכְרַתִּי֙", " אֶת", "־חַמָּ֣נֵיכֶ֔ם"],
-            "en": [
-              {"words": "I will destroy", "page": 146, "line": 19, "word": 1},
-              {"words": "", "page": 146, "line": 19, "word": 2},
-              {"words": "your high places,", "page": 146, "line": 19, "word": 3},
-              {"words": "cut down", "page": 146, "line": 19, "word": 4},
-              {"words": "", "page": 146, "line": 19, "word": 5},
-              {"words": "your incense altars,", "page": 146, "line": 19, "word": 6}
-            ],
+            "he": [" וְהִשְׁמַדְתִּ֞י", " אֶת־", "בָּמֹֽתֵיכֶ֗ם", " וְהִכְרַתִּי֙", " אֶת־", "חַמָּ֣נֵיכֶ֔ם"],
+            "en": [["And I will destroy", [0]], ["your high places,", [1, 2]], ["and I will cut down", [3]], ["your incense altars,", [4, 5]]],
             "verseIndex": 1
           }
         ]
@@ -745,35 +541,24 @@
         "book": 3,
         "chapter": 26,
         "verse": 29,
-        "start": false,
-        "width": 0.17133173610705313
+        "indexOfFirstWord": 5
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 30,
-        "start": true,
-        "width": 0.44451519010369295
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "19": {
     "text": [
       [
         [
           {
-            "he": ["וְנָֽתַתִּי֙", " אֶת", "־פִּגְרֵיכֶ֔ם", " עַל", "־פִּגְרֵ֖י", " גִּלּוּלֵיכֶ֑ם", " וְגָעֲלָ֥ה", " נַפְשִׁ֖י"],
-            "en": [
-              {"words": "and heap", "page": 146, "line": 20, "word": 1},
-              {"words": "", "page": 146, "line": 20, "word": 2},
-              {"words": "your lifeless bodies", "page": 146, "line": 20, "word": 3},
-              {"words": "on", "page": 146, "line": 20, "word": 4},
-              {"words": "the lifeless remains", "page": 146, "line": 20, "word": 5},
-              {"words": "of your idols;", "page": 146, "line": 20, "word": 6},
-              {"words": "and My soul", "page": 146, "line": 20, "word": 8},
-              {"words": "will despise", "page": 146, "line": 20, "word": 7}
-            ],
+            "he": ["וְנָֽתַתִּי֙", " אֶת־", "פִּגְרֵיכֶ֔ם", " עַל־", "פִּגְרֵ֖י", " גִּלּוּלֵיכֶ֑ם", " וְגָעֲלָ֥ה", " נַפְשִׁ֖י"],
+            "en": [["and I will pile", [0]], ["your corpses", [1, 2]], ["on", [3]], ["the corpses of", [4]], ["your idols,", [5]], ["and", [6]], ["my soul", [7]], ["will detest", [6]]],
             "verseIndex": 0
           }
         ]
@@ -784,33 +569,23 @@
         "book": 3,
         "chapter": 26,
         "verse": 30,
-        "start": false,
-        "width": 0.48816237428207593
+        "indexOfFirstWord": 6
       }
     ],
     "isPetucha": false
   },
-  {
+  "20": {
     "text": [
       [
         [
           {
             "he": ["אֶתְכֶֽם׃"],
-            "en": [
-              {"words": "you.", "page": 146, "line": 21, "word": 1}
-            ],
+            "en": [["you.", [0]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְנָתַתִּ֤י", " אֶת", "־עָֽרֵיכֶם֙", " חׇרְבָּ֔ה", " וַהֲשִׁמּוֹתִ֖י", " אֶת־"],
-            "en": [
-              {"words": "I will reduce", "page": 146, "line": 21, "word": 1},
-              {"words": "", "page": 146, "line": 21, "word": 2},
-              {"words": "your cities", "page": 146, "line": 21, "word": 3},
-              {"words": "to rubble", "page": 146, "line": 21, "word": 4},
-              {"words": "and lay waste", "page": 146, "line": 21, "word": 5},
-              {"words": "", "page": 146, "line": 21, "word": 6}
-            ],
+            "he": [" וְנָתַתִּ֤י", " אֶת־", "עָֽרֵיכֶם֙", " חׇרְבָּ֔ה", " וַהֲשִׁמּוֹתִ֖י", " אֶת־"],
+            "en": [["And I will make", [0]], ["your cities", [1, 2]], ["a waste,", [3]], ["and I will make desolate", [4]], ["your", [5, []]]],
             "verseIndex": 1
           }
         ]
@@ -821,39 +596,29 @@
         "book": 3,
         "chapter": 26,
         "verse": 30,
-        "start": false,
-        "width": 0.06732243561423114
+        "indexOfFirstWord": 14
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 31,
-        "start": true,
-        "width": 0.5059544658493871
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "21": {
     "text": [
       [
         [
           {
             "he": ["מִקְדְּשֵׁיכֶ֑ם", " וְלֹ֣א", " אָרִ֔יחַ", " בְּרֵ֖יחַ", " נִיחֹֽחֲכֶֽם׃"],
-            "en": [
-              {"words": "your sanctuaries,", "page": 146, "line": 22, "word": 1},
-              {"words": "and I will refuse", "page": 146, "line": 22, "word": 2},
-              {"words": "to smell", "page": 146, "line": 22, "word": 3},
-              {"words": "the pleasing", "page": 146, "line": 22, "word": 5},
-              {"words": "aroma of your sacrifices.", "page": 146, "line": 22, "word": 4}
-            ],
+            "en": [["holy places,", [[], 0]], ["and I will", [2]], ["not", [1]], ["smell", [2]], ["your", [3]], ["pleasing", [4]], ["aromas.", [3]]],
             "verseIndex": 0
           },
           {
             "he": [" וַהֲשִׁמֹּתִ֥י"],
-            "en": [
-              {"words": "And I", "page": 146, "line": 23, "word": 1}
-            ],
+            "en": [["And", [0]], ["I,", [[146, 22, 0, 0]]], ["I will make", [0]]],
             "verseIndex": 1
           }
         ]
@@ -864,35 +629,24 @@
         "book": 3,
         "chapter": 26,
         "verse": 31,
-        "start": false,
-        "width": 0.494045534150613
+        "indexOfFirstWord": 6
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 32,
-        "start": true,
-        "width": 0.15760969340921607
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "22": {
     "text": [
       [
         [
           {
-            "he": ["אֲנִ֖י", " אֶת", "־הָאָ֑רֶץ", " וְשָֽׁמְמ֤וּ", " עָלֶ֙יהָ֙", " אֹֽיְבֵיכֶ֔ם", " הַיֹּשְׁבִ֖ים", " בָּֽהּ׃"],
-            "en": [
-              {"words": "", "page": 146, "line": 23, "word": 2},
-              {"words": "will lay waste", "page": 146, "line": 22, "word": 1},
-              {"words": "the land,", "page": 146, "line": 23, "word": 3},
-              {"words": "so that your enemies", "page": 146, "line": 23, "word": 6},
-              {"words": "who dwell", "page": 146, "line": 23, "word": 7},
-              {"words": "in it", "page": 146, "line": 23, "word": 8},
-              {"words": "will be appalled", "page": 146, "line": 23, "word": 4},
-              {"words": ".", "page": 146, "line": 23, "word": 5}
-            ],
+            "he": ["אֲנִ֖י", " אֶת־", "הָאָ֑רֶץ", " וְשָֽׁמְמ֤וּ", " עָלֶ֙יהָ֙", " אֹֽיְבֵיכֶ֔ם", " הַיֹּשְׁבִ֖ים", " בָּֽהּ׃"],
+            "en": [["the land", [1, 2]], ["desolate,", [[146, 21, 1, 0]]], ["and", [3]], ["your enemies,", [5]], ["the dwellers", [6]], ["in it,", [7]], ["will be appalled", [3]], ["at it.", [4]]],
             "verseIndex": 0
           }
         ]
@@ -903,27 +657,18 @@
         "book": 3,
         "chapter": 26,
         "verse": 32,
-        "start": false,
-        "width": 0.842390306590784
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "23": {
     "text": [
       [
         [
           {
             "he": ["וְאֶתְכֶם֙", " אֱזָרֶ֣ה", " בַגּוֹיִ֔ם", " וַהֲרִיקֹתִ֥י", " אַחֲרֵיכֶ֖ם", " חָ֑רֶב", " וְהָיְתָ֤ה"],
-            "en": [
-              {"words": "But", "page": 146, "line": 24, "word": 1},
-              {"words": "I will scatter", "page": 146, "line": 24, "word": 2},
-              {"words": "you among the nations", "page": 146, "line": 24, "word": 3},
-              {"words": "and will draw out", "page": 146, "line": 24, "word": 4},
-              {"words": "a sword", "page": 146, "line": 24, "word": 6},
-              {"words": "after you", "page": 146, "line": 24, "word": 5},
-              {"words": "as your land", "page": 146, "line": 25, "word": 1}
-            ],
+            "en": [["And you", [0]], ["I will scatter", [1]], ["among the nations,", [2]], ["and I will draw out", [3]], ["a sword", [5]], ["after you,", [4]], ["and", [6]], ["your land", [[146, 24, 0, 0]]]],
             "verseIndex": 0
           }
         ]
@@ -934,33 +679,23 @@
         "book": 3,
         "chapter": 26,
         "verse": 33,
-        "start": true,
-        "width": 0.5905644106102058
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "24": {
     "text": [
       [
         [
           {
             "he": ["אַרְצְכֶם֙", " שְׁמָמָ֔ה", " וְעָרֵיכֶ֖ם", " יִהְי֥וּ", " חׇרְבָּֽה׃"],
-            "en": [
-              {"words": "becomes", "page": 146, "line": 24, "word": 7},
-              {"words": "desolate", "page": 146, "line": 25, "word": 2},
-              {"words": "and your cities", "page": 146, "line": 25, "word": 3},
-              {"words": "are laid", "page": 146, "line": 25, "word": 4},
-              {"words": "waste.", "page": 146, "line": 25, "word": 5}
-            ],
+            "en": [["will be", [[146, 23, 0, 6]]], ["a desolation,", [1]], ["and your cities", [2]], ["will be", [3]], ["a waste.", [4]]],
             "verseIndex": 0
           },
           {
             "he": [" אָז֩", " תִּרְצֶ֨ה"],
-            "en": [
-              {"words": "Then", "page": 146, "line": 25, "word": 1},
-              {"words": "the land", "page": 146, "line": 26, "word": 1}
-            ],
+            "en": [["Then", [0]], ["the land", [[146, 25, 0, 0]]]],
             "verseIndex": 1
           }
         ]
@@ -971,35 +706,24 @@
         "book": 3,
         "chapter": 26,
         "verse": 33,
-        "start": false,
-        "width": 0.40943558938979424
+        "indexOfFirstWord": 7
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 34,
-        "start": true,
-        "width": 0.09337720579827982
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "25": {
     "text": [
       [
         [
           {
-            "he": ["הָאָ֜רֶץ", " אֶת", "־שַׁבְּתֹתֶ֗יהָ", " כֹּ֚ל", " יְמֵ֣י", " הׇשַּׁמָּ֔ה", " וְאַתֶּ֖ם", " בְּאֶ֣רֶץ"],
-            "en": [
-              {"words": "shall enjoy", "page": 146, "line": 25, "word": 2},
-              {"words": "its", "page": 146, "line": 26, "word": 2},
-              {"words": "Sabbaths", "page": 146, "line": 26, "word": 3},
-              {"words": "all", "page": 146, "line": 26, "word": 4},
-              {"words": "the days", "page": 146, "line": 26, "word": 5},
-              {"words": "it lies desolate,", "page": 146, "line": 26, "word": 6},
-              {"words": "while you", "page": 146, "line": 26, "word": 7},
-              {"words": "are in the land", "page": 146, "line": 26, "word": 8}
-            ],
+            "he": ["הָאָ֜רֶץ", " אֶת־", "שַׁבְּתֹתֶ֗יהָ", " כֹּ֚ל", " יְמֵ֣י", " הׇשַּׁמָּ֔ה", " וְאַתֶּ֖ם", " בְּאֶ֣רֶץ"],
+            "en": [["will enjoy", [[146, 24, 1, 1]]], ["its sabbaths", [1, 2]], ["all", [3]], ["the days of", [4]], ["its desolation,", [5]], ["and you {will be}", [6]], ["in the land of", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1010,27 +734,18 @@
         "book": 3,
         "chapter": 26,
         "verse": 34,
-        "start": false,
-        "width": 0.4565700710174939
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "26": {
     "text": [
       [
         [
           {
-            "he": ["אֹיְבֵיכֶ֑ם", " אָ֚ז", " תִּשְׁבַּ֣ת", " הָאָ֔רֶץ", " וְהִרְצָ֖ת", " אֶת", "־שַׁבְּתֹתֶֽיהָ׃"],
-            "en": [
-              {"words": "of your enemies.", "page": 146, "line": 27, "word": 1},
-              {"words": "At that time", "page": 146, "line": 27, "word": 2},
-              {"words": "the land", "page": 146, "line": 27, "word": 4},
-              {"words": "will rest", "page": 146, "line": 27, "word": 3},
-              {"words": "and enjoy", "page": 146, "line": 27, "word": 5},
-              {"words": "its", "page": 146, "line": 27, "word": 6},
-              {"words": "Sabbaths.", "page": 146, "line": 27, "word": 7}
-            ],
+            "he": ["אֹיְבֵיכֶ֑ם", " אָ֚ז", " תִּשְׁבַּ֣ת", " הָאָ֔רֶץ", " וְהִרְצָ֖ת", " אֶת־", "שַׁבְּתֹתֶֽיהָ׃"],
+            "en": [["your enemies.", [0]], ["Then", [1]], ["the land", [3]], ["will rest", [2]], ["and enjoy", [4]], ["its sabbaths.", [5, 6]]],
             "verseIndex": 0
           }
         ]
@@ -1041,28 +756,18 @@
         "book": 3,
         "chapter": 26,
         "verse": 34,
-        "start": false,
-        "width": 0.45005272318422623
+        "indexOfFirstWord": 10
       }
     ],
     "isPetucha": false
   },
-  {
+  "27": {
     "text": [
       [
         [
           {
-            "he": ["כׇּל", "־יְמֵ֥י", " הׇשַּׁמָּ֖ה", " תִּשְׁבֹּ֑ת", " אֵ֣ת", " אֲשֶׁ֧ר", " לֹֽא", "־שָׁבְתָ֛ה"],
-            "en": [
-              {"words": "As long as", "page": 146, "line": 28, "word": 1},
-              {"words": "", "page": 146, "line": 28, "word": 2},
-              {"words": "it lies desolate,", "page": 146, "line": 28, "word": 3},
-              {"words": "[the land] will have the rest", "page": 146, "line": 28, "word": 4},
-              {"words": "", "page": 146, "line": 28, "word": 5},
-              {"words": "", "page": 146, "line": 28, "word": 6},
-              {"words": "it did not", "page": 146, "line": 28, "word": 7},
-              {"words": "receive", "page": 146, "line": 28, "word": 8}
-            ],
+            "he": ["כׇּל־", "יְמֵ֥י", " הׇשַּׁמָּ֖ה", " תִּשְׁבֹּ֑ת", " אֵ֣ת", " אֲשֶׁ֧ר", " לֹֽא־", "שָׁבְתָ֛ה"],
+            "en": [["All", [0]], ["the days of", [1]], ["its desolation", [2]], ["it will rest,", [3]], ["what it", [4, 5]], ["did", [7]], ["not", [6]], ["rest", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1073,31 +778,23 @@
         "book": 3,
         "chapter": 26,
         "verse": 35,
-        "start": true,
-        "width": 0.5752662238877964
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "28": {
     "text": [
       [
         [
           {
             "he": ["בְּשַׁבְּתֹתֵיכֶ֖ם", " בְּשִׁבְתְּכֶ֥ם", " עָלֶֽיהָ׃"],
-            "en": [
-              {"words": "during the Sabbaths", "page": 146, "line": 29, "word": 1},
-              {"words": "when you lived", "page": 146, "line": 29, "word": 2},
-              {"words": "in it.", "page": 146, "line": 29, "word": 3}
-            ],
+            "en": [["in your sabbaths,", [0]], ["when you dwelt", [1]], ["on it.", [2]]],
             "verseIndex": 0
           },
           {
             "he": [" וְהַנִּשְׁאָרִ֣ים", " בָּכֶ֔ם"],
-            "en": [
-              {"words": "As for those of you who survive", "page": 146, "line": 29, "word": 1},
-              {"words": ",", "page": 146, "line": 29, "word": 2}
-            ],
+            "en": [["And the remaining", [0]], ["in you,", [1]]],
             "verseIndex": 1
           }
         ]
@@ -1108,34 +805,24 @@
         "book": 3,
         "chapter": 26,
         "verse": 35,
-        "start": false,
-        "width": 0.42473377611220364
+        "indexOfFirstWord": 8
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 36,
-        "start": true,
-        "width": 0.1472413753542214
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "29": {
     "text": [
       [
         [
           {
             "he": ["וְהֵבֵ֤אתִי", " מֹ֙רֶךְ֙", " בִּלְבָבָ֔ם", " בְּאַרְצֹ֖ת", " אֹיְבֵיהֶ֑ם", " וְרָדַ֣ף", " אֹתָ֗ם"],
-            "en": [
-              {"words": "I will send", "page": 146, "line": 30, "word": 1},
-              {"words": "a faintness", "page": 146, "line": 30, "word": 2},
-              {"words": "into their hearts", "page": 146, "line": 30, "word": 3},
-              {"words": "in the lands", "page": 146, "line": 30, "word": 4},
-              {"words": "of their enemies,", "page": 146, "line": 30, "word": 5},
-              {"words": "so that even the sound", "page": 146, "line": 31, "word": 1},
-              {"words": "of a windblown", "page": 146, "line": 31, "word": 3}
-            ],
+            "en": [["and I will bring", [0]], ["faintness", [1]], ["into their heart", [2]], ["in the land of", [3]], ["their enemies.", [4]], ["And", [5]], ["the sound of", [[146, 30, 0, 0]]], ["a", [[146, 30, 0, 1]]], ["driven", [[146, 30, 0, 2]]]],
             "verseIndex": 0
           }
         ]
@@ -1146,29 +833,18 @@
         "book": 3,
         "chapter": 26,
         "verse": 36,
-        "start": false,
-        "width": 0.4533230843362436
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "30": {
     "text": [
       [
         [
           {
-            "he": ["ק֚וֹל", " עָלֶ֣ה", " נִדָּ֔ף", " וְנָס֧וּ", " מְנֻֽסַת", "־חֶ֛רֶב", " וְנָפְל֖וּ", " וְאֵ֥ין", " רֹדֵֽף׃"],
-            "en": [
-              {"words": "leaf", "page": 146, "line": 31, "word": 2},
-              {"words": "will put them to flight", "page": 146, "line": 30, "word": 6},
-              {"words": ".", "page": 146, "line": 30, "word": 7},
-              {"words": "And they will flee", "page": 146, "line": 31, "word": 4},
-              {"words": "as one flees", "page": 146, "line": 31, "word": 5},
-              {"words": "the sword,", "page": 146, "line": 31, "word": 6},
-              {"words": "and fall", "page": 146, "line": 31, "word": 7},
-              {"words": "when no one", "page": 146, "line": 31, "word": 8},
-              {"words": "pursues them.", "page": 146, "line": 31, "word": 9}
-            ],
+            "he": ["ק֚וֹל", " עָלֶ֣ה", " נִדָּ֔ף", " וְנָס֧וּ", " מְנֻֽסַת־", "חֶ֛רֶב", " וְנָפְל֖וּ", " וְאֵ֥ין", " רֹדֵֽף׃"],
+            "en": [["leaf", [1]], ["will chase", [[146, 29, 0, 5]]], ["them,", [[146, 29, 0, 6]]], ["and they will flee", [3]], ["{as} fleeing from", [4]], ["a sword,", [5]], ["and they will fall", [6]], ["when there is no", [7]], ["pursuer.", [8]]],
             "verseIndex": 0
           }
         ]
@@ -1179,28 +855,18 @@
         "book": 3,
         "chapter": 26,
         "verse": 36,
-        "start": false,
-        "width": 0.399435540309535
+        "indexOfFirstWord": 9
       }
     ],
     "isPetucha": false
   },
-  {
+  "31": {
     "text": [
       [
         [
           {
-            "he": ["וְכָשְׁל֧וּ", " אִישׁ", "־בְּאָחִ֛יו", " כְּמִפְּנֵי", "־חֶ֖רֶב", " וְרֹדֵ֣ף", " אָ֑יִן", " וְלֹא־"],
-            "en": [
-              {"words": "They will stumble", "page": 146, "line": 32, "word": 1},
-              {"words": "over one", "page": 146, "line": 32, "word": 2},
-              {"words": "another", "page": 146, "line": 32, "word": 3},
-              {"words": "as before", "page": 146, "line": 32, "word": 4},
-              {"words": "the sword,", "page": 146, "line": 32, "word": 5},
-              {"words": "though no one", "page": 146, "line": 32, "word": 7},
-              {"words": "is behind them.", "page": 146, "line": 32, "word": 6},
-              {"words": "So", "page": 146, "line": 32, "word": 8}
-            ],
+            "he": ["וְכָשְׁל֧וּ", " אִישׁ־", "בְּאָחִ֛יו", " כְּמִפְּנֵי־", "חֶ֖רֶב", " וְרֹדֵ֣ף", " אָ֑יִן", " וְלֹא־"],
+            "en": [["And they will stumble,", [0]], ["one", [1]], ["on his brother,", [2]], ["as from the face of", [3]], ["a sword", [4]], ["but", [5]], ["there is no", [6]], ["pursuer,", [5]], ["and", [7]], ["to you", [[146, 32, 0, 1]]]],
             "verseIndex": 0
           }
         ]
@@ -1211,33 +877,23 @@
         "book": 3,
         "chapter": 26,
         "verse": 37,
-        "start": true,
-        "width": 0.5738217781814512
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "32": {
     "text": [
       [
         [
           {
             "he": ["תִֽהְיֶ֤ה", " לָכֶם֙", " תְּקוּמָ֔ה", " לִפְנֵ֖י", " אֹֽיְבֵיכֶֽם׃"],
-            "en": [
-              {"words": "you will not", "page": 146, "line": 33, "word": 2},
-              {"words": "be", "page": 146, "line": 33, "word": 1},
-              {"words": "able to stand", "page": 146, "line": 33, "word": 3},
-              {"words": "against", "page": 146, "line": 33, "word": 4},
-              {"words": "your enemies.", "page": 146, "line": 33, "word": 5}
-            ],
+            "en": [["there will be", [0]], ["no", [[146, 31, 0, 7]]], ["power to stand", [2]], ["to the face of", [3]], ["your enemies.", [4]]],
             "verseIndex": 0
           },
           {
             "he": [" וַאֲבַדְתֶּ֖ם", " בַּגּוֹיִ֑ם"],
-            "en": [
-              {"words": "You will perish", "page": 146, "line": 33, "word": 1},
-              {"words": "among the nations,", "page": 146, "line": 33, "word": 2}
-            ],
+            "en": [["And you will perish", [0]], ["in the nations,", [1]]],
             "verseIndex": 1
           }
         ]
@@ -1248,40 +904,29 @@
         "book": 3,
         "chapter": 26,
         "verse": 37,
-        "start": false,
-        "width": 0.4261782218185488
+        "indexOfFirstWord": 8
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 38,
-        "start": true,
-        "width": 0.36209919467474966
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "33": {
     "text": [
       [
         [
           {
             "he": ["וְאָכְלָ֣ה", " אֶתְכֶ֔ם", " אֶ֖רֶץ", " אֹיְבֵיכֶֽם׃"],
-            "en": [
-              {"words": "and the land", "page": 146, "line": 34, "word": 3},
-              {"words": "of your enemies", "page": 146, "line": 34, "word": 4},
-              {"words": "will consume", "page": 146, "line": 34, "word": 1},
-              {"words": "you.", "page": 146, "line": 34, "word": 2}
-            ],
+            "en": [["and", [0]], ["the land of", [2]], ["your enemies", [3]], ["will consume", [0]], ["you.", [1]]],
             "verseIndex": 0
           },
           {
             "he": [" וְהַנִּשְׁאָרִ֣ים", " בָּכֶ֗ם", " יִמַּ֙קּוּ֙"],
-            "en": [
-              {"words": "Those of you who survive", "page": 146, "line": 34, "word": 1},
-              {"words": "", "page": 146, "line": 34, "word": 2},
-              {"words": "in the lands", "page": 146, "line": 35, "word": 2}
-            ],
+            "en": [["And the remaining", [0]], ["in you", [1]], ["will rot away", [2]]],
             "verseIndex": 1
           }
         ]
@@ -1292,34 +937,24 @@
         "book": 3,
         "chapter": 26,
         "verse": 38,
-        "start": false,
-        "width": 0.6379008053252504
+        "indexOfFirstWord": 2
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 39,
-        "start": true,
-        "width": 0.29465648854961835
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "34": {
     "text": [
       [
         [
           {
             "he": ["בַּֽעֲוֺנָ֔ם", " בְּאַרְצֹ֖ת", " אֹיְבֵיכֶ֑ם", " וְאַ֛ף", " בַּעֲוֺנֹ֥ת", " אֲבֹתָ֖ם", " אִתָּ֥ם"],
-            "en": [
-              {"words": "of your enemies", "page": 146, "line": 35, "word": 3},
-              {"words": "will waste away", "page": 146, "line": 34, "word": 3},
-              {"words": "in their iniquity", "page": 146, "line": 35, "word": 1},
-              {"words": "and", "page": 146, "line": 35, "word": 4},
-              {"words": "will decay", "page": 146, "line": 36, "word": 1},
-              {"words": "in the sins", "page": 146, "line": 35, "word": 5},
-              {"words": "of their fathers", "page": 146, "line": 35, "word": 6}
-            ],
+            "en": [["in their iniquity", [0]], ["in the lands of", [1]], ["your enemies,", [2]], ["and also", [3]], ["in the iniquities of", [4]], ["their fathers", [5]], ["they will rot away", [[146, 35, 0, 0]]]],
             "verseIndex": 0
           }
         ]
@@ -1330,35 +965,23 @@
         "book": 3,
         "chapter": 26,
         "verse": 39,
-        "start": false,
-        "width": 0.6359041853119242
+        "indexOfFirstWord": 3
       }
     ],
     "isPetucha": false
   },
-  {
+  "35": {
     "text": [
       [
         [
           {
             "he": ["יִמָּֽקּוּ׃"],
-            "en": [
-              {"words": ".", "page": 146, "line": 35, "word": 7}
-            ],
+            "en": [["with them.", [[146, 34, 0, 6]]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְהִתְוַדּ֤וּ", " אֶת", "־עֲוֺנָם֙", " וְאֶת", "־עֲוֺ֣ן", " אֲבֹתָ֔ם", " בְּמַעֲלָ֖ם", " אֲשֶׁ֣ר"],
-            "en": [
-              {"words": "But if they will confess", "page": 146, "line": 36, "word": 1},
-              {"words": "", "page": 146, "line": 36, "word": 2},
-              {"words": "their iniquity", "page": 146, "line": 36, "word": 3},
-              {"words": "", "page": 146, "line": 36, "word": 4},
-              {"words": "and [that]", "page": 146, "line": 36, "word": 5},
-              {"words": "of their fathers", "page": 146, "line": 36, "word": 6},
-              {"words": "in the unfaithfulness", "page": 146, "line": 36, "word": 7},
-              {"words": "that", "page": 146, "line": 36, "word": 8}
-            ],
+            "he": [" וְהִתְוַדּ֤וּ", " אֶת־", "עֲוֺנָם֙", " וְאֶת־", "עֲוֺ֣ן", " אֲבֹתָ֔ם", " בְּמַעֲלָ֖ם", " אֲשֶׁ֣ר"],
+            "en": [["And they confess", [0]], ["their iniquity", [1, 2]], ["and", [3]], ["the iniquity of", [4]], ["their fathers", [5]], ["in their unfaithfulness", [6]], ["which", [7]]],
             "verseIndex": 1
           }
         ]
@@ -1369,43 +992,29 @@
         "book": 3,
         "chapter": 26,
         "verse": 39,
-        "start": false,
-        "width": 0.06943932613845749
+        "indexOfFirstWord": 10
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 40,
-        "start": true,
-        "width": 0.5665895707232256
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "36": {
     "text": [
       [
         [
           {
-            "he": ["מָֽעֲלוּ", "־בִ֑י", " וְאַ֕ף", " אֲשֶׁר", "־הָֽלְכ֥וּ", " עִמִּ֖י", " בְּקֶֽרִי׃"],
-            "en": [
-              {"words": "they practiced", "page": 146, "line": 37, "word": 1},
-              {"words": "against Me,", "page": 146, "line": 37, "word": 2},
-              {"words": "by which", "page": 146, "line": 37, "word": 4},
-              {"words": "", "page": 146, "line": 37, "word": 3},
-              {"words": "they have also walked", "page": 146, "line": 37, "word": 5},
-              {"words": "in hostility", "page": 146, "line": 37, "word": 7},
-              {"words": "toward Me—", "page": 146, "line": 37, "word": 6}
-            ],
+            "he": ["מָֽעֲלוּ־", "בִ֑י", " וְאַ֕ף", " אֲשֶׁר־", "הָֽלְכ֥וּ", " עִמִּ֖י", " בְּקֶֽרִי׃"],
+            "en": [["they were unfaithful", [0]], ["to me,", [1]], ["and also", [2]], ["that", [3]], ["they walked", [4]], ["with me", [5]], ["in hostility,", [6]]],
             "verseIndex": 0
           },
           {
-            "he": [" אַף", "־אֲנִ֗י", " אֵלֵ֤ךְ"],
-            "en": [
-              {"words": "and", "page": 146, "line": 37, "word": 1},
-              {"words": "I", "page": 146, "line": 37, "word": 2},
-              {"words": "acted", "page": 146, "line": 37, "word": 3}
-            ],
+            "he": [" אַף־", "אֲנִ֗י", " אֵלֵ֤ךְ"],
+            "en": [["(I", [1]], ["also,", [0]], ["I walked", [2]]],
             "verseIndex": 1
           }
         ]
@@ -1416,36 +1025,24 @@
         "book": 3,
         "chapter": 26,
         "verse": 40,
-        "start": false,
-        "width": 0.4334104292767744
+        "indexOfFirstWord": 8
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 41,
-        "start": true,
-        "width": 0.12613340390267003
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "37": {
     "text": [
       [
         [
           {
-            "he": ["עִמָּם֙", " בְּקֶ֔רִי", " וְהֵבֵאתִ֣י", " אֹתָ֔ם", " בְּאֶ֖רֶץ", " אֹיְבֵיהֶ֑ם", " אוֹ", "־אָ֣ז", " יִכָּנַ֗ע"],
-            "en": [
-              {"words": "with hostility", "page": 146, "line": 38, "word": 2},
-              {"words": "toward them", "page": 146, "line": 38, "word": 1},
-              {"words": "and brought", "page": 146, "line": 38, "word": 3},
-              {"words": "them", "page": 146, "line": 38, "word": 4},
-              {"words": "into the land", "page": 146, "line": 38, "word": 5},
-              {"words": "of their enemies—", "page": 146, "line": 38, "word": 6},
-              {"words": "and", "page": 146, "line": 38, "word": 7},
-              {"words": "", "page": 146, "line": 38, "word": 8},
-              {"words": "if their uncircumcised", "page": 146, "line": 39, "word": 2}
-            ],
+            "he": ["עִמָּם֙", " בְּקֶ֔רִי", " וְהֵבֵאתִ֣י", " אֹתָ֔ם", " בְּאֶ֖רֶץ", " אֹיְבֵיהֶ֑ם", " אוֹ־", "אָ֣ז", " יִכָּנַ֗ע"],
+            "en": [["with them", [0]], ["in hostility", [1]], ["and brought", [2]], ["them", [3]], ["into the land of", [4]], ["their enemies)—", [5]], ["if", [6]], ["then", [7]], ["their", [[146, 38, 0, 0]]]],
             "verseIndex": 0
           }
         ]
@@ -1456,35 +1053,23 @@
         "book": 3,
         "chapter": 26,
         "verse": 41,
-        "start": false,
-        "width": 0.5400643480925387
+        "indexOfFirstWord": 3
       }
     ],
     "isPetucha": false
   },
-  {
+  "38": {
     "text": [
       [
         [
           {
-            "he": ["לְבָבָם֙", " הֶֽעָרֵ֔ל", " וְאָ֖ז", " יִרְצ֥וּ", " אֶת", "־עֲוֺנָֽם׃"],
-            "en": [
-              {"words": "", "page": 146, "line": 39, "word": 3},
-              {"words": "hearts", "page": 146, "line": 39, "word": 1},
-              {"words": "will be humbled", "page": 146, "line": 38, "word": 9},
-              {"words": "and they will make amends", "page": 146, "line": 39, "word": 4},
-              {"words": "", "page": 146, "line": 39, "word": 5},
-              {"words": "for their iniquity,", "page": 146, "line": 39, "word": 6}
-            ],
+            "he": ["לְבָבָם֙", " הֶֽעָרֵ֔ל", " וְאָ֖ז", " יִרְצ֥וּ", " אֶת־", "עֲוֺנָֽם׃"],
+            "en": [["uncircumcised", [1]], ["heart", [0]], ["is humbled,", [[146, 37, 0, 8]]], ["and", [2]], ["they accept", [3]], ["their iniquity,", [4, 5]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְזָכַרְתִּ֖י", " אֶת", "־בְּרִיתִ֣י"],
-            "en": [
-              {"words": "then I will remember", "page": 146, "line": 39, "word": 1},
-              {"words": "", "page": 146, "line": 39, "word": 2},
-              {"words": "My covenant", "page": 146, "line": 39, "word": 3}
-            ],
+            "he": [" וְזָכַרְתִּ֖י", " אֶת־", "בְּרִיתִ֣י"],
+            "en": [["then I will remember", [0]], ["my covenant", [1, 2]]],
             "verseIndex": 1
           }
         ]
@@ -1495,36 +1080,24 @@
         "book": 3,
         "chapter": 26,
         "verse": 41,
-        "start": false,
-        "width": 0.3338022480047913
+        "indexOfFirstWord": 12
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 42,
-        "start": true,
-        "width": 0.20734769393418792
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "39": {
     "text": [
       [
         [
           {
-            "he": ["יַעֲק֑וֹב", " וְאַף֩", " אֶת", "־בְּרִיתִ֨י", " יִצְחָ֜ק", " וְאַ֨ף", " אֶת", "־בְּרִיתִ֧י", " אַבְרָהָ֛ם"],
-            "en": [
-              {"words": "with Jacob", "page": 146, "line": 40, "word": 1},
-              {"words": "and", "page": 146, "line": 40, "word": 2},
-              {"words": "", "page": 146, "line": 40, "word": 3},
-              {"words": "", "page": 146, "line": 41, "word": 1},
-              {"words": "My covenant", "page": 146, "line": 40, "word": 4},
-              {"words": "with Isaac", "page": 146, "line": 40, "word": 5},
-              {"words": "", "page": 146, "line": 40, "word": 6},
-              {"words": "", "page": 146, "line": 40, "word": 7},
-              {"words": "and My covenant", "page": 146, "line": 40, "word": 8}
-            ],
+            "he": ["יַעֲק֑וֹב", " וְאַף֩", " אֶת־", "בְּרִיתִ֨י", " יִצְחָ֜ק", " וְאַ֨ף", " אֶת־", "בְּרִיתִ֧י", " אַבְרָהָ֛ם"],
+            "en": [["with Jacob,", [0]], ["and also", [1]], ["my covenant", [2, 3]], ["with Isaac,", [4]], ["and also", [5]], ["my covenant", [6, 7]], ["with Abraham", [8]]],
             "verseIndex": 0
           }
         ]
@@ -1535,34 +1108,23 @@
         "book": 3,
         "chapter": 26,
         "verse": 42,
-        "start": false,
-        "width": 0.572045284348707
+        "indexOfFirstWord": 3
       }
     ],
     "isPetucha": false
   },
-  {
+  "40": {
     "text": [
       [
         [
           {
             "he": ["אֶזְכֹּ֖ר", " וְהָאָ֥רֶץ", " אֶזְכֹּֽר׃"],
-            "en": [
-              {"words": "with Abraham,", "page": 146, "line": 40, "word": 9},
-              {"words": "and I will remember", "page": 146, "line": 41, "word": 3},
-              {"words": "the land.", "page": 146, "line": 41, "word": 2}
-            ],
+            "en": [["I will remember,", [0]], ["and the land", [1]], ["I will remember.", [2]]],
             "verseIndex": 0
           },
           {
             "he": [" וְהָאָ֩רֶץ֩", " תֵּעָזֵ֨ב", " מֵהֶ֜ם", " וְתִ֣רֶץ", " אֶת־"],
-            "en": [
-              {"words": "For the land", "page": 146, "line": 41, "word": 1},
-              {"words": "will be abandoned", "page": 146, "line": 41, "word": 2},
-              {"words": "by them,", "page": 146, "line": 41, "word": 3},
-              {"words": "and it will enjoy", "page": 146, "line": 41, "word": 4},
-              {"words": "", "page": 146, "line": 41, "word": 5}
-            ],
+            "en": [["And the land", [0]], ["will be deserted", [1]], ["by them", [2]], ["and will enjoy", [3]], ["its", [4, []]]],
             "verseIndex": 1
           }
         ]
@@ -1573,35 +1135,24 @@
         "book": 3,
         "chapter": 26,
         "verse": 42,
-        "start": false,
-        "width": 0.22060702171710497
+        "indexOfFirstWord": 12
       },
       {
         "book": 3,
         "chapter": 26,
         "verse": 43,
-        "start": true,
-        "width": 0.23929603939717053
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "41": {
     "text": [
       [
         [
           {
-            "he": ["שַׁבְּתֹתֶ֗יהָ", " בׇּהְשַׁמָּה֙", " מֵהֶ֔ם", " וְהֵ֖ם", " יִרְצ֣וּ", " אֶת", "־עֲוֺנָ֑ם", " יַ֣עַן"],
-            "en": [
-              {"words": "its Sabbaths", "page": 146, "line": 42, "word": 1},
-              {"words": "by lying desolate", "page": 146, "line": 42, "word": 2},
-              {"words": "without them.", "page": 146, "line": 42, "word": 3},
-              {"words": "And they", "page": 146, "line": 42, "word": 4},
-              {"words": "will pay the penalty", "page": 146, "line": 42, "word": 5},
-              {"words": "", "page": 146, "line": 42, "word": 6},
-              {"words": "for their iniquity,", "page": 146, "line": 42, "word": 7},
-              {"words": "because", "page": 146, "line": 42, "word": 8}
-            ],
+            "he": ["שַׁבְּתֹתֶ֗יהָ", " בׇּהְשַׁמָּה֙", " מֵהֶ֔ם", " וְהֵ֖ם", " יִרְצ֣וּ", " אֶת־", "עֲוֺנָ֑ם", " יַ֣עַן"],
+            "en": [["sabbaths", [[], 0]], ["in its desolation", [1]], ["from them.", [2]], ["And they,", [3]], ["they will accept", [4]], ["their iniquity", [5, 6]], ["because,", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1612,10 +1163,9 @@
         "book": 3,
         "chapter": 26,
         "verse": 43,
-        "start": false,
-        "width": 0.38681557859097954
+        "indexOfFirstWord": 5
       }
     ],
     "isPetucha": false
   }
-]
+}

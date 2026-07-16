@@ -1,21 +1,12 @@
-[
-  {
+{
+  "length": 42,
+  "0": {
     "text": [
       [
         [
           {
-            "he": ["וַיִּסְמֹ֨ךְ", " אַהֲרֹ֤ן", " וּבָנָיו֙", " אֶת", "־יְדֵיהֶ֔ם", " עַל", "־רֹ֖אשׁ", " פַּ֥ר", " הַֽחַטָּֽאת׃"],
-            "en": [
-              {"words": "and Aaron", "page": 120, "line": 1, "word": 2},
-              {"words": "and his sons", "page": 120, "line": 1, "word": 3},
-              {"words": "", "page": 120, "line": 1, "word": 4},
-              {"words": "laid", "page": 120, "line": 1, "word": 1},
-              {"words": "their hands", "page": 120, "line": 1, "word": 5},
-              {"words": "on", "page": 120, "line": 1, "word": 6},
-              {"words": "its head", "page": 120, "line": 1, "word": 7},
-              {"words": "", "page": 120, "line": 1, "word": 8},
-              {"words": ".", "page": 120, "line": 1, "word": 9}
-            ],
+            "he": ["וַיִּסְמֹ֨ךְ", " אַהֲרֹ֤ן", " וּבָנָיו֙", " אֶת־", "יְדֵיהֶ֔ם", " עַל־", "רֹ֖אשׁ", " פַּ֥ר", " הַֽחַטָּֽאת׃"],
+            "en": [["And", [0]], ["Aaron", [1]], ["and his sons", [2]], ["laid", [0]], ["their hands", [3, 4]], ["on", [5]], ["the head of", [6]], ["the bull of", [7]], ["the sin offering.", [8]]],
             "verseIndex": 0
           }
         ]
@@ -26,29 +17,18 @@
         "book": 3,
         "chapter": 8,
         "verse": 14,
-        "start": false,
-        "width": 0.7121697656220889
+        "indexOfFirstWord": 4
       }
     ],
     "isPetucha": false
   },
-  {
+  "1": {
     "text": [
       [
         [
           {
-            "he": ["וַיִּשְׁחָ֗ט", " וַיִּקַּ֨ח", " מֹשֶׁ֤ה", " אֶת", "־הַדָּם֙", " וַ֠יִּתֵּ֠ן", " עַל", "־קַרְנ֨וֹת", " הַמִּזְבֵּ֤חַ"],
-            "en": [
-              {"words": "Moses", "page": 120, "line": 2, "word": 3},
-              {"words": "", "page": 120, "line": 2, "word": 4},
-              {"words": "slaughtered [the bull],", "page": 120, "line": 2, "word": 1},
-              {"words": "took", "page": 120, "line": 2, "word": 2},
-              {"words": "some of the blood,", "page": 120, "line": 2, "word": 5},
-              {"words": "and applied", "page": 120, "line": 2, "word": 6},
-              {"words": "it with his finger", "page": 120, "line": 3, "word": 2},
-              {"words": "to", "page": 120, "line": 2, "word": 7},
-              {"words": "all [four]", "page": 120, "line": 3, "word": 1}
-            ],
+            "he": ["וַיִּשְׁחָ֗ט", " וַיִּקַּ֨ח", " מֹשֶׁ֤ה", " אֶת־", "הַדָּם֙", " וַ֠יִּתֵּ֠ן", " עַל־", "קַרְנ֨וֹת", " הַמִּזְבֵּ֤חַ"],
+            "en": [["And he slaughtered {it},", [0]], ["and", [1]], ["Moses", [2]], ["took", [1]], ["the blood,", [3, 4]], ["and he put {it}", [5]], ["on", [6]], ["the horns of", [7]], ["the altar", [8]]],
             "verseIndex": 0
           }
         ]
@@ -59,28 +39,18 @@
         "book": 3,
         "chapter": 8,
         "verse": 15,
-        "start": true,
-        "width": 0.36513816194581283
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "2": {
     "text": [
       [
         [
           {
-            "he": ["סָבִיב֙", " בְּאֶצְבָּע֔וֹ", " וַיְחַטֵּ֖א", " אֶת", "־הַמִּזְבֵּ֑חַ", " וְאֶת", "־הַדָּ֗ם", " יָצַק֙"],
-            "en": [
-              {"words": "horns", "page": 120, "line": 2, "word": 8},
-              {"words": "of the altar,", "page": 120, "line": 2, "word": 9},
-              {"words": "purifying", "page": 120, "line": 3, "word": 3},
-              {"words": "", "page": 120, "line": 3, "word": 4},
-              {"words": "the altar.", "page": 120, "line": 3, "word": 5},
-              {"words": "", "page": 120, "line": 3, "word": 6},
-              {"words": "He poured out", "page": 120, "line": 3, "word": 8},
-              {"words": "the rest of the blood", "page": 120, "line": 3, "word": 7}
-            ],
+            "he": ["סָבִיב֙", " בְּאֶצְבָּע֔וֹ", " וַיְחַטֵּ֖א", " אֶת־", "הַמִּזְבֵּ֑חַ", " וְאֶת־", "הַדָּ֗ם", " יָצַק֙"],
+            "en": [["all around", [0]], ["with his finger.", [1]], ["And he purified", [2]], ["the altar,", [3, 4]], ["and", [5, 6]], ["he poured out", [7]], ["the blood", [5, 6]]],
             "verseIndex": 0
           }
         ]
@@ -91,34 +61,23 @@
         "book": 3,
         "chapter": 8,
         "verse": 15,
-        "start": false,
-        "width": 0.3515143934729064
+        "indexOfFirstWord": 9
       }
     ],
     "isPetucha": false
   },
-  {
+  "3": {
     "text": [
       [
         [
           {
-            "he": ["אֶל", "־יְס֣וֹד", " הַמִּזְבֵּ֔חַ", " וַֽיְקַדְּשֵׁ֖הוּ", " לְכַפֵּ֥ר", " עָלָֽיו׃"],
-            "en": [
-              {"words": "at", "page": 120, "line": 4, "word": 1},
-              {"words": "the base", "page": 120, "line": 4, "word": 2},
-              {"words": "of the altar", "page": 120, "line": 4, "word": 3},
-              {"words": "and consecrated it", "page": 120, "line": 4, "word": 4},
-              {"words": "so that atonement could be made", "page": 120, "line": 4, "word": 5},
-              {"words": "on it.", "page": 120, "line": 4, "word": 6}
-            ],
+            "he": ["אֶל־", "יְס֣וֹד", " הַמִּזְבֵּ֔חַ", " וַֽיְקַדְּשֵׁ֖הוּ", " לְכַפֵּ֥ר", " עָלָֽיו׃"],
+            "en": [["at", [0]], ["the base of", [1]], ["the altar.", [2]], ["And he made it holy", [3]], ["to make atonement", [4]], ["on it.", [5]]],
             "verseIndex": 0
           },
           {
             "he": [" וַיִּקַּ֗ח", " אֶֽת־"],
-            "en": [
-              {"words": "Moses also", "page": 120, "line": 6, "word": 6},
-              {"words": "took", "page": 120, "line": 4, "word": 1}
-            ],
+            "en": [["And he took", [0]], ["all", [1, [120, 4, 0, 0]]]],
             "verseIndex": 1
           }
         ]
@@ -129,36 +88,24 @@
         "book": 3,
         "chapter": 8,
         "verse": 15,
-        "start": false,
-        "width": 0.2833474445812808
+        "indexOfFirstWord": 17
       },
       {
         "book": 3,
         "chapter": 8,
         "verse": 16,
-        "start": true,
-        "width": 0.08295285422394874
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "4": {
     "text": [
       [
         [
           {
-            "he": ["כׇּל", "־הַחֵ֘לֶב֮", " אֲשֶׁ֣ר", " עַל", "־הַקֶּ֒רֶב֒", " וְאֵת֙", " יֹתֶ֣רֶת", " הַכָּבֵ֔ד", " וְאֶת־"],
-            "en": [
-              {"words": "", "page": 120, "line": 4, "word": 2},
-              {"words": "all", "page": 120, "line": 5, "word": 1},
-              {"words": "the fat", "page": 120, "line": 5, "word": 2},
-              {"words": "that", "page": 120, "line": 5, "word": 3},
-              {"words": "was on", "page": 120, "line": 5, "word": 4},
-              {"words": "the entrails,", "page": 120, "line": 5, "word": 5},
-              {"words": "", "page": 120, "line": 5, "word": 6},
-              {"words": "the lobe", "page": 120, "line": 5, "word": 7},
-              {"words": "of the liver,", "page": 120, "line": 5, "word": 8}
-            ],
+            "he": ["כׇּל־", "הַחֵ֘לֶב֮", " אֲשֶׁ֣ר", " עַל־", "הַקֶּ֒רֶב֒", " וְאֵת֙", " יֹתֶ֣רֶת", " הַכָּבֵ֔ד", " וְאֶת־"],
+            "en": [["the fat", [1]], ["that", [2]], ["{was} on", [3]], ["the innards", [4]], ["and the lobe of", [5, 6]], ["the liver", [7]], ["and the", [8, []]]],
             "verseIndex": 0
           }
         ]
@@ -169,27 +116,18 @@
         "book": 3,
         "chapter": 8,
         "verse": 16,
-        "start": false,
-        "width": 0.4628559897081452
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "5": {
     "text": [
       [
         [
           {
-            "he": ["שְׁתֵּ֥י", " הַכְּלָיֹ֖ת", " וְאֶֽת", "־חֶלְבְּהֶ֑ן", " וַיַּקְטֵ֥ר", " מֹשֶׁ֖ה", " הַמִּזְבֵּֽחָה׃"],
-            "en": [
-              {"words": "", "page": 120, "line": 5, "word": 9},
-              {"words": "and both", "page": 120, "line": 6, "word": 1},
-              {"words": "kidneys", "page": 120, "line": 6, "word": 2},
-              {"words": "and", "page": 120, "line": 6, "word": 3},
-              {"words": "their fat,", "page": 120, "line": 6, "word": 4},
-              {"words": "and burned [it all]", "page": 120, "line": 6, "word": 5},
-              {"words": "on the altar.", "page": 120, "line": 6, "word": 7}
-            ],
+            "he": ["שְׁתֵּ֥י", " הַכְּלָיֹ֖ת", " וְאֶֽת־", "חֶלְבְּהֶ֑ן", " וַיַּקְטֵ֥ר", " מֹשֶׁ֖ה", " הַמִּזְבֵּֽחָה׃"],
+            "en": [["two", [[], 0]], ["kidneys", [1]], ["and their fat,", [2, 3]], ["and", [4]], ["Moses", [5]], ["caused {them} to become smoke", [4]], ["on the altar.", [6]]],
             "verseIndex": 0
           }
         ]
@@ -200,29 +138,18 @@
         "book": 3,
         "chapter": 8,
         "verse": 16,
-        "start": false,
-        "width": 0.45419115606790605
+        "indexOfFirstWord": 11
       }
     ],
     "isPetucha": false
   },
-  {
+  "6": {
     "text": [
       [
         [
           {
-            "he": ["וְאֶת", "־הַפָּ֤ר", " וְאֶת", "־עֹרוֹ֙", " וְאֶת", "־בְּשָׂר֣וֹ", " וְאֶת", "־פִּרְשׁ֔וֹ", " שָׂרַ֣ף"],
-            "en": [
-              {"words": "But", "page": 120, "line": 7, "word": 1},
-              {"words": "the bull", "page": 120, "line": 7, "word": 2},
-              {"words": "", "page": 120, "line": 7, "word": 3},
-              {"words": "with its hide,", "page": 120, "line": 7, "word": 4},
-              {"words": "", "page": 120, "line": 7, "word": 5},
-              {"words": "flesh,", "page": 120, "line": 7, "word": 6},
-              {"words": "", "page": 120, "line": 7, "word": 7},
-              {"words": "and dung", "page": 120, "line": 7, "word": 8},
-              {"words": "he burned", "page": 120, "line": 7, "word": 9}
-            ],
+            "he": ["וְאֶת־", "הַפָּ֤ר", " וְאֶת־", "עֹרוֹ֙", " וְאֶת־", "בְּשָׂר֣וֹ", " וְאֶת־", "פִּרְשׁ֔וֹ", " שָׂרַ֣ף"],
+            "en": [["But the bull", [0, 1]], ["and its skin", [2, 3]], ["and its meat", [4, 5]], ["and its dung", [6, 7]], ["he burned", [8]]],
             "verseIndex": 0
           }
         ]
@@ -233,28 +160,18 @@
         "book": 3,
         "chapter": 8,
         "verse": 17,
-        "start": true,
-        "width": 0.498134301057961
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "7": {
     "text": [
       [
         [
           {
-            "he": ["בָּאֵ֔שׁ", " מִח֖וּץ", " לַֽמַּחֲנֶ֑ה", " כַּאֲשֶׁ֛ר", " צִוָּ֥ה", " יְהֹוָ֖ה", " אֶת", "־מֹשֶֽׁה׃"],
-            "en": [
-              {"words": "", "page": 120, "line": 8, "word": 1},
-              {"words": "outside", "page": 120, "line": 8, "word": 2},
-              {"words": "the camp,", "page": 120, "line": 8, "word": 3},
-              {"words": "as", "page": 120, "line": 8, "word": 4},
-              {"words": "the LORD", "page": 120, "line": 8, "word": 6},
-              {"words": "", "page": 120, "line": 8, "word": 7},
-              {"words": "had commanded", "page": 120, "line": 8, "word": 5},
-              {"words": "[him].", "page": 120, "line": 8, "word": 8}
-            ],
+            "he": ["בָּאֵ֔שׁ", " מִח֖וּץ", " לַֽמַּחֲנֶ֑ה", " כַּאֲשֶׁ֛ר", " צִוָּ֥ה", " יְהֹוָ֖ה", " אֶת־", "מֹשֶֽׁה׃"],
+            "en": [["with fire", [0]], ["on the outside of", [1]], ["the camp,", [2]], ["just as", [3]], ["יהוה", [5]], ["commanded", [4]], ["Moses.", [6, 7]]],
             "verseIndex": 0
           }
         ]
@@ -265,29 +182,18 @@
         "book": 3,
         "chapter": 8,
         "verse": 17,
-        "start": false,
-        "width": 0.5018656989420389
+        "indexOfFirstWord": 9
       }
     ],
     "isPetucha": false
   },
-  {
+  "8": {
     "text": [
       [
         [
           {
-            "he": ["וַיַּקְרֵ֕ב", " אֵ֖ת", " אֵ֣יל", " הָעֹלָ֑ה", " וַֽיִּסְמְכ֞וּ", " אַהֲרֹ֧ן", " וּבָנָ֛יו", " אֶת", "־יְדֵיהֶ֖ם"],
-            "en": [
-              {"words": "Then [Moses] presented", "page": 120, "line": 9, "word": 1},
-              {"words": "", "page": 120, "line": 9, "word": 2},
-              {"words": "the ram", "page": 120, "line": 9, "word": 3},
-              {"words": "for the burnt offering,", "page": 120, "line": 9, "word": 4},
-              {"words": "and Aaron", "page": 120, "line": 9, "word": 6},
-              {"words": "and his sons", "page": 120, "line": 9, "word": 7},
-              {"words": "", "page": 120, "line": 9, "word": 8},
-              {"words": "laid", "page": 120, "line": 9, "word": 5},
-              {"words": "their hands", "page": 120, "line": 9, "word": 9}
-            ],
+            "he": ["וַיַּקְרֵ֕ב", " אֵ֖ת", " אֵ֣יל", " הָעֹלָ֑ה", " וַֽיִּסְמְכ֞וּ", " אַהֲרֹ֧ן", " וּבָנָ֛יו", " אֶת־", "יְדֵיהֶ֖ם"],
+            "en": [["And he presented", [0]], ["the ram of", [1, 2]], ["the burnt offering.", [3]], ["And", [4]], ["Aaron", [5]], ["and his sons", [6]], ["laid", [4]], ["their hands", [7, 8]]],
             "verseIndex": 0
           }
         ]
@@ -298,35 +204,23 @@
         "book": 3,
         "chapter": 8,
         "verse": 18,
-        "start": true,
-        "width": 0.7782673120616418
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "9": {
     "text": [
       [
         [
           {
-            "he": ["עַל", "־רֹ֥אשׁ", " הָאָֽיִל׃"],
-            "en": [
-              {"words": "on", "page": 120, "line": 10, "word": 1},
-              {"words": "its head", "page": 120, "line": 10, "word": 2},
-              {"words": ".", "page": 120, "line": 10, "word": 3}
-            ],
+            "he": ["עַל־", "רֹ֥אשׁ", " הָאָֽיִל׃"],
+            "en": [["on", [0]], ["the head of", [1]], ["the ram.", [2]]],
             "verseIndex": 0
           },
           {
-            "he": [" וַיִּשְׁחָ֑ט", " וַיִּזְרֹ֨ק", " מֹשֶׁ֧ה", " אֶת", "־הַדָּ֛ם", " עַל־"],
-            "en": [
-              {"words": "Moses", "page": 120, "line": 10, "word": 3},
-              {"words": "", "page": 120, "line": 10, "word": 4},
-              {"words": "slaughtered [the ram]", "page": 120, "line": 10, "word": 1},
-              {"words": "and splattered", "page": 120, "line": 10, "word": 2},
-              {"words": "the blood", "page": 120, "line": 10, "word": 5},
-              {"words": "on all sides", "page": 120, "line": 11, "word": 2}
-            ],
+            "he": [" וַיִּשְׁחָ֑ט", " וַיִּזְרֹ֨ק", " מֹשֶׁ֧ה", " אֶת־", "הַדָּ֛ם", " עַל־"],
+            "en": [["And he slaughtered {it},", [0]], ["and", [1]], ["Moses", [2]], ["splashed", [1]], ["the blood", [3, 4]], ["on", [5]]],
             "verseIndex": 1
           }
         ]
@@ -337,41 +231,29 @@
         "book": 3,
         "chapter": 8,
         "verse": 18,
-        "start": false,
-        "width": 0.22173268793835818
+        "indexOfFirstWord": 9
       },
       {
         "book": 3,
         "chapter": 8,
         "verse": 19,
-        "start": true,
-        "width": 0.685448323860341
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "10": {
     "text": [
       [
         [
           {
             "he": ["הַמִּזְבֵּ֖חַ", " סָבִֽיב׃"],
-            "en": [
-              {"words": "of", "page": 120, "line": 10, "word": 6},
-              {"words": "the altar.", "page": 120, "line": 11, "word": 1}
-            ],
+            "en": [["the altar", [0]], ["all around.", [1]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְאֶ֨ת", "־הָאַ֔יִל", " נִתַּ֖ח", " לִנְתָחָ֑יו", " וַיַּקְטֵ֤ר", " מֹשֶׁה֙"],
-            "en": [
-              {"words": "", "page": 120, "line": 11, "word": 1},
-              {"words": "[He]", "page": 120, "line": 11, "word": 6},
-              {"words": "", "page": 120, "line": 12, "word": 1},
-              {"words": "cut", "page": 120, "line": 11, "word": 3},
-              {"words": "the ram", "page": 120, "line": 11, "word": 2},
-              {"words": "into pieces", "page": 120, "line": 11, "word": 4}
-            ],
+            "he": [" וְאֶ֨ת־", "הָאַ֔יִל", " נִתַּ֖ח", " לִנְתָחָ֑יו", " וַיַּקְטֵ֤ר", " מֹשֶׁה֙"],
+            "en": [["And", [0, 1]], ["he cut", [2]], ["the ram", [0, 1]], ["into its pieces,", [3]], ["and", [4]], ["Moses", [5]], ["caused", [4]], ["the head", [[120, 11, 0, 0], [120, 11, 0, 1]]]],
             "verseIndex": 1
           }
         ]
@@ -382,42 +264,29 @@
         "book": 3,
         "chapter": 8,
         "verse": 19,
-        "start": false,
-        "width": 0.31455167613965895
+        "indexOfFirstWord": 6
       },
       {
         "book": 3,
         "chapter": 8,
         "verse": 20,
-        "start": true,
-        "width": 0.5022685013015991
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "11": {
     "text": [
       [
         [
           {
-            "he": ["אֶת", "־הָרֹ֔אשׁ", " וְאֶת", "־הַנְּתָחִ֖ים", " וְאֶת", "־הַפָּֽדֶר׃"],
-            "en": [
-              {"words": "and burned", "page": 120, "line": 11, "word": 5},
-              {"words": "the head,", "page": 120, "line": 12, "word": 2},
-              {"words": "", "page": 120, "line": 12, "word": 3},
-              {"words": "the pieces,", "page": 120, "line": 12, "word": 4},
-              {"words": "", "page": 120, "line": 12, "word": 5},
-              {"words": "and the fat.", "page": 120, "line": 12, "word": 6}
-            ],
+            "he": ["אֶת־", "הָרֹ֔אשׁ", " וְאֶת־", "הַנְּתָחִ֖ים", " וְאֶת־", "הַפָּֽדֶר׃"],
+            "en": [["and the pieces", [2, 3]], ["and the suet", [4, 5]], ["to become smoke.", [[120, 10, 1, 4]]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְאֶת", "־הַקֶּ֥רֶב", " וְאֶת־"],
-            "en": [
-              {"words": "", "page": 120, "line": 12, "word": 1},
-              {"words": "He washed", "page": 120, "line": 13, "word": 2},
-              {"words": "the entrails", "page": 120, "line": 12, "word": 2}
-            ],
+            "he": [" וְאֶת־", "הַקֶּ֥רֶב", " וְאֶת־"],
+            "en": [["But the innards", [0, 1]], ["and", [2, []]]],
             "verseIndex": 1
           }
         ]
@@ -428,35 +297,24 @@
         "book": 3,
         "chapter": 8,
         "verse": 20,
-        "start": false,
-        "width": 0.4977314986984009
+        "indexOfFirstWord": 6
       },
       {
         "book": 3,
         "chapter": 8,
         "verse": 21,
-        "start": true,
-        "width": 0.11514805164614833
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "12": {
     "text": [
       [
         [
           {
-            "he": ["הַכְּרָעַ֖יִם", " רָחַ֣ץ", " בַּמָּ֑יִם", " וַיַּקְטֵר֩", " מֹשֶׁ֨ה", " אֶת", "־כׇּל", "־הָאַ֜יִל"],
-            "en": [
-              {"words": "", "page": 120, "line": 12, "word": 3},
-              {"words": "and legs", "page": 120, "line": 13, "word": 1},
-              {"words": "with water", "page": 120, "line": 13, "word": 3},
-              {"words": "", "page": 120, "line": 13, "word": 5},
-              {"words": "", "page": 120, "line": 13, "word": 6},
-              {"words": "and burned", "page": 120, "line": 13, "word": 4},
-              {"words": "the entire", "page": 120, "line": 13, "word": 7},
-              {"words": "ram", "page": 120, "line": 13, "word": 8}
-            ],
+            "he": ["הַכְּרָעַ֖יִם", " רָחַ֣ץ", " בַּמָּ֑יִם", " וַיַּקְטֵר֩", " מֹשֶׁ֨ה", " אֶת־", "כׇּל־", "הָאַ֜יִל"],
+            "en": [["the legs", [[], 0]], ["he washed", [1]], ["with water.", [2]], ["And", [3]], ["Moses", [4]], ["caused", [3]], ["the", [7]], ["whole", [5, 6]], ["ram", [7]], ["to become smoke", [3]]],
             "verseIndex": 0
           }
         ]
@@ -467,28 +325,18 @@
         "book": 3,
         "chapter": 8,
         "verse": 21,
-        "start": false,
-        "width": 0.3418506213616683
+        "indexOfFirstWord": 3
       }
     ],
     "isPetucha": false
   },
-  {
+  "13": {
     "text": [
       [
         [
           {
-            "he": ["הַמִּזְבֵּ֗חָה", " עֹלָ֨ה", " ה֤וּא", " לְרֵֽיחַ", "־נִיחֹ֙חַ֙", " אִשֶּׁ֥ה", " הוּא֙", " לַיהֹוָ֔ה"],
-            "en": [
-              {"words": "on the altar", "page": 120, "line": 14, "word": 1},
-              {"words": "", "page": 120, "line": 14, "word": 3},
-              {"words": "as a burnt offering,", "page": 120, "line": 14, "word": 2},
-              {"words": "a pleasing", "page": 120, "line": 14, "word": 5},
-              {"words": "aroma,", "page": 120, "line": 14, "word": 4},
-              {"words": "a food offering", "page": 120, "line": 14, "word": 6},
-              {"words": "", "page": 120, "line": 14, "word": 7},
-              {"words": "to the LORD,", "page": 120, "line": 14, "word": 8}
-            ],
+            "he": ["הַמִּזְבֵּ֗חָה", " עֹלָ֨ה", " ה֤וּא", " לְרֵֽיחַ־", "נִיחֹ֙חַ֙", " אִשֶּׁ֥ה", " הוּא֙", " לַיהֹוָ֔ה"],
+            "en": [["on the altar.", [0]], ["It {was}", [2]], ["a burnt offering", [1]], ["for a scent of", [3]], ["pleasing.", [4]], ["It", [6]], ["{was} a gift", [5]], ["to יהוה,", [7]]],
             "verseIndex": 0
           }
         ]
@@ -499,35 +347,23 @@
         "book": 3,
         "chapter": 8,
         "verse": 21,
-        "start": false,
-        "width": 0.35387103960635796
+        "indexOfFirstWord": 11
       }
     ],
     "isPetucha": false
   },
-  {
+  "14": {
     "text": [
       [
         [
           {
-            "he": ["כַּאֲשֶׁ֛ר", " צִוָּ֥ה", " יְהֹוָ֖ה", " אֶת", "־מֹשֶֽׁה׃"],
-            "en": [
-              {"words": "just as", "page": 120, "line": 15, "word": 1},
-              {"words": "the LORD", "page": 120, "line": 15, "word": 3},
-              {"words": "had commanded", "page": 120, "line": 15, "word": 2},
-              {"words": "", "page": 120, "line": 15, "word": 4},
-              {"words": "Moses.", "page": 120, "line": 15, "word": 5}
-            ],
+            "he": ["כַּאֲשֶׁ֛ר", " צִוָּ֥ה", " יְהֹוָ֖ה", " אֶת־", "מֹשֶֽׁה׃"],
+            "en": [["just as", [0]], ["יהוה", [2]], ["commanded", [1]], ["Moses.", [3, 4]]],
             "verseIndex": 0
           },
           {
-            "he": [" וַיַּקְרֵב֙", " אֶת", "־הָאַ֣יִל", " הַשֵּׁנִ֔י"],
-            "en": [
-              {"words": "After that, [Moses] presented", "page": 120, "line": 15, "word": 1},
-              {"words": "", "page": 120, "line": 15, "word": 2},
-              {"words": "the other", "page": 120, "line": 15, "word": 4},
-              {"words": "ram,", "page": 120, "line": 15, "word": 3}
-            ],
+            "he": [" וַיַּקְרֵב֙", " אֶת־", "הָאַ֣יִל", " הַשֵּׁנִ֔י"],
+            "en": [["And he presented", [0]], ["the", [1, 2]], ["second", [3]], ["ram,", [1, 2]]],
             "verseIndex": 1
           }
         ]
@@ -538,35 +374,24 @@
         "book": 3,
         "chapter": 8,
         "verse": 21,
-        "start": false,
-        "width": 0.1891302873858254
+        "indexOfFirstWord": 19
       },
       {
         "book": 3,
         "chapter": 8,
         "verse": 22,
-        "start": true,
-        "width": 0.2732079523639085
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "15": {
     "text": [
       [
         [
           {
-            "he": ["אֵ֖יל", " הַמִּלֻּאִ֑ים", " וַֽיִּסְמְכ֞וּ", " אַהֲרֹ֧ן", " וּבָנָ֛יו", " אֶת", "־יְדֵיהֶ֖ם", " עַל־"],
-            "en": [
-              {"words": "the ram", "page": 120, "line": 16, "word": 1},
-              {"words": "of ordination,", "page": 120, "line": 16, "word": 2},
-              {"words": "and Aaron", "page": 120, "line": 16, "word": 4},
-              {"words": "and his sons", "page": 120, "line": 16, "word": 5},
-              {"words": "", "page": 120, "line": 16, "word": 6},
-              {"words": "laid", "page": 120, "line": 16, "word": 3},
-              {"words": "their hands", "page": 120, "line": 16, "word": 7},
-              {"words": "on", "page": 120, "line": 16, "word": 8}
-            ],
+            "he": ["אֵ֖יל", " הַמִּלֻּאִ֑ים", " וַֽיִּסְמְכ֞וּ", " אַהֲרֹ֧ן", " וּבָנָ֛יו", " אֶת־", "יְדֵיהֶ֖ם", " עַל־"],
+            "en": [["the", [1]], ["ram of", [0]], ["the ordination offering.", [1]], ["And", [2]], ["Aaron", [3]], ["and his sons", [4]], ["laid", [2]], ["their hands", [5, 6]], ["on", [7]]],
             "verseIndex": 0
           }
         ]
@@ -577,35 +402,23 @@
         "book": 3,
         "chapter": 8,
         "verse": 22,
-        "start": false,
-        "width": 0.5857872645039534
+        "indexOfFirstWord": 4
       }
     ],
     "isPetucha": false
   },
-  {
+  "16": {
     "text": [
       [
         [
           {
             "he": ["רֹ֥אשׁ", " הָאָֽיִל׃"],
-            "en": [
-              {"words": "[its]", "page": 120, "line": 17, "word": 2},
-              {"words": "head.", "page": 120, "line": 17, "word": 1}
-            ],
+            "en": [["the head of", [0]], ["the ram.", [1]]],
             "verseIndex": 0
           },
           {
-            "he": [" וַיִּשְׁחָ֓ט", " ׀ וַיִּקַּ֤ח", " מֹשֶׁה֙", " מִדָּמ֔וֹ", " וַיִּתֵּ֛ן", " עַל", "־תְּנ֥וּךְ"],
-            "en": [
-              {"words": "Moses", "page": 120, "line": 17, "word": 3},
-              {"words": "slaughtered [the ram]", "page": 120, "line": 17, "word": 1},
-              {"words": "and took", "page": 120, "line": 17, "word": 2},
-              {"words": "some of its blood", "page": 120, "line": 17, "word": 4},
-              {"words": "and put", "page": 120, "line": 17, "word": 5},
-              {"words": "it on", "page": 120, "line": 17, "word": 6},
-              {"words": "Aaron’s", "page": 120, "line": 18, "word": 2}
-            ],
+            "he": [" וַיִּשְׁחָ֓ט", " ׀ וַיִּקַּ֤ח", " מֹשֶׁה֙", " מִדָּמ֔וֹ", " וַיִּתֵּ֛ן", " עַל־", "תְּנ֥וּךְ"],
+            "en": [["And he slaughtered {it},", [0]], ["and", [1]], ["Moses", [2]], ["took", [1]], ["some of its blood,", [3]], ["and he put {it}", [4]], ["on", [5]], ["the earlobe of", [6]]],
             "verseIndex": 1
           }
         ]
@@ -616,36 +429,24 @@
         "book": 3,
         "chapter": 8,
         "verse": 22,
-        "start": false,
-        "width": 0.1410047831321381
+        "indexOfFirstWord": 12
       },
       {
         "book": 3,
         "chapter": 8,
         "verse": 23,
-        "start": true,
-        "width": 0.3819051180681697
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "17": {
     "text": [
       [
         [
           {
-            "he": ["אֹֽזֶן", "־אַהֲרֹ֖ן", " הַיְמָנִ֑ית", " וְעַל", "־בֹּ֤הֶן", " יָדוֹ֙", " הַיְמָנִ֔ית", " וְעַל", "־בֹּ֥הֶן"],
-            "en": [
-              {"words": "right", "page": 120, "line": 18, "word": 3},
-              {"words": "earlobe", "page": 120, "line": 17, "word": 7},
-              {"words": ",", "page": 120, "line": 18, "word": 1},
-              {"words": "on", "page": 120, "line": 18, "word": 4},
-              {"words": "the thumb", "page": 120, "line": 18, "word": 5},
-              {"words": "of his right", "page": 120, "line": 18, "word": 7},
-              {"words": "hand,", "page": 120, "line": 18, "word": 6},
-              {"words": "and on", "page": 120, "line": 18, "word": 8},
-              {"words": "the big toe", "page": 120, "line": 18, "word": 9}
-            ],
+            "he": ["אֹֽזֶן־", "אַהֲרֹ֖ן", " הַיְמָנִ֑ית", " וְעַל־", "בֹּ֤הֶן", " יָדוֹ֙", " הַיְמָנִ֔ית", " וְעַל־", "בֹּ֥הֶן"],
+            "en": [["the right", [2]], ["ear of", [0]], ["Aaron", [1]], ["and on", [3]], ["the", [6]], ["thumb of", [4]], ["his", [5]], ["right", [6]], ["hand", [5]], ["and on", [7]], ["the", [[120, 18, 0, 1]]]],
             "verseIndex": 0
           }
         ]
@@ -656,35 +457,23 @@
         "book": 3,
         "chapter": 8,
         "verse": 23,
-        "start": false,
-        "width": 0.4803798482743883
+        "indexOfFirstWord": 7
       }
     ],
     "isPetucha": false
   },
-  {
+  "18": {
     "text": [
       [
         [
           {
             "he": ["רַגְל֖וֹ", " הַיְמָנִֽית׃"],
-            "en": [
-              {"words": "of his right", "page": 120, "line": 19, "word": 2},
-              {"words": "foot.", "page": 120, "line": 19, "word": 1}
-            ],
+            "en": [["big toe of", [[120, 17, 0, 8]]], ["his", [0]], ["right", [1]], ["foot.", [0]]],
             "verseIndex": 0
           },
           {
-            "he": [" וַיַּקְרֵ֞ב", " אֶת", "־בְּנֵ֣י", " אַהֲרֹ֗ן", " וַיִּתֵּ֨ן", " מֹשֶׁ֤ה", " מִן־"],
-            "en": [
-              {"words": "Moses", "page": 120, "line": 19, "word": 6},
-              {"words": "also presented", "page": 120, "line": 19, "word": 1},
-              {"words": "", "page": 120, "line": 19, "word": 2},
-              {"words": "Aaron’s", "page": 120, "line": 19, "word": 4},
-              {"words": "sons", "page": 120, "line": 19, "word": 3},
-              {"words": "and put", "page": 120, "line": 19, "word": 5},
-              {"words": "some of", "page": 120, "line": 19, "word": 7}
-            ],
+            "he": [" וַיַּקְרֵ֞ב", " אֶת־", "בְּנֵ֣י", " אַהֲרֹ֗ן", " וַיִּתֵּ֨ן", " מֹשֶׁ֤ה", " מִן־"],
+            "en": [["And he presented", [0]], ["the sons of", [1, 2]], ["Aaron,", [3]], ["and", [4]], ["Moses", [5]], ["put", [4]], ["some of", [6]]],
             "verseIndex": 1
           }
         ]
@@ -695,36 +484,24 @@
         "book": 3,
         "chapter": 8,
         "verse": 23,
-        "start": false,
-        "width": 0.13771503365744203
+        "indexOfFirstWord": 16
       },
       {
         "book": 3,
         "chapter": 8,
         "verse": 24,
-        "start": true,
-        "width": 0.23055693092002713
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "19": {
     "text": [
       [
         [
           {
-            "he": ["הַדָּם֙", " עַל", "־תְּנ֤וּךְ", " אׇזְנָם֙", " הַיְמָנִ֔ית", " וְעַל", "־בֹּ֤הֶן", " יָדָם֙", " הַיְמָנִ֔ית"],
-            "en": [
-              {"words": "the blood", "page": 120, "line": 20, "word": 1},
-              {"words": "on", "page": 120, "line": 20, "word": 2},
-              {"words": "their right", "page": 120, "line": 20, "word": 5},
-              {"words": "earlobes", "page": 120, "line": 20, "word": 3},
-              {"words": ",", "page": 120, "line": 20, "word": 4},
-              {"words": "on", "page": 120, "line": 20, "word": 6},
-              {"words": "the thumbs", "page": 120, "line": 20, "word": 7},
-              {"words": "of their right", "page": 120, "line": 20, "word": 9},
-              {"words": "hands,", "page": 120, "line": 20, "word": 8}
-            ],
+            "he": ["הַדָּם֙", " עַל־", "תְּנ֤וּךְ", " אׇזְנָם֙", " הַיְמָנִ֔ית", " וְעַל־", "בֹּ֤הֶן", " יָדָם֙", " הַיְמָנִ֔ית"],
+            "en": [["the blood", [0]], ["on", [1]], ["the", [4]], ["earlobe of", [2]], ["their", [3]], ["right", [4]], ["ear", [3]], ["and on", [5]], ["the", [8]], ["thumb of", [6]], ["their", [7]], ["right", [8]], ["hand", [7]]],
             "verseIndex": 0
           }
         ]
@@ -735,29 +512,18 @@
         "book": 3,
         "chapter": 8,
         "verse": 24,
-        "start": false,
-        "width": 0.34172305661000163
+        "indexOfFirstWord": 7
       }
     ],
     "isPetucha": false
   },
-  {
+  "20": {
     "text": [
       [
         [
           {
-            "he": ["וְעַל", "־בֹּ֥הֶן", " רַגְלָ֖ם", " הַיְמָנִ֑ית", " וַיִּזְרֹ֨ק", " מֹשֶׁ֧ה", " אֶת", "־הַדָּ֛ם", " עַל־"],
-            "en": [
-              {"words": "and on", "page": 120, "line": 21, "word": 1},
-              {"words": "the big toes", "page": 120, "line": 21, "word": 2},
-              {"words": "of their right", "page": 120, "line": 21, "word": 4},
-              {"words": "feet.", "page": 120, "line": 21, "word": 3},
-              {"words": "Then [he]", "page": 120, "line": 21, "word": 6},
-              {"words": "", "page": 120, "line": 21, "word": 7},
-              {"words": "splattered", "page": 120, "line": 21, "word": 5},
-              {"words": "the blood", "page": 120, "line": 21, "word": 8},
-              {"words": "on all sides", "page": 120, "line": 22, "word": 2}
-            ],
+            "he": ["וְעַל־", "בֹּ֥הֶן", " רַגְלָ֖ם", " הַיְמָנִ֑ית", " וַיִּזְרֹ֨ק", " מֹשֶׁ֧ה", " אֶת־", "הַדָּ֛ם", " עַל־"],
+            "en": [["and on", [0]], ["the", [3]], ["big toe of", [1]], ["their", [2]], ["right", [3]], ["foot.", [2]], ["And", [4]], ["Moses", [5]], ["splashed", [4]], ["the blood", [6, 7]], ["on", [8]]],
             "verseIndex": 0
           }
         ]
@@ -768,35 +534,23 @@
         "book": 3,
         "chapter": 8,
         "verse": 24,
-        "start": false,
-        "width": 0.3282628229814234
+        "indexOfFirstWord": 16
       }
     ],
     "isPetucha": false
   },
-  {
+  "21": {
     "text": [
       [
         [
           {
             "he": ["הַֽמִּזְבֵּ֖חַ", " סָבִֽיב׃"],
-            "en": [
-              {"words": "of", "page": 120, "line": 21, "word": 9},
-              {"words": "the altar.", "page": 120, "line": 22, "word": 1}
-            ],
+            "en": [["the altar", [0]], ["all around.", [1]]],
             "verseIndex": 0
           },
           {
-            "he": [" וַיִּקַּ֞ח", " אֶת", "־הַחֵ֣לֶב", " וְאֶת", "־הָֽאַלְיָ֗ה", " וְאֶֽת", "־כׇּל־"],
-            "en": [
-              {"words": "And [Moses] took", "page": 120, "line": 22, "word": 1},
-              {"words": "", "page": 120, "line": 22, "word": 2},
-              {"words": "the fat—", "page": 120, "line": 22, "word": 3},
-              {"words": "", "page": 120, "line": 22, "word": 4},
-              {"words": "the fat tail,", "page": 120, "line": 22, "word": 5},
-              {"words": "", "page": 120, "line": 22, "word": 6},
-              {"words": "all", "page": 120, "line": 22, "word": 7}
-            ],
+            "he": [" וַיִּקַּ֞ח", " אֶת־", "הַחֵ֣לֶב", " וְאֶת־", "הָֽאַלְיָ֗ה", " וְאֶֽת־", "כׇּל־"],
+            "en": [["And he took", [0]], ["the fat", [1, 2]], ["and the fatty tail", [3, 4]], ["and all", [5, 6]]],
             "verseIndex": 1
           }
         ]
@@ -807,36 +561,24 @@
         "book": 3,
         "chapter": 8,
         "verse": 24,
-        "start": false,
-        "width": 0.0994571894885478
+        "indexOfFirstWord": 25
       },
       {
         "book": 3,
         "chapter": 8,
         "verse": 25,
-        "start": true,
-        "width": 0.2963657576517539
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "22": {
     "text": [
       [
         [
           {
-            "he": ["הַחֵ֘לֶב֮", " אֲשֶׁ֣ר", " עַל", "־הַקֶּ֒רֶב֒", " וְאֵת֙", " יֹתֶ֣רֶת", " הַכָּבֵ֔ד", " וְאֶת", "־שְׁתֵּ֥י"],
-            "en": [
-              {"words": "the fat", "page": 120, "line": 23, "word": 1},
-              {"words": "that", "page": 120, "line": 23, "word": 2},
-              {"words": "was on", "page": 120, "line": 23, "word": 3},
-              {"words": "the entrails,", "page": 120, "line": 23, "word": 4},
-              {"words": "", "page": 120, "line": 23, "word": 5},
-              {"words": "the lobe", "page": 120, "line": 23, "word": 6},
-              {"words": "of the liver,", "page": 120, "line": 23, "word": 7},
-              {"words": "", "page": 120, "line": 23, "word": 8},
-              {"words": "and both", "page": 120, "line": 23, "word": 9}
-            ],
+            "he": ["הַחֵ֘לֶב֮", " אֲשֶׁ֣ר", " עַל־", "הַקֶּ֒רֶב֒", " וְאֵת֙", " יֹתֶ֣רֶת", " הַכָּבֵ֔ד", " וְאֶת־", "שְׁתֵּ֥י"],
+            "en": [["the fat", [0]], ["that", [1]], ["{was} on", [2]], ["the innards", [3]], ["and the lobe of", [4, 5]], ["the liver", [6]], ["and", [7, 8]], ["the", [[120, 23, 0, 0]]]],
             "verseIndex": 0
           }
         ]
@@ -847,34 +589,23 @@
         "book": 3,
         "chapter": 8,
         "verse": 25,
-        "start": false,
-        "width": 0.40956919017347976
+        "indexOfFirstWord": 7
       }
     ],
     "isPetucha": false
   },
-  {
+  "23": {
     "text": [
       [
         [
           {
-            "he": ["הַכְּלָיֹ֖ת", " וְאֶֽת", "־חֶלְבְּהֶ֑ן", " וְאֵ֖ת", " שׁ֥וֹק", " הַיָּמִֽין׃"],
-            "en": [
-              {"words": "kidneys", "page": 120, "line": 24, "word": 1},
-              {"words": "with their", "page": 120, "line": 24, "word": 2},
-              {"words": "fat—", "page": 120, "line": 24, "word": 3},
-              {"words": "", "page": 120, "line": 24, "word": 4},
-              {"words": "as well as the right", "page": 120, "line": 24, "word": 6},
-              {"words": "thigh.", "page": 120, "line": 24, "word": 5}
-            ],
+            "he": ["הַכְּלָיֹ֖ת", " וְאֶֽת־", "חֶלְבְּהֶ֑ן", " וְאֵ֖ת", " שׁ֥וֹק", " הַיָּמִֽין׃"],
+            "en": [["two", [[120, 22, 0, 7], [120, 22, 0, 8]]], ["kidneys", [0]], ["and their fat", [1, 2]], ["and", [3, 4]], ["the right", [5]], ["thigh.", [3, 4]]],
             "verseIndex": 0
           },
           {
             "he": [" וּמִסַּ֨ל", " הַמַּצּ֜וֹת"],
-            "en": [
-              {"words": "And from the basket", "page": 120, "line": 24, "word": 1},
-              {"words": "of unleavened bread", "page": 120, "line": 24, "word": 2}
-            ],
+            "en": [["And from the basket of", [0]], ["the unleavened bread", [1]]],
             "verseIndex": 1
           }
         ]
@@ -885,36 +616,24 @@
         "book": 3,
         "chapter": 8,
         "verse": 25,
-        "start": false,
-        "width": 0.29406505217476636
+        "indexOfFirstWord": 16
       },
       {
         "book": 3,
         "chapter": 8,
         "verse": 26,
-        "start": true,
-        "width": 0.11870727159726538
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "24": {
     "text": [
       [
         [
           {
             "he": ["אֲשֶׁ֣ר", " ׀ לִפְנֵ֣י", " יְהֹוָ֗ה", " לָ֠קַ֠ח", " חַלַּ֨ת", " מַצָּ֤ה", " אַחַת֙", " וְֽחַלַּ֨ת", " לֶ֥חֶם"],
-            "en": [
-              {"words": "that", "page": 120, "line": 25, "word": 1},
-              {"words": "was before", "page": 120, "line": 25, "word": 2},
-              {"words": "the LORD,", "page": 120, "line": 25, "word": 3},
-              {"words": "he took", "page": 120, "line": 25, "word": 4},
-              {"words": "one", "page": 120, "line": 25, "word": 7},
-              {"words": "cake", "page": 120, "line": 25, "word": 5},
-              {"words": "of unleavened bread,", "page": 120, "line": 25, "word": 6},
-              {"words": "one", "page": 120, "line": 26, "word": 2},
-              {"words": "cake", "page": 120, "line": 25, "word": 8}
-            ],
+            "en": [["that", [0]], ["{was} to the face of", [1]], ["יהוה,", [2]], ["he took", [3]], ["one", [6]], ["loaf of", [4]], ["unleavened bread", [5]], ["and", [7]], ["one", [[120, 25, 0, 1]]], ["loaf of", [7]]],
             "verseIndex": 0
           }
         ]
@@ -925,29 +644,18 @@
         "book": 3,
         "chapter": 8,
         "verse": 26,
-        "start": false,
-        "width": 0.4109917428749001
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "25": {
     "text": [
       [
         [
           {
-            "he": ["שֶׁ֛מֶן", " אַחַ֖ת", " וְרָקִ֣יק", " אֶחָ֑ד", " וַיָּ֙שֶׂם֙", " עַל", "־הַ֣חֲלָבִ֔ים", " וְעַ֖ל", " שׁ֥וֹק"],
-            "en": [
-              {"words": "of bread", "page": 120, "line": 25, "word": 9},
-              {"words": "made with oil,", "page": 120, "line": 26, "word": 1},
-              {"words": "and one", "page": 120, "line": 26, "word": 4},
-              {"words": "wafer,", "page": 120, "line": 26, "word": 3},
-              {"words": "and he placed them", "page": 120, "line": 26, "word": 5},
-              {"words": "on", "page": 120, "line": 26, "word": 6},
-              {"words": "the fat portions", "page": 120, "line": 26, "word": 7},
-              {"words": "and on", "page": 120, "line": 26, "word": 8},
-              {"words": "the right", "page": 120, "line": 27, "word": 1}
-            ],
+            "he": ["שֶׁ֛מֶן", " אַחַ֖ת", " וְרָקִ֣יק", " אֶחָ֑ד", " וַיָּ֙שֶׂם֙", " עַל־", "הַ֣חֲלָבִ֔ים", " וְעַ֖ל", " שׁ֥וֹק"],
+            "en": [["bread of", [[120, 24, 0, 8]]], ["oil", [0]], ["and", [2]], ["one", [3]], ["wafer,", [2]], ["and he placed them", [4]], ["on", [5]], ["the fat", [6]], ["and on", [7]], ["the", [8]], ["right", [[120, 26, 0, 0]]]],
             "verseIndex": 0
           }
         ]
@@ -958,36 +666,23 @@
         "book": 3,
         "chapter": 8,
         "verse": 26,
-        "start": false,
-        "width": 0.41655198437361274
+        "indexOfFirstWord": 11
       }
     ],
     "isPetucha": false
   },
-  {
+  "26": {
     "text": [
       [
         [
           {
             "he": ["הַיָּמִֽין׃"],
-            "en": [
-              {"words": "thigh.", "page": 120, "line": 26, "word": 9}
-            ],
+            "en": [["thigh.", [[120, 25, 0, 8]]]],
             "verseIndex": 0
           },
           {
-            "he": [" וַיִּתֵּ֣ן", " אֶת", "־הַכֹּ֔ל", " עַ֚ל", " כַּפֵּ֣י", " אַהֲרֹ֔ן", " וְעַ֖ל", " כַּפֵּ֣י", " בָנָ֑יו"],
-            "en": [
-              {"words": "He put", "page": 120, "line": 27, "word": 1},
-              {"words": "", "page": 120, "line": 27, "word": 2},
-              {"words": "all [these]", "page": 120, "line": 27, "word": 3},
-              {"words": "in", "page": 120, "line": 27, "word": 4},
-              {"words": "the hands", "page": 120, "line": 27, "word": 5},
-              {"words": "of Aaron", "page": 120, "line": 27, "word": 6},
-              {"words": "", "page": 120, "line": 27, "word": 7},
-              {"words": "", "page": 120, "line": 27, "word": 8},
-              {"words": "and his sons", "page": 120, "line": 27, "word": 9}
-            ],
+            "he": [" וַיִּתֵּ֣ן", " אֶת־", "הַכֹּ֔ל", " עַ֚ל", " כַּפֵּ֣י", " אַהֲרֹ֔ן", " וְעַ֖ל", " כַּפֵּ֣י", " בָנָ֑יו"],
+            "en": [["And he put", [0]], ["the whole", [1, 2]], ["on", [3]], ["the palms of", [4]], ["Aaron", [5]], ["and on", [6]], ["the palms of", [7]], ["his sons,", [8]]],
             "verseIndex": 1
           }
         ]
@@ -998,42 +693,29 @@
         "book": 3,
         "chapter": 8,
         "verse": 26,
-        "start": false,
-        "width": 0.053749001154221786
+        "indexOfFirstWord": 20
       },
       {
         "book": 3,
         "chapter": 8,
         "verse": 27,
-        "start": true,
-        "width": 0.5938858669162231
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "27": {
     "text": [
       [
         [
           {
             "he": ["וַיָּ֧נֶף", " אֹתָ֛ם", " תְּנוּפָ֖ה", " לִפְנֵ֥י", " יְהֹוָֽה׃"],
-            "en": [
-              {"words": "and waved", "page": 120, "line": 28, "word": 1},
-              {"words": "them", "page": 120, "line": 28, "word": 2},
-              {"words": "before", "page": 120, "line": 28, "word": 4},
-              {"words": "the LORD", "page": 120, "line": 28, "word": 5},
-              {"words": "as a wave offering.", "page": 120, "line": 28, "word": 3}
-            ],
+            "en": [["and he raised", [0]], ["them", [1]], ["{as} a raised offering", [2]], ["to the face of", [3]], ["יהוה.", [4]]],
             "verseIndex": 0
           },
           {
             "he": [" וַיִּקַּ֨ח", " מֹשֶׁ֤ה", " אֹתָם֙", " מֵעַ֣ל"],
-            "en": [
-              {"words": "Then Moses", "page": 120, "line": 28, "word": 2},
-              {"words": "", "page": 120, "line": 28, "word": 3},
-              {"words": "took these", "page": 120, "line": 28, "word": 1},
-              {"words": "from", "page": 120, "line": 28, "word": 4}
-            ],
+            "en": [["And", [0]], ["Moses", [1]], ["took", [0]], ["them", [2]], ["from on", [3]]],
             "verseIndex": 1
           }
         ]
@@ -1044,35 +726,24 @@
         "book": 3,
         "chapter": 8,
         "verse": 27,
-        "start": false,
-        "width": 0.40611413308377686
+        "indexOfFirstWord": 9
       },
       {
         "book": 3,
         "chapter": 8,
         "verse": 28,
-        "start": true,
-        "width": 0.21819599474720947
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "28": {
     "text": [
       [
         [
           {
-            "he": ["כַּפֵּיהֶ֔ם", " וַיַּקְטֵ֥ר", " הַמִּזְבֵּ֖חָה", " עַל", "־הָעֹלָ֑ה", " מִלֻּאִ֥ים", " הֵם֙", " לְרֵ֣יחַ"],
-            "en": [
-              {"words": "their hands", "page": 120, "line": 29, "word": 1},
-              {"words": "and burned them", "page": 120, "line": 29, "word": 2},
-              {"words": "on the altar", "page": 120, "line": 29, "word": 3},
-              {"words": "with", "page": 120, "line": 29, "word": 4},
-              {"words": "the burnt offering.", "page": 120, "line": 29, "word": 5},
-              {"words": "This", "page": 120, "line": 29, "word": 7},
-              {"words": "was an ordination offering,", "page": 120, "line": 29, "word": 6},
-              {"words": "a pleasing", "page": 120, "line": 30, "word": 1}
-            ],
+            "he": ["כַּפֵּיהֶ֔ם", " וַיַּקְטֵ֥ר", " הַמִּזְבֵּ֖חָה", " עַל־", "הָעֹלָ֑ה", " מִלֻּאִ֥ים", " הֵם֙", " לְרֵ֣יחַ"],
+            "en": [["their hands,", [0]], ["and he caused {them} to become smoke", [1]], ["on the altar,", [2]], ["on", [3]], ["the burnt offering.", [4]], ["They", [6]], ["{were} an ordination offering", [5]], ["for a scent of", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1083,35 +754,23 @@
         "book": 3,
         "chapter": 8,
         "verse": 28,
-        "start": false,
-        "width": 0.5496142481943532
+        "indexOfFirstWord": 4
       }
     ],
     "isPetucha": false
   },
-  {
+  "29": {
     "text": [
       [
         [
           {
             "he": ["נִיחֹ֔חַ", " אִשֶּׁ֥ה", " ה֖וּא", " לַיהֹוָֽה׃"],
-            "en": [
-              {"words": "aroma,", "page": 120, "line": 29, "word": 8},
-              {"words": "a food offering", "page": 120, "line": 30, "word": 2},
-              {"words": "", "page": 120, "line": 30, "word": 3},
-              {"words": "to the LORD.", "page": 120, "line": 30, "word": 4}
-            ],
+            "en": [["pleasing.", [0]], ["It", [2]], ["{was} a gift", [1]], ["to יהוה.", [3]]],
             "verseIndex": 0
           },
           {
-            "he": [" וַיִּקַּ֤ח", " מֹשֶׁה֙", " אֶת", "־הֶ֣חָזֶ֔ה", " וַיְנִיפֵ֥הוּ"],
-            "en": [
-              {"words": "He also", "page": 120, "line": 30, "word": 2},
-              {"words": "", "page": 120, "line": 30, "word": 3},
-              {"words": "took", "page": 120, "line": 30, "word": 1},
-              {"words": "the breast—", "page": 120, "line": 30, "word": 4},
-              {"words": "", "page": 120, "line": 31, "word": 7}
-            ],
+            "he": [" וַיִּקַּ֤ח", " מֹשֶׁה֙", " אֶת־", "הֶ֣חָזֶ֔ה", " וַיְנִיפֵ֥הוּ"],
+            "en": [["And", [0]], ["Moses", [1]], ["took", [0]], ["the breast,", [2, 3]], ["and he raised it", [4]]],
             "verseIndex": 1
           }
         ]
@@ -1122,35 +781,24 @@
         "book": 3,
         "chapter": 8,
         "verse": 28,
-        "start": false,
-        "width": 0.2321897570584373
+        "indexOfFirstWord": 12
       },
       {
         "book": 3,
         "chapter": 8,
         "verse": 29,
-        "start": true,
-        "width": 0.26983238137902715
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "30": {
     "text": [
       [
         [
           {
             "he": ["תְנוּפָ֖ה", " לִפְנֵ֣י", " יְהֹוָ֑ה", " מֵאֵ֣יל", " הַמִּלֻּאִ֗ים", " לְמֹשֶׁ֤ה", " הָיָה֙", " לְמָנָ֔ה"],
-            "en": [
-              {"words": "Moses’", "page": 120, "line": 31, "word": 6},
-              {"words": "portion", "page": 120, "line": 31, "word": 8},
-              {"words": "of the ram", "page": 120, "line": 31, "word": 4},
-              {"words": "of ordination—", "page": 120, "line": 31, "word": 5},
-              {"words": "and waved", "page": 120, "line": 30, "word": 5},
-              {"words": "it before", "page": 120, "line": 31, "word": 2},
-              {"words": "the LORD", "page": 120, "line": 31, "word": 3},
-              {"words": "as a wave offering,", "page": 120, "line": 31, "word": 1}
-            ],
+            "en": [["{as} a raised offering", [0]], ["to the face of", [1]], ["יהוה", [2]], ["from the ram of", [3]], ["the ordination offering.", [4]], ["It {was}", [6]], ["for Moses", [5]], ["for a portion,", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1161,34 +809,23 @@
         "book": 3,
         "chapter": 8,
         "verse": 29,
-        "start": false,
-        "width": 0.4871890593695947
+        "indexOfFirstWord": 5
       }
     ],
     "isPetucha": false
   },
-  {
+  "31": {
     "text": [
       [
         [
           {
-            "he": ["כַּאֲשֶׁ֛ר", " צִוָּ֥ה", " יְהֹוָ֖ה", " אֶת", "־מֹשֶֽׁה׃"],
-            "en": [
-              {"words": "as", "page": 120, "line": 32, "word": 1},
-              {"words": "the LORD", "page": 120, "line": 32, "word": 3},
-              {"words": "", "page": 120, "line": 32, "word": 4},
-              {"words": "had commanded", "page": 120, "line": 32, "word": 2},
-              {"words": "him.", "page": 120, "line": 32, "word": 5}
-            ],
+            "he": ["כַּאֲשֶׁ֛ר", " צִוָּ֥ה", " יְהֹוָ֖ה", " אֶת־", "מֹשֶֽׁה׃"],
+            "en": [["just as", [0]], ["יהוה", [2]], ["commanded", [1]], ["Moses.", [3, 4]]],
             "verseIndex": 0
           },
           {
             "he": [" וַיִּקַּ֨ח", " מֹשֶׁ֜ה", " מִשֶּׁ֣מֶן"],
-            "en": [
-              {"words": "Next, Moses", "page": 120, "line": 32, "word": 2},
-              {"words": "took", "page": 120, "line": 32, "word": 1},
-              {"words": "some of", "page": 120, "line": 33, "word": 2}
-            ],
+            "en": [["And", [0]], ["Moses", [1]], ["took", [0]], ["some of", [2]], ["the", [[120, 32, 0, 0]]]],
             "verseIndex": 1
           }
         ]
@@ -1199,36 +836,24 @@
         "book": 3,
         "chapter": 8,
         "verse": 29,
-        "start": false,
-        "width": 0.24297855925137815
+        "indexOfFirstWord": 13
       },
       {
         "book": 3,
         "chapter": 8,
         "verse": 30,
-        "start": true,
-        "width": 0.10987216690214127
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "32": {
     "text": [
       [
         [
           {
-            "he": ["הַמִּשְׁחָ֗ה", " וּמִן", "־הַדָּם֮", " אֲשֶׁ֣ר", " עַל", "־הַמִּזְבֵּ֒חַ֒", " וַיַּ֤ז", " עַֽל", "־אַהֲרֹן֙"],
-            "en": [
-              {"words": "the anointing", "page": 120, "line": 33, "word": 1},
-              {"words": "oil", "page": 120, "line": 32, "word": 3},
-              {"words": "and some of the blood", "page": 120, "line": 33, "word": 3},
-              {"words": "that", "page": 120, "line": 33, "word": 4},
-              {"words": "was on", "page": 120, "line": 33, "word": 5},
-              {"words": "the altar", "page": 120, "line": 33, "word": 6},
-              {"words": "and sprinkled them", "page": 120, "line": 33, "word": 7},
-              {"words": "on", "page": 120, "line": 33, "word": 8},
-              {"words": "Aaron", "page": 120, "line": 33, "word": 9}
-            ],
+            "he": ["הַמִּשְׁחָ֗ה", " וּמִן־", "הַדָּם֮", " אֲשֶׁ֣ר", " עַל־", "הַמִּזְבֵּ֒חַ֒", " וַיַּ֤ז", " עַֽל־", "אַהֲרֹן֙"],
+            "en": [["oil of", [[120, 31, 1, 2]]], ["anointing", [0]], ["and some of", [1]], ["the blood", [2]], ["that {was}", [3]], ["on", [4]], ["the altar,", [5]], ["and he sprinkled {them}", [6]], ["on", [7]], ["Aaron,", [8]]],
             "verseIndex": 0
           }
         ]
@@ -1239,30 +864,18 @@
         "book": 3,
         "chapter": 8,
         "verse": 30,
-        "start": false,
-        "width": 0.3037537753487703
+        "indexOfFirstWord": 3
       }
     ],
     "isPetucha": false
   },
-  {
+  "33": {
     "text": [
       [
         [
           {
-            "he": ["עַל", "־בְּגָדָ֔יו", " וְעַל", "־בָּנָ֛יו", " וְעַל", "־בִּגְדֵ֥י", " בָנָ֖יו", " אִתּ֑וֹ", " וַיְקַדֵּ֤שׁ", " אֶֽת־"],
-            "en": [
-              {"words": "", "page": 120, "line": 34, "word": 1},
-              {"words": "and his garments,", "page": 120, "line": 34, "word": 2},
-              {"words": "and on", "page": 120, "line": 34, "word": 3},
-              {"words": "his sons", "page": 120, "line": 34, "word": 4},
-              {"words": "", "page": 120, "line": 34, "word": 5},
-              {"words": "and their", "page": 120, "line": 34, "word": 7},
-              {"words": "", "page": 120, "line": 34, "word": 8},
-              {"words": "garments.", "page": 120, "line": 34, "word": 6},
-              {"words": "So he consecrated", "page": 120, "line": 34, "word": 9},
-              {"words": "", "page": 120, "line": 34, "word": 10}
-            ],
+            "he": ["עַל־", "בְּגָדָ֔יו", " וְעַל־", "בָּנָ֛יו", " וְעַל־", "בִּגְדֵ֥י", " בָנָ֖יו", " אִתּ֑וֹ", " וַיְקַדֵּ֤שׁ", " אֶֽת־"],
+            "en": [["on", [0]], ["his clothes,", [1]], ["and on", [2]], ["his sons,", [3]], ["and on", [4]], ["the clothes of", [5]], ["his sons", [6]], ["with him.", [7]], ["And he consecrated", [8]]],
             "verseIndex": 0
           }
         ]
@@ -1273,36 +886,23 @@
         "book": 3,
         "chapter": 8,
         "verse": 30,
-        "start": false,
-        "width": 0.30686711618345025
+        "indexOfFirstWord": 12
       }
     ],
     "isPetucha": false
   },
-  {
+  "34": {
     "text": [
       [
         [
           {
-            "he": ["אַהֲרֹן֙", " אֶת", "־בְּגָדָ֔יו", " וְאֶת", "־בָּנָ֛יו", " וְאֶת", "־בִּגְדֵ֥י", " בָנָ֖יו", " אִתּֽוֹ׃"],
-            "en": [
-              {"words": "Aaron", "page": 120, "line": 35, "word": 1},
-              {"words": "", "page": 120, "line": 35, "word": 2},
-              {"words": "and his garments,", "page": 120, "line": 35, "word": 3},
-              {"words": "", "page": 120, "line": 35, "word": 4},
-              {"words": "as well as [Aaron’s] sons", "page": 120, "line": 35, "word": 5},
-              {"words": "", "page": 120, "line": 35, "word": 6},
-              {"words": "and their", "page": 120, "line": 35, "word": 8},
-              {"words": "", "page": 120, "line": 35, "word": 9},
-              {"words": "garments.", "page": 120, "line": 35, "word": 7}
-            ],
+            "he": ["אַהֲרֹן֙", " אֶת־", "בְּגָדָ֔יו", " וְאֶת־", "בָּנָ֛יו", " וְאֶת־", "בִּגְדֵ֥י", " בָנָ֖יו", " אִתּֽוֹ׃"],
+            "en": [["Aaron,", [[120, 33, 0, 9], 0]], ["his clothes,", [1, 2]], ["and his sons,", [3, 4]], ["and the clothes of", [5, 6]], ["his sons", [7]], ["with him.", [8]]],
             "verseIndex": 0
           },
           {
             "he": [" וַיֹּ֨אמֶר"],
-            "en": [
-              {"words": "And Moses", "page": 120, "line": 36, "word": 1}
-            ],
+            "en": [["And", [0]], ["Moses", [[120, 35, 0, 0]]]],
             "verseIndex": 1
           }
         ]
@@ -1313,36 +913,24 @@
         "book": 3,
         "chapter": 8,
         "verse": 30,
-        "start": false,
-        "width": 0.2795069415656382
+        "indexOfFirstWord": 22
       },
       {
         "book": 3,
         "chapter": 8,
         "verse": 31,
-        "start": true,
-        "width": 0.04565221127898383
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "35": {
     "text": [
       [
         [
           {
-            "he": ["מֹשֶׁ֜ה", " אֶל", "־אַהֲרֹ֣ן", " וְאֶל", "־בָּנָ֗יו", " בַּשְּׁל֣וּ", " אֶת", "־הַבָּשָׂר֮", " פֶּ֣תַח"],
-            "en": [
-              {"words": "said", "page": 120, "line": 35, "word": 1},
-              {"words": "to", "page": 120, "line": 36, "word": 2},
-              {"words": "Aaron", "page": 120, "line": 36, "word": 3},
-              {"words": "", "page": 120, "line": 36, "word": 4},
-              {"words": "and his sons,", "page": 120, "line": 36, "word": 5},
-              {"words": "“Boil", "page": 120, "line": 36, "word": 6},
-              {"words": "", "page": 120, "line": 36, "word": 7},
-              {"words": "the meat", "page": 120, "line": 36, "word": 8},
-              {"words": "at the entrance", "page": 120, "line": 36, "word": 9}
-            ],
+            "he": ["מֹשֶׁ֜ה", " אֶל־", "אַהֲרֹ֣ן", " וְאֶל־", "בָּנָ֗יו", " בַּשְּׁל֣וּ", " אֶת־", "הַבָּשָׂר֮", " פֶּ֣תַח"],
+            "en": [["said", [[120, 34, 1, 0]]], ["to", [1]], ["Aaron", [2]], ["and to", [3]], ["his sons,", [4]], ["“Boil", [5]], ["the meat", [6, 7]], ["at the entrance of", [8]]],
             "verseIndex": 0
           }
         ]
@@ -1353,29 +941,18 @@
         "book": 3,
         "chapter": 8,
         "verse": 31,
-        "start": false,
-        "width": 0.30155210643015523
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "36": {
     "text": [
       [
         [
           {
-            "he": ["אֹ֣הֶל", " מוֹעֵד֒", " וְשָׁם֙", " תֹּאכְל֣וּ", " אֹת֔וֹ", " וְאֶ֨ת", "־הַלֶּ֔חֶם", " אֲשֶׁ֖ר", " בְּסַ֣ל"],
-            "en": [
-              {"words": "to the Tent", "page": 120, "line": 37, "word": 1},
-              {"words": "of Meeting", "page": 120, "line": 37, "word": 2},
-              {"words": "and eat", "page": 120, "line": 37, "word": 4},
-              {"words": "", "page": 120, "line": 37, "word": 5},
-              {"words": "it", "page": 120, "line": 37, "word": 6},
-              {"words": "there", "page": 120, "line": 37, "word": 3},
-              {"words": "with the bread", "page": 120, "line": 37, "word": 7},
-              {"words": "that", "page": 120, "line": 37, "word": 8},
-              {"words": "is in the basket", "page": 120, "line": 37, "word": 9}
-            ],
+            "he": ["אֹ֣הֶל", " מוֹעֵד֒", " וְשָׁם֙", " תֹּאכְל֣וּ", " אֹת֔וֹ", " וְאֶ֨ת־", "הַלֶּ֔חֶם", " אֲשֶׁ֖ר", " בְּסַ֣ל"],
+            "en": [["the tent of", [0]], ["meeting,", [1]], ["and there", [2]], ["you shall eat", [3]], ["it", [4]], ["and the bread", [5, 6]], ["that", [7]], ["{is} in the basket of", [8]]],
             "verseIndex": 0
           }
         ]
@@ -1386,27 +963,18 @@
         "book": 3,
         "chapter": 8,
         "verse": 31,
-        "start": false,
-        "width": 0.32547826535347807
+        "indexOfFirstWord": 10
       }
     ],
     "isPetucha": false
   },
-  {
+  "37": {
     "text": [
       [
         [
           {
             "he": ["הַמִּלֻּאִ֑ים", " כַּאֲשֶׁ֤ר", " צִוֵּ֙יתִי֙", " לֵאמֹ֔ר", " אַהֲרֹ֥ן", " וּבָנָ֖יו", " יֹאכְלֻֽהוּ׃"],
-            "en": [
-              {"words": "of ordination offerings,", "page": 120, "line": 38, "word": 1},
-              {"words": "as", "page": 120, "line": 38, "word": 2},
-              {"words": "I commanded,", "page": 120, "line": 38, "word": 3},
-              {"words": "saying,", "page": 120, "line": 38, "word": 4},
-              {"words": "‘Aaron", "page": 120, "line": 38, "word": 5},
-              {"words": "and his sons", "page": 120, "line": 38, "word": 6},
-              {"words": "are to eat it.’", "page": 120, "line": 38, "word": 7}
-            ],
+            "en": [["the ordination offering,", [0]], ["just as", [1]], ["I commanded,", [2]], ["saying,", [3]], ["‘Aaron", [4]], ["and his sons", [5]], ["shall eat it.’", [6]]],
             "verseIndex": 0
           }
         ]
@@ -1417,33 +985,23 @@
         "book": 3,
         "chapter": 8,
         "verse": 31,
-        "start": false,
-        "width": 0.3273174169373829
+        "indexOfFirstWord": 19
       }
     ],
     "isPetucha": false
   },
-  {
+  "38": {
     "text": [
       [
         [
           {
             "he": ["וְהַנּוֹתָ֥ר", " בַּבָּשָׂ֖ר", " וּבַלָּ֑חֶם", " בָּאֵ֖שׁ", " תִּשְׂרֹֽפוּ׃"],
-            "en": [
-              {"words": "Then you must burn up", "page": 120, "line": 39, "word": 4},
-              {"words": "", "page": 120, "line": 39, "word": 5},
-              {"words": "the remainder", "page": 120, "line": 39, "word": 1},
-              {"words": "of the meat", "page": 120, "line": 39, "word": 2},
-              {"words": "and bread.", "page": 120, "line": 39, "word": 3}
-            ],
+            "en": [["But the remainder", [0]], ["among the meat", [1]], ["and among the bread", [2]], ["you shall burn", [4]], ["in the fire.", [3]]],
             "verseIndex": 0
           },
           {
             "he": [" וּמִפֶּ֩תַח֩", " אֹ֨הֶל"],
-            "en": [
-              {"words": "You must not", "page": 120, "line": 40, "word": 2},
-              {"words": "go outside", "page": 120, "line": 40, "word": 3}
-            ],
+            "en": [["And", [0]], ["you shall", [[120, 39, 0, 2]]], ["not", [[120, 39, 0, 1]]], ["go out", [[120, 39, 0, 2]]]],
             "verseIndex": 1
           }
         ]
@@ -1454,36 +1012,24 @@
         "book": 3,
         "chapter": 8,
         "verse": 32,
-        "start": true,
-        "width": 1.0
+        "indexOfFirstWord": 0
       },
       {
         "book": 3,
         "chapter": 8,
         "verse": 33,
-        "start": true,
-        "width": 0.13307928867495655
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "39": {
     "text": [
       [
         [
           {
             "he": ["מוֹעֵ֜ד", " לֹ֤א", " תֵֽצְאוּ֙", " שִׁבְעַ֣ת", " יָמִ֔ים", " עַ֚ד", " י֣וֹם", " מְלֹ֔את", " יְמֵ֖י"],
-            "en": [
-              {"words": "the entrance", "page": 120, "line": 39, "word": 1},
-              {"words": "to the Tent", "page": 120, "line": 39, "word": 2},
-              {"words": "of Meeting", "page": 120, "line": 40, "word": 1},
-              {"words": "for seven", "page": 120, "line": 40, "word": 4},
-              {"words": "days,", "page": 120, "line": 40, "word": 5},
-              {"words": "until", "page": 120, "line": 40, "word": 6},
-              {"words": "the days", "page": 120, "line": 40, "word": 7},
-              {"words": "", "page": 120, "line": 40, "word": 9},
-              {"words": "of your ordination", "page": 120, "line": 41, "word": 1}
-            ],
+            "en": [["from the entrance of", [[120, 38, 1, 0]]], ["the tent of", [[120, 38, 1, 1]]], ["meeting", [0]], ["{for} seven", [3]], ["days,", [4]], ["until", [5]], ["the day of", [6]], ["the filling of", [7]], ["the days of", [8]]],
             "verseIndex": 0
           }
         ]
@@ -1494,34 +1040,23 @@
         "book": 3,
         "chapter": 8,
         "verse": 33,
-        "start": false,
-        "width": 0.4604626286936756
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "40": {
     "text": [
       [
         [
           {
-            "he": ["מִלֻּאֵיכֶ֑ם", " כִּ֚י", " שִׁבְעַ֣ת", " יָמִ֔ים", " יְמַלֵּ֖א", " אֶת", "־יֶדְכֶֽם׃"],
-            "en": [
-              {"words": "are complete;", "page": 120, "line": 40, "word": 8},
-              {"words": "for", "page": 120, "line": 41, "word": 2},
-              {"words": "it will take seven", "page": 120, "line": 41, "word": 3},
-              {"words": "days", "page": 120, "line": 41, "word": 4},
-              {"words": "to ordain", "page": 120, "line": 41, "word": 5},
-              {"words": "", "page": 120, "line": 41, "word": 6},
-              {"words": "you.", "page": 120, "line": 41, "word": 7}
-            ],
+            "he": ["מִלֻּאֵיכֶ֑ם", " כִּ֚י", " שִׁבְעַ֣ת", " יָמִ֔ים", " יְמַלֵּ֖א", " אֶת־", "יֶדְכֶֽם׃"],
+            "en": [["your ordination,", [0]], ["because", [1]], ["{for} seven", [2]], ["days,", [3]], ["he will fill", [4]], ["your hand.", [5, 6]]],
             "verseIndex": 0
           },
           {
             "he": [" כַּאֲשֶׁ֥ר"],
-            "en": [
-              {"words": "What", "page": 120, "line": 41, "word": 1}
-            ],
+            "en": [["Just as", [0]]],
             "verseIndex": 1
           }
         ]
@@ -1532,35 +1067,24 @@
         "book": 3,
         "chapter": 8,
         "verse": 33,
-        "start": false,
-        "width": 0.40645808263136785
+        "indexOfFirstWord": 11
       },
       {
         "book": 3,
         "chapter": 8,
         "verse": 34,
-        "start": true,
-        "width": 0.12962146809656727
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "41": {
     "text": [
       [
         [
           {
             "he": ["עָשָׂ֖ה", " בַּיּ֣וֹם", " הַזֶּ֑ה", " צִוָּ֧ה", " יְהֹוָ֛ה", " לַעֲשֹׂ֖ת", " לְכַפֵּ֥ר", " עֲלֵיכֶֽם׃"],
-            "en": [
-              {"words": "has been done", "page": 120, "line": 42, "word": 1},
-              {"words": "today", "page": 120, "line": 42, "word": 2},
-              {"words": "", "page": 120, "line": 42, "word": 3},
-              {"words": "has been commanded", "page": 120, "line": 42, "word": 4},
-              {"words": "by the LORD", "page": 120, "line": 42, "word": 5},
-              {"words": "", "page": 120, "line": 42, "word": 6},
-              {"words": "in order to make atonement", "page": 120, "line": 42, "word": 7},
-              {"words": "on your behalf.", "page": 120, "line": 42, "word": 8}
-            ],
+            "en": [["he did", [0]], ["on", [1]], ["this", [2]], ["day,", [1]], ["יהוה", [4]], ["commanded", [3]], ["to do,", [5]], ["to make atonement", [6]], ["for you.", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1571,10 +1095,9 @@
         "book": 3,
         "chapter": 8,
         "verse": 34,
-        "start": false,
-        "width": 0.8703785319034327
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   }
-]
+}

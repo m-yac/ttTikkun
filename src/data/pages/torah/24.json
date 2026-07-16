@@ -1,20 +1,12 @@
-[
-  {
+{
+  "length": 42,
+  "0": {
     "text": [
       [
         [
           {
-            "he": ["וְהַמְּעָרָ֧ה", " אֲשֶׁר", "־בּ֛וֹ", " לְאַבְרָהָ֖ם", " לַאֲחֻזַּת", "־קָ֑בֶר", " מֵאֵ֖ת", " בְּנֵי־"],
-            "en": [
-              {"words": "", "page": 24, "line": 1, "word": 3},
-              {"words": "cave", "page": 24, "line": 1, "word": 1},
-              {"words": "were deeded", "page": 23, "line": 42, "word": 1},
-              {"words": "by the Hittites", "page": 24, "line": 1, "word": 8},
-              {"words": "", "page": 24, "line": 2, "word": 1},
-              {"words": "to Abraham", "page": 24, "line": 1, "word": 4},
-              {"words": "as a burial", "page": 24, "line": 1, "word": 6},
-              {"words": "", "page": 24, "line": 1, "word": 7}
-            ],
+            "he": ["וְהַמְּעָרָ֧ה", " אֲשֶׁר־", "בּ֛וֹ", " לְאַבְרָהָ֖ם", " לַאֲחֻזַּת־", "קָ֑בֶר", " מֵאֵ֖ת", " בְּנֵי־"],
+            "en": [["that", [1]], ["{was} in it", [2]], ["were deeded", [[23, 41, 1, 0]]], ["to Abraham", [3]], ["as property for", [4]], ["a burial place", [5]], ["from", [6]], ["the sons of", [7]]],
             "verseIndex": 0
           }
         ]
@@ -25,34 +17,26 @@
         "book": 1,
         "chapter": 23,
         "verse": 20,
-        "start": false,
-        "width": 0.7565589862573622
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "1": {
     "text": [
       [
         [
           {
             "he": ["חֵֽת׃"],
-            "en": [
-              {"words": "site.", "page": 24, "line": 1, "word": 5}
-            ],
+            "en": [["Heth.", [0]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" וְאַבְרָהָ֣ם", " זָקֵ֔ן", " בָּ֖א", " בַּיָּמִ֑ים"],
-            "en": [
-              {"words": "By now Abraham", "page": 24, "line": 2, "word": 1},
-              {"words": "was old", "page": 24, "line": 2, "word": 2},
-              {"words": "and well along", "page": 24, "line": 2, "word": 3},
-              {"words": "in years,", "page": 24, "line": 2, "word": 4}
-            ],
-            "verseIndex": 0
+            "en": [["Now Abraham", [0]], ["was old,", [1]], ["advanced", [2]], ["in days,", [3]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -62,41 +46,29 @@
         "book": 1,
         "chapter": 23,
         "verse": 20,
-        "start": false,
-        "width": 0.05409800305391953
+        "indexOfFirstWord": 10
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 1,
-        "start": true,
-        "width": 0.44925521350546177
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "2": {
     "text": [
       [
         [
           {
-            "he": ["וַֽיהֹוָ֛ה", " בֵּרַ֥ךְ", " אֶת", "־אַבְרָהָ֖ם", " בַּכֹּֽל׃"],
-            "en": [
-              {"words": "and the LORD", "page": 24, "line": 3, "word": 1},
-              {"words": "had blessed", "page": 24, "line": 3, "word": 2},
-              {"words": "", "page": 24, "line": 3, "word": 3},
-              {"words": "him", "page": 24, "line": 3, "word": 4},
-              {"words": "in every way.", "page": 24, "line": 3, "word": 5}
-            ],
+            "he": ["וַֽיהֹוָ֛ה", " בֵּרַ֥ךְ", " אֶת־", "אַבְרָהָ֖ם", " בַּכֹּֽל׃"],
+            "en": [["and יהוה", [0]], ["had blessed", [1]], ["Abraham", [2, 3]], ["in all {things}.", [4]]],
             "verseIndex": 0
           },
           {
             "he": [" וַיֹּ֣אמֶר", " אַבְרָהָ֗ם", " אֶל־"],
-            "en": [
-              {"words": "So Abraham", "page": 24, "line": 3, "word": 2},
-              {"words": "instructed", "page": 24, "line": 3, "word": 1},
-              {"words": "", "page": 24, "line": 3, "word": 3}
-            ],
+            "en": [["Then", [0]], ["Abraham", [1]], ["said", [0]], ["to", [2]]],
             "verseIndex": 1
           }
         ]
@@ -107,37 +79,24 @@
         "book": 1,
         "chapter": 24,
         "verse": 1,
-        "start": false,
-        "width": 0.5507447864945383
+        "indexOfFirstWord": 4
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 2,
-        "start": true,
-        "width": 0.24911518799049362
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "3": {
     "text": [
       [
         [
           {
-            "he": ["עַבְדּוֹ֙", " זְקַ֣ן", " בֵּית֔וֹ", " הַמֹּשֵׁ֖ל", " בְּכׇל", "־אֲשֶׁר", "־ל֑וֹ", " שִֽׂים", "־נָ֥א", " יָדְךָ֖"],
-            "en": [
-              {"words": "the chief", "page": 24, "line": 4, "word": 2},
-              {"words": "servant", "page": 24, "line": 4, "word": 1},
-              {"words": "of his household,", "page": 24, "line": 4, "word": 3},
-              {"words": "who managed", "page": 24, "line": 4, "word": 4},
-              {"words": "all he owned", "page": 24, "line": 4, "word": 5},
-              {"words": "", "page": 24, "line": 4, "word": 6},
-              {"words": ",", "page": 24, "line": 4, "word": 7},
-              {"words": "“Place", "page": 24, "line": 4, "word": 8},
-              {"words": "", "page": 24, "line": 4, "word": 9},
-              {"words": "your hand", "page": 24, "line": 4, "word": 10}
-            ],
+            "he": ["עַבְדּוֹ֙", " זְקַ֣ן", " בֵּית֔וֹ", " הַמֹּשֵׁ֖ל", " בְּכׇל־", "אֲשֶׁר־", "ל֑וֹ", " שִֽׂים־", "נָ֥א", " יָדְךָ֖"],
+            "en": [["his", [0]], ["oldest", [1]], ["servant of", [0]], ["his house,", [2]], ["who was in charge", [3]], ["of everything", [4]], ["that", [5]], ["{belonged} to him,", [6]], ["“Please", [8]], ["put", [7]], ["your hand", [9]]],
             "verseIndex": 0
           }
         ]
@@ -148,33 +107,23 @@
         "book": 1,
         "chapter": 24,
         "verse": 2,
-        "start": false,
-        "width": 0.6123753996614633
+        "indexOfFirstWord": 3
       }
     ],
     "isPetucha": false
   },
-  {
+  "4": {
     "text": [
       [
         [
           {
             "he": ["תַּ֥חַת", " יְרֵכִֽי׃"],
-            "en": [
-              {"words": "under", "page": 24, "line": 5, "word": 1},
-              {"words": "my thigh,", "page": 24, "line": 5, "word": 2}
-            ],
+            "en": [["under", [0]], ["my thigh,", [1]]],
             "verseIndex": 0
           },
           {
             "he": [" וְאַשְׁבִּ֣יעֲךָ֔", " בַּֽיהֹוָה֙", " אֱלֹהֵ֣י", " הַשָּׁמַ֔יִם", " וֵֽאלֹהֵ֖י"],
-            "en": [
-              {"words": "and I will have you swear", "page": 24, "line": 5, "word": 1},
-              {"words": "by the LORD,", "page": 24, "line": 5, "word": 2},
-              {"words": "the God", "page": 24, "line": 5, "word": 3},
-              {"words": "of heaven", "page": 24, "line": 5, "word": 4},
-              {"words": "and the God", "page": 24, "line": 5, "word": 5}
-            ],
+            "en": [["and I will have you swear", [0]], ["by יהוה,", [1]], ["the God of", [2]], ["the heavens", [3]], ["and the God of", [4]]],
             "verseIndex": 1
           }
         ]
@@ -185,35 +134,24 @@
         "book": 1,
         "chapter": 24,
         "verse": 2,
-        "start": false,
-        "width": 0.13850941234804315
+        "indexOfFirstWord": 13
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 3,
-        "start": true,
-        "width": 0.35655407275484047
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "5": {
     "text": [
       [
         [
           {
-            "he": ["הָאָ֑רֶץ", " אֲשֶׁ֨ר", " לֹֽא", "־תִקַּ֤ח", " אִשָּׁה֙", " לִבְנִ֔י", " מִבְּנוֹת֙", " הַֽכְּנַעֲנִ֔י"],
-            "en": [
-              {"words": "of earth,", "page": 24, "line": 6, "word": 1},
-              {"words": "that", "page": 24, "line": 6, "word": 2},
-              {"words": "you will not", "page": 24, "line": 6, "word": 3},
-              {"words": "take", "page": 24, "line": 6, "word": 4},
-              {"words": "a wife", "page": 24, "line": 6, "word": 5},
-              {"words": "for my son", "page": 24, "line": 6, "word": 6},
-              {"words": "from the daughters", "page": 24, "line": 6, "word": 7},
-              {"words": "of the Canaanites", "page": 24, "line": 6, "word": 8}
-            ],
+            "he": ["הָאָ֑רֶץ", " אֲשֶׁ֨ר", " לֹֽא־", "תִקַּ֤ח", " אִשָּׁה֙", " לִבְנִ֔י", " מִבְּנוֹת֙", " הַֽכְּנַעֲנִ֔י"],
+            "en": [["the earth,", [0]], ["that", [1]], ["you will", [3]], ["not", [2]], ["take", [3]], ["a wife", [4]], ["for my son", [5]], ["from the daughters of", [6]], ["the Canaanites", [7]]],
             "verseIndex": 0
           }
         ]
@@ -224,35 +162,23 @@
         "book": 1,
         "chapter": 24,
         "verse": 3,
-        "start": false,
-        "width": 0.4251814057592568
+        "indexOfFirstWord": 5
       }
     ],
     "isPetucha": false
   },
-  {
+  "6": {
     "text": [
       [
         [
           {
             "he": ["אֲשֶׁ֥ר", " אָנֹכִ֖י", " יוֹשֵׁ֥ב", " בְּקִרְבּֽוֹ׃"],
-            "en": [
-              {"words": "among", "page": 24, "line": 7, "word": 4},
-              {"words": "whom", "page": 24, "line": 7, "word": 1},
-              {"words": "I", "page": 24, "line": 7, "word": 2},
-              {"words": "am dwelling,", "page": 24, "line": 7, "word": 3}
-            ],
+            "en": [["whom", [0]], ["I", [1]], ["am living", [2]], ["among,", [3]]],
             "verseIndex": 0
           },
           {
-            "he": [" כִּ֧י", " אֶל", "־אַרְצִ֛י", " וְאֶל", "־מוֹלַדְתִּ֖י"],
-            "en": [
-              {"words": "but", "page": 24, "line": 7, "word": 1},
-              {"words": "will go", "page": 24, "line": 8, "word": 1},
-              {"words": "to", "page": 24, "line": 7, "word": 2},
-              {"words": "my country", "page": 24, "line": 7, "word": 3},
-              {"words": "and", "page": 24, "line": 7, "word": 4}
-            ],
+            "he": [" כִּ֧י", " אֶל־", "אַרְצִ֛י", " וְאֶל־", "מוֹלַדְתִּ֖י"],
+            "en": [["but", [0]], ["you will go", [[24, 7, 0, 0]]], ["to", [1]], ["my country", [2]], ["and to", [3]]],
             "verseIndex": 1
           }
         ]
@@ -263,41 +189,29 @@
         "book": 1,
         "chapter": 24,
         "verse": 3,
-        "start": false,
-        "width": 0.2182645214859027
+        "indexOfFirstWord": 13
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 4,
-        "start": true,
-        "width": 0.4418867489332257
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "7": {
     "text": [
       [
         [
           {
             "he": ["תֵּלֵ֑ךְ", " וְלָקַחְתָּ֥", " אִשָּׁ֖ה", " לִבְנִ֥י", " לְיִצְחָֽק׃"],
-            "en": [
-              {"words": "my kindred", "page": 24, "line": 7, "word": 5},
-              {"words": "to take", "page": 24, "line": 8, "word": 2},
-              {"words": "a wife", "page": 24, "line": 8, "word": 3},
-              {"words": "for my son", "page": 24, "line": 8, "word": 4},
-              {"words": "Isaac.”", "page": 24, "line": 8, "word": 5}
-            ],
+            "en": [["my relatives,", [[24, 6, 1, 4]]], ["and take", [1]], ["a wife", [2]], ["for my son,", [3]], ["for Isaac.”", [4]]],
             "verseIndex": 0
           },
           {
             "he": [" וַיֹּ֤אמֶר", " אֵלָיו֙", " הָעֶ֔בֶד"],
-            "en": [
-              {"words": "The servant", "page": 24, "line": 8, "word": 3},
-              {"words": "asked", "page": 24, "line": 8, "word": 1},
-              {"words": "him,", "page": 24, "line": 8, "word": 2}
-            ],
+            "en": [["Then", [0]], ["the servant", [2]], ["said", [0]], ["to him,", [1]]],
             "verseIndex": 1
           }
         ]
@@ -308,35 +222,24 @@
         "book": 1,
         "chapter": 24,
         "verse": 4,
-        "start": false,
-        "width": 0.5581132510667743
+        "indexOfFirstWord": 5
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 5,
-        "start": true,
-        "width": 0.1604256909782537
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "8": {
     "text": [
       [
         [
           {
-            "he": ["אוּלַי֙", " לֹא", "־תֹאבֶ֣ה", " הָֽאִשָּׁ֔ה", " לָלֶ֥כֶת", " אַחֲרַ֖י", " אֶל", "־הָאָ֣רֶץ"],
-            "en": [
-              {"words": "“What if", "page": 24, "line": 9, "word": 1},
-              {"words": "the woman", "page": 24, "line": 9, "word": 4},
-              {"words": "is unwilling", "page": 24, "line": 9, "word": 2},
-              {"words": "", "page": 24, "line": 9, "word": 3},
-              {"words": "to follow me", "page": 24, "line": 9, "word": 5},
-              {"words": "", "page": 24, "line": 9, "word": 6},
-              {"words": "to", "page": 24, "line": 9, "word": 7},
-              {"words": "this", "page": 24, "line": 10, "word": 1}
-            ],
+            "he": ["אוּלַי֙", " לֹא־", "תֹאבֶ֣ה", " הָֽאִשָּׁ֔ה", " לָלֶ֥כֶת", " אַחֲרַ֖י", " אֶל־", "הָאָ֣רֶץ"],
+            "en": [["“Suppose", [0]], ["the woman", [3]], ["is", [2]], ["not", [1]], ["willing", [2]], ["to come", [4]], ["with me", [5]], ["to", [6]], ["this", [[24, 9, 0, 0]]]],
             "verseIndex": 0
           }
         ]
@@ -347,29 +250,18 @@
         "book": 1,
         "chapter": 24,
         "verse": 5,
-        "start": false,
-        "width": 0.3843092416280041
+        "indexOfFirstWord": 3
       }
     ],
     "isPetucha": false
   },
-  {
+  "9": {
     "text": [
       [
         [
           {
-            "he": ["הַזֹּ֑את", " הֶֽהָשֵׁ֤ב", " אָשִׁיב֙", " אֶת", "־בִּנְךָ֔", " אֶל", "־הָאָ֖רֶץ", " אֲשֶׁר", "־יָצָ֥אתָ"],
-            "en": [
-              {"words": "land?", "page": 24, "line": 9, "word": 8},
-              {"words": "Shall I then take your son back", "page": 24, "line": 10, "word": 2},
-              {"words": "", "page": 24, "line": 10, "word": 5},
-              {"words": "", "page": 24, "line": 10, "word": 3},
-              {"words": "", "page": 24, "line": 10, "word": 4},
-              {"words": "to", "page": 24, "line": 10, "word": 6},
-              {"words": "the land", "page": 24, "line": 10, "word": 7},
-              {"words": "from", "page": 24, "line": 11, "word": 1},
-              {"words": "which", "page": 24, "line": 10, "word": 8}
-            ],
+            "he": ["הַזֹּ֑את", " הֶֽהָשֵׁ֤ב", " אָשִׁיב֙", " אֶת־", "בִּנְךָ֔", " אֶל־", "הָאָ֖רֶץ", " אֲשֶׁר־", "יָצָ֥אתָ"],
+            "en": [["land?", [[24, 8, 0, 7]]], ["Should", [1]], ["I take", [2]], ["your son", [3, 4]], ["back", [2]], ["to", [5]], ["the country", [6]], ["that", [7]], ["you came", [8]]],
             "verseIndex": 0
           }
         ]
@@ -380,34 +272,23 @@
         "book": 1,
         "chapter": 24,
         "verse": 5,
-        "start": false,
-        "width": 0.41009037138019744
+        "indexOfFirstWord": 11
       }
     ],
     "isPetucha": false
   },
-  {
+  "10": {
     "text": [
       [
         [
           {
             "he": ["מִשָּֽׁם׃"],
-            "en": [
-              {"words": "you came?”", "page": 24, "line": 10, "word": 9}
-            ],
+            "en": [["from?”", [0]]],
             "verseIndex": 0
           },
           {
-            "he": [" וַיֹּ֥אמֶר", " אֵלָ֖יו", " אַבְרָהָ֑ם", " הִשָּׁ֣מֶר", " לְךָ֔", " פֶּן", "־תָּשִׁ֥יב"],
-            "en": [
-              {"words": "Abraham", "page": 24, "line": 11, "word": 3},
-              {"words": "replied,", "page": 24, "line": 11, "word": 1},
-              {"words": "", "page": 24, "line": 11, "word": 2},
-              {"words": "“Make sure", "page": 24, "line": 11, "word": 4},
-              {"words": "", "page": 24, "line": 11, "word": 5},
-              {"words": "that you do not", "page": 24, "line": 11, "word": 6},
-              {"words": "take my son", "page": 24, "line": 12, "word": 2}
-            ],
+            "he": [" וַיֹּ֥אמֶר", " אֵלָ֖יו", " אַבְרָהָ֑ם", " הִשָּׁ֣מֶר", " לְךָ֔", " פֶּן־", "תָּשִׁ֥יב"],
+            "en": [["Then", [0]], ["Abraham", [2]], ["said", [0]], ["to him,", [1]], ["“Be sure", [3]], ["that you", [4]], ["do not", [5]], ["take", [6]], ["my son", [[24, 11, 0, 0], [24, 11, 0, 1]]]],
             "verseIndex": 1
           }
         ]
@@ -418,41 +299,29 @@
         "book": 1,
         "chapter": 24,
         "verse": 5,
-        "start": false,
-        "width": 0.045174696013544714
+        "indexOfFirstWord": 20
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 6,
-        "start": true,
-        "width": 0.7660735000123405
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "11": {
     "text": [
       [
         [
           {
-            "he": ["אֶת", "־בְּנִ֖י", " שָֽׁמָּה׃"],
-            "en": [
-              {"words": "back", "page": 24, "line": 11, "word": 7},
-              {"words": "", "page": 24, "line": 12, "word": 1},
-              {"words": "there.", "page": 24, "line": 12, "word": 3}
-            ],
+            "he": ["אֶת־", "בְּנִ֖י", " שָֽׁמָּה׃"],
+            "en": [["back", [[24, 10, 1, 6]]], ["there.", [2]]],
             "verseIndex": 0
           },
           {
             "he": [" יְהֹוָ֣ה", " ׀ אֱלֹהֵ֣י", " הַשָּׁמַ֗יִם", " אֲשֶׁ֨ר", " לְקָחַ֜נִי"],
-            "en": [
-              {"words": "The LORD,", "page": 24, "line": 12, "word": 1},
-              {"words": "the God", "page": 24, "line": 12, "word": 2},
-              {"words": "of heaven,", "page": 24, "line": 12, "word": 3},
-              {"words": "who", "page": 24, "line": 12, "word": 4},
-              {"words": "brought me", "page": 24, "line": 12, "word": 5}
-            ],
+            "en": [["יהוה,", [0]], ["the God of", [1]], ["the heavens,", [2]], ["who", [3]], ["took me", [4]]],
             "verseIndex": 1
           }
         ]
@@ -463,35 +332,24 @@
         "book": 1,
         "chapter": 24,
         "verse": 6,
-        "start": false,
-        "width": 0.2339264999876595
+        "indexOfFirstWord": 7
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 7,
-        "start": true,
-        "width": 0.18457832420516784
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "12": {
     "text": [
       [
         [
           {
-            "he": ["מִבֵּ֣ית", " אָבִי֮", " וּמֵאֶ֣רֶץ", " מֽוֹלַדְתִּי֒", " וַאֲשֶׁ֨ר", " דִּבֶּר", "־לִ֜י", " וַאֲשֶׁ֤ר"],
-            "en": [
-              {"words": "from my father’s", "page": 24, "line": 13, "word": 2},
-              {"words": "house", "page": 24, "line": 13, "word": 1},
-              {"words": "and my native", "page": 24, "line": 13, "word": 4},
-              {"words": "land,", "page": 24, "line": 13, "word": 3},
-              {"words": "who", "page": 24, "line": 13, "word": 5},
-              {"words": "spoke", "page": 24, "line": 13, "word": 6},
-              {"words": "to me", "page": 24, "line": 13, "word": 7},
-              {"words": "and", "page": 24, "line": 13, "word": 8}
-            ],
+            "he": ["מִבֵּ֣ית", " אָבִי֮", " וּמֵאֶ֣רֶץ", " מֽוֹלַדְתִּי֒", " וַאֲשֶׁ֨ר", " דִּבֶּר־", "לִ֜י", " וַאֲשֶׁ֤ר"],
+            "en": [["from the house of", [0]], ["my father", [1]], ["and from the land of", [2]], ["my relatives", [3]], ["and who", [4]], ["spoke", [5]], ["to me", [6]], ["and who", [7]]],
             "verseIndex": 0
           }
         ]
@@ -502,29 +360,18 @@
         "book": 1,
         "chapter": 24,
         "verse": 7,
-        "start": false,
-        "width": 0.274352506268512
+        "indexOfFirstWord": 5
       }
     ],
     "isPetucha": false
   },
-  {
+  "13": {
     "text": [
       [
         [
           {
-            "he": ["נִֽשְׁבַּֽע", "־לִי֙", " לֵאמֹ֔ר", " לְזַ֨רְעֲךָ֔", " אֶתֵּ֖ן", " אֶת", "־הָאָ֣רֶץ", " הַזֹּ֑את", " ה֗וּא"],
-            "en": [
-              {"words": "promised me on oath", "page": 24, "line": 14, "word": 1},
-              {"words": ",", "page": 24, "line": 14, "word": 2},
-              {"words": "saying,", "page": 24, "line": 14, "word": 3},
-              {"words": "‘To your offspring", "page": 24, "line": 14, "word": 4},
-              {"words": "I will give", "page": 24, "line": 14, "word": 5},
-              {"words": "", "page": 24, "line": 14, "word": 6},
-              {"words": "this", "page": 24, "line": 14, "word": 8},
-              {"words": "land’—", "page": 24, "line": 14, "word": 7},
-              {"words": "He", "page": 24, "line": 14, "word": 9}
-            ],
+            "he": ["נִֽשְׁבַּֽע־", "לִי֙", " לֵאמֹ֔ר", " לְזַ֨רְעֲךָ֔", " אֶתֵּ֖ן", " אֶת־", "הָאָ֣רֶץ", " הַזֹּ֑את", " ה֗וּא"],
+            "en": [["swore", [0]], ["to me,", [1]], ["saying,", [2]], ["‘To your offspring", [3]], ["I will give", [4]], ["this", [7]], ["land,’", [5, 6]], ["he", [8]]],
             "verseIndex": 0
           }
         ]
@@ -535,34 +382,23 @@
         "book": 1,
         "chapter": 24,
         "verse": 7,
-        "start": false,
-        "width": 0.28091266504556506
+        "indexOfFirstWord": 13
       }
     ],
     "isPetucha": false
   },
-  {
+  "14": {
     "text": [
       [
         [
           {
             "he": ["יִשְׁלַ֤ח", " מַלְאָכוֹ֙", " לְפָנֶ֔יךָ", " וְלָקַחְתָּ֥", " אִשָּׁ֛ה", " לִבְנִ֖י", " מִשָּֽׁם׃"],
-            "en": [
-              {"words": "will send", "page": 24, "line": 15, "word": 1},
-              {"words": "His angel", "page": 24, "line": 15, "word": 2},
-              {"words": "before you", "page": 24, "line": 15, "word": 3},
-              {"words": "so that you can take", "page": 24, "line": 15, "word": 4},
-              {"words": "a wife", "page": 24, "line": 15, "word": 5},
-              {"words": "for my son", "page": 24, "line": 15, "word": 6},
-              {"words": "from there.", "page": 24, "line": 15, "word": 7}
-            ],
+            "en": [["will send", [0]], ["his angel", [1]], ["before you,", [2]], ["and you will take", [3]], ["a wife", [4]], ["for my son", [5]], ["from there.", [6]]],
             "verseIndex": 0
           },
           {
             "he": [" וְאִם־"],
-            "en": [
-              {"words": "And if", "page": 24, "line": 15, "word": 1}
-            ],
+            "en": [["But if", [0]]],
             "verseIndex": 1
           }
         ]
@@ -573,34 +409,24 @@
         "book": 1,
         "chapter": 24,
         "verse": 7,
-        "start": false,
-        "width": 0.2601565044807551
+        "indexOfFirstWord": 22
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 8,
-        "start": true,
-        "width": 0.052556085611139766
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "15": {
     "text": [
       [
         [
           {
             "he": ["לֹ֨א", " תֹאבֶ֤ה", " הָֽאִשָּׁה֙", " לָלֶ֣כֶת", " אַחֲרֶ֔יךָ", " וְנִקִּ֕יתָ", " מִשְּׁבֻעָתִ֖י"],
-            "en": [
-              {"words": "the woman", "page": 24, "line": 16, "word": 3},
-              {"words": "is unwilling", "page": 24, "line": 16, "word": 1},
-              {"words": "", "page": 24, "line": 16, "word": 2},
-              {"words": "to follow", "page": 24, "line": 16, "word": 4},
-              {"words": "you,", "page": 24, "line": 16, "word": 5},
-              {"words": "then you are released", "page": 24, "line": 16, "word": 6},
-              {"words": "from this", "page": 24, "line": 17, "word": 1}
-            ],
+            "en": [["the woman", [2]], ["is", [1]], ["not", [0]], ["willing", [1]], ["to come", [3]], ["with you,", [4]], ["then you are clear", [5]], ["from", [6]], ["this", [[24, 16, 0, 0]]]],
             "verseIndex": 0
           }
         ]
@@ -611,36 +437,23 @@
         "book": 1,
         "chapter": 24,
         "verse": 8,
-        "start": false,
-        "width": 0.5914936823104693
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "16": {
     "text": [
       [
         [
           {
-            "he": ["זֹ֑את", " רַ֣ק", " אֶת", "־בְּנִ֔י", " לֹ֥א", " תָשֵׁ֖ב", " שָֽׁמָּה׃"],
-            "en": [
-              {"words": "oath of mine.", "page": 24, "line": 16, "word": 7},
-              {"words": "Only", "page": 24, "line": 17, "word": 2},
-              {"words": "", "page": 24, "line": 17, "word": 3},
-              {"words": "do not", "page": 24, "line": 17, "word": 5},
-              {"words": "take", "page": 24, "line": 17, "word": 6},
-              {"words": "my son", "page": 24, "line": 17, "word": 4},
-              {"words": "back there.”", "page": 24, "line": 17, "word": 7}
-            ],
+            "he": ["זֹ֑את", " רַ֣ק", " אֶת־", "בְּנִ֔י", " לֹ֥א", " תָשֵׁ֖ב", " שָֽׁמָּה׃"],
+            "en": [["oath of mine.", [[24, 15, 0, 6]]], ["Only", [1]], ["do", [5]], ["not", [4]], ["take", [5]], ["my son", [2, 3]], ["back", [5]], ["there!”", [6]]],
             "verseIndex": 0
           },
           {
             "he": [" וַיָּ֤שֶׂם", " הָעֶ֙בֶד֙", " אֶת־"],
-            "en": [
-              {"words": "So the servant", "page": 24, "line": 17, "word": 2},
-              {"words": "", "page": 24, "line": 17, "word": 3},
-              {"words": "placed", "page": 24, "line": 17, "word": 1}
-            ],
+            "en": [["Then", [0]], ["the servant", [1]], ["put", [0]], ["his", [2, []]]],
             "verseIndex": 1
           }
         ]
@@ -651,36 +464,24 @@
         "book": 1,
         "chapter": 24,
         "verse": 8,
-        "start": false,
-        "width": 0.35595023207839094
+        "indexOfFirstWord": 8
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 9,
-        "start": true,
-        "width": 0.22897213998329918
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "17": {
     "text": [
       [
         [
           {
-            "he": ["יָד֔וֹ", " תַּ֛חַת", " יֶ֥רֶךְ", " אַבְרָהָ֖ם", " אֲדֹנָ֑יו", " וַיִּשָּׁ֣בַֽע", " ל֔וֹ", " עַל", "־הַדָּבָ֖ר"],
-            "en": [
-              {"words": "his hand", "page": 24, "line": 18, "word": 1},
-              {"words": "under", "page": 24, "line": 18, "word": 2},
-              {"words": "the thigh", "page": 24, "line": 18, "word": 3},
-              {"words": "of his master", "page": 24, "line": 18, "word": 5},
-              {"words": "Abraham", "page": 24, "line": 18, "word": 4},
-              {"words": "and swore an oath", "page": 24, "line": 18, "word": 6},
-              {"words": "to him", "page": 24, "line": 18, "word": 7},
-              {"words": "concerning", "page": 24, "line": 18, "word": 8},
-              {"words": "this", "page": 24, "line": 19, "word": 1}
-            ],
+            "he": ["יָד֔וֹ", " תַּ֛חַת", " יֶ֥רֶךְ", " אַבְרָהָ֖ם", " אֲדֹנָ֑יו", " וַיִּשָּׁ֣בַֽע", " ל֔וֹ", " עַל־", "הַדָּבָ֖ר"],
+            "en": [["hand", [[], 0]], ["under", [1]], ["the thigh of", [2]], ["Abraham", [3]], ["his master", [4]], ["and swore", [5]], ["to him", [6]], ["concerning", [7]], ["this", [[24, 18, 0, 0]]]],
             "verseIndex": 0
           }
         ]
@@ -691,34 +492,23 @@
         "book": 1,
         "chapter": 24,
         "verse": 9,
-        "start": false,
-        "width": 0.7052303955059591
+        "indexOfFirstWord": 3
       }
     ],
     "isPetucha": false
   },
-  {
+  "18": {
     "text": [
       [
         [
           {
             "he": ["הַזֶּֽה׃"],
-            "en": [
-              {"words": "matter.", "page": 24, "line": 18, "word": 9}
-            ],
+            "en": [["matter.", [[24, 17, 0, 8]]]],
             "verseIndex": 0
           },
           {
             "he": [" וַיִּקַּ֣ח", " הָ֠עֶ֠בֶד", " עֲשָׂרָ֨ה", " גְמַלִּ֜ים", " מִגְּמַלֵּ֤י", " אֲדֹנָיו֙", " וַיֵּ֔לֶךְ"],
-            "en": [
-              {"words": "Then the servant", "page": 24, "line": 19, "word": 2},
-              {"words": "took", "page": 24, "line": 19, "word": 1},
-              {"words": "ten", "page": 24, "line": 19, "word": 3},
-              {"words": "of his master’s", "page": 24, "line": 19, "word": 6},
-              {"words": "camels", "page": 24, "line": 19, "word": 4},
-              {"words": "", "page": 24, "line": 19, "word": 5},
-              {"words": "and departed", "page": 24, "line": 19, "word": 7}
-            ],
+            "en": [["Then", [0]], ["the servant", [1]], ["took", [0]], ["ten", [2]], ["camels", [3]], ["from the camels of", [4]], ["his master", [5]], ["and left,", [6]]],
             "verseIndex": 1
           }
         ]
@@ -729,36 +519,24 @@
         "book": 1,
         "chapter": 24,
         "verse": 9,
-        "start": false,
-        "width": 0.06579746451074167
+        "indexOfFirstWord": 12
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 10,
-        "start": true,
-        "width": 0.4299465641230523
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "19": {
     "text": [
       [
         [
           {
-            "he": ["וְכׇל", "־ט֥וּב", " אֲדֹנָ֖יו", " בְּיָד֑וֹ", " וַיָּ֗קׇם", " וַיֵּ֛לֶךְ", " אֶל", "־אֲרַ֥ם", " נַֽהֲרַ֖יִם"],
-            "en": [
-              {"words": "with all manner", "page": 24, "line": 20, "word": 1},
-              {"words": "of good things", "page": 24, "line": 20, "word": 2},
-              {"words": "from his master", "page": 24, "line": 20, "word": 3},
-              {"words": "in hand.", "page": 24, "line": 20, "word": 4},
-              {"words": "And he set out", "page": 24, "line": 20, "word": 5},
-              {"words": "", "page": 24, "line": 20, "word": 6},
-              {"words": "for", "page": 24, "line": 20, "word": 7},
-              {"words": "", "page": 24, "line": 21, "word": 1},
-              {"words": "Nahor’s", "page": 24, "line": 21, "word": 3}
-            ],
+            "he": ["וְכׇל־", "ט֥וּב", " אֲדֹנָ֖יו", " בְּיָד֑וֹ", " וַיָּ֗קׇם", " וַיֵּ֛לֶךְ", " אֶל־", "אֲרַ֥ם", " נַֽהֲרַ֖יִם"],
+            "en": [["and all {kinds of}", [0]], ["good {things} from", [1]], ["his master", [2]], ["{were} in his hand,", [3]], ["and he got up", [4]], ["and went", [5]], ["to", [6]], ["Aram", [7]], ["Naharaim,", [8]]],
             "verseIndex": 0
           }
         ]
@@ -769,35 +547,23 @@
         "book": 1,
         "chapter": 24,
         "verse": 10,
-        "start": false,
-        "width": 0.44499101078705555
+        "indexOfFirstWord": 7
       }
     ],
     "isPetucha": false
   },
-  {
+  "20": {
     "text": [
       [
         [
           {
-            "he": ["אֶל", "־עִ֥יר", " נָחֽוֹר׃"],
-            "en": [
-              {"words": "hometown", "page": 24, "line": 21, "word": 2},
-              {"words": "", "page": 24, "line": 20, "word": 8},
-              {"words": "in Aram-naharaim.", "page": 24, "line": 20, "word": 9}
-            ],
+            "he": ["אֶל־", "עִ֥יר", " נָחֽוֹר׃"],
+            "en": [["to", [0]], ["the city of", [1]], ["Nahor.", [2]]],
             "verseIndex": 0
           },
           {
-            "he": [" וַיַּבְרֵ֧ךְ", " הַגְּמַלִּ֛ים", " מִח֥וּץ", " לָעִ֖יר", " אֶל", "־בְּאֵ֣ר"],
-            "en": [
-              {"words": "As evening approached", "page": 24, "line": 22, "word": 3},
-              {"words": ",", "page": 24, "line": 22, "word": 2},
-              {"words": "he made the camels", "page": 24, "line": 21, "word": 2},
-              {"words": "kneel down", "page": 24, "line": 21, "word": 1},
-              {"words": "near", "page": 24, "line": 21, "word": 5},
-              {"words": "the well", "page": 24, "line": 21, "word": 6}
-            ],
+            "he": [" וַיַּבְרֵ֧ךְ", " הַגְּמַלִּ֛ים", " מִח֥וּץ", " לָעִ֖יר", " אֶל־", "בְּאֵ֣ר"],
+            "en": [["Then he made", [0]], ["the camels", [1]], ["kneel down", [0]], ["outside", [2]], ["the city", [3]], ["by", [4]], ["the well of", [5]]],
             "verseIndex": 1
           }
         ]
@@ -808,41 +574,29 @@
         "book": 1,
         "chapter": 24,
         "verse": 10,
-        "start": false,
-        "width": 0.12506242508989213
+        "indexOfFirstWord": 16
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 11,
-        "start": true,
-        "width": 0.5087436640115858
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "21": {
     "text": [
       [
         [
           {
             "he": ["הַמָּ֑יִם", " לְעֵ֣ת", " עֶ֔רֶב", " לְעֵ֖ת", " צֵ֥את", " הַשֹּׁאֲבֹֽת׃"],
-            "en": [
-              {"words": "", "page": 24, "line": 22, "word": 1},
-              {"words": "outside", "page": 24, "line": 21, "word": 3},
-              {"words": "the town", "page": 24, "line": 21, "word": 4},
-              {"words": "at the time", "page": 24, "line": 22, "word": 4},
-              {"words": "when the women went out", "page": 24, "line": 22, "word": 5},
-              {"words": "to draw water.", "page": 24, "line": 22, "word": 6}
-            ],
+            "en": [["water", [0]], ["at", [1]], ["evening time,", [2]], ["at the time", [3]], ["the women who draw water", [5]], ["come out.", [4]]],
             "verseIndex": 0
           },
           {
             "he": [" וַיֹּאמַ֓ר", " ׀ יְהֹוָ֗ה"],
-            "en": [
-              {"words": "“O LORD,", "page": 24, "line": 22, "word": 2},
-              {"words": "God", "page": 24, "line": 23, "word": 1}
-            ],
+            "en": [["Then he said,", [0]], ["“יהוה,", [1]]],
             "verseIndex": 1
           }
         ]
@@ -853,35 +607,24 @@
         "book": 1,
         "chapter": 24,
         "verse": 11,
-        "start": false,
-        "width": 0.4912563359884142
+        "indexOfFirstWord": 6
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 12,
-        "start": true,
-        "width": 0.15184566453561216
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "22": {
     "text": [
       [
         [
           {
-            "he": ["אֱלֹהֵי֙", " אֲדֹנִ֣י", " אַבְרָהָ֔ם", " הַקְרֵה", "־נָ֥א", " לְפָנַ֖י", " הַיּ֑וֹם", " וַעֲשֵׂה־"],
-            "en": [
-              {"words": "of my master", "page": 24, "line": 23, "word": 2},
-              {"words": "Abraham,”", "page": 24, "line": 23, "word": 3},
-              {"words": "he prayed,", "page": 24, "line": 22, "word": 1},
-              {"words": "“please", "page": 24, "line": 23, "word": 5},
-              {"words": "grant me success today", "page": 24, "line": 23, "word": 4},
-              {"words": "", "page": 24, "line": 23, "word": 6},
-              {"words": ",", "page": 24, "line": 23, "word": 7},
-              {"words": "and show", "page": 24, "line": 23, "word": 8}
-            ],
+            "he": ["אֱלֹהֵי֙", " אֲדֹנִ֣י", " אַבְרָהָ֔ם", " הַקְרֵה־", "נָ֥א", " לְפָנַ֖י", " הַיּ֑וֹם", " וַעֲשֵׂה־"],
+            "en": [["God of", [0]], ["my master", [1]], ["Abraham,", [2]], ["please", [4]], ["cause it to happen", [3]], ["before me", [5]], ["today", [6]], ["that you show", [7]]],
             "verseIndex": 0
           }
         ]
@@ -892,36 +635,23 @@
         "book": 1,
         "chapter": 24,
         "verse": 12,
-        "start": false,
-        "width": 0.570260545507116
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "23": {
     "text": [
       [
         [
           {
             "he": ["חֶ֕סֶד", " עִ֖ם", " אֲדֹנִ֥י", " אַבְרָהָֽם׃"],
-            "en": [
-              {"words": "kindness", "page": 24, "line": 24, "word": 1},
-              {"words": "to", "page": 24, "line": 24, "word": 2},
-              {"words": "my master", "page": 24, "line": 24, "word": 3},
-              {"words": "Abraham.", "page": 24, "line": 24, "word": 4}
-            ],
+            "en": [["kindness", [0]], ["toward", [1]], ["my master", [2]], ["Abraham.", [3]]],
             "verseIndex": 0
           },
           {
-            "he": [" הִנֵּ֛ה", " אָנֹכִ֥י", " נִצָּ֖ב", " עַל", "־עֵ֣ין", " הַמָּ֑יִם"],
-            "en": [
-              {"words": "Here", "page": 24, "line": 24, "word": 1},
-              {"words": "I am,", "page": 24, "line": 24, "word": 2},
-              {"words": "standing", "page": 24, "line": 24, "word": 3},
-              {"words": "beside", "page": 24, "line": 24, "word": 4},
-              {"words": "the spring", "page": 24, "line": 24, "word": 5},
-              {"words": ",", "page": 24, "line": 24, "word": 6}
-            ],
+            "he": [" הִנֵּ֛ה", " אָנֹכִ֥י", " נִצָּ֖ב", " עַל־", "עֵ֣ין", " הַמָּ֑יִם"],
+            "en": [["Behold,", [0]], ["I", [1]], ["am standing", [2]], ["by", [3]], ["this spring of", [4]], ["water,", [5]]],
             "verseIndex": 1
           }
         ]
@@ -932,41 +662,29 @@
         "book": 1,
         "chapter": 24,
         "verse": 12,
-        "start": false,
-        "width": 0.2778937899572718
+        "indexOfFirstWord": 10
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 13,
-        "start": true,
-        "width": 0.4357755720053836
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "24": {
     "text": [
       [
         [
           {
             "he": ["וּבְנוֹת֙", " אַנְשֵׁ֣י", " הָעִ֔יר", " יֹצְאֹ֖ת", " לִשְׁאֹ֥ב", " מָֽיִם׃"],
-            "en": [
-              {"words": "and the daughters", "page": 24, "line": 25, "word": 1},
-              {"words": "of the townspeople", "page": 24, "line": 25, "word": 2},
-              {"words": "", "page": 24, "line": 25, "word": 3},
-              {"words": "are coming out", "page": 24, "line": 25, "word": 4},
-              {"words": "to draw", "page": 24, "line": 25, "word": 5},
-              {"words": "water.", "page": 24, "line": 25, "word": 6}
-            ],
+            "en": [["and the daughters of", [0]], ["the people of", [1]], ["the city", [2]], ["are coming out", [3]], ["to draw", [4]], ["water.", [5]]],
             "verseIndex": 0
           },
           {
             "he": [" וְהָיָ֣ה", " הַֽנַּעֲרָ֗"],
-            "en": [
-              {"words": "Now may it happen", "page": 24, "line": 25, "word": 1},
-              {"words": "that the girl", "page": 24, "line": 25, "word": 2}
-            ],
+            "en": [["And let it be {that}", [0]], ["the young woman", [1]]],
             "verseIndex": 1
           }
         ]
@@ -977,35 +695,24 @@
         "book": 1,
         "chapter": 24,
         "verse": 13,
-        "start": false,
-        "width": 0.5642244279946165
+        "indexOfFirstWord": 6
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 14,
-        "start": true,
-        "width": 0.08250658595370215
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "25": {
     "text": [
       [
         [
           {
-            "he": ["אֲשֶׁ֨ר", " אֹמַ֤ר", " אֵלֶ֙יהָ֙", " הַטִּי", "־נָ֤א", " כַדֵּךְ֙", " וְאֶשְׁתֶּ֔ה", " וְאָמְרָ֣ה"],
-            "en": [
-              {"words": "to", "page": 24, "line": 26, "word": 3},
-              {"words": "whom", "page": 24, "line": 26, "word": 1},
-              {"words": "I say,", "page": 24, "line": 26, "word": 2},
-              {"words": "‘Please", "page": 24, "line": 26, "word": 5},
-              {"words": "let down", "page": 24, "line": 26, "word": 4},
-              {"words": "your jar", "page": 24, "line": 26, "word": 6},
-              {"words": "that I may drink,’", "page": 24, "line": 26, "word": 7},
-              {"words": "and who responds,", "page": 24, "line": 26, "word": 8}
-            ],
+            "he": ["אֲשֶׁ֨ר", " אֹמַ֤ר", " אֵלֶ֙יהָ֙", " הַטִּי־", "נָ֤א", " כַדֵּךְ֙", " וְאֶשְׁתֶּ֔ה", " וְאָמְרָ֣ה"],
+            "en": [["whom", [0]], ["I say", [1]], ["to her,", [2]], ["‘Please", [4]], ["let down", [3]], ["your jar", [5]], ["so that I may drink,’", [6]], ["and she says,", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1016,27 +723,18 @@
         "book": 1,
         "chapter": 24,
         "verse": 14,
-        "start": false,
-        "width": 0.31813426003774076
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "26": {
     "text": [
       [
         [
           {
-            "he": ["שְׁתֵ֔ה", " וְגַם", "־גְּמַלֶּ֖יךָ", " אַשְׁקֶ֑ה", " אֹתָ֤הּ", " הֹכַ֙חְתָּ֙", " לְעַבְדְּךָ֣"],
-            "en": [
-              {"words": "‘Drink,", "page": 24, "line": 27, "word": 1},
-              {"words": "and I will water", "page": 24, "line": 27, "word": 4},
-              {"words": "", "page": 24, "line": 27, "word": 5},
-              {"words": "your camels", "page": 24, "line": 27, "word": 3},
-              {"words": "as well’—", "page": 24, "line": 27, "word": 2},
-              {"words": "let her be the one You have appointed", "page": 24, "line": 27, "word": 6},
-              {"words": "for Your servant", "page": 24, "line": 27, "word": 7}
-            ],
+            "he": ["שְׁתֵ֔ה", " וְגַם־", "גְּמַלֶּ֖יךָ", " אַשְׁקֶ֑ה", " אֹתָ֤הּ", " הֹכַ֙חְתָּ֙", " לְעַבְדְּךָ֣"],
+            "en": [["‘Drink", [0]], ["and", [1]], ["I will", [3]], ["also", [1]], ["water", [3]], ["your camels,’", [2]], ["{let} her {be the one}", [4]], ["you have appointed", [5]], ["for your servant,", [6]]],
             "verseIndex": 0
           }
         ]
@@ -1047,35 +745,23 @@
         "book": 1,
         "chapter": 24,
         "verse": 14,
-        "start": false,
-        "width": 0.3147992451843133
+        "indexOfFirstWord": 10
       }
     ],
     "isPetucha": false
   },
-  {
+  "27": {
     "text": [
       [
         [
           {
-            "he": ["לְיִצְחָ֔ק", " וּבָ֣הּ", " אֵדַ֔ע", " כִּי", "־עָשִׂ֥יתָ", " חֶ֖סֶד", " עִם", "־אֲדֹנִֽי׃"],
-            "en": [
-              {"words": "Isaac.", "page": 24, "line": 28, "word": 1},
-              {"words": "By this", "page": 24, "line": 28, "word": 2},
-              {"words": "I will know", "page": 24, "line": 28, "word": 3},
-              {"words": "that", "page": 24, "line": 28, "word": 4},
-              {"words": "You have shown", "page": 24, "line": 28, "word": 5},
-              {"words": "kindness", "page": 24, "line": 28, "word": 6},
-              {"words": "to", "page": 24, "line": 28, "word": 7},
-              {"words": "my master.”", "page": 24, "line": 28, "word": 8}
-            ],
+            "he": ["לְיִצְחָ֔ק", " וּבָ֣הּ", " אֵדַ֔ע", " כִּי־", "עָשִׂ֥יתָ", " חֶ֖סֶד", " עִם־", "אֲדֹנִֽי׃"],
+            "en": [["for Isaac.", [0]], ["And by her", [1]], ["I will know", [2]], ["that", [3]], ["you have shown", [4]], ["kindness", [5]], ["toward", [6]], ["my master.”", [7]]],
             "verseIndex": 0
           },
           {
             "he": [" וַֽיְהִי־"],
-            "en": [
-              {"words": "", "page": 24, "line": 28, "word": 1}
-            ],
+            "en": [["And it happened", [0]]],
             "verseIndex": 1
           }
         ]
@@ -1086,35 +772,24 @@
         "book": 1,
         "chapter": 24,
         "verse": 14,
-        "start": false,
-        "width": 0.28455990882424376
+        "indexOfFirstWord": 17
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 15,
-        "start": true,
-        "width": 0.03888525919751278
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "28": {
     "text": [
       [
         [
           {
             "he": ["ה֗וּא", " טֶ֘רֶם֮", " כִּלָּ֣ה", " לְדַבֵּר֒", " וְהִנֵּ֧ה", " רִבְקָ֣ה", " יֹצֵ֗את", " אֲשֶׁ֤ר"],
-            "en": [
-              {"words": "Before", "page": 24, "line": 29, "word": 2},
-              {"words": "[the servant]", "page": 24, "line": 29, "word": 1},
-              {"words": "had finished", "page": 24, "line": 29, "word": 3},
-              {"words": "praying,", "page": 24, "line": 29, "word": 4},
-              {"words": "", "page": 24, "line": 29, "word": 5},
-              {"words": "Rebekah", "page": 24, "line": 29, "word": 6},
-              {"words": "came out", "page": 24, "line": 29, "word": 7},
-              {"words": "with her jar", "page": 24, "line": 31, "word": 1}
-            ],
+            "en": [["before", [1]], ["he", [0]], ["had finished", [2]], ["speaking,", [3]], ["then behold,", [4]], ["Rebekah", [5]], ["was coming out,", [6]], ["who", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1125,28 +800,18 @@
         "book": 1,
         "chapter": 24,
         "verse": 15,
-        "start": false,
-        "width": 0.393932908283957
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "29": {
     "text": [
       [
         [
           {
-            "he": ["יֻלְּדָה֙", " לִבְתוּאֵ֣ל", " בֶּן", "־מִלְכָּ֔ה", " אֵ֥שֶׁת", " נָח֖וֹר", " אֲחִ֣י", " אַבְרָהָ֑ם"],
-            "en": [
-              {"words": "on", "page": 24, "line": 31, "word": 2},
-              {"words": "her shoulder.", "page": 24, "line": 31, "word": 3},
-              {"words": "She", "page": 24, "line": 29, "word": 8},
-              {"words": "was", "page": 24, "line": 30, "word": 1},
-              {"words": "the daughter of Bethuel", "page": 24, "line": 30, "word": 2},
-              {"words": "son", "page": 24, "line": 30, "word": 3},
-              {"words": "of Milcah,", "page": 24, "line": 30, "word": 4},
-              {"words": "the wife", "page": 24, "line": 30, "word": 5}
-            ],
+            "he": ["יֻלְּדָה֙", " לִבְתוּאֵ֣ל", " בֶּן־", "מִלְכָּ֔ה", " אֵ֥שֶׁת", " נָח֖וֹר", " אֲחִ֣י", " אַבְרָהָ֑ם"],
+            "en": [["was born", [0]], ["to Bethuel,", [1]], ["the son of", [2]], ["Milcah,", [3]], ["the wife of", [4]], ["Nahor,", [5]], ["the brother of", [6]], ["Abraham.", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1157,34 +822,23 @@
         "book": 1,
         "chapter": 24,
         "verse": 15,
-        "start": false,
-        "width": 0.4244711289341474
+        "indexOfFirstWord": 9
       }
     ],
     "isPetucha": false
   },
-  {
+  "30": {
     "text": [
       [
         [
           {
-            "he": ["וְכַדָּ֖הּ", " עַל", "־שִׁכְמָֽהּ׃"],
-            "en": [
-              {"words": "of Abraham’s", "page": 24, "line": 30, "word": 8},
-              {"words": "brother", "page": 24, "line": 30, "word": 7},
-              {"words": "Nahor.", "page": 24, "line": 30, "word": 6}
-            ],
+            "he": ["וְכַדָּ֖הּ", " עַל־", "שִׁכְמָֽהּ׃"],
+            "en": [["And her water jar", [0]], ["{was} on", [1]], ["her shoulder.", [2]]],
             "verseIndex": 0
           },
           {
             "he": [" וְהַֽנַּעֲרָ֗", " טֹבַ֤ת", " מַרְאֶה֙", " מְאֹ֔ד", " בְּתוּלָ֕ה"],
-            "en": [
-              {"words": "Now the girl", "page": 24, "line": 31, "word": 1},
-              {"words": "was very", "page": 24, "line": 31, "word": 4},
-              {"words": "beautiful", "page": 24, "line": 31, "word": 2},
-              {"words": ",", "page": 24, "line": 31, "word": 3},
-              {"words": "a virgin", "page": 24, "line": 31, "word": 5}
-            ],
+            "en": [["And the young woman", [0]], ["{was}", [1]], ["a", [4]], ["very", [3]], ["beautiful-", [1]], ["looking", [2]], ["virgin,", [4]]],
             "verseIndex": 1
           }
         ]
@@ -1195,35 +849,24 @@
         "book": 1,
         "chapter": 24,
         "verse": 15,
-        "start": false,
-        "width": 0.14271070358438281
+        "indexOfFirstWord": 17
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 16,
-        "start": true,
-        "width": 0.4080890818776933
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "31": {
     "text": [
       [
         [
           {
             "he": ["וְאִ֖ישׁ", " לֹ֣א", " יְדָעָ֑הּ", " וַתֵּ֣רֶד", " הָעַ֔יְנָה", " וַתְּמַלֵּ֥א", " כַדָּ֖הּ", " וַתָּֽעַל׃"],
-            "en": [
-              {"words": "", "page": 24, "line": 32, "word": 2},
-              {"words": "who had not had relations", "page": 24, "line": 32, "word": 3},
-              {"words": "with any man.", "page": 24, "line": 32, "word": 1},
-              {"words": "She went down", "page": 24, "line": 32, "word": 4},
-              {"words": "to the spring,", "page": 24, "line": 32, "word": 5},
-              {"words": "filled", "page": 24, "line": 32, "word": 6},
-              {"words": "her jar,", "page": 24, "line": 32, "word": 7},
-              {"words": "and came up again.", "page": 24, "line": 32, "word": 8}
-            ],
+            "en": [["and a man", [0]], ["had", [2]], ["not", [1]], ["known her.", [2]], ["And she went down", [3]], ["to the spring", [4]], ["and filled", [5]], ["her jar", [6]], ["and came up.", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1234,28 +877,18 @@
         "book": 1,
         "chapter": 24,
         "verse": 16,
-        "start": false,
-        "width": 0.5919109181223067
+        "indexOfFirstWord": 5
       }
     ],
     "isPetucha": false
   },
-  {
+  "32": {
     "text": [
       [
         [
           {
-            "he": ["וַיָּ֥רׇץ", " הָעֶ֖בֶד", " לִקְרָאתָ֑הּ", " וַיֹּ֕אמֶר", " הַגְמִיאִ֥ינִי", " נָ֛א", " מְעַט", "־מַ֖יִם"],
-            "en": [
-              {"words": "So the servant", "page": 24, "line": 33, "word": 2},
-              {"words": "ran", "page": 24, "line": 33, "word": 1},
-              {"words": "to meet her", "page": 24, "line": 33, "word": 3},
-              {"words": "and said,", "page": 24, "line": 33, "word": 4},
-              {"words": "“Please", "page": 24, "line": 33, "word": 6},
-              {"words": "let me have", "page": 24, "line": 33, "word": 5},
-              {"words": "a little", "page": 24, "line": 33, "word": 7},
-              {"words": "water", "page": 24, "line": 33, "word": 8}
-            ],
+            "he": ["וַיָּ֥רׇץ", " הָעֶ֖בֶד", " לִקְרָאתָ֑הּ", " וַיֹּ֕אמֶר", " הַגְמִיאִ֥ינִי", " נָ֛א", " מְעַט־", "מַ֖יִם"],
+            "en": [["Then", [0]], ["the servant", [1]], ["ran", [0]], ["to meet her", [2]], ["and said,", [3]], ["“Please", [5]], ["let me drink", [4]], ["a little", [6]], ["water", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1266,34 +899,23 @@
         "book": 1,
         "chapter": 24,
         "verse": 17,
-        "start": true,
-        "width": 0.8799066364432075
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "33": {
     "text": [
       [
         [
           {
             "he": ["מִכַּדֵּֽךְ׃"],
-            "en": [
-              {"words": "from your jar.”", "page": 24, "line": 34, "word": 1}
-            ],
+            "en": [["from your jar.”", [0]]],
             "verseIndex": 0
           },
           {
             "he": [" וַתֹּ֖אמֶר", " שְׁתֵ֣ה", " אֲדֹנִ֑י", " וַתְּמַהֵ֗ר", " וַתֹּ֧רֶד", " כַּדָּ֛הּ", " עַל־"],
-            "en": [
-              {"words": "“Drink,", "page": 24, "line": 34, "word": 2},
-              {"words": "my lord,”", "page": 24, "line": 34, "word": 3},
-              {"words": "she replied,", "page": 24, "line": 34, "word": 1},
-              {"words": "and she quickly", "page": 24, "line": 34, "word": 4},
-              {"words": "lowered", "page": 24, "line": 34, "word": 5},
-              {"words": "her jar", "page": 24, "line": 34, "word": 6},
-              {"words": "to", "page": 24, "line": 34, "word": 7}
-            ],
+            "en": [["And she said,", [0]], ["“Drink,", [1]], ["my lord.”", [2]], ["Then she hurried", [3]], ["and lowered", [4]], ["her jar", [5]], ["to", [6]]],
             "verseIndex": 1
           }
         ]
@@ -1304,40 +926,29 @@
         "book": 1,
         "chapter": 24,
         "verse": 17,
-        "start": false,
-        "width": 0.12009336355679243
+        "indexOfFirstWord": 8
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 18,
-        "start": true,
-        "width": 0.7555698832294577
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "34": {
     "text": [
       [
         [
           {
             "he": ["יָדָ֖הּ", " וַתַּשְׁקֵֽהוּ׃"],
-            "en": [
-              {"words": "her hands", "page": 24, "line": 35, "word": 1},
-              {"words": "and gave him a drink.", "page": 24, "line": 35, "word": 2}
-            ],
+            "en": [["her hand{s}", [0]], ["and gave him a drink.", [1]]],
             "verseIndex": 0
           },
           {
             "he": [" וַתְּכַ֖ל", " לְהַשְׁקֹת֑וֹ", " וַתֹּ֗אמֶר", " גַּ֤ם", " לִגְמַלֶּ֙יךָ֙"],
-            "en": [
-              {"words": "After she", "page": 24, "line": 35, "word": 1},
-              {"words": "had given him a drink,", "page": 24, "line": 35, "word": 2},
-              {"words": "she said,", "page": 24, "line": 35, "word": 3},
-              {"words": "“I will also", "page": 24, "line": 35, "word": 4},
-              {"words": "draw water", "page": 24, "line": 36, "word": 1}
-            ],
+            "en": [["And {after} she finished", [0]], ["giving him a drink,", [1]], ["then she said,", [2]], ["“I will", [[24, 35, 0, 0]]], ["also", [3]], ["draw water", [[24, 35, 0, 0]]]],
             "verseIndex": 1
           }
         ]
@@ -1348,42 +959,29 @@
         "book": 1,
         "chapter": 24,
         "verse": 18,
-        "start": false,
-        "width": 0.2444301167705423
+        "indexOfFirstWord": 7
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 19,
-        "start": true,
-        "width": 0.584608714502493
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "35": {
     "text": [
       [
         [
           {
-            "he": ["אֶשְׁאָ֔ב", " עַ֥ד", " אִם", "־כִּלּ֖וּ", " לִשְׁתֹּֽת׃"],
-            "en": [
-              {"words": "for your camels,", "page": 24, "line": 35, "word": 5},
-              {"words": "until", "page": 24, "line": 36, "word": 2},
-              {"words": "", "page": 24, "line": 36, "word": 3},
-              {"words": "they have had enough", "page": 24, "line": 36, "word": 4},
-              {"words": "to drink.”", "page": 24, "line": 36, "word": 5}
-            ],
+            "he": ["אֶשְׁאָ֔ב", " עַ֥ד", " אִם־", "כִּלּ֖וּ", " לִשְׁתֹּֽת׃"],
+            "en": [["for your camels", [[24, 34, 1, 4]]], ["until", [1, 2]], ["they have finished", [3]], ["drinking.”", [4]]],
             "verseIndex": 0
           },
           {
             "he": [" וַתְּמַהֵ֗ר", " וַתְּעַ֤ר", " כַּדָּהּ֙", " אֶל־"],
-            "en": [
-              {"words": "And she quickly", "page": 24, "line": 36, "word": 1},
-              {"words": "emptied", "page": 24, "line": 36, "word": 2},
-              {"words": "her jar", "page": 24, "line": 36, "word": 3},
-              {"words": "into", "page": 24, "line": 36, "word": 4}
-            ],
+            "en": [["Then she hurried", [0]], ["and emptied", [1]], ["her jar", [2]], ["into", [3]]],
             "verseIndex": 1
           }
         ]
@@ -1394,35 +992,24 @@
         "book": 1,
         "chapter": 24,
         "verse": 19,
-        "start": false,
-        "width": 0.41539128549750703
+        "indexOfFirstWord": 5
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 20,
-        "start": true,
-        "width": 0.2954019073569482
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "36": {
     "text": [
       [
         [
           {
-            "he": ["הַשֹּׁ֔קֶת", " וַתָּ֥רׇץ", " ע֛וֹד", " אֶֽל", "־הַבְּאֵ֖ר", " לִשְׁאֹ֑ב", " וַתִּשְׁאַ֖ב", " לְכׇל־"],
-            "en": [
-              {"words": "the trough", "page": 24, "line": 37, "word": 1},
-              {"words": "and ran", "page": 24, "line": 37, "word": 2},
-              {"words": "back", "page": 24, "line": 37, "word": 3},
-              {"words": "to", "page": 24, "line": 37, "word": 4},
-              {"words": "the well", "page": 24, "line": 37, "word": 5},
-              {"words": "to draw water,", "page": 24, "line": 37, "word": 6},
-              {"words": "until she had drawn water", "page": 24, "line": 37, "word": 7},
-              {"words": "for all", "page": 24, "line": 37, "word": 8}
-            ],
+            "he": ["הַשֹּׁ֔קֶת", " וַתָּ֥רׇץ", " ע֛וֹד", " אֶֽל־", "הַבְּאֵ֖ר", " לִשְׁאֹ֑ב", " וַתִּשְׁאַ֖ב", " לְכׇל־"],
+            "en": [["the trough", [0]], ["and ran", [1]], ["back", [2]], ["to", [3]], ["the well", [4]], ["to draw water,", [5]], ["and she drew water", [6]], ["for all", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1433,33 +1020,23 @@
         "book": 1,
         "chapter": 24,
         "verse": 20,
-        "start": false,
-        "width": 0.6229564032697548
+        "indexOfFirstWord": 4
       }
     ],
     "isPetucha": false
   },
-  {
+  "37": {
     "text": [
       [
         [
           {
             "he": ["גְּמַלָּֽיו׃"],
-            "en": [
-              {"words": "his camels.", "page": 24, "line": 38, "word": 1}
-            ],
+            "en": [["his camels.", [0]]],
             "verseIndex": 0
           },
           {
             "he": [" וְהָאִ֥ישׁ", " מִשְׁתָּאֵ֖ה", " לָ֑הּ", " מַחֲרִ֕ישׁ", " לָדַ֗עַת", " הַֽהִצְלִ֧יחַ"],
-            "en": [
-              {"words": "Meanwhile, the man", "page": 24, "line": 38, "word": 1},
-              {"words": "watched", "page": 24, "line": 38, "word": 2},
-              {"words": "her", "page": 24, "line": 38, "word": 3},
-              {"words": "silently", "page": 24, "line": 38, "word": 4},
-              {"words": "to see", "page": 24, "line": 38, "word": 5},
-              {"words": "whether", "page": 24, "line": 39, "word": 3}
-            ],
+            "en": [["And the man", [0]], ["watched", [1]], ["her", [2]], ["silently", [3]], ["to know", [4]], ["whether", [5]], ["יהוה", [[24, 38, 0, 0]]], ["had made", [5]]],
             "verseIndex": 1
           }
         ]
@@ -1470,41 +1047,29 @@
         "book": 1,
         "chapter": 24,
         "verse": 20,
-        "start": false,
-        "width": 0.08164168937329701
+        "indexOfFirstWord": 12
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 21,
-        "start": true,
-        "width": 0.707428786547873
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "38": {
     "text": [
       [
         [
           {
-            "he": ["יְהֹוָ֛ה", " דַּרְכּ֖וֹ", " אִם", "־לֹֽא׃"],
-            "en": [
-              {"words": "or not", "page": 24, "line": 39, "word": 4},
-              {"words": "the LORD", "page": 24, "line": 39, "word": 1},
-              {"words": "had made his journey", "page": 24, "line": 39, "word": 2},
-              {"words": "a success.", "page": 24, "line": 38, "word": 6}
-            ],
+            "he": ["יְהֹוָ֛ה", " דַּרְכּ֖וֹ", " אִם־", "לֹֽא׃"],
+            "en": [["his journey", [1]], ["succeed", [[24, 37, 1, 5]]], ["or", [2]], ["not.", [3]]],
             "verseIndex": 0
           },
           {
             "he": [" וַיְהִ֗י", " כַּאֲשֶׁ֨ר", " כִּלּ֤וּ", " הַגְּמַלִּים֙"],
-            "en": [
-              {"words": "And", "page": 24, "line": 39, "word": 1},
-              {"words": "after", "page": 24, "line": 39, "word": 2},
-              {"words": "the camels", "page": 24, "line": 39, "word": 4},
-              {"words": "had finished", "page": 24, "line": 39, "word": 3}
-            ],
+            "en": [["Then it happened,", [0]], ["when", [1]], ["the camels", [3]], ["had finished", [2]]],
             "verseIndex": 1
           }
         ]
@@ -1515,35 +1080,24 @@
         "book": 1,
         "chapter": 24,
         "verse": 21,
-        "start": false,
-        "width": 0.292571213452127
+        "indexOfFirstWord": 6
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 22,
-        "start": true,
-        "width": 0.22912114590920127
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "39": {
     "text": [
       [
         [
           {
             "he": ["לִשְׁתּ֔וֹת", " וַיִּקַּ֤ח", " הָאִישׁ֙", " נֶ֣זֶם", " זָהָ֔ב", " בֶּ֖קַע", " מִשְׁקָל֑וֹ", " וּשְׁנֵ֤י"],
-            "en": [
-              {"words": "drinking,", "page": 24, "line": 40, "word": 1},
-              {"words": "[he]", "page": 24, "line": 40, "word": 3},
-              {"words": "took out", "page": 24, "line": 40, "word": 2},
-              {"words": "a gold", "page": 24, "line": 40, "word": 5},
-              {"words": "ring", "page": 24, "line": 40, "word": 4},
-              {"words": "weighing", "page": 24, "line": 40, "word": 7},
-              {"words": "a beka,", "page": 24, "line": 40, "word": 6},
-              {"words": "and two", "page": 24, "line": 40, "word": 8}
-            ],
+            "en": [["drinking,", [0]], ["then", [1]], ["the man", [2]], ["took out", [1]], ["a", [3]], ["gold", [4]], ["nose ring,", [3]], ["its weight", [6]], ["a beka,", [5]], ["and two", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1554,34 +1108,23 @@
         "book": 1,
         "chapter": 24,
         "verse": 22,
-        "start": false,
-        "width": 0.4188031075503763
+        "indexOfFirstWord": 4
       }
     ],
     "isPetucha": false
   },
-  {
+  "40": {
     "text": [
       [
         [
           {
-            "he": ["צְמִידִים֙", " עַל", "־יָדֶ֔יהָ", " עֲשָׂרָ֥ה", " זָהָ֖ב", " מִשְׁקָלָֽם׃"],
-            "en": [
-              {"words": "gold", "page": 24, "line": 41, "word": 5},
-              {"words": "bracelets", "page": 24, "line": 41, "word": 1},
-              {"words": "for", "page": 24, "line": 41, "word": 2},
-              {"words": "her wrists", "page": 24, "line": 41, "word": 3},
-              {"words": "weighing", "page": 24, "line": 41, "word": 6},
-              {"words": "ten [shekels].", "page": 24, "line": 41, "word": 4}
-            ],
+            "he": ["צְמִידִים֙", " עַל־", "יָדֶ֔יהָ", " עֲשָׂרָ֥ה", " זָהָ֖ב", " מִשְׁקָלָֽם׃"],
+            "en": [["gold", [4]], ["bracelets", [0]], ["for", [1]], ["her arms,", [2]], ["their weight", [5]], ["ten shekels.", [3]]],
             "verseIndex": 0
           },
           {
             "he": [" וַיֹּ֙אמֶר֙", " בַּת־"],
-            "en": [
-              {"words": "“Whose", "page": 24, "line": 42, "word": 1},
-              {"words": "daughter", "page": 24, "line": 41, "word": 2}
-            ],
+            "en": [["And he said,", [0]], ["“Whose", [[24, 41, 0, 0]]]],
             "verseIndex": 1
           }
         ]
@@ -1592,38 +1135,24 @@
         "book": 1,
         "chapter": 24,
         "verse": 22,
-        "start": false,
-        "width": 0.35207574654042245
+        "indexOfFirstWord": 12
       },
       {
         "book": 1,
         "chapter": 24,
         "verse": 23,
-        "start": true,
-        "width": 0.18020082215782735
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "41": {
     "text": [
       [
         [
           {
-            "he": ["מִ֣י", " אַ֔תְּ", " הַגִּ֥ידִי", " נָ֖א", " לִ֑י", " הֲיֵ֧שׁ", " בֵּית", "־אָבִ֛יךְ", " מָק֥וֹם", " לָ֖נוּ", " לָלִֽין׃"],
-            "en": [
-              {"words": "are you?”", "page": 24, "line": 42, "word": 2},
-              {"words": "he asked.", "page": 24, "line": 41, "word": 1},
-              {"words": "“Please", "page": 24, "line": 42, "word": 4},
-              {"words": "tell", "page": 24, "line": 42, "word": 3},
-              {"words": "me,", "page": 24, "line": 42, "word": 5},
-              {"words": "is there", "page": 24, "line": 42, "word": 6},
-              {"words": "room", "page": 24, "line": 42, "word": 9},
-              {"words": "in your father’s", "page": 24, "line": 42, "word": 8},
-              {"words": "house", "page": 24, "line": 42, "word": 7},
-              {"words": "for us", "page": 24, "line": 42, "word": 10},
-              {"words": "to spend the night?”", "page": 24, "line": 42, "word": 11}
-            ],
+            "he": ["מִ֣י", " אַ֔תְּ", " הַגִּ֥ידִי", " נָ֖א", " לִ֑י", " הֲיֵ֧שׁ", " בֵּית־", "אָבִ֛יךְ", " מָק֥וֹם", " לָ֖נוּ", " לָלִֽין׃"],
+            "en": [["daughter", [[24, 40, 1, 1]]], ["{are} you?", [1]], ["Please", [3]], ["tell", [2]], ["me.", [4]], ["Is there", [5]], ["a place", [8]], ["at the house of", [6]], ["your father", [7]], ["for us", [9]], ["to lodge?”", [10]]],
             "verseIndex": 0
           }
         ]
@@ -1634,10 +1163,9 @@
         "book": 1,
         "chapter": 24,
         "verse": 23,
-        "start": false,
-        "width": 0.8197991778421726
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   }
-]
+}

@@ -1,19 +1,12 @@
-[
-  {
+{
+  "length": 42,
+  "0": {
     "text": [
       [
         [
           {
-            "he": ["וְאֶת", "־עֹֽלָתָם֙", " לִפְנֵ֣י", " יְהֹוָ֔ה", " וַתִּקְרֶ֥אנָה", " אֹתִ֖י", " כָּאֵ֑לֶּה"],
-            "en": [
-              {"words": "", "page": 123, "line": 1, "word": 1},
-              {"words": "and their burnt offering", "page": 123, "line": 1, "word": 2},
-              {"words": "before", "page": 123, "line": 1, "word": 3},
-              {"words": "the LORD.", "page": 123, "line": 1, "word": 4},
-              {"words": "Since these things", "page": 123, "line": 1, "word": 7},
-              {"words": "have happened to me,", "page": 123, "line": 1, "word": 5},
-              {"words": "", "page": 123, "line": 1, "word": 6}
-            ],
+            "he": ["וְאֶת־", "עֹֽלָתָם֙", " לִפְנֵ֣י", " יְהֹוָ֔ה", " וַתִּקְרֶ֥אנָה", " אֹתִ֖י", " כָּאֵ֑לֶּה"],
+            "en": [["and", [0]], ["their burnt offering", [1]], ["to the face of", [2]], ["יהוה,", [3]], ["and it has happened", [4]], ["to me", [5]], ["according to these things.", [6]]],
             "verseIndex": 0
           }
         ]
@@ -24,33 +17,23 @@
         "book": 3,
         "chapter": 10,
         "verse": 19,
-        "start": false,
-        "width": 0.3229603479549843
+        "indexOfFirstWord": 9
       }
     ],
     "isPetucha": false
   },
-  {
+  "1": {
     "text": [
       [
         [
           {
             "he": ["וְאָכַ֤לְתִּי", " חַטָּאת֙", " הַיּ֔וֹם", " הַיִּיטַ֖ב", " בְּעֵינֵ֥י", " יְהֹוָֽה׃"],
-            "en": [
-              {"words": "if I had eaten", "page": 123, "line": 2, "word": 1},
-              {"words": "the sin offering", "page": 123, "line": 2, "word": 2},
-              {"words": "today,", "page": 123, "line": 2, "word": 3},
-              {"words": "would it have been acceptable", "page": 123, "line": 2, "word": 4},
-              {"words": "in the sight", "page": 123, "line": 2, "word": 5},
-              {"words": "of the LORD?”", "page": 123, "line": 2, "word": 6}
-            ],
+            "en": [["But {if} I ate", [0]], ["the sin offering", [1]], ["today,", [2]], ["would it have been good", [3]], ["in the eyes of", [4]], ["יהוה?”", [5]]],
             "verseIndex": 0
           },
           {
             "he": [" וַיִּשְׁמַ֣ע"],
-            "en": [
-              {"words": "And when Moses", "page": 123, "line": 3, "word": 1}
-            ],
+            "en": [["And", [0]], ["Moses", [[123, 2, 0, 0]]]],
             "verseIndex": 1
           }
         ]
@@ -61,30 +44,24 @@
         "book": 3,
         "chapter": 10,
         "verse": 19,
-        "start": false,
-        "width": 0.2951571063564198
+        "indexOfFirstWord": 16
       },
       {
         "book": 3,
         "chapter": 10,
         "verse": 20,
-        "start": true,
-        "width": 0.2724727679934847
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "2": {
     "text": [
       [
         [
           {
             "he": ["מֹשֶׁ֔ה", " וַיִּיטַ֖ב", " בְּעֵינָֽיו׃"],
-            "en": [
-              {"words": "heard this [explanation],", "page": 123, "line": 2, "word": 1},
-              {"words": "he was satisfied", "page": 123, "line": 3, "word": 2},
-              {"words": ".", "page": 123, "line": 3, "word": 3}
-            ],
+            "en": [["heard,", [[123, 1, 1, 0]]], ["and it was good", [1]], ["in his eyes.", [2]]],
             "verseIndex": 0
           }
         ]
@@ -95,28 +72,18 @@
         "book": 3,
         "chapter": 10,
         "verse": 20,
-        "start": false,
-        "width": 0.7275272320065154
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": true
   },
-  {
+  "3": {
     "text": [
       [
         [
           {
-            "he": ["וַיְדַבֵּ֧ר", " יְהֹוָ֛ה", " אֶל", "־מֹשֶׁ֥ה", " וְאֶֽל", "־אַהֲרֹ֖ן", " לֵאמֹ֥ר", " אֲלֵהֶֽם׃"],
-            "en": [
-              {"words": "The LORD", "page": 123, "line": 4, "word": 2},
-              {"words": "spoke again", "page": 123, "line": 4, "word": 1},
-              {"words": "to", "page": 123, "line": 4, "word": 3},
-              {"words": "Moses", "page": 123, "line": 4, "word": 4},
-              {"words": "", "page": 123, "line": 4, "word": 5},
-              {"words": "and Aaron,", "page": 123, "line": 4, "word": 6},
-              {"words": "telling", "page": 123, "line": 4, "word": 7},
-              {"words": "them,", "page": 123, "line": 4, "word": 8}
-            ],
+            "he": ["וַיְדַבֵּ֧ר", " יְהֹוָ֛ה", " אֶל־", "מֹשֶׁ֥ה", " וְאֶֽל־", "אַהֲרֹ֖ן", " לֵאמֹ֥ר", " אֲלֵהֶֽם׃"],
+            "en": [["And", [0]], ["יהוה", [1]], ["spoke", [0]], ["to", [2]], ["Moses", [3]], ["and to", [4]], ["Aaron,", [5]], ["saying", [6]], ["to them,", [7]]],
             "verseIndex": 0
           }
         ]
@@ -127,28 +94,18 @@
         "book": 3,
         "chapter": 11,
         "verse": 1,
-        "start": true,
-        "width": 1.0
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "4": {
     "text": [
       [
         [
           {
-            "he": ["דַּבְּר֛וּ", " אֶל", "־בְּנֵ֥י", " יִשְׂרָאֵ֖ל", " לֵאמֹ֑ר", " זֹ֤את", " הַֽחַיָּה֙", " אֲשֶׁ֣ר"],
-            "en": [
-              {"words": "“Say", "page": 123, "line": 5, "word": 1},
-              {"words": "to", "page": 123, "line": 5, "word": 2},
-              {"words": "the Israelites", "page": 123, "line": 5, "word": 3},
-              {"words": "", "page": 123, "line": 5, "word": 4},
-              {"words": ",", "page": 123, "line": 5, "word": 5},
-              {"words": "‘", "page": 123, "line": 5, "word": 6},
-              {"words": "Of all", "page": 123, "line": 6, "word": 2},
-              {"words": "the beasts", "page": 123, "line": 6, "word": 3}
-            ],
+            "he": ["דַּבְּר֛וּ", " אֶל־", "בְּנֵ֥י", " יִשְׂרָאֵ֖ל", " לֵאמֹ֑ר", " זֹ֤את", " הַֽחַיָּה֙", " אֲשֶׁ֣ר"],
+            "en": [["“Speak", [0]], ["to", [1]], ["the", [3]], ["sons of", [2]], ["Israel,", [3]], ["saying,", [4]], ["‘This", [5]], ["{is} the living thing", [6]], ["that", [7]]],
             "verseIndex": 0
           }
         ]
@@ -159,34 +116,23 @@
         "book": 3,
         "chapter": 11,
         "verse": 2,
-        "start": true,
-        "width": 0.5420488433948577
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "5": {
     "text": [
       [
         [
           {
-            "he": ["תֹּאכְל֔וּ", " מִכׇּל", "־הַבְּהֵמָ֖ה", " אֲשֶׁ֥ר", " עַל", "־הָאָֽרֶץ׃"],
-            "en": [
-              {"words": "", "page": 123, "line": 6, "word": 4},
-              {"words": "of", "page": 123, "line": 6, "word": 5},
-              {"words": "the earth,", "page": 123, "line": 6, "word": 6},
-              {"words": "[these ones]", "page": 123, "line": 5, "word": 7},
-              {"words": "", "page": 123, "line": 5, "word": 8},
-              {"words": "you may eat:", "page": 123, "line": 6, "word": 1}
-            ],
+            "he": ["תֹּאכְל֔וּ", " מִכׇּל־", "הַבְּהֵמָ֖ה", " אֲשֶׁ֥ר", " עַל־", "הָאָֽרֶץ׃"],
+            "en": [["you shall eat", [0]], ["from all", [1]], ["the beasts", [2]], ["that", [3]], ["{are} on", [4]], ["the earth.", [5]]],
             "verseIndex": 0
           },
           {
             "he": [" כֹּ֣ל", " ׀ מַפְרֶ֣סֶת"],
-            "en": [
-              {"words": "You may eat", "page": 123, "line": 8, "word": 2},
-              {"words": "any", "page": 123, "line": 6, "word": 1}
-            ],
+            "en": [["Anything", [0]], ["dividing", [1]]],
             "verseIndex": 1
           }
         ]
@@ -197,34 +143,24 @@
         "book": 3,
         "chapter": 11,
         "verse": 2,
-        "start": false,
-        "width": 0.45795115660514224
+        "indexOfFirstWord": 8
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 3,
-        "start": true,
-        "width": 0.16727279339564316
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "6": {
     "text": [
       [
         [
           {
             "he": ["פַּרְסָ֗ה", " וְשֹׁסַ֤עַת", " שֶׁ֙סַע֙", " פְּרָסֹ֔ת", " מַעֲלַ֥ת", " גֵּרָ֖ה", " בַּבְּהֵמָ֑ה"],
-            "en": [
-              {"words": "animal", "page": 123, "line": 7, "word": 7},
-              {"words": "", "page": 123, "line": 8, "word": 1},
-              {"words": "[that has] a split", "page": 123, "line": 7, "word": 3},
-              {"words": "", "page": 123, "line": 7, "word": 4},
-              {"words": "", "page": 123, "line": 6, "word": 2},
-              {"words": "hoof", "page": 123, "line": 7, "word": 1},
-              {"words": "completely divided", "page": 123, "line": 7, "word": 2}
-            ],
+            "en": [["a hoof", [0]], ["and splitting", [1]], ["the cleft of", [2]], ["hooves,", [3]], ["making", [4]], ["the cud", [5]], ["go up", [4]], ["among the livestock—", [6]]],
             "verseIndex": 0
           }
         ]
@@ -235,35 +171,23 @@
         "book": 3,
         "chapter": 11,
         "verse": 3,
-        "start": false,
-        "width": 0.6542895588609666
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "7": {
     "text": [
       [
         [
           {
             "he": ["אֹתָ֖הּ", " תֹּאכֵֽלוּ׃"],
-            "en": [
-              {"words": "and that chews", "page": 123, "line": 7, "word": 5},
-              {"words": "the cud.", "page": 123, "line": 7, "word": 6}
-            ],
+            "en": [["you shall eat", [1]], ["it.", [0]]],
             "verseIndex": 0
           },
           {
-            "he": [" אַ֤ךְ", " אֶת", "־זֶה֙", " לֹ֣א", " תֹֽאכְל֔וּ", " מִֽמַּעֲלֵי֙", " הַגֵּרָ֔ה"],
-            "en": [
-              {"words": "But", "page": 123, "line": 8, "word": 1},
-              {"words": "of those", "page": 123, "line": 8, "word": 2},
-              {"words": "that [only] chew", "page": 123, "line": 8, "word": 6},
-              {"words": "the cud", "page": 123, "line": 8, "word": 7},
-              {"words": "or [only] have a divided", "page": 123, "line": 9, "word": 1},
-              {"words": "hoof,", "page": 123, "line": 9, "word": 2},
-              {"words": "", "page": 123, "line": 9, "word": 3}
-            ],
+            "he": [" אַ֤ךְ", " אֶת־", "זֶה֙", " לֹ֣א", " תֹֽאכְל֔וּ", " מִֽמַּעֲלֵי֙", " הַגֵּרָ֔ה"],
+            "en": [["However,", [0]], ["this", [1, 2]], ["you shall", [4]], ["not", [3]], ["eat", [4]], ["from the ones that are making", [5]], ["the cud", [6]], ["go up", [5]]],
             "verseIndex": 1
           }
         ]
@@ -274,35 +198,24 @@
         "book": 3,
         "chapter": 11,
         "verse": 3,
-        "start": false,
-        "width": 0.1784376477433902
+        "indexOfFirstWord": 9
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 4,
-        "start": true,
-        "width": 0.29547940618372587
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "8": {
     "text": [
       [
         [
           {
-            "he": ["וּמִמַּפְרִסֵ֖י", " הַפַּרְסָ֑ה", " אֶֽת", "־הַ֠גָּמָ֠ל", " כִּֽי", "־מַעֲלֵ֨ה", " גֵרָ֜ה", " ה֗וּא"],
-            "en": [
-              {"words": "you are not", "page": 123, "line": 8, "word": 4},
-              {"words": "to eat", "page": 123, "line": 8, "word": 5},
-              {"words": "the following:", "page": 123, "line": 8, "word": 3},
-              {"words": "The camel,", "page": 123, "line": 9, "word": 4},
-              {"words": "though", "page": 123, "line": 9, "word": 5},
-              {"words": "it", "page": 123, "line": 9, "word": 8},
-              {"words": "chews", "page": 123, "line": 9, "word": 6},
-              {"words": "the cud,", "page": 123, "line": 9, "word": 7}
-            ],
+            "he": ["וּמִמַּפְרִסֵ֖י", " הַפַּרְסָ֑ה", " אֶֽת־", "הַ֠גָּמָ֠ל", " כִּֽי־", "מַעֲלֵ֨ה", " גֵרָ֜ה", " ה֗וּא"],
+            "en": [["or from the ones that are dividing", [0]], ["a hoof:", [1]], ["the camel,", [2, 3]], ["because", [4]], ["it", [7]], ["is making", [5]], ["the cud", [6]], ["go up,", [5]]],
             "verseIndex": 0
           }
         ]
@@ -313,34 +226,23 @@
         "book": 3,
         "chapter": 11,
         "verse": 4,
-        "start": false,
-        "width": 0.40189753320683114
+        "indexOfFirstWord": 7
       }
     ],
     "isPetucha": false
   },
-  {
+  "9": {
     "text": [
       [
         [
           {
             "he": ["וּפַרְסָה֙", " אֵינֶ֣נּוּ", " מַפְרִ֔יס", " טָמֵ֥א", " ה֖וּא", " לָכֶֽם׃"],
-            "en": [
-              {"words": "does not", "page": 123, "line": 10, "word": 2},
-              {"words": "have a divided", "page": 123, "line": 10, "word": 3},
-              {"words": "hoof;", "page": 123, "line": 10, "word": 1},
-              {"words": "it", "page": 123, "line": 10, "word": 5},
-              {"words": "is unclean", "page": 123, "line": 10, "word": 4},
-              {"words": "for you.", "page": 123, "line": 10, "word": 6}
-            ],
+            "en": [["but a hoof", [0]], ["it is not", [1]], ["dividing.", [2]], ["It", [4]], ["{is} unclean", [3]], ["to you.", [5]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְאֶת", "־הַשָּׁפָ֗ן"],
-            "en": [
-              {"words": "", "page": 123, "line": 10, "word": 1},
-              {"words": "The rock badger,", "page": 123, "line": 10, "word": 2}
-            ],
+            "he": [" וְאֶת־", "הַשָּׁפָ֗ן"],
+            "en": [["And the rock badger,", [0, 1]]],
             "verseIndex": 1
           }
         ]
@@ -351,36 +253,24 @@
         "book": 3,
         "chapter": 11,
         "verse": 4,
-        "start": false,
-        "width": 0.302623060609443
+        "indexOfFirstWord": 15
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 5,
-        "start": true,
-        "width": 0.171628163750637
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "10": {
     "text": [
       [
         [
           {
-            "he": ["כִּֽי", "־מַעֲלֵ֤ה", " גֵרָה֙", " ה֔וּא", " וּפַרְסָ֖ה", " לֹ֣א", " יַפְרִ֑יס", " טָמֵ֥א", " ה֖וּא"],
-            "en": [
-              {"words": "though", "page": 123, "line": 11, "word": 1},
-              {"words": "it", "page": 123, "line": 11, "word": 4},
-              {"words": "chews", "page": 123, "line": 11, "word": 2},
-              {"words": "the cud,", "page": 123, "line": 11, "word": 3},
-              {"words": "does not", "page": 123, "line": 11, "word": 6},
-              {"words": "have a divided", "page": 123, "line": 11, "word": 7},
-              {"words": "hoof;", "page": 123, "line": 11, "word": 5},
-              {"words": "it", "page": 123, "line": 11, "word": 9},
-              {"words": "is unclean", "page": 123, "line": 11, "word": 8}
-            ],
+            "he": ["כִּֽי־", "מַעֲלֵ֤ה", " גֵרָה֙", " ה֔וּא", " וּפַרְסָ֖ה", " לֹ֣א", " יַפְרִ֑יס", " טָמֵ֥א", " ה֖וּא"],
+            "en": [["because", [0]], ["it", [3]], ["is making", [1]], ["the cud", [2]], ["go up", [1]], ["but", [4]], ["it does", [6]], ["not", [5]], ["divide", [6]], ["a hoof,", [4]], ["it", [8]], ["{is} unclean", [7]]],
             "verseIndex": 0
           }
         ]
@@ -391,35 +281,23 @@
         "book": 3,
         "chapter": 11,
         "verse": 5,
-        "start": false,
-        "width": 0.7443944284015628
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "11": {
     "text": [
       [
         [
           {
             "he": ["לָכֶֽם׃"],
-            "en": [
-              {"words": "for you.", "page": 123, "line": 12, "word": 1}
-            ],
+            "en": [["to you.", [0]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְאֶת", "־הָאַרְנֶ֗בֶת", " כִּֽי", "־מַעֲלַ֤ת", " גֵּרָה֙", " הִ֔וא", " וּפַרְסָ֖ה", " לֹ֣א"],
-            "en": [
-              {"words": "", "page": 123, "line": 12, "word": 1},
-              {"words": "The rabbit,", "page": 123, "line": 12, "word": 2},
-              {"words": "though", "page": 123, "line": 12, "word": 3},
-              {"words": "it", "page": 123, "line": 12, "word": 6},
-              {"words": "chews", "page": 123, "line": 12, "word": 4},
-              {"words": "the cud,", "page": 123, "line": 12, "word": 5},
-              {"words": "does not", "page": 123, "line": 12, "word": 8},
-              {"words": "have a divided", "page": 123, "line": 13, "word": 1}
-            ],
+            "he": [" וְאֶת־", "הָאַרְנֶ֗בֶת", " כִּֽי־", "מַעֲלַ֤ת", " גֵּרָה֙", " הִ֔וא", " וּפַרְסָ֖ה", " לֹ֣א"],
+            "en": [["And the rabbit,", [0, 1]], ["because", [2]], ["it", [5]], ["is making", [3]], ["the cud", [4]], ["go up,", [3]], ["but", [6]], ["it does", [[123, 12, 0, 0]]], ["not", [7]], ["divide", [[123, 12, 0, 0]]]],
             "verseIndex": 1
           }
         ]
@@ -430,41 +308,29 @@
         "book": 3,
         "chapter": 11,
         "verse": 5,
-        "start": false,
-        "width": 0.08397740784780024
+        "indexOfFirstWord": 11
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 6,
-        "start": true,
-        "width": 0.6252212889374364
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "12": {
     "text": [
       [
         [
           {
             "he": ["הִפְרִ֑יסָה", " טְמֵאָ֥ה", " הִ֖וא", " לָכֶֽם׃"],
-            "en": [
-              {"words": "hoof;", "page": 123, "line": 12, "word": 7},
-              {"words": "it", "page": 123, "line": 13, "word": 3},
-              {"words": "is unclean", "page": 123, "line": 13, "word": 2},
-              {"words": "for you.", "page": 123, "line": 13, "word": 4}
-            ],
+            "en": [["a hoof,", [[123, 11, 1, 6]]], ["it", [2]], ["{is} unclean", [1]], ["to you.", [3]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְאֶת", "־הַ֠חֲזִ֠יר", " כִּֽי", "־מַפְרִ֨יס"],
-            "en": [
-              {"words": "And", "page": 123, "line": 13, "word": 1},
-              {"words": "the pig,", "page": 123, "line": 13, "word": 2},
-              {"words": "though", "page": 123, "line": 13, "word": 3},
-              {"words": "it [has]", "page": 123, "line": 14, "word": 2}
-            ],
+            "he": [" וְאֶת־", "הַ֠חֲזִ֠יר", " כִּֽי־", "מַפְרִ֨יס"],
+            "en": [["And the pig,", [0, 1]], ["because", [2]], ["it", [[123, 13, 0, 1]]]],
             "verseIndex": 1
           }
         ]
@@ -475,36 +341,24 @@
         "book": 3,
         "chapter": 11,
         "verse": 6,
-        "start": false,
-        "width": 0.37477871106256355
+        "indexOfFirstWord": 8
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 7,
-        "start": true,
-        "width": 0.26443138062716887
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "13": {
     "text": [
       [
         [
           {
-            "he": ["פַּרְסָ֜ה", " ה֗וּא", " וְשֹׁסַ֥ע", " שֶׁ֙סַע֙", " פַּרְסָ֔ה", " וְה֖וּא", " גֵּרָ֣ה", " לֹֽא", "־יִגָּ֑ר"],
-            "en": [
-              {"words": "a split", "page": 123, "line": 14, "word": 4},
-              {"words": "hoof", "page": 123, "line": 14, "word": 1},
-              {"words": "completely divided", "page": 123, "line": 13, "word": 4},
-              {"words": "", "page": 123, "line": 14, "word": 3},
-              {"words": ",", "page": 123, "line": 14, "word": 5},
-              {"words": "", "page": 123, "line": 14, "word": 6},
-              {"words": "does not", "page": 123, "line": 14, "word": 8},
-              {"words": "chew", "page": 123, "line": 14, "word": 9},
-              {"words": "the cud;", "page": 123, "line": 14, "word": 7}
-            ],
+            "he": ["פַּרְסָ֜ה", " ה֗וּא", " וְשֹׁסַ֥ע", " שֶׁ֙סַע֙", " פַּרְסָ֔ה", " וְה֖וּא", " גֵּרָ֣ה", " לֹֽא־", "יִגָּ֑ר"],
+            "en": [["is dividing", [[123, 12, 1, 3]]], ["a hoof", [0]], ["and splitting", [2]], ["the cleft of", [3]], ["a hoof,", [4]], ["but", [5]], ["it", [8]], ["itself", [5]], ["does", [8]], ["not", [7]], ["ruminate", [8]], ["the cud,", [6]]],
             "verseIndex": 0
           }
         ]
@@ -515,34 +369,23 @@
         "book": 3,
         "chapter": 11,
         "verse": 7,
-        "start": false,
-        "width": 0.5588584829422111
+        "indexOfFirstWord": 4
       }
     ],
     "isPetucha": false
   },
-  {
+  "14": {
     "text": [
       [
         [
           {
             "he": ["טָמֵ֥א", " ה֖וּא", " לָכֶֽם׃"],
-            "en": [
-              {"words": "it [is]", "page": 123, "line": 15, "word": 2},
-              {"words": "unclean", "page": 123, "line": 15, "word": 1},
-              {"words": "for you.", "page": 123, "line": 15, "word": 3}
-            ],
+            "en": [["it", [1]], ["{is} unclean", [0]], ["to you.", [2]]],
             "verseIndex": 0
           },
           {
             "he": [" מִבְּשָׂרָם֙", " לֹ֣א", " תֹאכֵ֔לוּ", " וּבְנִבְלָתָ֖ם", " לֹ֣א"],
-            "en": [
-              {"words": "", "page": 123, "line": 15, "word": 2},
-              {"words": "You must not eat", "page": 123, "line": 15, "word": 3},
-              {"words": "their meat", "page": 123, "line": 15, "word": 1},
-              {"words": "or touch", "page": 123, "line": 16, "word": 1},
-              {"words": "their carcasses;", "page": 123, "line": 15, "word": 4}
-            ],
+            "en": [["You shall", [2]], ["not", [1]], ["eat", [2]], ["from their meat", [0]], ["and", [3]], ["you shall", [[123, 15, 0, 0]]], ["not", [4]], ["touch", [[123, 15, 0, 0]]]],
             "verseIndex": 1
           }
         ]
@@ -553,42 +396,29 @@
         "book": 3,
         "chapter": 11,
         "verse": 7,
-        "start": false,
-        "width": 0.17671013643062003
+        "indexOfFirstWord": 13
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 8,
-        "start": true,
-        "width": 0.6101313320825515
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "15": {
     "text": [
       [
         [
           {
             "he": ["תִגָּ֑עוּ", " טְמֵאִ֥ים", " הֵ֖ם", " לָכֶֽם׃"],
-            "en": [
-              {"words": "", "page": 123, "line": 15, "word": 5},
-              {"words": "they", "page": 123, "line": 16, "word": 3},
-              {"words": "are unclean", "page": 123, "line": 16, "word": 2},
-              {"words": "for you.", "page": 123, "line": 16, "word": 4}
-            ],
+            "en": [["their carcasses.", [[123, 14, 1, 3]]], ["They", [2]], ["{are} unclean", [1]], ["to you.", [3]]],
             "verseIndex": 0
           },
           {
-            "he": [" אֶת", "־זֶה֙", " תֹּֽאכְל֔וּ", " מִכֹּ֖ל", " אֲשֶׁ֣ר"],
-            "en": [
-              {"words": "", "page": 123, "line": 16, "word": 1},
-              {"words": "Of all [the creatures]", "page": 123, "line": 16, "word": 4},
-              {"words": "that [live]", "page": 123, "line": 16, "word": 5},
-              {"words": "in the water,", "page": 123, "line": 17, "word": 1},
-              {"words": "whether in the seas", "page": 123, "line": 17, "word": 8}
-            ],
+            "he": [" אֶת־", "זֶה֙", " תֹּֽאכְל֔וּ", " מִכֹּ֖ל", " אֲשֶׁ֣ר"],
+            "en": [["This", [0, 1]], ["you shall eat", [2]], ["from everything", [3]], ["that", [4]]],
             "verseIndex": 1
           }
         ]
@@ -599,35 +429,24 @@
         "book": 3,
         "chapter": 11,
         "verse": 8,
-        "start": false,
-        "width": 0.3898686679174484
+        "indexOfFirstWord": 5
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 9,
-        "start": true,
-        "width": 0.25647927187968256
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "16": {
     "text": [
       [
         [
           {
-            "he": ["בַּמָּ֑יִם", " כֹּ֣ל", " אֲשֶׁר", "־לוֹ֩", " סְנַפִּ֨יר", " וְקַשְׂקֶ֜שֶׂת", " בַּמַּ֗יִם", " בַּיַּמִּ֛ים"],
-            "en": [
-              {"words": "or in the streams", "page": 123, "line": 18, "word": 1},
-              {"words": ",", "page": 123, "line": 18, "word": 2},
-              {"words": "", "page": 123, "line": 18, "word": 3},
-              {"words": "you may eat", "page": 123, "line": 16, "word": 3},
-              {"words": "", "page": 123, "line": 16, "word": 2},
-              {"words": "anything", "page": 123, "line": 17, "word": 2},
-              {"words": "", "page": 123, "line": 17, "word": 3},
-              {"words": "", "page": 123, "line": 17, "word": 4}
-            ],
+            "he": ["בַּמָּ֑יִם", " כֹּ֣ל", " אֲשֶׁר־", "לוֹ֩", " סְנַפִּ֨יר", " וְקַשְׂקֶ֜שֶׂת", " בַּמַּ֗יִם", " בַּיַּמִּ֛ים"],
+            "en": [["is in the water:", [0]], ["everything", [1]], ["that", [2]], ["is to it", [3]], ["fins", [4]], ["and scales", [5]], ["in the water,", [6]], ["in the seas,", [7]]],
             "verseIndex": 0
           }
         ]
@@ -638,34 +457,23 @@
         "book": 3,
         "chapter": 11,
         "verse": 9,
-        "start": false,
-        "width": 0.5032743215494756
+        "indexOfFirstWord": 5
       }
     ],
     "isPetucha": false
   },
-  {
+  "17": {
     "text": [
       [
         [
           {
             "he": ["וּבַנְּחָלִ֖ים", " אֹתָ֥ם", " תֹּאכֵֽלוּ׃"],
-            "en": [
-              {"words": "with fins", "page": 123, "line": 17, "word": 5},
-              {"words": "and scales", "page": 123, "line": 17, "word": 6},
-              {"words": ".", "page": 123, "line": 17, "word": 7}
-            ],
+            "en": [["and in the rivers—", [0]], ["them", [1]], ["you shall eat.", [2]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְכֹל֩", " אֲשֶׁ֨ר", " אֵֽין", "־ל֜וֹ", " סְנַפִּ֣יר"],
-            "en": [
-              {"words": "But the following", "page": 123, "line": 20, "word": 6},
-              {"words": "among all", "page": 123, "line": 19, "word": 4},
-              {"words": "the teeming", "page": 123, "line": 19, "word": 5},
-              {"words": "life", "page": 123, "line": 20, "word": 2},
-              {"words": "", "page": 123, "line": 20, "word": 3}
-            ],
+            "he": [" וְכֹל֩", " אֲשֶׁ֨ר", " אֵֽין־", "ל֜וֹ", " סְנַפִּ֣יר"],
+            "en": [["But everything", [0]], ["that", [1]], ["there is not", [2]], ["to it", [3]], ["fins", [4]]],
             "verseIndex": 1
           }
         ]
@@ -676,34 +484,24 @@
         "book": 3,
         "chapter": 11,
         "verse": 9,
-        "start": false,
-        "width": 0.2402464065708419
+        "indexOfFirstWord": 13
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 10,
-        "start": true,
-        "width": 0.21003123411055422
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "18": {
     "text": [
       [
         [
           {
             "he": ["וְקַשְׂקֶ֗שֶׂת", " בַּיַּמִּים֙", " וּבַנְּחָלִ֔ים", " מִכֹּל֙", " שֶׁ֣רֶץ", " הַמַּ֔יִם", " וּמִכֹּ֛ל"],
-            "en": [
-              {"words": "", "page": 123, "line": 20, "word": 4},
-              {"words": "and creatures", "page": 123, "line": 20, "word": 1},
-              {"words": "in the water", "page": 123, "line": 19, "word": 6},
-              {"words": "are detestable", "page": 123, "line": 20, "word": 5},
-              {"words": "to you:", "page": 123, "line": 20, "word": 7},
-              {"words": "everything", "page": 123, "line": 18, "word": 1},
-              {"words": "in the seas", "page": 123, "line": 19, "word": 2}
-            ],
+            "en": [["and scales", [0]], ["in the seas", [1]], ["or in the rivers,", [2]], ["from every", [3]], ["swarming thing of", [4]], ["the water", [5]], ["and from every", [6]]],
             "verseIndex": 0
           }
         ]
@@ -714,35 +512,23 @@
         "book": 3,
         "chapter": 11,
         "verse": 10,
-        "start": false,
-        "width": 0.45612697029127625
+        "indexOfFirstWord": 5
       }
     ],
     "isPetucha": false
   },
-  {
+  "19": {
     "text": [
       [
         [
           {
             "he": ["נֶ֥פֶשׁ", " הַחַיָּ֖ה", " אֲשֶׁ֣ר", " בַּמָּ֑יִם", " שֶׁ֥קֶץ", " הֵ֖ם", " לָכֶֽם׃"],
-            "en": [
-              {"words": "or streams", "page": 123, "line": 19, "word": 3},
-              {"words": "that", "page": 123, "line": 18, "word": 2},
-              {"words": "does not", "page": 123, "line": 18, "word": 3},
-              {"words": "", "page": 123, "line": 18, "word": 4},
-              {"words": "have fins", "page": 123, "line": 18, "word": 5},
-              {"words": "and scales", "page": 123, "line": 19, "word": 1},
-              {"words": ".", "page": 123, "line": 19, "word": 7}
-            ],
+            "en": [["life of", [0]], ["a living thing", [1]], ["that", [2]], ["is in the water—", [3]], ["they", [5]], ["are a detestable thing", [4]], ["to you.", [6]]],
             "verseIndex": 0
           },
           {
             "he": [" וְשֶׁ֖קֶץ", " יִהְי֣וּ"],
-            "en": [
-              {"words": "They shall be", "page": 123, "line": 20, "word": 2},
-              {"words": "an abomination", "page": 123, "line": 20, "word": 1}
-            ],
+            "en": [["And", [0]], ["they shall be", [1]], ["a detestable thing", [0]]],
             "verseIndex": 1
           }
         ]
@@ -753,34 +539,24 @@
         "book": 3,
         "chapter": 11,
         "verse": 10,
-        "start": false,
-        "width": 0.3338417955981695
+        "indexOfFirstWord": 12
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 11,
-        "start": true,
-        "width": 0.18816057744135362
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "20": {
     "text": [
       [
         [
           {
-            "he": ["לָכֶ֑ם", " מִבְּשָׂרָם֙", " לֹ֣א", " תֹאכֵ֔לוּ", " וְאֶת", "־נִבְלָתָ֖ם", " תְּשַׁקֵּֽצוּ׃"],
-            "en": [
-              {"words": "to you;", "page": 123, "line": 21, "word": 1},
-              {"words": "you must not", "page": 123, "line": 21, "word": 3},
-              {"words": "eat", "page": 123, "line": 21, "word": 4},
-              {"words": "", "page": 123, "line": 21, "word": 5},
-              {"words": "their meat,", "page": 123, "line": 21, "word": 2},
-              {"words": "and you must detest", "page": 123, "line": 21, "word": 7},
-              {"words": "their carcasses.", "page": 123, "line": 21, "word": 6}
-            ],
+            "he": ["לָכֶ֑ם", " מִבְּשָׂרָם֙", " לֹ֣א", " תֹאכֵ֔לוּ", " וְאֶת־", "נִבְלָתָ֖ם", " תְּשַׁקֵּֽצוּ׃"],
+            "en": [["to you.", [0]], ["You shall", [3]], ["not", [2]], ["eat", [3]], ["from their meat,", [1]], ["and", [4, 5]], ["you shall detest", [6]], ["their carcasses.", [4, 5]]],
             "verseIndex": 0
           }
         ]
@@ -791,28 +567,18 @@
         "book": 3,
         "chapter": 11,
         "verse": 11,
-        "start": false,
-        "width": 0.8118394225586464
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "21": {
     "text": [
       [
         [
           {
-            "he": ["כֹּ֣ל", " אֲשֶׁ֥ר", " אֵֽין", "־ל֛וֹ", " סְנַפִּ֥יר", " וְקַשְׂקֶ֖שֶׂת", " בַּמָּ֑יִם", " שֶׁ֥קֶץ"],
-            "en": [
-              {"words": "Everything", "page": 123, "line": 22, "word": 1},
-              {"words": "in the water", "page": 123, "line": 22, "word": 7},
-              {"words": "that", "page": 123, "line": 22, "word": 2},
-              {"words": "does not", "page": 123, "line": 22, "word": 3},
-              {"words": "have", "page": 123, "line": 22, "word": 4},
-              {"words": "fins", "page": 123, "line": 22, "word": 5},
-              {"words": "and scales", "page": 123, "line": 22, "word": 6},
-              {"words": "shall be detestable", "page": 123, "line": 22, "word": 8}
-            ],
+            "he": ["כֹּ֣ל", " אֲשֶׁ֥ר", " אֵֽין־", "ל֛וֹ", " סְנַפִּ֥יר", " וְקַשְׂקֶ֖שֶׂת", " בַּמָּ֑יִם", " שֶׁ֥קֶץ"],
+            "en": [["Everything", [0]], ["that", [1]], ["there is not", [2]], ["to it", [3]], ["fins", [4]], ["or scales", [5]], ["in the water—", [6]], ["it", [[123, 22, 0, 0]]]],
             "verseIndex": 0
           }
         ]
@@ -823,35 +589,23 @@
         "book": 3,
         "chapter": 11,
         "verse": 12,
-        "start": true,
-        "width": 0.8184687844473394
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "22": {
     "text": [
       [
         [
           {
             "he": ["ה֖וּא", " לָכֶֽם׃"],
-            "en": [
-              {"words": "", "page": 123, "line": 23, "word": 1},
-              {"words": "to you.", "page": 123, "line": 23, "word": 2}
-            ],
+            "en": [["{is} a detestable thing", [[123, 21, 0, 7]]], ["to you.", [1]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְאֶת", "־אֵ֙לֶּה֙", " תְּשַׁקְּצ֣וּ", " מִן", "־הָע֔וֹף", " לֹ֥א", " יֵאָכְל֖וּ"],
-            "en": [
-              {"words": "Additionally,", "page": 123, "line": 23, "word": 1},
-              {"words": "you are to detest", "page": 123, "line": 23, "word": 3},
-              {"words": "", "page": 123, "line": 23, "word": 4},
-              {"words": "the following", "page": 123, "line": 23, "word": 2},
-              {"words": "birds,", "page": 123, "line": 23, "word": 5},
-              {"words": "and they must not", "page": 123, "line": 23, "word": 6},
-              {"words": "be eaten", "page": 123, "line": 23, "word": 7}
-            ],
+            "he": [" וְאֶת־", "אֵ֙לֶּה֙", " תְּשַׁקְּצ֣וּ", " מִן־", "הָע֔וֹף", " לֹ֥א", " יֵאָכְל֖וּ"],
+            "en": [["And these", [0, 1]], ["you shall detest", [2]], ["from", [3]], ["the bird.", [4]], ["They shall", [6]], ["not", [5]], ["be eaten;", [6]]],
             "verseIndex": 1
           }
         ]
@@ -862,42 +616,29 @@
         "book": 3,
         "chapter": 11,
         "verse": 12,
-        "start": false,
-        "width": 0.18153121555266058
+        "indexOfFirstWord": 8
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 13,
-        "start": true,
-        "width": 0.4633626834381551
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "23": {
     "text": [
       [
         [
           {
-            "he": ["שֶׁ֣קֶץ", " הֵ֑ם", " אֶת", "־הַנֶּ֙שֶׁר֙", " וְאֶת", "־הַפֶּ֔רֶס", " וְאֵ֖ת", " הָעׇזְנִיָּֽה׃"],
-            "en": [
-              {"words": "because they", "page": 123, "line": 24, "word": 2},
-              {"words": "", "page": 123, "line": 24, "word": 3},
-              {"words": "are detestable:", "page": 123, "line": 24, "word": 1},
-              {"words": "the eagle,", "page": 123, "line": 24, "word": 4},
-              {"words": "", "page": 123, "line": 24, "word": 5},
-              {"words": "the bearded vulture,", "page": 123, "line": 24, "word": 6},
-              {"words": "", "page": 123, "line": 24, "word": 7},
-              {"words": "the black vulture,", "page": 123, "line": 24, "word": 8}
-            ],
+            "he": ["שֶׁ֣קֶץ", " הֵ֑ם", " אֶת־", "הַנֶּ֙שֶׁר֙", " וְאֶת־", "הַפֶּ֔רֶס", " וְאֵ֖ת", " הָעׇזְנִיָּֽה׃"],
+            "en": [["they", [1]], ["{are} a detestable thing:", [0]], ["the eagle", [2, 3]], ["and the vulture", [4, 5]], ["and the buzzard", [6, 7]]],
             "verseIndex": 0
           },
           {
             "he": [" וְאֶ֨ת־"],
-            "en": [
-              {"words": "", "page": 123, "line": 24, "word": 1}
-            ],
+            "en": [["and", [0, []]]],
             "verseIndex": 1
           }
         ]
@@ -908,48 +649,34 @@
         "book": 3,
         "chapter": 11,
         "verse": 13,
-        "start": false,
-        "width": 0.5366373165618449
+        "indexOfFirstWord": 7
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 14,
-        "start": true,
-        "width": 0.14806233247012857
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "24": {
     "text": [
       [
         [
           {
-            "he": ["הַדָּאָ֔ה", " וְאֶת", "־הָאַיָּ֖ה", " לְמִינָֽהּ׃"],
-            "en": [
-              {"words": "the kite,", "page": 123, "line": 25, "word": 1},
-              {"words": "", "page": 123, "line": 25, "word": 2},
-              {"words": "any kind", "page": 123, "line": 25, "word": 4},
-              {"words": "of falcon,", "page": 123, "line": 25, "word": 3}
-            ],
+            "he": ["הַדָּאָ֔ה", " וְאֶת־", "הָאַיָּ֖ה", " לְמִינָֽהּ׃"],
+            "en": [["the kite", [[], 0]], ["and the falcon", [1, 2]], ["of its kind,", [3]]],
             "verseIndex": 0
           },
           {
-            "he": [" אֵ֥ת", " כׇּל", "־עֹרֵ֖ב", " לְמִינֽוֹ׃"],
-            "en": [
-              {"words": "", "page": 123, "line": 25, "word": 1},
-              {"words": "any", "page": 123, "line": 25, "word": 2},
-              {"words": "kind", "page": 123, "line": 25, "word": 4},
-              {"words": "of raven,", "page": 123, "line": 25, "word": 3}
-            ],
+            "he": [" אֵ֥ת", " כׇּל־", "עֹרֵ֖ב", " לְמִינֽוֹ׃"],
+            "en": [["any", [0, 1]], ["raven", [2]], ["of its kind", [3]]],
             "verseIndex": 1
           },
           {
             "he": [" וְאֵת֙"],
-            "en": [
-              {"words": "", "page": 123, "line": 25, "word": 1}
-            ],
+            "en": [["and the", [0, []]]],
             "verseIndex": 2
           }
         ]
@@ -960,42 +687,30 @@
         "book": 3,
         "chapter": 11,
         "verse": 14,
-        "start": false,
-        "width": 0.8519376675298714
+        "indexOfFirstWord": 1
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 15,
-        "start": true,
-        "width": 1.0
+        "indexOfFirstWord": 0
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 16,
-        "start": true,
-        "width": 0.07623926825274288
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "25": {
     "text": [
       [
         [
           {
-            "he": ["בַּ֣ת", " הַֽיַּעֲנָ֔ה", " וְאֶת", "־הַתַּחְמָ֖ס", " וְאֶת", "־הַשָּׁ֑חַף", " וְאֶת", "־הַנֵּ֖ץ"],
-            "en": [
-              {"words": "", "page": 123, "line": 26, "word": 1},
-              {"words": "the ostrich,", "page": 123, "line": 26, "word": 2},
-              {"words": "", "page": 123, "line": 26, "word": 3},
-              {"words": "the screech owl,", "page": 123, "line": 26, "word": 4},
-              {"words": "", "page": 123, "line": 26, "word": 5},
-              {"words": "the gull,", "page": 123, "line": 26, "word": 6},
-              {"words": "", "page": 123, "line": 26, "word": 7},
-              {"words": "any kind", "page": 123, "line": 27, "word": 1}
-            ],
+            "he": ["בַּ֣ת", " הַֽיַּעֲנָ֔ה", " וְאֶת־", "הַתַּחְמָ֖ס", " וְאֶת־", "הַשָּׁ֑חַף", " וְאֶת־", "הַנֵּ֖ץ"],
+            "en": [["daughter of", [[], 0]], ["clamor", [1]], ["and the owl", [2, 3]], ["and the gull", [4, 5]], ["and the hawk", [6, 7]]],
             "verseIndex": 0
           }
         ]
@@ -1006,40 +721,28 @@
         "book": 3,
         "chapter": 11,
         "verse": 16,
-        "start": false,
-        "width": 0.7798909865019767
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "26": {
     "text": [
       [
         [
           {
             "he": ["לְמִינֵֽהוּ׃"],
-            "en": [
-              {"words": "of hawk,", "page": 123, "line": 26, "word": 8}
-            ],
+            "en": [["of its kind", [0]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְאֶת", "־הַכּ֥וֹס", " וְאֶת", "־הַשָּׁלָ֖ךְ", " וְאֶת", "־הַיַּנְשֽׁוּף׃"],
-            "en": [
-              {"words": "", "page": 123, "line": 27, "word": 1},
-              {"words": "the little owl,", "page": 123, "line": 27, "word": 2},
-              {"words": "", "page": 123, "line": 27, "word": 3},
-              {"words": "the cormorant,", "page": 123, "line": 27, "word": 4},
-              {"words": "", "page": 123, "line": 27, "word": 5},
-              {"words": "the great owl,", "page": 123, "line": 27, "word": 6}
-            ],
+            "he": [" וְאֶת־", "הַכּ֥וֹס", " וְאֶת־", "הַשָּׁלָ֖ךְ", " וְאֶת־", "הַיַּנְשֽׁוּף׃"],
+            "en": [["and the little owl", [0, 1]], ["and the cormorant", [2, 3]], ["and the big owl", [4, 5]]],
             "verseIndex": 1
           },
           {
             "he": [" וְאֶת־"],
-            "en": [
-              {"words": "", "page": 123, "line": 27, "word": 1}
-            ],
+            "en": [["and", [0]]],
             "verseIndex": 2
           }
         ]
@@ -1050,47 +753,35 @@
         "book": 3,
         "chapter": 11,
         "verse": 16,
-        "start": false,
-        "width": 0.14386974524528037
+        "indexOfFirstWord": 9
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 17,
-        "start": true,
-        "width": 1.0
+        "indexOfFirstWord": 0
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 18,
-        "start": true,
-        "width": 0.1163263849229012
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "27": {
     "text": [
       [
         [
           {
-            "he": ["הַתִּנְשֶׁ֥מֶת", " וְאֶת", "־הַקָּאָ֖ת", " וְאֶת", "־הָרָחָֽם׃"],
-            "en": [
-              {"words": "the white owl,", "page": 123, "line": 28, "word": 1},
-              {"words": "", "page": 123, "line": 28, "word": 2},
-              {"words": "the desert owl,", "page": 123, "line": 28, "word": 3},
-              {"words": "", "page": 123, "line": 28, "word": 4},
-              {"words": "the osprey,", "page": 123, "line": 28, "word": 5}
-            ],
+            "he": ["הַתִּנְשֶׁ֥מֶת", " וְאֶת־", "הַקָּאָ֖ת", " וְאֶת־", "הָרָחָֽם׃"],
+            "en": [["the waterhen", [0]], ["and the pelican", [1, 2]], ["and the ibis", [3, 4]]],
             "verseIndex": 0
           },
           {
             "he": [" וְאֵת֙", " הַחֲסִידָ֔ה"],
-            "en": [
-              {"words": "", "page": 123, "line": 28, "word": 1},
-              {"words": "the stork,", "page": 123, "line": 28, "word": 2}
-            ],
+            "en": [["and the stork,", [0, 1]]],
             "verseIndex": 1
           }
         ]
@@ -1101,40 +792,29 @@
         "book": 3,
         "chapter": 11,
         "verse": 18,
-        "start": false,
-        "width": 0.8836736150770989
+        "indexOfFirstWord": 1
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 19,
-        "start": true,
-        "width": 0.24842192883072442
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "28": {
     "text": [
       [
         [
           {
-            "he": ["הָאֲנָפָ֖ה", " לְמִינָ֑הּ", " וְאֶת", "־הַדּוּכִיפַ֖ת", " וְאֶת", "־הָעֲטַלֵּֽף׃"],
-            "en": [
-              {"words": "any kind", "page": 123, "line": 29, "word": 2},
-              {"words": "", "page": 123, "line": 29, "word": 3},
-              {"words": "of heron,", "page": 123, "line": 29, "word": 1},
-              {"words": "the hoopoe,", "page": 123, "line": 29, "word": 4},
-              {"words": "and", "page": 123, "line": 29, "word": 5},
-              {"words": "the bat.", "page": 123, "line": 29, "word": 6}
-            ],
+            "he": ["הָאֲנָפָ֖ה", " לְמִינָ֑הּ", " וְאֶת־", "הַדּוּכִיפַ֖ת", " וְאֶת־", "הָעֲטַלֵּֽף׃"],
+            "en": [["the heron", [0]], ["of its kind", [1]], ["and the hoopoe", [2, 3]], ["and the bat.", [4, 5]]],
             "verseIndex": 0
           },
           {
             "he": [" כֹּ֚ל"],
-            "en": [
-              {"words": "All", "page": 123, "line": 29, "word": 1}
-            ],
+            "en": [["Every", [0]]],
             "verseIndex": 1
           }
         ]
@@ -1145,42 +825,29 @@
         "book": 3,
         "chapter": 11,
         "verse": 19,
-        "start": false,
-        "width": 0.7515780711692756
+        "indexOfFirstWord": 2
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 20,
-        "start": true,
-        "width": 0.07333896396396396
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "29": {
     "text": [
       [
         [
           {
-            "he": ["שֶׁ֣רֶץ", " הָע֔וֹף", " הַהֹלֵ֖ךְ", " עַל", "־אַרְבַּ֑ע", " שֶׁ֥קֶץ", " ה֖וּא", " לָכֶֽם׃"],
-            "en": [
-              {"words": "flying", "page": 123, "line": 30, "word": 2},
-              {"words": "insects", "page": 123, "line": 30, "word": 1},
-              {"words": "that walk", "page": 123, "line": 30, "word": 3},
-              {"words": "on", "page": 123, "line": 30, "word": 4},
-              {"words": "[all] fours", "page": 123, "line": 30, "word": 5},
-              {"words": "are detestable", "page": 123, "line": 30, "word": 6},
-              {"words": "", "page": 123, "line": 30, "word": 7},
-              {"words": "to you.", "page": 123, "line": 30, "word": 8}
-            ],
+            "he": ["שֶׁ֣רֶץ", " הָע֔וֹף", " הַהֹלֵ֖ךְ", " עַל־", "אַרְבַּ֑ע", " שֶׁ֥קֶץ", " ה֖וּא", " לָכֶֽם׃"],
+            "en": [["swarming thing of", [0]], ["the wing,", [1]], ["the one walking", [2]], ["on", [3]], ["four—", [4]], ["it {is}", [6]], ["a detestable thing", [5]], ["to you.", [7]]],
             "verseIndex": 0
           },
           {
             "he": [" אַ֤ךְ"],
-            "en": [
-              {"words": "However,", "page": 123, "line": 30, "word": 1}
-            ],
+            "en": [["However,", [0]]],
             "verseIndex": 1
           }
         ]
@@ -1191,36 +858,24 @@
         "book": 3,
         "chapter": 11,
         "verse": 20,
-        "start": false,
-        "width": 0.926661036036036
+        "indexOfFirstWord": 1
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 21,
-        "start": true,
-        "width": 0.0330227007262201
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "30": {
     "text": [
       [
         [
           {
-            "he": ["אֶת", "־זֶה֙", " תֹּֽאכְל֔וּ", " מִכֹּל֙", " שֶׁ֣רֶץ", " הָע֔וֹף", " הַהֹלֵ֖ךְ", " עַל", "־אַרְבַּ֑ע"],
-            "en": [
-              {"words": "", "page": 123, "line": 31, "word": 1},
-              {"words": "you may eat", "page": 123, "line": 31, "word": 3},
-              {"words": "the following", "page": 123, "line": 31, "word": 2},
-              {"words": "kinds of", "page": 123, "line": 31, "word": 4},
-              {"words": "flying", "page": 123, "line": 31, "word": 6},
-              {"words": "insects", "page": 123, "line": 31, "word": 5},
-              {"words": "that walk", "page": 123, "line": 31, "word": 7},
-              {"words": "on", "page": 123, "line": 31, "word": 8},
-              {"words": "all fours:", "page": 123, "line": 31, "word": 9}
-            ],
+            "he": ["אֶת־", "זֶה֙", " תֹּֽאכְל֔וּ", " מִכֹּל֙", " שֶׁ֣רֶץ", " הָע֔וֹף", " הַהֹלֵ֖ךְ", " עַל־", "אַרְבַּ֑ע"],
+            "en": [["this", [0, 1]], ["you shall eat", [2]], ["from every", [3]], ["swarming thing of", [4]], ["the wing,", [5]], ["the one walking", [6]], ["on", [7]], ["four:", [8]]],
             "verseIndex": 0
           }
         ]
@@ -1231,28 +886,18 @@
         "book": 3,
         "chapter": 11,
         "verse": 21,
-        "start": false,
-        "width": 0.46005789446955464
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "31": {
     "text": [
       [
         [
           {
-            "he": ["אֲשֶׁר", "־לא#[ל֤וֹ]", " כְרָעַ֙יִם֙", " מִמַּ֣עַל", " לְרַגְלָ֔יו", " לְנַתֵּ֥ר", " בָּהֵ֖ן", " עַל־"],
-            "en": [
-              {"words": "those", "page": 123, "line": 32, "word": 1},
-              {"words": "", "page": 123, "line": 32, "word": 2},
-              {"words": "having jointed legs", "page": 123, "line": 32, "word": 3},
-              {"words": "above", "page": 123, "line": 32, "word": 4},
-              {"words": "their feet", "page": 123, "line": 32, "word": 5},
-              {"words": "for hopping", "page": 123, "line": 32, "word": 6},
-              {"words": "", "page": 123, "line": 32, "word": 7},
-              {"words": "on", "page": 123, "line": 32, "word": 8}
-            ],
+            "he": ["אֲשֶׁר־", "לא#[ל֤וֹ]", " כְרָעַ֙יִם֙", " מִמַּ֣עַל", " לְרַגְלָ֔יו", " לְנַתֵּ֥ר", " בָּהֵ֖ן", " עַל־"],
+            "en": [["that which", [0]], ["to it", [1]], ["{are} legs", [2]], ["from above", [3]], ["to its feet", [4]], ["to jump", [5]], ["with them", [6]], ["on", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1263,34 +908,23 @@
         "book": 3,
         "chapter": 11,
         "verse": 21,
-        "start": false,
-        "width": 0.4410009649078259
+        "indexOfFirstWord": 10
       }
     ],
     "isPetucha": false
   },
-  {
+  "32": {
     "text": [
       [
         [
           {
             "he": ["הָאָֽרֶץ׃"],
-            "en": [
-              {"words": "the ground.", "page": 123, "line": 33, "word": 1}
-            ],
+            "en": [["the earth.", [0]]],
             "verseIndex": 0
           },
           {
-            "he": [" אֶת", "־אֵ֤לֶּה", " מֵהֶם֙", " תֹּאכֵ֔לוּ", " אֶת", "־הָֽאַרְבֶּ֣ה", " לְמִינ֔וֹ"],
-            "en": [
-              {"words": "", "page": 123, "line": 33, "word": 1},
-              {"words": "Of these", "page": 123, "line": 33, "word": 2},
-              {"words": "", "page": 123, "line": 33, "word": 3},
-              {"words": "you may eat", "page": 123, "line": 33, "word": 4},
-              {"words": "", "page": 123, "line": 33, "word": 5},
-              {"words": "any kind", "page": 123, "line": 33, "word": 7},
-              {"words": "", "page": 123, "line": 34, "word": 1}
-            ],
+            "he": [" אֶת־", "אֵ֤לֶּה", " מֵהֶם֙", " תֹּאכֵ֔לוּ", " אֶת־", "הָֽאַרְבֶּ֣ה", " לְמִינ֔וֹ"],
+            "en": [["These", [0, 1]], ["from them", [2]], ["you shall eat:", [3]], ["the locust", [4, 5]], ["of its kind", [6]]],
             "verseIndex": 1
           }
         ]
@@ -1301,35 +935,24 @@
         "book": 3,
         "chapter": 11,
         "verse": 21,
-        "start": false,
-        "width": 0.06591843989639937
+        "indexOfFirstWord": 18
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 22,
-        "start": true,
-        "width": 0.399337470867049
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "33": {
     "text": [
       [
         [
           {
-            "he": ["וְאֶת", "־הַסׇּלְעָ֖ם", " לְמִינֵ֑הוּ", " וְאֶת", "־הַחַרְגֹּ֣ל", " לְמִינֵ֔הוּ", " וְאֶת", "־הֶחָגָ֖ב"],
-            "en": [
-              {"words": "of locust,", "page": 123, "line": 33, "word": 6},
-              {"words": "katydid,", "page": 123, "line": 34, "word": 2},
-              {"words": "", "page": 123, "line": 34, "word": 3},
-              {"words": "", "page": 123, "line": 34, "word": 4},
-              {"words": "cricket,", "page": 123, "line": 34, "word": 5},
-              {"words": "", "page": 123, "line": 34, "word": 6},
-              {"words": "", "page": 123, "line": 34, "word": 7},
-              {"words": "or grasshopper", "page": 123, "line": 34, "word": 8}
-            ],
+            "he": ["וְאֶת־", "הַסׇּלְעָ֖ם", " לְמִינֵ֑הוּ", " וְאֶת־", "הַחַרְגֹּ֣ל", " לְמִינֵ֔הוּ", " וְאֶת־", "הֶחָגָ֖ב"],
+            "en": [["and the bald locust", [0, 1]], ["of its kind", [2]], ["and the cricket", [3, 4]], ["of its kind", [5]], ["and the grasshopper", [6, 7]]],
             "verseIndex": 0
           }
         ]
@@ -1340,34 +963,23 @@
         "book": 3,
         "chapter": 11,
         "verse": 22,
-        "start": false,
-        "width": 0.5201377432110404
+        "indexOfFirstWord": 7
       }
     ],
     "isPetucha": false
   },
-  {
+  "34": {
     "text": [
       [
         [
           {
             "he": ["לְמִינֵֽהוּ׃"],
-            "en": [
-              {"words": ".", "page": 123, "line": 35, "word": 1}
-            ],
+            "en": [["of its kind.", [0]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְכֹל֙", " שֶׁ֣רֶץ", " הָע֔וֹף", " אֲשֶׁר", "־ל֖וֹ", " אַרְבַּ֣ע", " רַגְלָ֑יִם"],
-            "en": [
-              {"words": "All [other]", "page": 123, "line": 35, "word": 1},
-              {"words": "flying", "page": 123, "line": 35, "word": 3},
-              {"words": "insects", "page": 123, "line": 35, "word": 2},
-              {"words": "that", "page": 123, "line": 35, "word": 4},
-              {"words": "have", "page": 123, "line": 35, "word": 5},
-              {"words": "four", "page": 123, "line": 35, "word": 6},
-              {"words": "legs", "page": 123, "line": 35, "word": 7}
-            ],
+            "he": [" וְכֹל֙", " שֶׁ֣רֶץ", " הָע֔וֹף", " אֲשֶׁר־", "ל֖וֹ", " אַרְבַּ֣ע", " רַגְלָ֑יִם"],
+            "en": [["But every", [0]], ["swarming thing of", [1]], ["the wing", [2]], ["that", [3]], ["to it", [4]], ["{are} four", [5]], ["feet—", [6]]],
             "verseIndex": 1
           }
         ]
@@ -1378,41 +990,29 @@
         "book": 3,
         "chapter": 11,
         "verse": 22,
-        "start": false,
-        "width": 0.08052478592191059
+        "indexOfFirstWord": 15
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 23,
-        "start": true,
-        "width": 0.7198681495646923
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "35": {
     "text": [
       [
         [
           {
             "he": ["שֶׁ֥קֶץ", " ה֖וּא", " לָכֶֽם׃"],
-            "en": [
-              {"words": "are detestable", "page": 123, "line": 36, "word": 1},
-              {"words": "", "page": 123, "line": 36, "word": 2},
-              {"words": "to you.", "page": 123, "line": 36, "word": 3}
-            ],
+            "en": [["it", [1]], ["{is} a detestable thing", [0]], ["to you.", [2]]],
             "verseIndex": 0
           },
           {
-            "he": [" וּלְאֵ֖לֶּה", " תִּטַּמָּ֑אוּ", " כׇּל", "־הַנֹּגֵ֥עַ", " בְּנִבְלָתָ֖ם"],
-            "en": [
-              {"words": "These [creatures]", "page": 123, "line": 36, "word": 1},
-              {"words": "will make you unclean.", "page": 123, "line": 36, "word": 2},
-              {"words": "Whoever", "page": 123, "line": 36, "word": 3},
-              {"words": "touches", "page": 123, "line": 36, "word": 4},
-              {"words": "their carcasses", "page": 123, "line": 36, "word": 5}
-            ],
+            "he": [" וּלְאֵ֖לֶּה", " תִּטַּמָּ֑אוּ", " כׇּל־", "הַנֹּגֵ֥עַ", " בְּנִבְלָתָ֖ם"],
+            "en": [["And by these,", [0]], ["you will make yourselves unclean.", [1]], ["Anyone", [2]], ["who touches", [3]], ["their carcasses", [4]]],
             "verseIndex": 1
           }
         ]
@@ -1423,41 +1023,29 @@
         "book": 3,
         "chapter": 11,
         "verse": 23,
-        "start": false,
-        "width": 0.28013185043530775
+        "indexOfFirstWord": 7
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 24,
-        "start": true,
-        "width": 0.6753660748995723
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "36": {
     "text": [
       [
         [
           {
-            "he": ["יִטְמָ֥א", " עַד", "־הָעָֽרֶב׃"],
-            "en": [
-              {"words": "will be unclean", "page": 123, "line": 37, "word": 1},
-              {"words": "until", "page": 123, "line": 37, "word": 2},
-              {"words": "evening,", "page": 123, "line": 37, "word": 3}
-            ],
+            "he": ["יִטְמָ֥א", " עַד־", "הָעָֽרֶב׃"],
+            "en": [["will become unclean", [0]], ["until", [1]], ["the evening,", [2]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְכׇל", "־הַנֹּשֵׂ֖א", " מִנִּבְלָתָ֑ם", " יְכַבֵּ֥ס", " בְּגָדָ֖יו"],
-            "en": [
-              {"words": "and whoever", "page": 123, "line": 37, "word": 1},
-              {"words": "picks up", "page": 123, "line": 37, "word": 2},
-              {"words": "one of their carcasses", "page": 123, "line": 37, "word": 3},
-              {"words": "must wash", "page": 123, "line": 37, "word": 4},
-              {"words": "his clothes,", "page": 123, "line": 37, "word": 5}
-            ],
+            "he": [" וְכׇל־", "הַנֹּשֵׂ֖א", " מִנִּבְלָתָ֑ם", " יְכַבֵּ֥ס", " בְּגָדָ֖יו"],
+            "en": [["and anyone", [0]], ["lifting", [1]], ["{one} of their carcasses", [2]], ["shall wash", [3]], ["his clothes,", [4]]],
             "verseIndex": 1
           }
         ]
@@ -1468,41 +1056,29 @@
         "book": 3,
         "chapter": 11,
         "verse": 24,
-        "start": false,
-        "width": 0.3246339251004276
+        "indexOfFirstWord": 5
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 25,
-        "start": true,
-        "width": 0.6657325860688551
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "37": {
     "text": [
       [
         [
           {
-            "he": ["וְטָמֵ֥א", " עַד", "־הָעָֽרֶב׃"],
-            "en": [
-              {"words": "and he will be unclean", "page": 123, "line": 38, "word": 1},
-              {"words": "until", "page": 123, "line": 38, "word": 2},
-              {"words": "evening.", "page": 123, "line": 38, "word": 3}
-            ],
+            "he": ["וְטָמֵ֥א", " עַד־", "הָעָֽרֶב׃"],
+            "en": [["and he will be unclean", [0]], ["until", [1]], ["the evening.", [2]]],
             "verseIndex": 0
           },
           {
-            "he": [" לְֽכׇל", "־הַבְּהֵמָ֡ה", " אֲשֶׁ֣ר", " הִוא֩", " מַפְרֶ֨סֶת"],
-            "en": [
-              {"words": "Every", "page": 123, "line": 38, "word": 1},
-              {"words": "animal", "page": 123, "line": 38, "word": 2},
-              {"words": "with", "page": 123, "line": 38, "word": 3},
-              {"words": "", "page": 123, "line": 38, "word": 4},
-              {"words": "", "page": 123, "line": 39, "word": 2}
-            ],
+            "he": [" לְֽכׇל־", "הַבְּהֵמָ֡ה", " אֲשֶׁ֣ר", " הִוא֩", " מַפְרֶ֨סֶת"],
+            "en": [["To any", [0]], ["livestock", [1]], ["that", [2]], ["it", [3]], ["{is} dividing", [4]]],
             "verseIndex": 1
           }
         ]
@@ -1513,34 +1089,24 @@
         "book": 3,
         "chapter": 11,
         "verse": 25,
-        "start": false,
-        "width": 0.3342674139311449
+        "indexOfFirstWord": 5
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 26,
-        "start": true,
-        "width": 0.28467683369644153
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "38": {
     "text": [
       [
         [
           {
             "he": ["פַּרְסָ֜ה", " וְשֶׁ֣סַע", " ׀ אֵינֶ֣נָּה", " שֹׁסַ֗עַת", " וְגֵרָה֙", " אֵינֶ֣נָּה", " מַעֲלָ֔ה"],
-            "en": [
-              {"words": "hooves", "page": 123, "line": 39, "word": 1},
-              {"words": "not", "page": 123, "line": 39, "word": 3},
-              {"words": "completely divided", "page": 123, "line": 38, "word": 5},
-              {"words": "", "page": 123, "line": 39, "word": 4},
-              {"words": "or that does not", "page": 123, "line": 39, "word": 6},
-              {"words": "chew", "page": 123, "line": 39, "word": 7},
-              {"words": "the cud", "page": 123, "line": 39, "word": 5}
-            ],
+            "en": [["the hoof,", [0]], ["but", [1]], ["it is not", [2]], ["splitting", [3]], ["the cleft,", [1]], ["and", [4]], ["it is not", [5]], ["making", [6]], ["the cud", [4]], ["go up—", [6]]],
             "verseIndex": 0
           }
         ]
@@ -1551,35 +1117,23 @@
         "book": 3,
         "chapter": 11,
         "verse": 26,
-        "start": false,
-        "width": 0.3928254429343754
+        "indexOfFirstWord": 5
       }
     ],
     "isPetucha": false
   },
-  {
+  "39": {
     "text": [
       [
         [
           {
-            "he": ["טְמֵאִ֥ים", " הֵ֖ם", " לָכֶ֑ם", " כׇּל", "־הַנֹּגֵ֥עַ", " בָּהֶ֖ם", " יִטְמָֽא׃"],
-            "en": [
-              {"words": "is unclean", "page": 123, "line": 40, "word": 1},
-              {"words": "", "page": 123, "line": 40, "word": 2},
-              {"words": "for you.", "page": 123, "line": 40, "word": 3},
-              {"words": "Whoever", "page": 123, "line": 40, "word": 4},
-              {"words": "touches", "page": 123, "line": 40, "word": 5},
-              {"words": "any of them", "page": 123, "line": 40, "word": 6},
-              {"words": "will be unclean.", "page": 123, "line": 40, "word": 7}
-            ],
+            "he": ["טְמֵאִ֥ים", " הֵ֖ם", " לָכֶ֑ם", " כׇּל־", "הַנֹּגֵ֥עַ", " בָּהֶ֖ם", " יִטְמָֽא׃"],
+            "en": [["they", [1]], ["{are} unclean", [0]], ["to you.", [2]], ["Anyone", [3]], ["who touches", [4]], ["them", [5]], ["will become unclean.", [6]]],
             "verseIndex": 0
           },
           {
             "he": [" וְכֹ֣ל", " ׀ הוֹלֵ֣ךְ"],
-            "en": [
-              {"words": "All", "page": 123, "line": 40, "word": 1},
-              {"words": "the four-footed", "page": 123, "line": 40, "word": 2}
-            ],
+            "en": [["And anything", [0]], ["walking", [1]]],
             "verseIndex": 1
           }
         ]
@@ -1590,35 +1144,24 @@
         "book": 3,
         "chapter": 11,
         "verse": 26,
-        "start": false,
-        "width": 0.3224977233691831
+        "indexOfFirstWord": 12
       },
       {
         "book": 3,
         "chapter": 11,
         "verse": 27,
-        "start": true,
-        "width": 0.10491769253719727
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "40": {
     "text": [
       [
         [
           {
-            "he": ["עַל", "־כַּפָּ֗יו", " בְּכׇל", "־הַֽחַיָּה֙", " הַהֹלֶ֣כֶת", " עַל", "־אַרְבַּ֔ע", " טְמֵאִ֥ים"],
-            "en": [
-              {"words": "", "page": 123, "line": 41, "word": 1},
-              {"words": "", "page": 123, "line": 41, "word": 7},
-              {"words": "animals", "page": 123, "line": 41, "word": 4},
-              {"words": "that walk", "page": 123, "line": 41, "word": 5},
-              {"words": "on", "page": 123, "line": 41, "word": 6},
-              {"words": "their paws", "page": 123, "line": 41, "word": 2},
-              {"words": "", "page": 123, "line": 41, "word": 3},
-              {"words": "are unclean", "page": 123, "line": 41, "word": 8}
-            ],
+            "he": ["עַל־", "כַּפָּ֗יו", " בְּכׇל־", "הַֽחַיָּה֙", " הַהֹלֶ֣כֶת", " עַל־", "אַרְבַּ֔ע", " טְמֵאִ֥ים"],
+            "en": [["on", [0]], ["its palms", [1]], ["among any", [2]], ["living thing,", [3]], ["the ones walking", [4]], ["on", [5]], ["four—", [6]], ["they", [[123, 41, 0, 0]]]],
             "verseIndex": 0
           }
         ]
@@ -1629,28 +1172,18 @@
         "book": 3,
         "chapter": 11,
         "verse": 27,
-        "start": false,
-        "width": 0.46247843401782357
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "41": {
     "text": [
       [
         [
           {
-            "he": ["הֵ֖ם", " לָכֶ֑ם", " כׇּל", "־הַנֹּגֵ֥עַ", " בְּנִבְלָתָ֖ם", " יִטְמָ֥א", " עַד", "־הָעָֽרֶב׃"],
-            "en": [
-              {"words": "", "page": 123, "line": 42, "word": 1},
-              {"words": "for you;", "page": 123, "line": 42, "word": 2},
-              {"words": "whoever", "page": 123, "line": 42, "word": 3},
-              {"words": "touches", "page": 123, "line": 42, "word": 4},
-              {"words": "their carcasses", "page": 123, "line": 42, "word": 5},
-              {"words": "will be unclean", "page": 123, "line": 42, "word": 6},
-              {"words": "until", "page": 123, "line": 42, "word": 7},
-              {"words": "evening,", "page": 123, "line": 42, "word": 8}
-            ],
+            "he": ["הֵ֖ם", " לָכֶ֑ם", " כׇּל־", "הַנֹּגֵ֥עַ", " בְּנִבְלָתָ֖ם", " יִטְמָ֥א", " עַד־", "הָעָֽרֶב׃"],
+            "en": [["{are} unclean", [[123, 40, 0, 7]]], ["to you.", [1]], ["Anyone", [2]], ["who touches", [3]], ["their carcasses", [4]], ["will become unclean", [5]], ["until", [6]], ["the evening.", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1661,10 +1194,9 @@
         "book": 3,
         "chapter": 11,
         "verse": 27,
-        "start": false,
-        "width": 0.4326038734449792
+        "indexOfFirstWord": 10
       }
     ],
     "isPetucha": false
   }
-]
+}

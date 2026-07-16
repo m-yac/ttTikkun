@@ -1,24 +1,20 @@
-[
-  {
+{
+  "length": 42,
+  "0": {
     "text": [
       [
         [
           {
             "he": ["וּמִנְחָתָ֖הּ", " וְנִסְכֵּיהֶֽם׃"],
-            "en": [
-              {"words": "with its grain offering", "page": 191, "line": 1, "word": 1},
-              {"words": "and drink offering.", "page": 191, "line": 1, "word": 2}
-            ],
+            "en": [["and its grain offering,", [0]], ["and their drink offerings.", [1]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" וּבַיּ֧וֹם"],
-            "en": [
-              {"words": "On the third", "page": 191, "line": 2, "word": 1}
-            ],
-            "verseIndex": 0
+            "en": [["And on the", [0]], ["third", [[191, 1, 0, 0]]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -28,34 +24,24 @@
         "book": 4,
         "chapter": 29,
         "verse": 19,
-        "start": false,
-        "width": 0.2941249534219352
+        "indexOfFirstWord": 7
       },
       {
         "book": 4,
         "chapter": 29,
         "verse": 20,
-        "start": true,
-        "width": 0.07597973026639768
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "1": {
     "text": [
       [
         [
           {
-            "he": ["הַשְּׁלִישִׁ֛י", " פָּרִ֥ים", " עַשְׁתֵּי", "־עָשָׂ֖ר", " אֵילִ֣ם", " שְׁנָ֑יִם", " כְּבָשִׂ֧ים"],
-            "en": [
-              {"words": "day", "page": 191, "line": 1, "word": 1},
-              {"words": "[you are to present] eleven", "page": 191, "line": 2, "word": 3},
-              {"words": "", "page": 191, "line": 2, "word": 4},
-              {"words": "bulls,", "page": 191, "line": 2, "word": 2},
-              {"words": "two", "page": 191, "line": 2, "word": 6},
-              {"words": "rams,", "page": 191, "line": 2, "word": 5},
-              {"words": "[and] fourteen", "page": 191, "line": 3, "word": 3}
-            ],
+            "he": ["הַשְּׁלִישִׁ֛י", " פָּרִ֥ים", " עַשְׁתֵּי־", "עָשָׂ֖ר", " אֵילִ֣ם", " שְׁנָ֑יִם", " כְּבָשִׂ֧ים"],
+            "en": [["day:", [[191, 0, 1, 0]]], ["eleven", [2, 3]], ["bulls,", [1]], ["two", [5]], ["rams,", [4]], ["fourteen", [[191, 2, 0, 2], [191, 2, 0, 3]]]],
             "verseIndex": 0
           }
         ]
@@ -66,33 +52,23 @@
         "book": 4,
         "chapter": 29,
         "verse": 20,
-        "start": false,
-        "width": 0.5598481358516941
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "2": {
     "text": [
       [
         [
           {
-            "he": ["בְּנֵי", "־שָׁנָ֛ה", " אַרְבָּעָ֥ה", " עָשָׂ֖ר", " תְּמִימִֽם׃"],
-            "en": [
-              {"words": "", "page": 191, "line": 3, "word": 4},
-              {"words": "male lambs", "page": 191, "line": 2, "word": 7},
-              {"words": "a year old", "page": 191, "line": 3, "word": 1},
-              {"words": ",", "page": 191, "line": 3, "word": 2},
-              {"words": "all unblemished,", "page": 191, "line": 3, "word": 5}
-            ],
+            "he": ["בְּנֵי־", "שָׁנָ֛ה", " אַרְבָּעָ֥ה", " עָשָׂ֖ר", " תְּמִימִֽם׃"],
+            "en": [["male lambs,", [[191, 1, 0, 6]]], ["sons of", [0]], ["a year,", [1]], ["unblemished,", [4]]],
             "verseIndex": 0
           },
           {
             "he": [" וּמִנְחָתָ֣ם", " וְנִסְכֵּיהֶ֡ם"],
-            "en": [
-              {"words": "along with the grain and drink offerings", "page": 191, "line": 3, "word": 1},
-              {"words": "", "page": 191, "line": 3, "word": 2}
-            ],
+            "en": [["and their grain offering", [0]], ["and their drink offerings", [1]]],
             "verseIndex": 1
           }
         ]
@@ -103,32 +79,24 @@
         "book": 4,
         "chapter": 29,
         "verse": 20,
-        "start": false,
-        "width": 0.36417213388190817
+        "indexOfFirstWord": 8
       },
       {
         "book": 4,
         "chapter": 29,
         "verse": 21,
-        "start": true,
-        "width": 0.29006915176562054
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "3": {
     "text": [
       [
         [
           {
             "he": ["לַ֠פָּרִ֠ים", " לָאֵילִ֧ם", " וְלַכְּבָשִׂ֛ים", " בְּמִסְפָּרָ֖ם", " כַּמִּשְׁפָּֽט׃"],
-            "en": [
-              {"words": "for the bulls,", "page": 191, "line": 4, "word": 1},
-              {"words": "rams,", "page": 191, "line": 4, "word": 2},
-              {"words": "and lambs,", "page": 191, "line": 4, "word": 3},
-              {"words": "according to the number", "page": 191, "line": 4, "word": 4},
-              {"words": "prescribed.", "page": 191, "line": 4, "word": 5}
-            ],
+            "en": [["for the bulls,", [0]], ["for the rams,", [1]], ["and for the male lambs", [2]], ["shall be by their number", [3]], ["according to the ordinance,", [4]]],
             "verseIndex": 0
           }
         ]
@@ -139,27 +107,18 @@
         "book": 4,
         "chapter": 29,
         "verse": 21,
-        "start": false,
-        "width": 0.7099308482343795
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "4": {
     "text": [
       [
         [
           {
             "he": ["וּשְׂעִ֥יר", " חַטָּ֖את", " אֶחָ֑ד", " מִלְּבַד֙", " עֹלַ֣ת", " הַתָּמִ֔יד", " וּמִנְחָתָ֖הּ"],
-            "en": [
-              {"words": "Include one", "page": 191, "line": 5, "word": 3},
-              {"words": "male goat", "page": 191, "line": 5, "word": 1},
-              {"words": "as a sin offering,", "page": 191, "line": 5, "word": 2},
-              {"words": "in addition to", "page": 191, "line": 5, "word": 4},
-              {"words": "the regular", "page": 191, "line": 5, "word": 6},
-              {"words": "burnt offering", "page": 191, "line": 5, "word": 5},
-              {"words": "with its grain offering", "page": 191, "line": 5, "word": 7}
-            ],
+            "en": [["and", [0]], ["one", [2]], ["male goat of", [0]], ["the sin offering,", [1]], ["apart from", [3]], ["the burnt offering of", [4]], ["the continuity", [5]], ["and its grain offering", [6]]],
             "verseIndex": 0
           }
         ]
@@ -170,33 +129,26 @@
         "book": 4,
         "chapter": 29,
         "verse": 22,
-        "start": true,
-        "width": 0.8741726550680786
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "5": {
     "text": [
       [
         [
           {
             "he": ["וְנִסְכָּֽהּ׃"],
-            "en": [
-              {"words": "and drink offering.", "page": 191, "line": 6, "word": 1}
-            ],
+            "en": [["and its drink offering.", [0]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" וּבַיּ֧וֹם", " הָרְבִיעִ֛י", " פָּרִ֥ים"],
-            "en": [
-              {"words": "On the fourth", "page": 191, "line": 6, "word": 2},
-              {"words": "day", "page": 191, "line": 6, "word": 1},
-              {"words": "[you are to present] ten", "page": 191, "line": 7, "word": 1}
-            ],
-            "verseIndex": 0
+            "en": [["And on the", [0]], ["fourth", [1]], ["day:", [0]], ["ten", [[191, 6, 0, 0]]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -206,35 +158,24 @@
         "book": 4,
         "chapter": 29,
         "verse": 22,
-        "start": false,
-        "width": 0.12582734493192133
+        "indexOfFirstWord": 7
       },
       {
         "book": 4,
         "chapter": 29,
         "verse": 23,
-        "start": true,
-        "width": 0.2724655735497121
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "6": {
     "text": [
       [
         [
           {
-            "he": ["עֲשָׂרָ֖ה", " אֵילִ֣ם", " שְׁנָ֑יִם", " כְּבָשִׂ֧ים", " בְּנֵֽי", "־שָׁנָ֛ה", " אַרְבָּעָ֥ה", " עָשָׂ֖ר"],
-            "en": [
-              {"words": "bulls,", "page": 191, "line": 6, "word": 3},
-              {"words": "two", "page": 191, "line": 7, "word": 3},
-              {"words": "rams,", "page": 191, "line": 7, "word": 2},
-              {"words": "[and] fourteen", "page": 191, "line": 7, "word": 7},
-              {"words": "", "page": 191, "line": 7, "word": 8},
-              {"words": "male lambs", "page": 191, "line": 7, "word": 4},
-              {"words": "a year old", "page": 191, "line": 7, "word": 5},
-              {"words": ",", "page": 191, "line": 7, "word": 6}
-            ],
+            "he": ["עֲשָׂרָ֖ה", " אֵילִ֣ם", " שְׁנָ֑יִם", " כְּבָשִׂ֧ים", " בְּנֵֽי־", "שָׁנָ֛ה", " אַרְבָּעָ֥ה", " עָשָׂ֖ר"],
+            "en": [["bulls,", [[191, 5, 1, 2]]], ["two", [2]], ["rams,", [1]], ["fourteen", [6, 7]], ["male lambs,", [3]], ["sons of", [4]], ["a year,", [5]]],
             "verseIndex": 0
           }
         ]
@@ -245,32 +186,23 @@
         "book": 4,
         "chapter": 29,
         "verse": 23,
-        "start": false,
-        "width": 0.6257365071883102
+        "indexOfFirstWord": 3
       }
     ],
     "isPetucha": false
   },
-  {
+  "7": {
     "text": [
       [
         [
           {
             "he": ["תְּמִימִֽם׃"],
-            "en": [
-              {"words": "all unblemished,", "page": 191, "line": 8, "word": 1}
-            ],
+            "en": [["unblemished,", [0]]],
             "verseIndex": 0
           },
           {
             "he": [" מִנְחָתָ֣ם", " וְנִסְכֵּיהֶ֡ם", " לַ֠פָּרִ֠ים", " לָאֵילִ֧ם", " וְלַכְּבָשִׂ֛ים"],
-            "en": [
-              {"words": "along with the grain and drink offerings", "page": 191, "line": 8, "word": 1},
-              {"words": "", "page": 191, "line": 8, "word": 2},
-              {"words": "for the bulls,", "page": 191, "line": 8, "word": 3},
-              {"words": "rams,", "page": 191, "line": 8, "word": 4},
-              {"words": "and lambs,", "page": 191, "line": 8, "word": 5}
-            ],
+            "en": [["and their grain offering", [0]], ["and their drink offerings", [1]], ["for the bulls,", [2]], ["for the rams,", [3]], ["and for the lambs,", [4]]],
             "verseIndex": 1
           }
         ]
@@ -281,40 +213,29 @@
         "book": 4,
         "chapter": 29,
         "verse": 23,
-        "start": false,
-        "width": 0.10179791926197772
+        "indexOfFirstWord": 11
       },
       {
         "book": 4,
         "chapter": 29,
         "verse": 24,
-        "start": true,
-        "width": 0.6970822611438532
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "8": {
     "text": [
       [
         [
           {
             "he": ["בְּמִסְפָּרָ֖ם", " כַּמִּשְׁפָּֽט׃"],
-            "en": [
-              {"words": "according to the number", "page": 191, "line": 9, "word": 1},
-              {"words": "prescribed.", "page": 191, "line": 9, "word": 2}
-            ],
+            "en": [["shall be by their number", [0]], ["according to the ordinance.", [1]]],
             "verseIndex": 0
           },
           {
-            "he": [" וּשְׂעִיר", "־עִזִּ֥ים", " אֶחָ֖ד", " חַטָּ֑את", " מִלְּבַד֙"],
-            "en": [
-              {"words": "Include one", "page": 191, "line": 9, "word": 3},
-              {"words": "male goat", "page": 191, "line": 9, "word": 1},
-              {"words": "", "page": 191, "line": 9, "word": 2},
-              {"words": "as a sin offering,", "page": 191, "line": 9, "word": 4},
-              {"words": "in addition to", "page": 191, "line": 9, "word": 5}
-            ],
+            "he": [" וּשְׂעִיר־", "עִזִּ֥ים", " אֶחָ֖ד", " חַטָּ֑את", " מִלְּבַד֙"],
+            "en": [["And", [0]], ["one", [2]], ["buck of", [0]], ["the goats", [1]], ["shall be a sin offering,", [3]], ["apart from", [4]]],
             "verseIndex": 1
           }
         ]
@@ -325,41 +246,32 @@
         "book": 4,
         "chapter": 29,
         "verse": 24,
-        "start": false,
-        "width": 0.30291773885614676
+        "indexOfFirstWord": 5
       },
       {
         "book": 4,
         "chapter": 29,
         "verse": 25,
-        "start": true,
-        "width": 0.528052660449808
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "9": {
     "text": [
       [
         [
           {
             "he": ["עֹלַ֣ת", " הַתָּמִ֔יד", " מִנְחָתָ֖הּ", " וְנִסְכָּֽהּ׃"],
-            "en": [
-              {"words": "the regular", "page": 191, "line": 10, "word": 2},
-              {"words": "burnt offering", "page": 191, "line": 10, "word": 1},
-              {"words": "with its grain offering", "page": 191, "line": 10, "word": 3},
-              {"words": "and drink offering.", "page": 191, "line": 10, "word": 4}
-            ],
+            "en": [["the burnt offering of", [0]], ["the continuity,", [1]], ["its grain offering,", [2]], ["and its drink offering.", [3]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" וּבַיּ֧וֹם"],
-            "en": [
-              {"words": "On the fifth", "page": 191, "line": 11, "word": 1}
-            ],
-            "verseIndex": 0
+            "en": [["And on the", [0]], ["fifth", [[191, 10, 0, 0]]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -369,34 +281,24 @@
         "book": 4,
         "chapter": 29,
         "verse": 25,
-        "start": false,
-        "width": 0.47194733955019197
+        "indexOfFirstWord": 5
       },
       {
         "book": 4,
         "chapter": 29,
         "verse": 26,
-        "start": true,
-        "width": 0.08031636217087587
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "10": {
     "text": [
       [
         [
           {
             "he": ["הַחֲמִישִׁ֛י", " פָּרִ֥ים", " תִּשְׁעָ֖ה", " אֵילִ֣ם", " שְׁנָ֑יִם", " כְּבָשִׂ֧ים", " בְּנֵֽי־"],
-            "en": [
-              {"words": "day", "page": 191, "line": 10, "word": 1},
-              {"words": "[you are to present] nine", "page": 191, "line": 11, "word": 3},
-              {"words": "bulls,", "page": 191, "line": 11, "word": 2},
-              {"words": "two", "page": 191, "line": 11, "word": 5},
-              {"words": "rams,", "page": 191, "line": 11, "word": 4},
-              {"words": "[and] fourteen", "page": 191, "line": 12, "word": 2},
-              {"words": "", "page": 191, "line": 12, "word": 3}
-            ],
+            "en": [["day:", [[191, 9, 1, 0]]], ["nine", [2]], ["bulls,", [1]], ["two", [4]], ["rams,", [3]], ["fourteen", [[191, 11, 0, 1], [191, 11, 0, 2]]]],
             "verseIndex": 0
           }
         ]
@@ -407,32 +309,23 @@
         "book": 4,
         "chapter": 29,
         "verse": 26,
-        "start": false,
-        "width": 0.5812399247716281
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "11": {
     "text": [
       [
         [
           {
             "he": ["שָׁנָ֛ה", " אַרְבָּעָ֥ה", " עָשָׂ֖ר", " תְּמִימִֽם׃"],
-            "en": [
-              {"words": "male lambs", "page": 191, "line": 11, "word": 6},
-              {"words": "a year old", "page": 191, "line": 11, "word": 7},
-              {"words": ",", "page": 191, "line": 12, "word": 1},
-              {"words": "all unblemished,", "page": 191, "line": 12, "word": 4}
-            ],
+            "en": [["male lambs,", [[191, 10, 0, 5]]], ["sons of", [[191, 10, 0, 6]]], ["a year,", [0]], ["unblemished,", [3]]],
             "verseIndex": 0
           },
           {
             "he": [" וּמִנְחָתָ֣ם", " וְנִסְכֵּיהֶ֡ם"],
-            "en": [
-              {"words": "along with the grain and drink offerings", "page": 191, "line": 12, "word": 1},
-              {"words": "", "page": 191, "line": 12, "word": 2}
-            ],
+            "en": [["and their grain offering", [0]], ["and their drink offerings", [1]]],
             "verseIndex": 1
           }
         ]
@@ -443,32 +336,24 @@
         "book": 4,
         "chapter": 29,
         "verse": 26,
-        "start": false,
-        "width": 0.338443713057496
+        "indexOfFirstWord": 8
       },
       {
         "book": 4,
         "chapter": 29,
         "verse": 27,
-        "start": true,
-        "width": 0.29006915176562054
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "12": {
     "text": [
       [
         [
           {
             "he": ["לַ֠פָּרִ֠ים", " לָאֵילִ֧ם", " וְלַכְּבָשִׂ֛ים", " בְּמִסְפָּרָ֖ם", " כַּמִּשְׁפָּֽט׃"],
-            "en": [
-              {"words": "for the bulls,", "page": 191, "line": 13, "word": 1},
-              {"words": "rams,", "page": 191, "line": 13, "word": 2},
-              {"words": "and lambs,", "page": 191, "line": 13, "word": 3},
-              {"words": "according to the number", "page": 191, "line": 13, "word": 4},
-              {"words": "prescribed.", "page": 191, "line": 13, "word": 5}
-            ],
+            "en": [["for the bulls,", [0]], ["for the rams,", [1]], ["and for the lambs,", [2]], ["shall be by their number", [3]], ["according to the ordinance,", [4]]],
             "verseIndex": 0
           }
         ]
@@ -479,27 +364,18 @@
         "book": 4,
         "chapter": 29,
         "verse": 27,
-        "start": false,
-        "width": 0.7099308482343795
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "13": {
     "text": [
       [
         [
           {
             "he": ["וּשְׂעִ֥יר", " חַטָּ֖את", " אֶחָ֑ד", " מִלְּבַד֙", " עֹלַ֣ת", " הַתָּמִ֔יד", " וּמִנְחָתָ֖הּ"],
-            "en": [
-              {"words": "Include one", "page": 191, "line": 14, "word": 3},
-              {"words": "male goat", "page": 191, "line": 14, "word": 1},
-              {"words": "as a sin offering,", "page": 191, "line": 14, "word": 2},
-              {"words": "in addition to", "page": 191, "line": 14, "word": 4},
-              {"words": "the regular", "page": 191, "line": 14, "word": 6},
-              {"words": "burnt offering", "page": 191, "line": 14, "word": 5},
-              {"words": "with its grain offering", "page": 191, "line": 14, "word": 7}
-            ],
+            "en": [["and", [0]], ["one", [2]], ["male goat of", [0]], ["a sin offering,", [1]], ["apart from", [3]], ["the burnt offering of", [4]], ["the continuity,", [5]], ["and its grain offering,", [6]]],
             "verseIndex": 0
           }
         ]
@@ -510,33 +386,26 @@
         "book": 4,
         "chapter": 29,
         "verse": 28,
-        "start": true,
-        "width": 0.8741726550680786
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "14": {
     "text": [
       [
         [
           {
             "he": ["וְנִסְכָּֽהּ׃"],
-            "en": [
-              {"words": "and drink offering.", "page": 191, "line": 15, "word": 1}
-            ],
+            "en": [["and its drink offering.", [0]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" וּבַיּ֧וֹם", " הַשִּׁשִּׁ֛י", " פָּרִ֥ים"],
-            "en": [
-              {"words": "On the sixth", "page": 191, "line": 15, "word": 2},
-              {"words": "day", "page": 191, "line": 15, "word": 1},
-              {"words": "[you are to present] eight", "page": 191, "line": 16, "word": 1}
-            ],
-            "verseIndex": 0
+            "en": [["And on the", [0]], ["sixth", [1]], ["day:", [0]], ["eight", [[191, 15, 0, 0]]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -546,35 +415,24 @@
         "book": 4,
         "chapter": 29,
         "verse": 28,
-        "start": false,
-        "width": 0.12582734493192133
+        "indexOfFirstWord": 7
       },
       {
         "book": 4,
         "chapter": 29,
         "verse": 29,
-        "start": true,
-        "width": 0.25229992815462526
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "15": {
     "text": [
       [
         [
           {
-            "he": ["שְׁמֹנָ֖ה", " אֵילִ֣ם", " שְׁנָ֑יִם", " כְּבָשִׂ֧ים", " בְּנֵי", "־שָׁנָ֛ה", " אַרְבָּעָ֥ה", " עָשָׂ֖ר"],
-            "en": [
-              {"words": "bulls,", "page": 191, "line": 15, "word": 3},
-              {"words": "two", "page": 191, "line": 16, "word": 3},
-              {"words": "rams,", "page": 191, "line": 16, "word": 2},
-              {"words": "[and] fourteen", "page": 191, "line": 16, "word": 7},
-              {"words": "", "page": 191, "line": 16, "word": 8},
-              {"words": "male lambs", "page": 191, "line": 16, "word": 4},
-              {"words": "a year old", "page": 191, "line": 16, "word": 5},
-              {"words": ",", "page": 191, "line": 16, "word": 6}
-            ],
+            "he": ["שְׁמֹנָ֖ה", " אֵילִ֣ם", " שְׁנָ֑יִם", " כְּבָשִׂ֧ים", " בְּנֵי־", "שָׁנָ֛ה", " אַרְבָּעָ֥ה", " עָשָׂ֖ר"],
+            "en": [["bulls,", [[191, 14, 1, 2]]], ["two", [2]], ["rams,", [1]], ["fourteen", [6, 7]], ["male lambs,", [3]], ["sons of", [4]], ["a year,", [5]]],
             "verseIndex": 0
           }
         ]
@@ -585,32 +443,23 @@
         "book": 4,
         "chapter": 29,
         "verse": 29,
-        "start": false,
-        "width": 0.641736905742373
+        "indexOfFirstWord": 3
       }
     ],
     "isPetucha": false
   },
-  {
+  "16": {
     "text": [
       [
         [
           {
             "he": ["תְּמִימִֽם׃"],
-            "en": [
-              {"words": "all unblemished,", "page": 191, "line": 17, "word": 1}
-            ],
+            "en": [["unblemished,", [0]]],
             "verseIndex": 0
           },
           {
             "he": [" וּמִנְחָתָ֣ם", " וְנִסְכֵּיהֶ֡ם", " לַ֠פָּרִ֠ים", " לָאֵילִ֧ם", " וְלַכְּבָשִׂ֛ים"],
-            "en": [
-              {"words": "along with the grain and drink offerings", "page": 191, "line": 17, "word": 1},
-              {"words": "", "page": 191, "line": 17, "word": 2},
-              {"words": "for the bulls,", "page": 191, "line": 17, "word": 3},
-              {"words": "rams,", "page": 191, "line": 17, "word": 4},
-              {"words": "and lambs,", "page": 191, "line": 17, "word": 5}
-            ],
+            "en": [["and their grain offering", [0]], ["and their drink offerings", [1]], ["for the bulls,", [2]], ["for the rams,", [3]], ["and for the lambs,", [4]]],
             "verseIndex": 1
           }
         ]
@@ -621,40 +470,29 @@
         "book": 4,
         "chapter": 29,
         "verse": 29,
-        "start": false,
-        "width": 0.10596316610300173
+        "indexOfFirstWord": 11
       },
       {
         "book": 4,
         "chapter": 29,
         "verse": 30,
-        "start": true,
-        "width": 0.7013584843897049
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "17": {
     "text": [
       [
         [
           {
             "he": ["בְּמִסְפָּרָ֖ם", " כַּמִּשְׁפָּֽט׃"],
-            "en": [
-              {"words": "according to the number", "page": 191, "line": 18, "word": 1},
-              {"words": "prescribed.", "page": 191, "line": 18, "word": 2}
-            ],
+            "en": [["shall be by their number", [0]], ["according to the ordinance,", [1]]],
             "verseIndex": 0
           },
           {
             "he": [" וּשְׂעִ֥יר", " חַטָּ֖את", " אֶחָ֑ד", " מִלְּבַד֙", " עֹלַ֣ת"],
-            "en": [
-              {"words": "Include one", "page": 191, "line": 18, "word": 3},
-              {"words": "male goat", "page": 191, "line": 18, "word": 1},
-              {"words": "as a sin offering,", "page": 191, "line": 18, "word": 2},
-              {"words": "in addition to", "page": 191, "line": 18, "word": 4},
-              {"words": "the regular", "page": 191, "line": 19, "word": 1}
-            ],
+            "en": [["and", [0]], ["one", [2]], ["male goat of", [0]], ["a sin offering,", [1]], ["apart from", [3]], ["the burnt offering of", [4]]],
             "verseIndex": 1
           }
         ]
@@ -665,40 +503,32 @@
         "book": 4,
         "chapter": 29,
         "verse": 30,
-        "start": false,
-        "width": 0.298641515610295
+        "indexOfFirstWord": 5
       },
       {
         "book": 4,
         "chapter": 29,
         "verse": 31,
-        "start": true,
-        "width": 0.5675215695544262
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "18": {
     "text": [
       [
         [
           {
             "he": ["הַתָּמִ֔יד", " מִנְחָתָ֖הּ", " וּנְסָכֶֽיהָ׃"],
-            "en": [
-              {"words": "burnt offering", "page": 191, "line": 18, "word": 5},
-              {"words": "with its grain offering", "page": 191, "line": 19, "word": 2},
-              {"words": "and drink offering.", "page": 191, "line": 19, "word": 3}
-            ],
+            "en": [["the continuity,", [0]], ["its grain offering,", [1]], ["and its drink offerings.", [2]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" וּבַיּ֧וֹם"],
-            "en": [
-              {"words": "On the seventh", "page": 191, "line": 20, "word": 1}
-            ],
-            "verseIndex": 0
+            "en": [["And on the", [0]], ["seventh", [[191, 19, 0, 0]]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -708,34 +538,24 @@
         "book": 4,
         "chapter": 29,
         "verse": 31,
-        "start": false,
-        "width": 0.4324784304455738
+        "indexOfFirstWord": 5
       },
       {
         "book": 4,
         "chapter": 29,
         "verse": 32,
-        "start": true,
-        "width": 0.0804785300848028
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "19": {
     "text": [
       [
         [
           {
             "he": ["הַשְּׁבִיעִ֛י", " פָּרִ֥ים", " שִׁבְעָ֖ה", " אֵילִ֣ם", " שְׁנָ֑יִם", " כְּבָשִׂ֧ים", " בְּנֵי־"],
-            "en": [
-              {"words": "day", "page": 191, "line": 19, "word": 1},
-              {"words": "[you are to present] seven", "page": 191, "line": 20, "word": 3},
-              {"words": "bulls,", "page": 191, "line": 20, "word": 2},
-              {"words": "two", "page": 191, "line": 20, "word": 5},
-              {"words": "rams,", "page": 191, "line": 20, "word": 4},
-              {"words": "[and] fourteen", "page": 191, "line": 21, "word": 2},
-              {"words": "", "page": 191, "line": 21, "word": 3}
-            ],
+            "en": [["day:", [[191, 18, 1, 0]]], ["seven", [2]], ["bulls,", [1]], ["two", [4]], ["rams,", [3]], ["fourteen", [[191, 20, 0, 1], [191, 20, 0, 2]]]],
             "verseIndex": 0
           }
         ]
@@ -746,32 +566,23 @@
         "book": 4,
         "chapter": 29,
         "verse": 32,
-        "start": false,
-        "width": 0.5803944003230583
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "20": {
     "text": [
       [
         [
           {
             "he": ["שָׁנָ֛ה", " אַרְבָּעָ֥ה", " עָשָׂ֖ר", " תְּמִימִֽם׃"],
-            "en": [
-              {"words": "male lambs", "page": 191, "line": 20, "word": 6},
-              {"words": "a year old", "page": 191, "line": 20, "word": 7},
-              {"words": ",", "page": 191, "line": 21, "word": 1},
-              {"words": "all unblemished,", "page": 191, "line": 21, "word": 4}
-            ],
+            "en": [["male lambs,", [[191, 19, 0, 5]]], ["sons of", [[191, 19, 0, 6]]], ["a year,", [0]], ["unblemished,", [3]]],
             "verseIndex": 0
           },
           {
             "he": [" וּמִנְחָתָ֣ם", " וְנִסְכֵּהֶ֡ם"],
-            "en": [
-              {"words": "along with the grain and drink offerings", "page": 191, "line": 21, "word": 1},
-              {"words": "", "page": 191, "line": 21, "word": 2}
-            ],
+            "en": [["and their grain offering", [0]], ["and their drink offerings", [1]]],
             "verseIndex": 1
           }
         ]
@@ -782,32 +593,24 @@
         "book": 4,
         "chapter": 29,
         "verse": 32,
-        "start": false,
-        "width": 0.3391270695921389
+        "indexOfFirstWord": 8
       },
       {
         "book": 4,
         "chapter": 29,
         "verse": 33,
-        "start": true,
-        "width": 0.2722611381391687
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "21": {
     "text": [
       [
         [
           {
             "he": ["לַ֠פָּרִ֠ים", " לָאֵילִ֧ם", " וְלַכְּבָשִׂ֛ים", " בְּמִסְפָּרָ֖ם", " כְּמִשְׁפָּטָֽם׃"],
-            "en": [
-              {"words": "for the bulls,", "page": 191, "line": 22, "word": 1},
-              {"words": "rams,", "page": 191, "line": 22, "word": 2},
-              {"words": "and lambs,", "page": 191, "line": 22, "word": 3},
-              {"words": "according to the number", "page": 191, "line": 22, "word": 4},
-              {"words": "prescribed.", "page": 191, "line": 22, "word": 5}
-            ],
+            "en": [["for the bulls,", [0]], ["for the rams,", [1]], ["and for the male lambs,", [2]], ["shall be by their number", [3]], ["according to their ordinance,", [4]]],
             "verseIndex": 0
           }
         ]
@@ -818,27 +621,18 @@
         "book": 4,
         "chapter": 29,
         "verse": 33,
-        "start": false,
-        "width": 0.7277388618608313
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "22": {
     "text": [
       [
         [
           {
             "he": ["וּשְׂעִ֥יר", " חַטָּ֖את", " אֶחָ֑ד", " מִלְּבַד֙", " עֹלַ֣ת", " הַתָּמִ֔יד", " מִנְחָתָ֖הּ"],
-            "en": [
-              {"words": "Include one", "page": 191, "line": 23, "word": 3},
-              {"words": "male goat", "page": 191, "line": 23, "word": 1},
-              {"words": "as a sin offering,", "page": 191, "line": 23, "word": 2},
-              {"words": "in addition to", "page": 191, "line": 23, "word": 4},
-              {"words": "the regular", "page": 191, "line": 23, "word": 6},
-              {"words": "burnt offering", "page": 191, "line": 23, "word": 5},
-              {"words": "with its grain offering", "page": 191, "line": 23, "word": 7}
-            ],
+            "en": [["and", [0]], ["one", [2]], ["male goat", [0]], ["of the sin offering,", [1]], ["apart from", [3]], ["the burnt offering of", [4]], ["the continuity,", [5]], ["its grain offering,", [6]]],
             "verseIndex": 0
           }
         ]
@@ -849,33 +643,26 @@
         "book": 4,
         "chapter": 29,
         "verse": 34,
-        "start": true,
-        "width": 0.8720863171048205
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "23": {
     "text": [
       [
         [
           {
             "he": ["וְנִסְכָּֽהּ׃"],
-            "en": [
-              {"words": "and drink offering.", "page": 191, "line": 24, "word": 1}
-            ],
+            "en": [["and its drink offering.", [0]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" בַּיּוֹם֙", " הַשְּׁמִינִ֔י", " עֲצֶ֖רֶת"],
-            "en": [
-              {"words": "On the eighth", "page": 191, "line": 24, "word": 2},
-              {"words": "day", "page": 191, "line": 24, "word": 1},
-              {"words": "you are to hold", "page": 191, "line": 25, "word": 1}
-            ],
-            "verseIndex": 0
+            "en": [["On the", [0]], ["eighth", [1]], ["day", [0]], ["an assembly", [2]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -885,41 +672,29 @@
         "book": 4,
         "chapter": 29,
         "verse": 34,
-        "start": false,
-        "width": 0.12791368289517951
+        "indexOfFirstWord": 7
       },
       {
         "book": 4,
         "chapter": 29,
         "verse": 35,
-        "start": true,
-        "width": 0.33861997045276787
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "24": {
     "text": [
       [
         [
           {
-            "he": ["תִּהְיֶ֣ה", " לָכֶ֑ם", " כׇּל", "־מְלֶ֥אכֶת", " עֲבֹדָ֖ה", " לֹ֥א", " תַעֲשֽׂוּ׃"],
-            "en": [
-              {"words": "", "page": 191, "line": 25, "word": 2},
-              {"words": "a solemn assembly;", "page": 191, "line": 24, "word": 3},
-              {"words": "you must not", "page": 191, "line": 25, "word": 6},
-              {"words": "do", "page": 191, "line": 25, "word": 7},
-              {"words": "any", "page": 191, "line": 25, "word": 3},
-              {"words": "regular work", "page": 191, "line": 25, "word": 4},
-              {"words": ".", "page": 191, "line": 25, "word": 5}
-            ],
+            "he": ["תִּהְיֶ֣ה", " לָכֶ֑ם", " כׇּל־", "מְלֶ֥אכֶת", " עֲבֹדָ֖ה", " לֹ֥א", " תַעֲשֽׂוּ׃"],
+            "en": [["shall be", [0]], ["for you.", [1]], ["You shall", [6]], ["not", [5]], ["do", [6]], ["any", [2]], ["work of", [3]], ["labor.", [4]]],
             "verseIndex": 0
           },
           {
             "he": [" וְהִקְרַבְתֶּ֨ם"],
-            "en": [
-              {"words": "As a pleasing", "page": 191, "line": 26, "word": 4}
-            ],
+            "en": [["And you shall offer", [0]]],
             "verseIndex": 1
           }
         ]
@@ -930,36 +705,24 @@
         "book": 4,
         "chapter": 29,
         "verse": 35,
-        "start": false,
-        "width": 0.6613800295472321
+        "indexOfFirstWord": 3
       },
       {
         "book": 4,
         "chapter": 29,
         "verse": 36,
-        "start": true,
-        "width": 0.12972316442759171
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "25": {
     "text": [
       [
         [
           {
             "he": ["עֹלָ֜ה", " אִשֵּׁ֨ה", " רֵ֤יחַ", " נִיחֹ֙חַ֙", " לַֽיהֹוָ֔ה", " פַּ֥ר", " אֶחָ֖ד", " אַ֣יִל", " אֶחָ֑ד"],
-            "en": [
-              {"words": "aroma", "page": 191, "line": 26, "word": 3},
-              {"words": "to the LORD,", "page": 191, "line": 26, "word": 5},
-              {"words": "you are to present", "page": 191, "line": 25, "word": 1},
-              {"words": "a food offering,", "page": 191, "line": 26, "word": 2},
-              {"words": "a burnt offering", "page": 191, "line": 26, "word": 1},
-              {"words": "of one", "page": 191, "line": 26, "word": 7},
-              {"words": "bull,", "page": 191, "line": 26, "word": 6},
-              {"words": "one", "page": 191, "line": 26, "word": 9},
-              {"words": "ram,", "page": 191, "line": 26, "word": 8}
-            ],
+            "en": [["a burnt offering,", [0]], ["an offering made by fire,", [1]], ["an aroma of", [2]], ["soothing", [3]], ["to יהוה:", [4]], ["one", [8]], ["bull,", [5]], ["one", [6]], ["ram,", [7]]],
             "verseIndex": 0
           }
         ]
@@ -970,33 +733,23 @@
         "book": 4,
         "chapter": 29,
         "verse": 36,
-        "start": false,
-        "width": 0.5173966495341638
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "26": {
     "text": [
       [
         [
           {
-            "he": ["כְּבָשִׂ֧ים", " בְּנֵי", "־שָׁנָ֛ה", " שִׁבְעָ֖ה", " תְּמִימִֽם׃"],
-            "en": [
-              {"words": "[and] seven", "page": 191, "line": 27, "word": 4},
-              {"words": "male lambs", "page": 191, "line": 27, "word": 1},
-              {"words": "a year old", "page": 191, "line": 27, "word": 2},
-              {"words": ",", "page": 191, "line": 27, "word": 3},
-              {"words": "all unblemished,", "page": 191, "line": 27, "word": 5}
-            ],
+            "he": ["כְּבָשִׂ֧ים", " בְּנֵי־", "שָׁנָ֛ה", " שִׁבְעָ֖ה", " תְּמִימִֽם׃"],
+            "en": [["seven", [3]], ["male lambs,", [0]], ["sons of", [1]], ["a year,", [2]], ["unblemished.", [4]]],
             "verseIndex": 0
           },
           {
             "he": [" מִנְחָתָ֣ם", " וְנִסְכֵּיהֶ֗ם"],
-            "en": [
-              {"words": "along with the grain and drink offerings", "page": 191, "line": 27, "word": 1},
-              {"words": "", "page": 191, "line": 27, "word": 2}
-            ],
+            "en": [["Their grain offering", [0]], ["and their drink offerings,", [1]]],
             "verseIndex": 1
           }
         ]
@@ -1007,39 +760,29 @@
         "book": 4,
         "chapter": 29,
         "verse": 36,
-        "start": false,
-        "width": 0.3528801860382445
+        "indexOfFirstWord": 10
       },
       {
         "book": 4,
         "chapter": 29,
         "verse": 37,
-        "start": true,
-        "width": 0.3010915909547514
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "27": {
     "text": [
       [
         [
           {
             "he": ["לַפָּ֨ר", " לָאַ֧יִל", " וְלַכְּבָשִׂ֛ים", " בְּמִסְפָּרָ֖ם", " כַּמִּשְׁפָּֽט׃"],
-            "en": [
-              {"words": "for the bulls,", "page": 191, "line": 28, "word": 1},
-              {"words": "rams,", "page": 191, "line": 28, "word": 2},
-              {"words": "and lambs,", "page": 191, "line": 28, "word": 3},
-              {"words": "according to the number", "page": 191, "line": 28, "word": 4},
-              {"words": "prescribed.", "page": 191, "line": 28, "word": 5}
-            ],
+            "en": [["for the bull,", [0]], ["for the ram,", [1]], ["and for the male lambs,", [2]], ["shall be by their number", [3]], ["according to the ordinance,", [4]]],
             "verseIndex": 0
           },
           {
             "he": [" וּשְׂעִ֥יר"],
-            "en": [
-              {"words": "Include one", "page": 191, "line": 29, "word": 2}
-            ],
+            "en": [["and", [0]], ["one", [[191, 28, 0, 1]]]],
             "verseIndex": 1
           }
         ]
@@ -1050,34 +793,24 @@
         "book": 4,
         "chapter": 29,
         "verse": 37,
-        "start": false,
-        "width": 0.6989084090452485
+        "indexOfFirstWord": 2
       },
       {
         "book": 4,
         "chapter": 29,
         "verse": 38,
-        "start": true,
-        "width": 0.1277656959152799
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "28": {
     "text": [
       [
         [
           {
             "he": ["חַטָּ֖את", " אֶחָ֑ד", " מִלְּבַד֙", " עֹלַ֣ת", " הַתָּמִ֔יד", " וּמִנְחָתָ֖הּ", " וְנִסְכָּֽהּ׃"],
-            "en": [
-              {"words": "male goat", "page": 191, "line": 28, "word": 1},
-              {"words": "as a sin offering,", "page": 191, "line": 29, "word": 1},
-              {"words": "in addition to", "page": 191, "line": 29, "word": 3},
-              {"words": "the regular", "page": 191, "line": 29, "word": 5},
-              {"words": "burnt offering", "page": 191, "line": 29, "word": 4},
-              {"words": "with its grain offering", "page": 191, "line": 29, "word": 6},
-              {"words": "and drink offering.", "page": 191, "line": 29, "word": 7}
-            ],
+            "en": [["male goat of", [[191, 27, 1, 0]]], ["the sin offering", [0]], ["apart from", [2]], ["the burnt offering of", [3]], ["the continuity", [4]], ["and its grain offering", [5]], ["and its drink offering.", [6]]],
             "verseIndex": 0
           }
         ]
@@ -1088,26 +821,18 @@
         "book": 4,
         "chapter": 29,
         "verse": 38,
-        "start": false,
-        "width": 0.8722343040847201
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "29": {
     "text": [
       [
         [
           {
             "he": ["אֵ֛לֶּה", " תַּעֲשׂ֥וּ", " לַיהֹוָ֖ה", " בְּמוֹעֲדֵיכֶ֑ם", " לְבַ֨ד", " מִנִּדְרֵיכֶ֜ם"],
-            "en": [
-              {"words": "You are to present", "page": 191, "line": 30, "word": 2},
-              {"words": "these [offerings]", "page": 191, "line": 30, "word": 1},
-              {"words": "to the LORD", "page": 191, "line": 30, "word": 3},
-              {"words": "at your appointed times,", "page": 191, "line": 30, "word": 4},
-              {"words": "in addition to", "page": 191, "line": 30, "word": 5},
-              {"words": "your vow", "page": 191, "line": 30, "word": 6}
-            ],
+            "en": [["You shall do", [1]], ["these", [0]], ["for יהוה", [2]], ["at your appointed times,", [3]], ["apart from", [4]], ["your vows", [5]]],
             "verseIndex": 0
           }
         ]
@@ -1118,24 +843,18 @@
         "book": 4,
         "chapter": 29,
         "verse": 39,
-        "start": true,
-        "width": 0.4389031430404105
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "30": {
     "text": [
       [
         [
           {
             "he": ["וְנִדְבֹתֵיכֶ֗ם", " לְעֹלֹֽתֵיכֶם֙", " וּלְמִנְחֹ֣תֵיכֶ֔ם", " וּלְנִסְכֵּיכֶ֖ם"],
-            "en": [
-              {"words": "and freewill offerings,", "page": 191, "line": 31, "word": 1},
-              {"words": "whether burnt offerings,", "page": 191, "line": 31, "word": 2},
-              {"words": "grain offerings,", "page": 191, "line": 31, "word": 3},
-              {"words": "drink offerings,", "page": 191, "line": 31, "word": 4}
-            ],
+            "en": [["and your voluntary offerings,", [0]], ["for your burnt offerings,", [1]], ["and for your grain offerings,", [2]], ["and for your drink offerings,", [3]]],
             "verseIndex": 0
           }
         ]
@@ -1146,33 +865,23 @@
         "book": 4,
         "chapter": 29,
         "verse": 39,
-        "start": false,
-        "width": 0.44467607440667095
+        "indexOfFirstWord": 6
       }
     ],
     "isPetucha": false
   },
-  {
+  "31": {
     "text": [
       [
         [
           {
             "he": ["וּלְשַׁלְמֵיכֶֽם׃"],
-            "en": [
-              {"words": "or peace offerings.”", "page": 191, "line": 32, "word": 1}
-            ],
+            "en": [["and for your peace offerings.”", [0]]],
             "verseIndex": 0
           },
           {
-            "he": [" וַיֹּ֥אמֶר", " מֹשֶׁ֖ה", " אֶל", "־בְּנֵ֣י", " יִשְׂרָאֵ֑ל", " כְּכֹ֛ל"],
-            "en": [
-              {"words": "So Moses", "page": 191, "line": 32, "word": 2},
-              {"words": "", "page": 191, "line": 32, "word": 3},
-              {"words": "spoke", "page": 191, "line": 32, "word": 1},
-              {"words": "all this", "page": 191, "line": 32, "word": 6},
-              {"words": "to the Israelites", "page": 191, "line": 32, "word": 4},
-              {"words": "", "page": 191, "line": 32, "word": 5}
-            ],
+            "he": [" וַיֹּ֥אמֶר", " מֹשֶׁ֖ה", " אֶל־", "בְּנֵ֣י", " יִשְׂרָאֵ֑ל", " כְּכֹ֛ל"],
+            "en": [["And", [0]], ["Moses", [1]], ["spoke", [0]], ["to", [2]], ["the sons of", [3]], ["Israel", [4]], ["according to all", [5]]],
             "verseIndex": 1
           }
         ]
@@ -1183,32 +892,24 @@
         "book": 4,
         "chapter": 29,
         "verse": 39,
-        "start": false,
-        "width": 0.11642078255291853
+        "indexOfFirstWord": 10
       },
       {
         "book": 4,
         "chapter": 30,
         "verse": 1,
-        "start": true,
-        "width": 0.5750779396026243
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "32": {
     "text": [
       [
         [
           {
-            "he": ["אֲשֶׁר", "־צִוָּ֥ה", " יְהֹוָ֖ה", " אֶת", "־מֹשֶֽׁה׃"],
-            "en": [
-              {"words": "just as", "page": 191, "line": 33, "word": 1},
-              {"words": "the LORD", "page": 191, "line": 33, "word": 3},
-              {"words": "", "page": 191, "line": 33, "word": 4},
-              {"words": "had commanded", "page": 191, "line": 33, "word": 2},
-              {"words": "him.", "page": 191, "line": 33, "word": 5}
-            ],
+            "he": ["אֲשֶׁר־", "צִוָּ֥ה", " יְהֹוָ֖ה", " אֶת־", "מֹשֶֽׁה׃"],
+            "en": [["that", [0]], ["יהוה", [2]], ["had commanded", [1]], ["Moses.", [3, 4]]],
             "verseIndex": 0
           }
         ]
@@ -1219,27 +920,18 @@
         "book": 4,
         "chapter": 30,
         "verse": 1,
-        "start": false,
-        "width": 0.4249220603973756
+        "indexOfFirstWord": 6
       }
     ],
     "isPetucha": true
   },
-  {
+  "33": {
     "text": [
       [
         [
           {
-            "he": ["וַיְדַבֵּ֤ר", " מֹשֶׁה֙", " אֶל", "־רָאשֵׁ֣י", " הַמַּטּ֔וֹת", " לִבְנֵ֥י", " יִשְׂרָאֵ֖ל"],
-            "en": [
-              {"words": "Then Moses", "page": 191, "line": 34, "word": 2},
-              {"words": "", "page": 191, "line": 34, "word": 3},
-              {"words": "said", "page": 191, "line": 34, "word": 1},
-              {"words": "to the heads", "page": 191, "line": 34, "word": 4},
-              {"words": "of the tribes", "page": 191, "line": 34, "word": 5},
-              {"words": "", "page": 191, "line": 34, "word": 6},
-              {"words": "of Israel,", "page": 191, "line": 34, "word": 7}
-            ],
+            "he": ["וַיְדַבֵּ֤ר", " מֹשֶׁה֙", " אֶל־", "רָאשֵׁ֣י", " הַמַּטּ֔וֹת", " לִבְנֵ֥י", " יִשְׂרָאֵ֖ל"],
+            "en": [["And", [0]], ["Moses", [1]], ["spoke", [0]], ["to", [2]], ["the heads of", [3]], ["the tribes", [4]], ["of the sons of", [5]], ["Israel,", [6]]],
             "verseIndex": 0
           }
         ]
@@ -1250,35 +942,23 @@
         "book": 4,
         "chapter": 30,
         "verse": 2,
-        "start": true,
-        "width": 0.5762770682953915
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "34": {
     "text": [
       [
         [
           {
             "he": ["לֵאמֹ֑ר", " זֶ֣ה", " הַדָּבָ֔ר", " אֲשֶׁ֖ר", " צִוָּ֥ה", " יְהֹוָֽה׃"],
-            "en": [
-              {"words": "", "page": 191, "line": 35, "word": 1},
-              {"words": "“This", "page": 191, "line": 35, "word": 2},
-              {"words": "", "page": 191, "line": 35, "word": 3},
-              {"words": "is what", "page": 191, "line": 35, "word": 4},
-              {"words": "the LORD", "page": 191, "line": 35, "word": 6},
-              {"words": "has commanded:", "page": 191, "line": 35, "word": 5}
-            ],
+            "en": [["saying,", [0]], ["“This", [1]], ["is the word", [2]], ["that", [3]], ["יהוה", [5]], ["has commanded:", [4]]],
             "verseIndex": 0
           },
           {
-            "he": [" אִישׁ֩", " כִּֽי", "־יִדֹּ֨ר"],
-            "en": [
-              {"words": "If", "page": 191, "line": 35, "word": 2},
-              {"words": "a man", "page": 191, "line": 35, "word": 1},
-              {"words": "makes", "page": 191, "line": 35, "word": 3}
-            ],
+            "he": [" אִישׁ֩", " כִּֽי־", "יִדֹּ֨ר"],
+            "en": [["When", [1]], ["a man", [0]], ["vows", [2]]],
             "verseIndex": 1
           }
         ]
@@ -1289,35 +969,24 @@
         "book": 4,
         "chapter": 30,
         "verse": 2,
-        "start": false,
-        "width": 0.42372293170460856
+        "indexOfFirstWord": 7
       },
       {
         "book": 4,
         "chapter": 30,
         "verse": 3,
-        "start": true,
-        "width": 0.1180607107667805
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "35": {
     "text": [
       [
         [
           {
-            "he": ["נֶ֜דֶר", " לַֽיהֹוָ֗ה", " אֽוֹ", "־הִשָּׁ֤בַע", " שְׁבֻעָה֙", " לֶאְסֹ֤ר", " אִסָּר֙", " עַל־"],
-            "en": [
-              {"words": "a vow", "page": 191, "line": 36, "word": 1},
-              {"words": "to the LORD", "page": 191, "line": 36, "word": 2},
-              {"words": "or", "page": 191, "line": 36, "word": 3},
-              {"words": "swears", "page": 191, "line": 36, "word": 4},
-              {"words": "an oath", "page": 191, "line": 36, "word": 5},
-              {"words": "to obligate", "page": 191, "line": 36, "word": 6},
-              {"words": "himself", "page": 191, "line": 37, "word": 1},
-              {"words": "", "page": 191, "line": 36, "word": 8}
-            ],
+            "he": ["נֶ֜דֶר", " לַֽיהֹוָ֗ה", " אֽוֹ־", "הִשָּׁ֤בַע", " שְׁבֻעָה֙", " לֶאְסֹ֤ר", " אִסָּר֙", " עַל־"],
+            "en": [["a vow", [0]], ["to יהוה", [1]], ["or", [2]], ["swears", [3]], ["an oath", [4]], ["to bind", [5]], ["a binding vow", [6]], ["on", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1328,28 +997,18 @@
         "book": 4,
         "chapter": 30,
         "verse": 3,
-        "start": false,
-        "width": 0.4493784502422762
+        "indexOfFirstWord": 3
       }
     ],
     "isPetucha": false
   },
-  {
+  "36": {
     "text": [
       [
         [
           {
-            "he": ["נַפְשׁ֔וֹ", " לֹ֥א", " יַחֵ֖ל", " דְּבָר֑וֹ", " כְּכׇל", "־הַיֹּצֵ֥א", " מִפִּ֖יו", " יַעֲשֶֽׂה׃"],
-            "en": [
-              {"words": "by a pledge,", "page": 191, "line": 36, "word": 7},
-              {"words": "he must not", "page": 191, "line": 37, "word": 2},
-              {"words": "break", "page": 191, "line": 37, "word": 3},
-              {"words": "his word;", "page": 191, "line": 37, "word": 4},
-              {"words": "he must do", "page": 191, "line": 37, "word": 8},
-              {"words": "everything", "page": 191, "line": 37, "word": 5},
-              {"words": "he has promised", "page": 191, "line": 37, "word": 6},
-              {"words": ".", "page": 191, "line": 37, "word": 7}
-            ],
+            "he": ["נַפְשׁ֔וֹ", " לֹ֥א", " יַחֵ֖ל", " דְּבָר֑וֹ", " כְּכׇל־", "הַיֹּצֵ֥א", " מִפִּ֖יו", " יַעֲשֶֽׂה׃"],
+            "en": [["his life,", [0]], ["he shall", [2]], ["not", [1]], ["profane", [2]], ["his word.", [3]], ["He shall do", [7]], ["according to all", [4]], ["that came out", [5]], ["from his mouth.", [6]]],
             "verseIndex": 0
           }
         ]
@@ -1360,28 +1019,18 @@
         "book": 4,
         "chapter": 30,
         "verse": 3,
-        "start": false,
-        "width": 0.43256083899094333
+        "indexOfFirstWord": 11
       }
     ],
     "isPetucha": false
   },
-  {
+  "37": {
     "text": [
       [
         [
           {
-            "he": ["וְאִשָּׁ֕ה", " כִּֽי", "־תִדֹּ֥ר", " נֶ֖דֶר", " לַיהֹוָ֑ה", " וְאָסְרָ֥ה", " אִסָּ֛ר", " בְּבֵ֥ית"],
-            "en": [
-              {"words": "And if", "page": 191, "line": 38, "word": 2},
-              {"words": "a woman", "page": 191, "line": 38, "word": 1},
-              {"words": "in her father’s", "page": 191, "line": 39, "word": 1},
-              {"words": "house", "page": 191, "line": 38, "word": 8},
-              {"words": "during her youth", "page": 191, "line": 39, "word": 2},
-              {"words": "makes", "page": 191, "line": 38, "word": 3},
-              {"words": "a vow", "page": 191, "line": 38, "word": 4},
-              {"words": "to the LORD", "page": 191, "line": 38, "word": 5}
-            ],
+            "he": ["וְאִשָּׁ֕ה", " כִּֽי־", "תִדֹּ֥ר", " נֶ֖דֶר", " לַיהֹוָ֑ה", " וְאָסְרָ֥ה", " אִסָּ֛ר", " בְּבֵ֥ית"],
+            "en": [["And", [0]], ["if", [1]], ["a woman", [0]], ["vows", [2]], ["a vow", [3]], ["to יהוה", [4]], ["and binds", [5]], ["a binding vow", [6]], ["in the house of", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1392,33 +1041,23 @@
         "book": 4,
         "chapter": 30,
         "verse": 4,
-        "start": true,
-        "width": 0.7507435269419174
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "38": {
     "text": [
       [
         [
           {
             "he": ["אָבִ֖יהָ", " בִּנְעֻרֶֽיהָ׃"],
-            "en": [
-              {"words": "or obligates herself", "page": 191, "line": 38, "word": 6},
-              {"words": "by a pledge,", "page": 191, "line": 38, "word": 7}
-            ],
+            "en": [["her father,", [0]], ["in her youth,", [1]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְשָׁמַ֨ע", " אָבִ֜יהָ", " אֶת", "־נִדְרָ֗הּ", " וֶֽאֱסָרָהּ֙"],
-            "en": [
-              {"words": "and her father", "page": 191, "line": 39, "word": 2},
-              {"words": "", "page": 191, "line": 39, "word": 3},
-              {"words": "hears about", "page": 191, "line": 39, "word": 1},
-              {"words": "her vow", "page": 191, "line": 39, "word": 4},
-              {"words": "or pledge", "page": 191, "line": 39, "word": 5}
-            ],
+            "he": [" וְשָׁמַ֨ע", " אָבִ֜יהָ", " אֶת־", "נִדְרָ֗הּ", " וֶֽאֱסָרָהּ֙"],
+            "en": [["and", [0]], ["her father", [1]], ["hears", [0]], ["her vow", [2, 3]], ["and her binding vow", [4]]],
             "verseIndex": 1
           }
         ]
@@ -1429,35 +1068,24 @@
         "book": 4,
         "chapter": 30,
         "verse": 4,
-        "start": false,
-        "width": 0.24925647305808257
+        "indexOfFirstWord": 8
       },
       {
         "book": 4,
         "chapter": 30,
         "verse": 5,
-        "start": true,
-        "width": 0.24255155383085852
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "39": {
     "text": [
       [
         [
           {
-            "he": ["אֲשֶׁ֣ר", " אָֽסְרָ֣ה", " עַל", "־נַפְשָׁ֔הּ", " וְהֶחֱרִ֥ישׁ", " לָ֖הּ", " אָבִ֑יהָ", " וְקָ֙מוּ֙"],
-            "en": [
-              {"words": "", "page": 191, "line": 40, "word": 1},
-              {"words": "", "page": 191, "line": 40, "word": 2},
-              {"words": "", "page": 191, "line": 40, "word": 4},
-              {"words": "", "page": 191, "line": 40, "word": 3},
-              {"words": "[but]", "page": 191, "line": 40, "word": 7},
-              {"words": "says nothing", "page": 191, "line": 40, "word": 5},
-              {"words": "to her,", "page": 191, "line": 40, "word": 6},
-              {"words": "then all", "page": 191, "line": 41, "word": 1}
-            ],
+            "he": ["אֲשֶׁ֣ר", " אָֽסְרָ֣ה", " עַל־", "נַפְשָׁ֔הּ", " וְהֶחֱרִ֥ישׁ", " לָ֖הּ", " אָבִ֑יהָ", " וְקָ֙מוּ֙"],
+            "en": [["that", [0]], ["she bound", [1]], ["on", [2]], ["her life,", [3]], ["and", [4]], ["her father", [6]], ["is silent", [4]], ["to her,", [5]], ["then", [7]], ["all", [[191, 40, 0, 0]]], ["her vows", [[191, 40, 0, 1]]]],
             "verseIndex": 0
           }
         ]
@@ -1468,28 +1096,18 @@
         "book": 4,
         "chapter": 30,
         "verse": 5,
-        "start": false,
-        "width": 0.37328287525523024
+        "indexOfFirstWord": 5
       }
     ],
     "isPetucha": false
   },
-  {
+  "40": {
     "text": [
       [
         [
           {
-            "he": ["כׇּל", "־נְדָרֶ֔יהָ", " וְכׇל", "־אִסָּ֛ר", " אֲשֶׁר", "־אָסְרָ֥ה", " עַל", "־נַפְשָׁ֖הּ"],
-            "en": [
-              {"words": "the vows", "page": 191, "line": 41, "word": 2},
-              {"words": "or", "page": 191, "line": 41, "word": 3},
-              {"words": "pledges", "page": 191, "line": 41, "word": 4},
-              {"words": "by which", "page": 191, "line": 41, "word": 5},
-              {"words": "she has bound", "page": 191, "line": 41, "word": 6},
-              {"words": "herself", "page": 191, "line": 41, "word": 8},
-              {"words": "", "page": 191, "line": 42, "word": 1},
-              {"words": "", "page": 191, "line": 41, "word": 7}
-            ],
+            "he": ["כׇּל־", "נְדָרֶ֔יהָ", " וְכׇל־", "אִסָּ֛ר", " אֲשֶׁר־", "אָסְרָ֥ה", " עַל־", "נַפְשָׁ֖הּ"],
+            "en": [["shall stand,", [[191, 39, 0, 7]]], ["and every", [2]], ["binding vow", [3]], ["that", [4]], ["she has bound", [5]], ["on", [6]], ["her life", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1500,35 +1118,23 @@
         "book": 4,
         "chapter": 30,
         "verse": 5,
-        "start": false,
-        "width": 0.34163967373293563
+        "indexOfFirstWord": 13
       }
     ],
     "isPetucha": false
   },
-  {
+  "41": {
     "text": [
       [
         [
           {
             "he": ["יָקֽוּם׃"],
-            "en": [
-              {"words": "shall stand.", "page": 191, "line": 40, "word": 8}
-            ],
+            "en": [["shall stand.", [0]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְאִם", "־הֵנִ֨יא", " אָבִ֣יהָ", " אֹתָהּ֮", " בְּי֣וֹם", " שׇׁמְעוֹ֒", " כׇּל", "־נְדָרֶ֗יהָ"],
-            "en": [
-              {"words": "But if", "page": 191, "line": 42, "word": 1},
-              {"words": "her father", "page": 191, "line": 42, "word": 3},
-              {"words": "", "page": 191, "line": 42, "word": 4},
-              {"words": "prohibits her", "page": 191, "line": 42, "word": 2},
-              {"words": "on the day", "page": 191, "line": 42, "word": 5},
-              {"words": "he hears", "page": 191, "line": 42, "word": 6},
-              {"words": "about it,", "page": 191, "line": 42, "word": 7},
-              {"words": "then none", "page": 192, "line": 1, "word": 6}
-            ],
+            "he": [" וְאִם־", "הֵנִ֨יא", " אָבִ֣יהָ", " אֹתָהּ֮", " בְּי֣וֹם", " שׇׁמְעוֹ֒", " כׇּל־", "נְדָרֶ֗יהָ"],
+            "en": [["And if", [0]], ["her father", [2]], ["forbids", [1]], ["her", [3]], ["on the day of", [4]], ["his hearing,", [5]], ["any of", [6]], ["her vows", [7]]],
             "verseIndex": 1
           }
         ]
@@ -1539,17 +1145,15 @@
         "book": 4,
         "chapter": 30,
         "verse": 5,
-        "start": false,
-        "width": 0.042525897180975596
+        "indexOfFirstWord": 21
       },
       {
         "book": 4,
         "chapter": 30,
         "verse": 6,
-        "start": true,
-        "width": 0.36668493641010724
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   }
-]
+}

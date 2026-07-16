@@ -1,25 +1,20 @@
-[
-  {
+{
+  "length": 42,
+  "0": {
     "text": [
       [
         [
           {
             "he": ["וּמָאתָֽיִם׃"],
-            "en": [
-              {"words": "men.", "page": 186, "line": 1, "word": 1}
-            ],
+            "en": [["hundred.", [[], 0]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" בְּנֵ֣י", " גָד֮", " לְמִשְׁפְּחֹתָם֒"],
-            "en": [
-              {"words": "[These were] the descendants", "page": 186, "line": 1, "word": 1},
-              {"words": "of Gad", "page": 186, "line": 1, "word": 2},
-              {"words": "by their clans:", "page": 186, "line": 1, "word": 3}
-            ],
-            "verseIndex": 0
+            "en": [["The sons of", [0]], ["Gad", [1]], ["according to their clans:", [2]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -29,34 +24,24 @@
         "book": 4,
         "chapter": 26,
         "verse": 14,
-        "start": false,
-        "width": 0.1706262387068544
+        "indexOfFirstWord": 6
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 15,
-        "start": true,
-        "width": 0.22353748498884887
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "1": {
     "text": [
       [
         [
           {
             "he": ["לִצְפ֗וֹן", " מִשְׁפַּ֙חַת֙", " הַצְּפוֹנִ֔י", " לְחַגִּ֕י", " מִשְׁפַּ֖חַת", " הַֽחַגִּ֑י", " לְשׁוּנִ֕י"],
-            "en": [
-              {"words": "The Zephonite", "page": 186, "line": 2, "word": 3},
-              {"words": "clan", "page": 186, "line": 2, "word": 2},
-              {"words": "from Zephon,", "page": 186, "line": 2, "word": 1},
-              {"words": "the Haggite", "page": 186, "line": 2, "word": 4},
-              {"words": "clan", "page": 186, "line": 2, "word": 5},
-              {"words": "from Haggi,", "page": 186, "line": 2, "word": 6},
-              {"words": "the Shunite", "page": 186, "line": 3, "word": 2}
-            ],
+            "en": [["of Zephon,", [0]], ["the clan of", [1]], ["the Zephonite;", [2]], ["of Haggi,", [3]], ["the clan of", [4]], ["the Haggite;", [5]], ["of Shuni,", [6]]],
             "verseIndex": 0
           }
         ]
@@ -67,32 +52,23 @@
         "book": 4,
         "chapter": 26,
         "verse": 15,
-        "start": false,
-        "width": 0.5946599291941547
+        "indexOfFirstWord": 3
       }
     ],
     "isPetucha": false
   },
-  {
+  "2": {
     "text": [
       [
         [
           {
             "he": ["מִשְׁפַּ֖חַת", " הַשּׁוּנִֽי׃"],
-            "en": [
-              {"words": "clan", "page": 186, "line": 3, "word": 1},
-              {"words": "from Shuni,", "page": 186, "line": 2, "word": 7}
-            ],
+            "en": [["the clan of", [0]], ["the Shunite;", [1]]],
             "verseIndex": 0
           },
           {
             "he": [" לְאׇזְנִ֕י", " מִשְׁפַּ֖חַת", " הָאׇזְנִ֑י", " לְעֵרִ֕י"],
-            "en": [
-              {"words": "the Oznite", "page": 186, "line": 3, "word": 1},
-              {"words": "clan", "page": 186, "line": 3, "word": 2},
-              {"words": "from Ozni,", "page": 186, "line": 3, "word": 3},
-              {"words": "the Erite", "page": 186, "line": 4, "word": 2}
-            ],
+            "en": [["of Ozni,", [0]], ["the clan of", [1]], ["the Oznite;", [2]], ["of Eri,", [3]]],
             "verseIndex": 1
           }
         ]
@@ -103,39 +79,29 @@
         "book": 4,
         "chapter": 26,
         "verse": 15,
-        "start": false,
-        "width": 0.18180258581699651
+        "indexOfFirstWord": 10
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 16,
-        "start": true,
-        "width": 0.6453737649909899
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "3": {
     "text": [
       [
         [
           {
             "he": ["מִשְׁפַּ֖חַת", " הָעֵרִֽי׃"],
-            "en": [
-              {"words": "clan", "page": 186, "line": 4, "word": 1},
-              {"words": "from Eri,", "page": 186, "line": 3, "word": 4}
-            ],
+            "en": [["the clan of", [0]], ["the Erite;", [1]]],
             "verseIndex": 0
           },
           {
             "he": [" לַאֲר֕וֹד", " מִשְׁפַּ֖חַת", " הָאֲרוֹדִ֑י", " לְאַ֨רְאֵלִ֔י"],
-            "en": [
-              {"words": "the Arodite", "page": 186, "line": 4, "word": 3},
-              {"words": "clan", "page": 186, "line": 4, "word": 2},
-              {"words": "from Arod,", "page": 186, "line": 4, "word": 1},
-              {"words": "[and] the Arelite", "page": 186, "line": 4, "word": 4}
-            ],
+            "en": [["of Arod,", [0]], ["the clan of", [1]], ["the Arodite;", [2]], ["of Areli,", [3]]],
             "verseIndex": 1
           }
         ]
@@ -146,40 +112,29 @@
         "book": 4,
         "chapter": 26,
         "verse": 16,
-        "start": false,
-        "width": 0.35462623500901014
+        "indexOfFirstWord": 4
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 17,
-        "start": true,
-        "width": 0.6563045241196275
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "4": {
     "text": [
       [
         [
           {
             "he": ["מִשְׁפַּ֖חַת", " הָאַרְאֵלִֽי׃"],
-            "en": [
-              {"words": "clan", "page": 186, "line": 5, "word": 1},
-              {"words": "from Areli.", "page": 186, "line": 5, "word": 2}
-            ],
+            "en": [["the clan of", [0]], ["the Arelite.", [1]]],
             "verseIndex": 0
           },
           {
-            "he": [" אֵ֛לֶּה", " מִשְׁפְּחֹ֥ת", " בְּנֵֽי", "־גָ֖ד", " לִפְקֻדֵיהֶ֑ם"],
-            "en": [
-              {"words": "These", "page": 186, "line": 5, "word": 1},
-              {"words": "[were] the clans", "page": 186, "line": 5, "word": 2},
-              {"words": "", "page": 186, "line": 5, "word": 3},
-              {"words": "of Gad,", "page": 186, "line": 5, "word": 4},
-              {"words": "and their registration numbered", "page": 186, "line": 5, "word": 5}
-            ],
+            "he": [" אֵ֛לֶּה", " מִשְׁפְּחֹ֥ת", " בְּנֵֽי־", "גָ֖ד", " לִפְקֻדֵיהֶ֑ם"],
+            "en": [["These", [0]], ["were the clans of", [1]], ["the sons of", [2]], ["Gad", [3]], ["according to their counted ones,", [4]]],
             "verseIndex": 1
           }
         ]
@@ -190,41 +145,32 @@
         "book": 4,
         "chapter": 26,
         "verse": 17,
-        "start": false,
-        "width": 0.3436954758803725
+        "indexOfFirstWord": 4
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 18,
-        "start": true,
-        "width": 0.5422390263546467
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "5": {
     "text": [
       [
         [
           {
             "he": ["אַרְבָּעִ֥ים", " אֶ֖לֶף", " וַחֲמֵ֥שׁ", " מֵאֽוֹת׃"],
-            "en": [
-              {"words": " 40,500", "page": 186, "line": 6, "word": 1},
-              {"words": "", "page": 186, "line": 6, "word": 2},
-              {"words": "", "page": 186, "line": 6, "word": 3},
-              {"words": ".", "page": 186, "line": 6, "word": 4}
-            ],
+            "en": [["forty thousand, five hundred.", [0, 1, 2, 3]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" בְּנֵ֥י"],
-            "en": [
-              {"words": "The sons", "page": 186, "line": 6, "word": 1}
-            ],
-            "verseIndex": 0
+            "en": [["The sons of", [0]], ["Judah", [[186, 6, 0, 0]]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -234,42 +180,29 @@
         "book": 4,
         "chapter": 26,
         "verse": 18,
-        "start": false,
-        "width": 0.4577609736453533
+        "indexOfFirstWord": 5
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 19,
-        "start": true,
-        "width": 0.07960913924414427
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "6": {
     "text": [
       [
         [
           {
             "he": ["יְהוּדָ֖ה", " עֵ֣ר", " וְאוֹנָ֑ן", " וַיָּ֥מׇת", " עֵ֛ר", " וְאוֹנָ֖ן", " בְּאֶ֥רֶץ", " כְּנָֽעַן׃"],
-            "en": [
-              {"words": "of Judah", "page": 186, "line": 7, "word": 1},
-              {"words": "[were] Er", "page": 186, "line": 7, "word": 2},
-              {"words": "and Onan,", "page": 186, "line": 7, "word": 3},
-              {"words": "but they", "page": 186, "line": 7, "word": 5},
-              {"words": "", "page": 186, "line": 7, "word": 6},
-              {"words": "died", "page": 186, "line": 7, "word": 4},
-              {"words": "in the land", "page": 186, "line": 7, "word": 7},
-              {"words": "of Canaan.", "page": 186, "line": 7, "word": 8}
-            ],
+            "en": [["were", [[186, 5, 1, 0]]], ["Er", [1]], ["and Onan,", [2]], ["and", [3]], ["Er", [4]], ["and Onan", [5]], ["died", [3]], ["in the land of", [6]], ["Canaan.", [7]]],
             "verseIndex": 0
           },
           {
             "he": [" וַיִּהְי֣וּ"],
-            "en": [
-              {"words": "These were", "page": 186, "line": 7, "word": 1}
-            ],
+            "en": [["And", [0]], ["the sons of", [[186, 7, 0, 0]]]],
             "verseIndex": 1
           }
         ]
@@ -280,33 +213,24 @@
         "book": 4,
         "chapter": 26,
         "verse": 19,
-        "start": false,
-        "width": 0.9203908607558557
+        "indexOfFirstWord": 1
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 20,
-        "start": true,
-        "width": 0.05540988869863014
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "7": {
     "text": [
       [
         [
           {
-            "he": ["בְנֵי", "־יְהוּדָה֮", " לְמִשְׁפְּחֹתָם֒", " לְשֵׁלָ֗ה", " מִשְׁפַּ֙חַת֙", " הַשֵּׁ֣לָנִ֔י"],
-            "en": [
-              {"words": "the descendants", "page": 186, "line": 8, "word": 1},
-              {"words": "of Judah", "page": 186, "line": 8, "word": 2},
-              {"words": "by their clans:", "page": 186, "line": 8, "word": 3},
-              {"words": "The Shelanite", "page": 186, "line": 8, "word": 6},
-              {"words": "clan", "page": 186, "line": 8, "word": 5},
-              {"words": "from Shelah,", "page": 186, "line": 8, "word": 4}
-            ],
+            "he": ["בְנֵי־", "יְהוּדָה֮", " לְמִשְׁפְּחֹתָם֒", " לְשֵׁלָ֗ה", " מִשְׁפַּ֙חַת֙", " הַשֵּׁ֣לָנִ֔י"],
+            "en": [["Judah", [1]], ["according to their clans", [2]], ["were:", [[186, 6, 1, 0]]], ["of Shelah,", [3]], ["the clan of", [4]], ["the Shelanite;", [5]]],
             "verseIndex": 0
           }
         ]
@@ -317,33 +241,23 @@
         "book": 4,
         "chapter": 26,
         "verse": 20,
-        "start": false,
-        "width": 0.4754254066780822
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "8": {
     "text": [
       [
         [
           {
             "he": ["לְפֶ֕רֶץ", " מִשְׁפַּ֖חַת", " הַפַּרְצִ֑י", " לְזֶ֕רַח", " מִשְׁפַּ֖חַת", " הַזַּרְחִֽי׃"],
-            "en": [
-              {"words": "the Perezite", "page": 186, "line": 9, "word": 3},
-              {"words": "clan", "page": 186, "line": 9, "word": 2},
-              {"words": "from Perez,", "page": 186, "line": 9, "word": 1},
-              {"words": "[and] the Zerahite", "page": 186, "line": 9, "word": 6},
-              {"words": "clan", "page": 186, "line": 9, "word": 5},
-              {"words": "from Zerah.", "page": 186, "line": 9, "word": 4}
-            ],
+            "en": [["of Perez,", [0]], ["the clan of", [1]], ["the Perezite;", [2]], ["of Zerah,", [3]], ["the clan of", [4]], ["the Zerahite.", [5]]],
             "verseIndex": 0
           },
           {
             "he": [" וַיִּהְי֣וּ"],
-            "en": [
-              {"words": "And [these were]", "page": 186, "line": 9, "word": 1}
-            ],
+            "en": [["And", [0]], ["the sons of", [[186, 9, 0, 0]]]],
             "verseIndex": 1
           }
         ]
@@ -354,34 +268,24 @@
         "book": 4,
         "chapter": 26,
         "verse": 20,
-        "start": false,
-        "width": 0.4691647046232877
+        "indexOfFirstWord": 7
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 21,
-        "start": true,
-        "width": 0.08252311125278929
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "9": {
     "text": [
       [
         [
           {
-            "he": ["בְנֵי", "־פֶ֔רֶץ", " לְחֶצְרֹ֕ן", " מִשְׁפַּ֖חַת", " הַֽחֶצְרֹנִ֑י", " לְחָמ֕וּל", " מִשְׁפַּ֖חַת"],
-            "en": [
-              {"words": "the descendants", "page": 186, "line": 10, "word": 1},
-              {"words": "of Perez:", "page": 186, "line": 10, "word": 2},
-              {"words": "the Hezronite", "page": 186, "line": 10, "word": 5},
-              {"words": "clan", "page": 186, "line": 10, "word": 4},
-              {"words": "from Hezron", "page": 186, "line": 10, "word": 3},
-              {"words": "[and] the Hamulite", "page": 186, "line": 11, "word": 1},
-              {"words": "clan", "page": 186, "line": 10, "word": 7}
-            ],
+            "he": ["בְנֵי־", "פֶ֔רֶץ", " לְחֶצְרֹ֕ן", " מִשְׁפַּ֖חַת", " הַֽחֶצְרֹנִ֑י", " לְחָמ֕וּל", " מִשְׁפַּ֖חַת"],
+            "en": [["Perez", [1]], ["were:", [[186, 8, 1, 0]]], ["of Hezron,", [2]], ["the clan of", [3]], ["the Hezronite;", [4]], ["of Hamul,", [5]], ["the clan of", [6]]],
             "verseIndex": 0
           }
         ]
@@ -392,32 +296,23 @@
         "book": 4,
         "chapter": 26,
         "verse": 21,
-        "start": false,
-        "width": 0.7817381255977048
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "10": {
     "text": [
       [
         [
           {
             "he": ["הֶחָמוּלִֽי׃"],
-            "en": [
-              {"words": "from Hamul.", "page": 186, "line": 10, "word": 6}
-            ],
+            "en": [["the Hamulite.", [0]]],
             "verseIndex": 0
           },
           {
             "he": [" אֵ֛לֶּה", " מִשְׁפְּחֹ֥ת", " יְהוּדָ֖ה", " לִפְקֻדֵיהֶ֑ם", " שִׁשָּׁ֧ה"],
-            "en": [
-              {"words": "These", "page": 186, "line": 11, "word": 1},
-              {"words": "[were] the clans", "page": 186, "line": 11, "word": 2},
-              {"words": "of Judah,", "page": 186, "line": 11, "word": 3},
-              {"words": "and their registration numbered", "page": 186, "line": 11, "word": 4},
-              {"words": " 76,500", "page": 186, "line": 11, "word": 5}
-            ],
+            "en": [["These", [0]], ["were the clans of", [1]], ["Judah", [2]], ["according to their counted ones,", [3]], ["seventy-six", [4, []]]],
             "verseIndex": 1
           }
         ]
@@ -428,41 +323,32 @@
         "book": 4,
         "chapter": 26,
         "verse": 21,
-        "start": false,
-        "width": 0.1357387631495059
+        "indexOfFirstWord": 8
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 22,
-        "start": true,
-        "width": 0.5929796683372041
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "11": {
     "text": [
       [
         [
           {
             "he": ["וְשִׁבְעִ֛ים", " אֶ֖לֶף", " וַחֲמֵ֥שׁ", " מֵאֽוֹת׃"],
-            "en": [
-              {"words": "", "page": 186, "line": 12, "word": 1},
-              {"words": "", "page": 186, "line": 12, "word": 2},
-              {"words": "", "page": 186, "line": 12, "word": 3},
-              {"words": ".", "page": 186, "line": 12, "word": 4}
-            ],
+            "en": [["thousand, five hundred.", [[], 0, 1, 2, 3]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" בְּנֵ֤י"],
-            "en": [
-              {"words": "[These were] the descendants", "page": 186, "line": 12, "word": 1}
-            ],
-            "verseIndex": 0
+            "en": [["The sons of", [0]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -472,32 +358,24 @@
         "book": 4,
         "chapter": 26,
         "verse": 22,
-        "start": false,
-        "width": 0.4070203316627959
+        "indexOfFirstWord": 5
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 23,
-        "start": true,
-        "width": 0.05268363193731218
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "12": {
     "text": [
       [
         [
           {
             "he": ["יִשָּׂשכָר֙", " לְמִשְׁפְּחֹתָ֔ם", " תּוֹלָ֕ע", " מִשְׁפַּ֖חַת", " הַתּוֹלָעִ֑י"],
-            "en": [
-              {"words": "of Issachar", "page": 186, "line": 13, "word": 1},
-              {"words": "by their clans:", "page": 186, "line": 13, "word": 2},
-              {"words": "The Tolaite", "page": 186, "line": 13, "word": 5},
-              {"words": "clan", "page": 186, "line": 13, "word": 4},
-              {"words": "from Tola,", "page": 186, "line": 13, "word": 3}
-            ],
+            "en": [["Issachar", [0]], ["according to their clans:", [1]], ["Tola,", [2]], ["the clan of", [3]], ["the Tolaite;", [4]]],
             "verseIndex": 0
           }
         ]
@@ -508,32 +386,23 @@
         "book": 4,
         "chapter": 26,
         "verse": 23,
-        "start": false,
-        "width": 0.6398874053786755
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "13": {
     "text": [
       [
         [
           {
             "he": ["לְפֻוָ֕ה", " מִשְׁפַּ֖חַת", " הַפּוּנִֽי׃"],
-            "en": [
-              {"words": "the Punite", "page": 186, "line": 14, "word": 3},
-              {"words": "clan", "page": 186, "line": 14, "word": 2},
-              {"words": "from Puvah,", "page": 186, "line": 14, "word": 1}
-            ],
+            "en": [["of Puah,", [0]], ["the clan of", [1]], ["the Puite;", [2]]],
             "verseIndex": 0
           },
           {
             "he": [" לְיָשׁ֕וּב", " מִשְׁפַּ֖חַת", " הַיָּשֻׁבִ֑י"],
-            "en": [
-              {"words": "the Jashubite", "page": 186, "line": 14, "word": 3},
-              {"words": "clan", "page": 186, "line": 14, "word": 2},
-              {"words": "from Jashub,", "page": 186, "line": 14, "word": 1}
-            ],
+            "en": [["of Jashub,", [0]], ["the clan of", [1]], ["the Jashubite;", [2]]],
             "verseIndex": 1
           }
         ]
@@ -544,38 +413,29 @@
         "book": 4,
         "chapter": 26,
         "verse": 23,
-        "start": false,
-        "width": 0.3074289626840123
+        "indexOfFirstWord": 6
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 24,
-        "start": true,
-        "width": 0.4722641859478943
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "14": {
     "text": [
       [
         [
           {
             "he": ["לְשִׁמְרֹ֕ן", " מִשְׁפַּ֖חַת", " הַשִּׁמְרֹנִֽי׃"],
-            "en": [
-              {"words": "[and] the Shimronite", "page": 186, "line": 15, "word": 3},
-              {"words": "clan", "page": 186, "line": 15, "word": 2},
-              {"words": "from Shimron.", "page": 186, "line": 15, "word": 1}
-            ],
+            "en": [["of Shimron,", [0]], ["the clan of", [1]], ["the Shimronite.", [2]]],
             "verseIndex": 0
           },
           {
             "he": [" אֵ֛לֶּה", " מִשְׁפְּחֹ֥ת"],
-            "en": [
-              {"words": "These", "page": 186, "line": 15, "word": 1},
-              {"words": "[were] the clans", "page": 186, "line": 15, "word": 2}
-            ],
+            "en": [["These", [0]], ["were the clans of", [1]]],
             "verseIndex": 1
           }
         ]
@@ -586,33 +446,24 @@
         "book": 4,
         "chapter": 26,
         "verse": 24,
-        "start": false,
-        "width": 0.5277358140521057
+        "indexOfFirstWord": 3
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 25,
-        "start": true,
-        "width": 0.20968722423767036
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "15": {
     "text": [
       [
         [
           {
             "he": ["יִשָּׂשכָ֖ר", " לִפְקֻדֵיהֶ֑ם", " אַרְבָּעָ֧ה", " וְשִׁשִּׁ֛ים", " אֶ֖לֶף", " וּשְׁלֹ֥שׁ"],
-            "en": [
-              {"words": "of Issachar,", "page": 186, "line": 16, "word": 1},
-              {"words": "and their registration numbered", "page": 186, "line": 16, "word": 2},
-              {"words": " 64,300", "page": 186, "line": 16, "word": 3},
-              {"words": "", "page": 186, "line": 16, "word": 4},
-              {"words": "", "page": 186, "line": 16, "word": 5},
-              {"words": "", "page": 186, "line": 16, "word": 6}
-            ],
+            "en": [["Issachar", [0]], ["according to their counted ones,", [1]], ["sixty-four thousand, three", [2, 3, 4, 5, []]]],
             "verseIndex": 0
           }
         ]
@@ -623,31 +474,26 @@
         "book": 4,
         "chapter": 26,
         "verse": 25,
-        "start": false,
-        "width": 0.7003431708991078
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "16": {
     "text": [
       [
         [
           {
             "he": ["מֵאֽוֹת׃"],
-            "en": [
-              {"words": ".", "page": 186, "line": 17, "word": 1}
-            ],
+            "en": [["hundred.", [[], 0]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" בְּנֵ֣י"],
-            "en": [
-              {"words": "[These were] the descendants", "page": 186, "line": 17, "word": 1}
-            ],
-            "verseIndex": 0
+            "en": [["The sons of", [0]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -657,33 +503,24 @@
         "book": 4,
         "chapter": 26,
         "verse": 25,
-        "start": false,
-        "width": 0.08996960486322189
+        "indexOfFirstWord": 8
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 26,
-        "start": true,
-        "width": 0.0369984506064006
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "17": {
     "text": [
       [
         [
           {
             "he": ["זְבוּלֻן֮", " לְמִשְׁפְּחֹתָם֒", " לְסֶ֗רֶד", " מִשְׁפַּ֙חַת֙", " הַסַּרְדִּ֔י", " לְאֵל֕וֹן"],
-            "en": [
-              {"words": "of Zebulun", "page": 186, "line": 18, "word": 1},
-              {"words": "by their clans:", "page": 186, "line": 18, "word": 2},
-              {"words": "The Seredite", "page": 186, "line": 18, "word": 5},
-              {"words": "clan", "page": 186, "line": 18, "word": 4},
-              {"words": "from Sered,", "page": 186, "line": 18, "word": 3},
-              {"words": "the Elonite", "page": 186, "line": 19, "word": 2}
-            ],
+            "en": [["Zebulun", [0]], ["according to their clans:", [1]], ["of Sered,", [2]], ["the clan of", [3]], ["the Seredite;", [4]], ["of Elon,", [5]]],
             "verseIndex": 0
           }
         ]
@@ -694,32 +531,23 @@
         "book": 4,
         "chapter": 26,
         "verse": 26,
-        "start": false,
-        "width": 0.5059304375701235
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "18": {
     "text": [
       [
         [
           {
             "he": ["מִשְׁפַּ֖חַת", " הָאֵלֹנִ֑י", " לְיַ֨חְלְאֵ֔ל", " מִשְׁפַּ֖חַת", " הַיַּחְלְאֵלִֽי׃"],
-            "en": [
-              {"words": "clan", "page": 186, "line": 19, "word": 1},
-              {"words": "from Elon,", "page": 186, "line": 18, "word": 6},
-              {"words": "[and] the Jahleelite", "page": 186, "line": 19, "word": 5},
-              {"words": "clan", "page": 186, "line": 19, "word": 4},
-              {"words": "from Jahleel.", "page": 186, "line": 19, "word": 3}
-            ],
+            "en": [["the clan of", [0]], ["the Elonite;", [1]], ["of Jahleel,", [2]], ["the clan of", [3]], ["the Jahleelite.", [4]]],
             "verseIndex": 0
           },
           {
             "he": [" אֵ֛לֶּה"],
-            "en": [
-              {"words": "These [were]", "page": 186, "line": 19, "word": 1}
-            ],
+            "en": [["These", [0]]],
             "verseIndex": 1
           }
         ]
@@ -730,33 +558,24 @@
         "book": 4,
         "chapter": 26,
         "verse": 26,
-        "start": false,
-        "width": 0.457071111823476
+        "indexOfFirstWord": 7
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 27,
-        "start": true,
-        "width": 0.08886885984677782
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "19": {
     "text": [
       [
         [
           {
             "he": ["מִשְׁפְּחֹ֥ת", " הַזְּבוּלֹנִ֖י", " לִפְקֻדֵיהֶ֑ם", " שִׁשִּׁ֥ים", " אֶ֖לֶף", " וַחֲמֵ֥שׁ"],
-            "en": [
-              {"words": "the clans", "page": 186, "line": 20, "word": 1},
-              {"words": "of Zebulun,", "page": 186, "line": 20, "word": 2},
-              {"words": "and their registration numbered", "page": 186, "line": 20, "word": 3},
-              {"words": " 60,500", "page": 186, "line": 20, "word": 4},
-              {"words": "", "page": 186, "line": 20, "word": 5},
-              {"words": "", "page": 186, "line": 20, "word": 6}
-            ],
+            "en": [["were the clans of", [0]], ["the Zebulunite", [1]], ["according to their counted ones,", [2]], ["sixty thousand, five", [3, 4, 5, []]]],
             "verseIndex": 0
           }
         ]
@@ -767,33 +586,26 @@
         "book": 4,
         "chapter": 26,
         "verse": 27,
-        "start": false,
-        "width": 0.8077512392969807
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "20": {
     "text": [
       [
         [
           {
             "he": ["מֵאֽוֹת׃"],
-            "en": [
-              {"words": ".", "page": 186, "line": 21, "word": 1}
-            ],
+            "en": [["hundred.", [[], 0]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" בְּנֵ֥י", " יוֹסֵ֖ף", " לְמִשְׁפְּחֹתָ֑ם"],
-            "en": [
-              {"words": "The descendants", "page": 186, "line": 21, "word": 1},
-              {"words": "of Joseph", "page": 186, "line": 21, "word": 2},
-              {"words": "[included] the clans", "page": 186, "line": 21, "word": 3}
-            ],
-            "verseIndex": 0
+            "en": [["The sons of", [0]], ["Joseph", [1]], ["according to their clans", [2]], ["were", [0]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -803,40 +615,29 @@
         "book": 4,
         "chapter": 26,
         "verse": 27,
-        "start": false,
-        "width": 0.10337990085624155
+        "indexOfFirstWord": 7
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 28,
-        "start": true,
-        "width": 0.5848078317621465
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "21": {
     "text": [
       [
         [
           {
             "he": ["מְנַשֶּׁ֖ה", " וְאֶפְרָֽיִם׃"],
-            "en": [
-              {"words": "of Manasseh", "page": 186, "line": 22, "word": 1},
-              {"words": "and Ephraim.", "page": 186, "line": 22, "word": 2}
-            ],
+            "en": [["Manasseh", [0]], ["and Ephraim.", [1]]],
             "verseIndex": 0
           },
           {
             "he": [" בְּנֵ֣י", " מְנַשֶּׁ֗ה", " לְמָכִיר֙", " מִשְׁפַּ֣חַת", " הַמָּכִירִ֔י"],
-            "en": [
-              {"words": "[These were] the descendants", "page": 186, "line": 22, "word": 1},
-              {"words": "of Manasseh:", "page": 186, "line": 22, "word": 2},
-              {"words": "The Machirite", "page": 186, "line": 22, "word": 5},
-              {"words": "clan", "page": 186, "line": 22, "word": 4},
-              {"words": "from Machir,", "page": 186, "line": 22, "word": 3}
-            ],
+            "en": [["The sons of", [0]], ["Manasseh:", [1]], ["of Makir,", [2]], ["the clan of", [3]], ["the Makirite", [4]]],
             "verseIndex": 1
           }
         ]
@@ -847,34 +648,24 @@
         "book": 4,
         "chapter": 26,
         "verse": 28,
-        "start": false,
-        "width": 0.41519216823785354
+        "indexOfFirstWord": 3
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 29,
-        "start": true,
-        "width": 0.41899096036467587
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "22": {
     "text": [
       [
         [
           {
-            "he": ["וּמָכִ֖יר", " הוֹלִ֣יד", " אֶת", "־גִּלְעָ֑ד", " לְגִלְעָ֕ד", " מִשְׁפַּ֖חַת", " הַגִּלְעָדִֽי׃"],
-            "en": [
-              {"words": "", "page": 186, "line": 23, "word": 1},
-              {"words": "the father of", "page": 186, "line": 23, "word": 2},
-              {"words": "", "page": 186, "line": 23, "word": 3},
-              {"words": "Gilead,", "page": 186, "line": 23, "word": 4},
-              {"words": "[and] the Gileadite", "page": 186, "line": 23, "word": 7},
-              {"words": "clan", "page": 186, "line": 23, "word": 6},
-              {"words": "from Gilead.", "page": 186, "line": 23, "word": 5}
-            ],
+            "he": ["וּמָכִ֖יר", " הוֹלִ֣יד", " אֶת־", "גִּלְעָ֑ד", " לְגִלְעָ֕ד", " מִשְׁפַּ֖חַת", " הַגִּלְעָדִֽי׃"],
+            "en": [["(and Makir", [0]], ["fathered", [1]], ["Gilead);", [2, 3]], ["of Gilead,", [4]], ["the clan of", [5]], ["the Gileadite.", [6]]],
             "verseIndex": 0
           }
         ]
@@ -885,27 +676,18 @@
         "book": 4,
         "chapter": 26,
         "verse": 29,
-        "start": false,
-        "width": 0.5810090396353241
+        "indexOfFirstWord": 5
       }
     ],
     "isPetucha": false
   },
-  {
+  "23": {
     "text": [
       [
         [
           {
             "he": ["אֵ֚לֶּה", " בְּנֵ֣י", " גִלְעָ֔ד", " אִיעֶ֕זֶר", " מִשְׁפַּ֖חַת", " הָאִֽיעֶזְרִ֑י", " לְחֵ֕לֶק"],
-            "en": [
-              {"words": "These [were]", "page": 186, "line": 24, "word": 1},
-              {"words": "the descendants", "page": 186, "line": 24, "word": 2},
-              {"words": "of Gilead:", "page": 186, "line": 24, "word": 3},
-              {"words": "the Iezerite", "page": 186, "line": 24, "word": 6},
-              {"words": "clan", "page": 186, "line": 24, "word": 5},
-              {"words": "from Iezer,", "page": 186, "line": 24, "word": 4},
-              {"words": "the Helekite", "page": 186, "line": 25, "word": 2}
-            ],
+            "en": [["These", [0]], ["were the sons of", [1]], ["Gilead:", [2]], ["Iezer,", [3]], ["the clan of", [4]], ["the Iezerite;", [5]], ["of Helek,", [6]]],
             "verseIndex": 0
           }
         ]
@@ -916,31 +698,23 @@
         "book": 4,
         "chapter": 26,
         "verse": 30,
-        "start": true,
-        "width": 0.7375871973738203
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "24": {
     "text": [
       [
         [
           {
             "he": ["מִשְׁפַּ֖חַת", " הַֽחֶלְקִֽי׃"],
-            "en": [
-              {"words": "clan", "page": 186, "line": 25, "word": 1},
-              {"words": "from Helek,", "page": 186, "line": 24, "word": 7}
-            ],
+            "en": [["the clan of", [0]], ["the Helekite;", [1]]],
             "verseIndex": 0
           },
           {
             "he": [" וְאַ֨שְׂרִיאֵ֔ל", " מִשְׁפַּ֖חַת", " הָאַשְׂרִֽאֵלִ֑י"],
-            "en": [
-              {"words": "the Asrielite", "page": 186, "line": 25, "word": 3},
-              {"words": "clan", "page": 186, "line": 25, "word": 2},
-              {"words": "from Asriel,", "page": 186, "line": 25, "word": 1}
-            ],
+            "en": [["and Asriel,", [0]], ["the clan of", [1]], ["the Asrielite;", [2]]],
             "verseIndex": 1
           }
         ]
@@ -951,38 +725,29 @@
         "book": 4,
         "chapter": 26,
         "verse": 30,
-        "start": false,
-        "width": 0.2624128026261797
+        "indexOfFirstWord": 7
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 31,
-        "start": true,
-        "width": 0.5710345164282575
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "25": {
     "text": [
       [
         [
           {
             "he": ["וְשֶׁ֕כֶם", " מִשְׁפַּ֖חַת", " הַשִּׁכְמִֽי׃"],
-            "en": [
-              {"words": "the Shechemite", "page": 186, "line": 26, "word": 3},
-              {"words": "clan", "page": 186, "line": 26, "word": 2},
-              {"words": "from Shechem,", "page": 186, "line": 26, "word": 1}
-            ],
+            "en": [["and Shechem,", [0]], ["the clan of", [1]], ["the Shechemite;", [2]]],
             "verseIndex": 0
           },
           {
             "he": [" וּשְׁמִידָ֕ע", " מִשְׁפַּ֖חַת"],
-            "en": [
-              {"words": "the Shemidaite", "page": 186, "line": 27, "word": 1},
-              {"words": "clan", "page": 186, "line": 26, "word": 2}
-            ],
+            "en": [["and Shemida,", [0]], ["the clan of", [1]]],
             "verseIndex": 1
           }
         ]
@@ -993,39 +758,29 @@
         "book": 4,
         "chapter": 26,
         "verse": 31,
-        "start": false,
-        "width": 0.4289654835717424
+        "indexOfFirstWord": 3
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 32,
-        "start": true,
-        "width": 0.34435022476501836
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "26": {
     "text": [
       [
         [
           {
             "he": ["הַשְּׁמִידָעִ֑י", " וְחֵ֕פֶר", " מִשְׁפַּ֖חַת", " הַֽחֶפְרִֽי׃"],
-            "en": [
-              {"words": "from Shemida,", "page": 186, "line": 26, "word": 1},
-              {"words": "[and] the Hepherite", "page": 186, "line": 27, "word": 4},
-              {"words": "clan", "page": 186, "line": 27, "word": 3},
-              {"words": "from Hepher.", "page": 186, "line": 27, "word": 2}
-            ],
+            "en": [["the Shemidaite;", [0]], ["and Hepher,", [1]], ["the clan of", [2]], ["the Hepherite.", [3]]],
             "verseIndex": 0
           },
           {
             "he": [" וּצְלׇפְחָ֣ד", " בֶּן־"],
-            "en": [
-              {"words": "Now Zelophehad", "page": 186, "line": 27, "word": 1},
-              {"words": "son", "page": 186, "line": 27, "word": 2}
-            ],
+            "en": [["And", [0]], ["there were", [[186, 27, 0, 2]]], ["no", [[186, 27, 0, 1]]], ["sons", [[186, 27, 0, 4]]]],
             "verseIndex": 1
           }
         ]
@@ -1036,37 +791,24 @@
         "book": 4,
         "chapter": 26,
         "verse": 32,
-        "start": false,
-        "width": 0.6556497752349816
+        "indexOfFirstWord": 2
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 33,
-        "start": true,
-        "width": 0.12884727752034897
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "27": {
     "text": [
       [
         [
           {
-            "he": ["חֵ֗פֶר", " לֹא", "־הָ֥יוּ", " ל֛וֹ", " בָּנִ֖ים", " כִּ֣י", " אִם", "־בָּנ֑וֹת", " וְשֵׁם֙", " בְּנ֣וֹת"],
-            "en": [
-              {"words": "of Hepher", "page": 186, "line": 28, "word": 1},
-              {"words": "had", "page": 186, "line": 28, "word": 3},
-              {"words": "", "page": 186, "line": 28, "word": 4},
-              {"words": "no", "page": 186, "line": 28, "word": 2},
-              {"words": "sons", "page": 186, "line": 28, "word": 5},
-              {"words": "but only", "page": 186, "line": 28, "word": 6},
-              {"words": "", "page": 186, "line": 28, "word": 7},
-              {"words": "daughters.", "page": 186, "line": 28, "word": 8},
-              {"words": "The names", "page": 186, "line": 28, "word": 9},
-              {"words": "of [his] daughters", "page": 186, "line": 28, "word": 10}
-            ],
+            "he": ["חֵ֗פֶר", " לֹא־", "הָ֥יוּ", " ל֛וֹ", " בָּנִ֖ים", " כִּ֣י", " אִם־", "בָּנ֑וֹת", " וְשֵׁם֙", " בְּנ֣וֹת"],
+            "en": [["for", [3]], ["Zelophehad", [[186, 26, 1, 0]]], ["the son of", [[186, 26, 1, 1]]], ["Hepher,", [0]], ["but", [5, 6]], ["daughters.", [7]], ["And the names of", [8]], ["the daughters of", [9]], ["Zelophehad", [[186, 28, 0, 0]]]],
             "verseIndex": 0
           }
         ]
@@ -1077,33 +819,23 @@
         "book": 4,
         "chapter": 26,
         "verse": 33,
-        "start": false,
-        "width": 0.431153266024378
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "28": {
     "text": [
       [
         [
           {
             "he": ["צְלׇפְחָ֔ד", " מַחְלָ֣ה", " וְנֹעָ֔ה", " חׇגְלָ֥ה", " מִלְכָּ֖ה", " וְתִרְצָֽה׃"],
-            "en": [
-              {"words": "", "page": 186, "line": 29, "word": 1},
-              {"words": "were Mahlah,", "page": 186, "line": 29, "word": 2},
-              {"words": "Noah,", "page": 186, "line": 29, "word": 3},
-              {"words": "Hoglah,", "page": 186, "line": 29, "word": 4},
-              {"words": "Milcah,", "page": 186, "line": 29, "word": 5},
-              {"words": "and Tirzah.", "page": 186, "line": 29, "word": 6}
-            ],
+            "en": [["were", [[186, 27, 0, 8]]], ["Mahlah,", [1]], ["and Noah,", [2]], ["Hoglah,", [3]], ["Milkah,", [4]], ["and Tirzah.", [5]]],
             "verseIndex": 0
           },
           {
             "he": [" אֵ֖לֶּה"],
-            "en": [
-              {"words": "These", "page": 186, "line": 29, "word": 1}
-            ],
+            "en": [["These", [0]]],
             "verseIndex": 1
           }
         ]
@@ -1114,33 +846,24 @@
         "book": 4,
         "chapter": 26,
         "verse": 33,
-        "start": false,
-        "width": 0.43999945645527305
+        "indexOfFirstWord": 12
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 34,
-        "start": true,
-        "width": 0.08265571296839634
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "29": {
     "text": [
       [
         [
           {
             "he": ["מִשְׁפְּחֹ֣ת", " מְנַשֶּׁ֑ה", " וּפְקֻ֣דֵיהֶ֔ם", " שְׁנַ֧יִם", " וַחֲמִשִּׁ֛ים", " אֶ֖לֶף"],
-            "en": [
-              {"words": "[were] the clans", "page": 186, "line": 30, "word": 1},
-              {"words": "of Manasseh,", "page": 186, "line": 30, "word": 2},
-              {"words": "and their registration numbered", "page": 186, "line": 30, "word": 3},
-              {"words": " 52,700", "page": 186, "line": 30, "word": 4},
-              {"words": "", "page": 186, "line": 30, "word": 5},
-              {"words": "", "page": 186, "line": 30, "word": 6}
-            ],
+            "en": [["were the clans of", [0]], ["Manasseh", [1]], ["and their counted ones,", [2]], ["fifty-two thousand,", [3, 4, 5, []]]],
             "verseIndex": 0
           }
         ]
@@ -1151,34 +874,26 @@
         "book": 4,
         "chapter": 26,
         "verse": 34,
-        "start": false,
-        "width": 0.7227973845251069
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "30": {
     "text": [
       [
         [
           {
             "he": ["וּשְׁבַ֥ע", " מֵאֽוֹת׃"],
-            "en": [
-              {"words": "", "page": 186, "line": 31, "word": 1},
-              {"words": ".", "page": 186, "line": 31, "word": 2}
-            ],
+            "en": [["seven hundred.", [[], 0, 1]]],
             "verseIndex": 0
           }
         ],
         [
           {
-            "he": [" אֵ֣לֶּה", " בְנֵי", "־אֶפְרַ֘יִם֮"],
-            "en": [
-              {"words": "These [were]", "page": 186, "line": 31, "word": 1},
-              {"words": "the descendants", "page": 186, "line": 31, "word": 2},
-              {"words": "of Ephraim", "page": 186, "line": 31, "word": 3}
-            ],
-            "verseIndex": 0
+            "he": [" אֵ֣לֶּה", " בְנֵי־", "אֶפְרַ֘יִם֮"],
+            "en": [["These", [0]], ["were the sons of", [1]], ["Ephraim", [2]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -1188,32 +903,24 @@
         "book": 4,
         "chapter": 26,
         "verse": 34,
-        "start": false,
-        "width": 0.19454690250649678
+        "indexOfFirstWord": 7
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 35,
-        "start": true,
-        "width": 0.159377091832224
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "31": {
     "text": [
       [
         [
           {
             "he": ["לְמִשְׁפְּחֹתָם֒", " לְשׁוּתֶ֗לַח", " מִשְׁפַּ֙חַת֙", " הַשֻּׁ֣תַלְחִ֔י", " לְבֶ֕כֶר"],
-            "en": [
-              {"words": "by their clans:", "page": 186, "line": 32, "word": 1},
-              {"words": "The Shuthelahite", "page": 186, "line": 32, "word": 4},
-              {"words": "clan", "page": 186, "line": 32, "word": 3},
-              {"words": "from Shuthelah,", "page": 186, "line": 32, "word": 2},
-              {"words": "the Becherite", "page": 186, "line": 33, "word": 2}
-            ],
+            "en": [["according to their clans:", [0]], ["of Shuthelah,", [1]], ["the clan of", [2]], ["the Shuthelahite;", [3]], ["of Beker,", [4]]],
             "verseIndex": 0
           }
         ]
@@ -1224,33 +931,23 @@
         "book": 4,
         "chapter": 26,
         "verse": 35,
-        "start": false,
-        "width": 0.46282379984086286
+        "indexOfFirstWord": 3
       }
     ],
     "isPetucha": false
   },
-  {
+  "32": {
     "text": [
       [
         [
           {
             "he": ["מִשְׁפַּ֖חַת", " הַבַּכְרִ֑י", " לְתַ֕חַן", " מִשְׁפַּ֖חַת", " הַֽתַּחֲנִֽי׃"],
-            "en": [
-              {"words": "clan", "page": 186, "line": 33, "word": 1},
-              {"words": "from Becher,", "page": 186, "line": 32, "word": 5},
-              {"words": "[and] the Tahanite", "page": 186, "line": 33, "word": 5},
-              {"words": "clan", "page": 186, "line": 33, "word": 4},
-              {"words": "from Tahan.", "page": 186, "line": 33, "word": 3}
-            ],
+            "en": [["the clan of", [0]], ["the Bekerite;", [1]], ["of Tahan,", [2]], ["the clan of", [3]], ["the Tahanite.", [4]]],
             "verseIndex": 0
           },
           {
             "he": [" וְאֵ֖לֶּה", " בְּנֵ֣י"],
-            "en": [
-              {"words": "And", "page": 186, "line": 33, "word": 1},
-              {"words": "the descendants", "page": 186, "line": 33, "word": 2}
-            ],
+            "en": [["And these", [0]], ["were the sons of", [1]]],
             "verseIndex": 1
           }
         ]
@@ -1261,40 +958,29 @@
         "book": 4,
         "chapter": 26,
         "verse": 35,
-        "start": false,
-        "width": 0.3777991083269131
+        "indexOfFirstWord": 8
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 36,
-        "start": true,
-        "width": 0.24343251685023837
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "33": {
     "text": [
       [
         [
           {
             "he": ["שׁוּתָ֑לַח", " לְעֵרָ֕ן", " מִשְׁפַּ֖חַת", " הָעֵרָנִֽי׃"],
-            "en": [
-              {"words": "of Shuthelah [were]", "page": 186, "line": 34, "word": 1},
-              {"words": "the Eranite", "page": 186, "line": 34, "word": 4},
-              {"words": "clan", "page": 186, "line": 34, "word": 3},
-              {"words": "from Eran.", "page": 186, "line": 34, "word": 2}
-            ],
+            "en": [["Shuthelah:", [0]], ["of Eran,", [1]], ["the clan of", [2]], ["the Eranite.", [3]]],
             "verseIndex": 0
           },
           {
             "he": [" אֵ֣לֶּה", " מִשְׁפְּחֹ֤ת", " בְּנֵי־"],
-            "en": [
-              {"words": "These [were]", "page": 186, "line": 34, "word": 1},
-              {"words": "the clans", "page": 186, "line": 34, "word": 2},
-              {"words": "", "page": 186, "line": 34, "word": 3}
-            ],
+            "en": [["These", [0]], ["were the clans of", [1]], ["the sons of", [2]]],
             "verseIndex": 1
           }
         ]
@@ -1305,34 +991,24 @@
         "book": 4,
         "chapter": 26,
         "verse": 36,
-        "start": false,
-        "width": 0.7565674831497616
+        "indexOfFirstWord": 2
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 37,
-        "start": true,
-        "width": 0.18580162574697415
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "34": {
     "text": [
       [
         [
           {
             "he": ["אֶפְרַ֙יִם֙", " לִפְקֻ֣דֵיהֶ֔ם", " שְׁנַ֧יִם", " וּשְׁלֹשִׁ֛ים", " אֶ֖לֶף", " וַחֲמֵ֣שׁ", " מֵא֑וֹת"],
-            "en": [
-              {"words": "of Ephraim,", "page": 186, "line": 35, "word": 1},
-              {"words": "and their registration numbered", "page": 186, "line": 35, "word": 2},
-              {"words": " 32,500", "page": 186, "line": 35, "word": 3},
-              {"words": "", "page": 186, "line": 35, "word": 4},
-              {"words": "", "page": 186, "line": 35, "word": 5},
-              {"words": "", "page": 186, "line": 35, "word": 6},
-              {"words": ".", "page": 186, "line": 35, "word": 7}
-            ],
+            "en": [["Ephraim", [0]], ["according to their counted ones,", [1]], ["thirty-two thousand, five hundred.", [2, 3, 4, 5, 6]]],
             "verseIndex": 0
           }
         ]
@@ -1343,34 +1019,26 @@
         "book": 4,
         "chapter": 26,
         "verse": 37,
-        "start": false,
-        "width": 0.5371727459666846
+        "indexOfFirstWord": 3
       }
     ],
     "isPetucha": false
   },
-  {
+  "35": {
     "text": [
       [
         [
           {
-            "he": ["אֵ֥לֶּה", " בְנֵי", "־יוֹסֵ֖ף", " לְמִשְׁפְּחֹתָֽם׃"],
-            "en": [
-              {"words": "These", "page": 186, "line": 36, "word": 1},
-              {"words": "clans [were]", "page": 186, "line": 36, "word": 4},
-              {"words": "the descendants", "page": 186, "line": 36, "word": 2},
-              {"words": "of Joseph.", "page": 186, "line": 36, "word": 3}
-            ],
+            "he": ["אֵ֥לֶּה", " בְנֵי־", "יוֹסֵ֖ף", " לְמִשְׁפְּחֹתָֽם׃"],
+            "en": [["These", [0]], ["were the sons of", [1]], ["Joseph", [2]], ["according to their clans.", [3]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" בְּנֵ֣י"],
-            "en": [
-              {"words": "[These were] the descendants", "page": 186, "line": 36, "word": 1}
-            ],
-            "verseIndex": 0
+            "en": [["The sons of", [0]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -1380,33 +1048,24 @@
         "book": 4,
         "chapter": 26,
         "verse": 37,
-        "start": false,
-        "width": 0.27702562828634125
+        "indexOfFirstWord": 10
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 38,
-        "start": true,
-        "width": 0.035456
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "36": {
     "text": [
       [
         [
           {
             "he": ["בִנְיָמִן֮", " לְמִשְׁפְּחֹתָם֒", " לְבֶ֗לַע", " מִשְׁפַּ֙חַת֙", " הַבַּלְעִ֔י", " לְאַשְׁבֵּ֕ל"],
-            "en": [
-              {"words": "of Benjamin", "page": 186, "line": 37, "word": 1},
-              {"words": "by their clans:", "page": 186, "line": 37, "word": 2},
-              {"words": "The Belaite", "page": 186, "line": 37, "word": 5},
-              {"words": "clan", "page": 186, "line": 37, "word": 4},
-              {"words": "from Bela,", "page": 186, "line": 37, "word": 3},
-              {"words": "the Ashbelite", "page": 186, "line": 38, "word": 2}
-            ],
+            "en": [["Benjamin", [0]], ["according to their clans:", [1]], ["of Bela,", [2]], ["the clan of", [3]], ["the Belaite;", [4]], ["of Ashbel,", [5]]],
             "verseIndex": 0
           }
         ]
@@ -1417,25 +1076,18 @@
         "book": 4,
         "chapter": 26,
         "verse": 38,
-        "start": false,
-        "width": 0.4990848
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "37": {
     "text": [
       [
         [
           {
             "he": ["מִשְׁפַּ֖חַת", " הָֽאַשְׁבֵּלִ֑י", " לַאֲחִירָ֕ם", " מִשְׁפַּ֖חַת", " הָאֲחִירָמִֽי׃"],
-            "en": [
-              {"words": "clan", "page": 186, "line": 38, "word": 1},
-              {"words": "from Ashbel,", "page": 186, "line": 37, "word": 6},
-              {"words": "the Ahiramite", "page": 186, "line": 38, "word": 5},
-              {"words": "clan", "page": 186, "line": 38, "word": 4},
-              {"words": "from Ahiram,", "page": 186, "line": 38, "word": 3}
-            ],
+            "en": [["the clan of", [0]], ["the Ashbelite;", [1]], ["of Ahiram,", [2]], ["the clan of", [3]], ["the Ahiramite;", [4]]],
             "verseIndex": 0
           }
         ]
@@ -1446,25 +1098,18 @@
         "book": 4,
         "chapter": 26,
         "verse": 38,
-        "start": false,
-        "width": 0.4654592
+        "indexOfFirstWord": 7
       }
     ],
     "isPetucha": false
   },
-  {
+  "38": {
     "text": [
       [
         [
           {
             "he": ["לִשְׁפוּפָ֕ם", " מִשְׁפַּ֖חַת", " הַשּׁוּפָמִ֑י", " לְחוּפָ֕ם", " מִשְׁפַּ֖חַת"],
-            "en": [
-              {"words": "the Shuphamite", "page": 186, "line": 39, "word": 3},
-              {"words": "clan", "page": 186, "line": 39, "word": 2},
-              {"words": "from Shupham,", "page": 186, "line": 39, "word": 1},
-              {"words": "[and] the Huphamite", "page": 186, "line": 40, "word": 1},
-              {"words": "clan", "page": 186, "line": 39, "word": 5}
-            ],
+            "en": [["of Shephupham,", [0]], ["the clan of", [1]], ["the Shuphamite;", [2]], ["of Hupham,", [3]], ["the clan of", [4]]],
             "verseIndex": 0
           }
         ]
@@ -1475,33 +1120,23 @@
         "book": 4,
         "chapter": 26,
         "verse": 39,
-        "start": true,
-        "width": 0.833259028087383
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "39": {
     "text": [
       [
         [
           {
             "he": ["הַחוּפָמִֽי׃"],
-            "en": [
-              {"words": "from Hupham.", "page": 186, "line": 39, "word": 4}
-            ],
+            "en": [["the Huphamite.", [0]]],
             "verseIndex": 0
           },
           {
-            "he": [" וַיִּהְי֥וּ", " בְנֵי", "־בֶ֖לַע", " אַ֣רְדְּ", " וְנַעֲמָ֑ן", " מִשְׁפַּ֙חַת֙"],
-            "en": [
-              {"words": "And", "page": 186, "line": 40, "word": 1},
-              {"words": "the descendants", "page": 186, "line": 40, "word": 2},
-              {"words": "of Bela", "page": 186, "line": 40, "word": 3},
-              {"words": "from Ard", "page": 186, "line": 40, "word": 4},
-              {"words": "and Naaman [were]", "page": 186, "line": 40, "word": 5},
-              {"words": "the Ardite", "page": 186, "line": 41, "word": 1}
-            ],
+            "he": [" וַיִּהְי֥וּ", " בְנֵי־", "בֶ֖לַע", " אַ֣רְדְּ", " וְנַעֲמָ֑ן", " מִשְׁפַּ֙חַת֙"],
+            "en": [["And", [0]], ["the sons of", [1]], ["Bela", [2]], ["were", [0]], ["Ard", [3]], ["and Naaman:", [4]], ["the clan of", [5]]],
             "verseIndex": 1
           }
         ]
@@ -1512,40 +1147,29 @@
         "book": 4,
         "chapter": 26,
         "verse": 39,
-        "start": false,
-        "width": 0.16674097191261703
+        "indexOfFirstWord": 5
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 40,
-        "start": true,
-        "width": 0.5279006191203667
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "40": {
     "text": [
       [
         [
           {
             "he": ["הָֽאַרְדִּ֔י", " לְנַֽעֲמָ֔ן", " מִשְׁפַּ֖חַת", " הַֽנַּעֲמִֽי׃"],
-            "en": [
-              {"words": "clan [from Ard]", "page": 186, "line": 40, "word": 6},
-              {"words": "[and] the Naamite", "page": 186, "line": 41, "word": 4},
-              {"words": "clan", "page": 186, "line": 41, "word": 3},
-              {"words": "from Naaman.", "page": 186, "line": 41, "word": 2}
-            ],
+            "en": [["the Ardite;", [0]], ["of Naaman,", [1]], ["the clan of", [2]], ["the Naamite.", [3]]],
             "verseIndex": 0
           },
           {
-            "he": [" אֵ֥לֶּה", " בְנֵי", "־בִנְיָמִ֖ן"],
-            "en": [
-              {"words": "These [were]", "page": 186, "line": 41, "word": 1},
-              {"words": "the clans", "page": 186, "line": 42, "word": 1},
-              {"words": "", "page": 186, "line": 41, "word": 2}
-            ],
+            "he": [" אֵ֥לֶּה", " בְנֵי־", "בִנְיָמִ֖ן"],
+            "en": [["These", [0]], ["were the sons of", [1]], ["Benjamin", [2]]],
             "verseIndex": 1
           }
         ]
@@ -1556,32 +1180,24 @@
         "book": 4,
         "chapter": 26,
         "verse": 40,
-        "start": false,
-        "width": 0.4720993808796334
+        "indexOfFirstWord": 6
       },
       {
         "book": 4,
         "chapter": 26,
         "verse": 41,
-        "start": true,
-        "width": 0.21259972793117393
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "41": {
     "text": [
       [
         [
           {
             "he": ["לְמִשְׁפְּחֹתָ֑ם", " וּפְקֻ֣דֵיהֶ֔ם", " חֲמִשָּׁ֧ה", " וְאַרְבָּעִ֛ים", " אֶ֖לֶף"],
-            "en": [
-              {"words": "of Benjamin,", "page": 186, "line": 41, "word": 3},
-              {"words": "and their registration numbered", "page": 186, "line": 42, "word": 2},
-              {"words": " 45,600", "page": 186, "line": 42, "word": 3},
-              {"words": "", "page": 186, "line": 42, "word": 4},
-              {"words": "", "page": 186, "line": 42, "word": 5}
-            ],
+            "en": [["according to their clans.", [0]], ["And their counted ones", [1]], ["were forty-five thousand,", [2, 3, 4, []]]],
             "verseIndex": 0
           }
         ]
@@ -1592,10 +1208,9 @@
         "book": 4,
         "chapter": 26,
         "verse": 41,
-        "start": false,
-        "width": 0.6377991837935219
+        "indexOfFirstWord": 3
       }
     ],
     "isPetucha": false
   }
-]
+}

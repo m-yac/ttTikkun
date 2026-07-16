@@ -1,27 +1,17 @@
-[
-  {
+{
+  "length": 42,
+  "0": {
     "text": [
       [
         [
           {
             "he": ["וְכִסָּ֖הוּ", " בֶּעָפָֽר׃"],
-            "en": [
-              {"words": "and cover", "page": 134, "line": 1, "word": 1},
-              {"words": "it with dirt.", "page": 134, "line": 1, "word": 2}
-            ],
+            "en": [["and he shall cover it", [0]], ["with soil,", [1]]],
             "verseIndex": 0
           },
           {
-            "he": [" כִּֽי", "־נֶ֣פֶשׁ", " כׇּל", "־בָּשָׂ֗ר", " דָּמ֣וֹ", " בְנַפְשׁוֹ֮", " הוּא֒"],
-            "en": [
-              {"words": "For", "page": 134, "line": 1, "word": 1},
-              {"words": "the life", "page": 134, "line": 1, "word": 2},
-              {"words": "of all", "page": 134, "line": 1, "word": 3},
-              {"words": "flesh", "page": 134, "line": 1, "word": 4},
-              {"words": "is its blood", "page": 134, "line": 1, "word": 5},
-              {"words": "", "page": 134, "line": 1, "word": 6},
-              {"words": ".", "page": 134, "line": 1, "word": 7}
-            ],
+            "he": [" כִּֽי־", "נֶ֣פֶשׁ", " כׇּל־", "בָּשָׂ֗ר", " דָּמ֣וֹ", " בְנַפְשׁוֹ֮", " הוּא֒"],
+            "en": [["for", [0]], ["the life of", [1]], ["all", [2]], ["flesh,", [3]], ["its blood,", [4]], ["its life is in", [5]], ["it.", [6]]],
             "verseIndex": 1
           }
         ]
@@ -32,35 +22,24 @@
         "book": 3,
         "chapter": 17,
         "verse": 13,
-        "start": false,
-        "width": 0.12646747498075442
+        "indexOfFirstWord": 19
       },
       {
         "book": 3,
         "chapter": 17,
         "verse": 14,
-        "start": true,
-        "width": 0.27493746533712127
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "1": {
     "text": [
       [
         [
           {
-            "he": ["וָֽאֹמַר֙", " לִבְנֵ֣י", " יִשְׂרָאֵ֔ל", " דַּ֥ם", " כׇּל", "־בָּשָׂ֖ר", " לֹ֣א", " תֹאכֵ֑לוּ"],
-            "en": [
-              {"words": "Therefore I have told", "page": 134, "line": 2, "word": 1},
-              {"words": "the Israelites", "page": 134, "line": 2, "word": 2},
-              {"words": ",", "page": 134, "line": 2, "word": 3},
-              {"words": "‘You must not", "page": 134, "line": 2, "word": 7},
-              {"words": "eat", "page": 134, "line": 2, "word": 8},
-              {"words": "the blood", "page": 134, "line": 2, "word": 4},
-              {"words": "of any", "page": 134, "line": 2, "word": 5},
-              {"words": "living thing,", "page": 134, "line": 2, "word": 6}
-            ],
+            "he": ["וָֽאֹמַר֙", " לִבְנֵ֣י", " יִשְׂרָאֵ֔ל", " דַּ֥ם", " כׇּל־", "בָּשָׂ֖ר", " לֹ֣א", " תֹאכֵ֑לוּ"],
+            "en": [["And I said", [0]], ["to the sons of", [1]], ["Israel,", [2]], ["“The blood of", [3]], ["any", [4]], ["flesh", [5]], ["you shall", [7]], ["not", [6]], ["eat,", [7]]],
             "verseIndex": 0
           }
         ]
@@ -71,29 +50,18 @@
         "book": 3,
         "chapter": 17,
         "verse": 14,
-        "start": false,
-        "width": 0.3705221219906962
+        "indexOfFirstWord": 7
       }
     ],
     "isPetucha": false
   },
-  {
+  "2": {
     "text": [
       [
         [
           {
-            "he": ["כִּ֣י", " נֶ֤פֶשׁ", " כׇּל", "־בָּשָׂר֙", " דָּמ֣וֹ", " הִ֔וא", " כׇּל", "־אֹכְלָ֖יו", " יִכָּרֵֽת׃"],
-            "en": [
-              {"words": "because", "page": 134, "line": 3, "word": 1},
-              {"words": "the life", "page": 134, "line": 3, "word": 2},
-              {"words": "of all", "page": 134, "line": 3, "word": 3},
-              {"words": "flesh", "page": 134, "line": 3, "word": 4},
-              {"words": "is its blood;", "page": 134, "line": 3, "word": 5},
-              {"words": "whoever", "page": 134, "line": 3, "word": 6},
-              {"words": "", "page": 134, "line": 3, "word": 7},
-              {"words": "eats it", "page": 134, "line": 3, "word": 8},
-              {"words": "must be cut off.’", "page": 134, "line": 3, "word": 9}
-            ],
+            "he": ["כִּ֣י", " נֶ֤פֶשׁ", " כׇּל־", "בָּשָׂר֙", " דָּמ֣וֹ", " הִ֔וא", " כׇּל־", "אֹכְלָ֖יו", " יִכָּרֵֽת׃"],
+            "en": [["for", [0]], ["the life of", [1]], ["all", [2]], ["flesh,", [3]], ["it", [5]], ["is its blood.", [4]], ["All", [6]], ["who eat it", [7]], ["shall be cut off.”", [8]]],
             "verseIndex": 0
           }
         ]
@@ -104,27 +72,18 @@
         "book": 3,
         "chapter": 17,
         "verse": 14,
-        "start": false,
-        "width": 0.35454041267218256
+        "indexOfFirstWord": 15
       }
     ],
     "isPetucha": false
   },
-  {
+  "3": {
     "text": [
       [
         [
           {
-            "he": ["וְכׇל", "־נֶ֗פֶשׁ", " אֲשֶׁ֨ר", " תֹּאכַ֤ל", " נְבֵלָה֙", " וּטְרֵפָ֔ה", " בָּאֶזְרָ֖ח"],
-            "en": [
-              {"words": "And any", "page": 134, "line": 4, "word": 1},
-              {"words": "person,", "page": 134, "line": 4, "word": 2},
-              {"words": "whether native", "page": 134, "line": 4, "word": 7},
-              {"words": "or foreigner,", "page": 134, "line": 5, "word": 1},
-              {"words": "who", "page": 134, "line": 4, "word": 3},
-              {"words": "eats", "page": 134, "line": 4, "word": 4},
-              {"words": "anything found dead", "page": 134, "line": 4, "word": 5}
-            ],
+            "he": ["וְכׇל־", "נֶ֗פֶשׁ", " אֲשֶׁ֨ר", " תֹּאכַ֤ל", " נְבֵלָה֙", " וּטְרֵפָ֔ה", " בָּאֶזְרָ֖ח"],
+            "en": [["And any", [0]], ["person", [1]], ["who", [2]], ["eats", [3]], ["an {animal} carcass", [4]], ["or a torn animal", [5]], ["among the native-born", [6]]],
             "verseIndex": 0
           }
         ]
@@ -135,28 +94,18 @@
         "book": 3,
         "chapter": 17,
         "verse": 15,
-        "start": true,
-        "width": 0.4486287799079021
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "4": {
     "text": [
       [
         [
           {
-            "he": ["וּבַגֵּ֑ר", " וְכִבֶּ֨ס", " בְּגָדָ֜יו", " וְרָחַ֥ץ", " בַּמַּ֛יִם", " וְטָמֵ֥א", " עַד", "־הָעֶ֖רֶב"],
-            "en": [
-              {"words": "or mauled by wild beasts", "page": 134, "line": 4, "word": 6},
-              {"words": "must wash", "page": 134, "line": 5, "word": 2},
-              {"words": "his clothes", "page": 134, "line": 5, "word": 3},
-              {"words": "and bathe", "page": 134, "line": 5, "word": 4},
-              {"words": "with water,", "page": 134, "line": 5, "word": 5},
-              {"words": "and he will be unclean", "page": 134, "line": 5, "word": 6},
-              {"words": "until", "page": 134, "line": 5, "word": 7},
-              {"words": "evening;", "page": 134, "line": 5, "word": 8}
-            ],
+            "he": ["וּבַגֵּ֑ר", " וְכִבֶּ֨ס", " בְּגָדָ֜יו", " וְרָחַ֥ץ", " בַּמַּ֛יִם", " וְטָמֵ֥א", " עַד־", "הָעֶ֖רֶב"],
+            "en": [["or among the sojourner,", [0]], ["then he shall wash", [1]], ["his clothes,", [2]], ["and he shall bathe", [3]], ["in the water,", [4]], ["and he will be unclean", [5]], ["until", [6]], ["the evening.", [7]]],
             "verseIndex": 0
           }
         ]
@@ -167,34 +116,23 @@
         "book": 3,
         "chapter": 17,
         "verse": 15,
-        "start": false,
-        "width": 0.4856865665523414
+        "indexOfFirstWord": 7
       }
     ],
     "isPetucha": false
   },
-  {
+  "5": {
     "text": [
       [
         [
           {
             "he": ["וְטָהֵֽר׃"],
-            "en": [
-              {"words": "then he will be clean.", "page": 134, "line": 6, "word": 1}
-            ],
+            "en": [["Then he will be clean.", [0]]],
             "verseIndex": 0
           },
           {
             "he": [" וְאִם֙", " לֹ֣א", " יְכַבֵּ֔ס", " וּבְשָׂר֖וֹ", " לֹ֣א", " יִרְחָ֑ץ", " וְנָשָׂ֖א"],
-            "en": [
-              {"words": "But if", "page": 134, "line": 6, "word": 1},
-              {"words": "he does not", "page": 134, "line": 6, "word": 2},
-              {"words": "wash", "page": 134, "line": 6, "word": 3},
-              {"words": "his clothes and bathe", "page": 134, "line": 6, "word": 6},
-              {"words": "himself,", "page": 134, "line": 6, "word": 4},
-              {"words": "", "page": 134, "line": 6, "word": 5},
-              {"words": "then he shall bear", "page": 134, "line": 6, "word": 7}
-            ],
+            "en": [["But if", [0]], ["he does", [2]], ["not", [1]], ["wash", [2]], ["or his flesh", [3]], ["he does", [5]], ["not", [4]], ["bathe,", [5]], ["then he shall bear", [6]]],
             "verseIndex": 1
           }
         ]
@@ -205,28 +143,24 @@
         "book": 3,
         "chapter": 17,
         "verse": 15,
-        "start": false,
-        "width": 0.0656846535397565
+        "indexOfFirstWord": 15
       },
       {
         "book": 3,
         "chapter": 17,
         "verse": 16,
-        "start": true,
-        "width": 0.8916920257844966
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "6": {
     "text": [
       [
         [
           {
             "he": ["עֲוֺנֽוֹ׃"],
-            "en": [
-              {"words": "his iniquity.”", "page": 134, "line": 7, "word": 1}
-            ],
+            "en": [["his iniquity.’”", [0]]],
             "verseIndex": 0
           }
         ]
@@ -237,35 +171,23 @@
         "book": 3,
         "chapter": 17,
         "verse": 16,
-        "start": false,
-        "width": 0.10830797421550342
+        "indexOfFirstWord": 7
       }
     ],
     "isPetucha": true
   },
-  {
+  "7": {
     "text": [
       [
         [
           {
-            "he": ["וַיְדַבֵּ֥ר", " יְהֹוָ֖ה", " אֶל", "־מֹשֶׁ֥ה", " לֵּאמֹֽר׃"],
-            "en": [
-              {"words": "Then the LORD", "page": 134, "line": 8, "word": 2},
-              {"words": "said", "page": 134, "line": 8, "word": 1},
-              {"words": "to", "page": 134, "line": 8, "word": 3},
-              {"words": "Moses", "page": 134, "line": 8, "word": 4},
-              {"words": ",", "page": 134, "line": 8, "word": 5}
-            ],
+            "he": ["וַיְדַבֵּ֥ר", " יְהֹוָ֖ה", " אֶל־", "מֹשֶׁ֥ה", " לֵּאמֹֽר׃"],
+            "en": [["And", [0]], ["יהוה", [1]], ["spoke", [0]], ["to", [2]], ["Moses,", [3]], ["saying,", [4]]],
             "verseIndex": 0
           },
           {
-            "he": [" דַּבֵּר֙", " אֶל", "־בְּנֵ֣י", " יִשְׂרָאֵ֔ל"],
-            "en": [
-              {"words": "“Speak", "page": 134, "line": 8, "word": 1},
-              {"words": "to", "page": 134, "line": 8, "word": 2},
-              {"words": "the Israelites", "page": 134, "line": 8, "word": 3},
-              {"words": "", "page": 134, "line": 8, "word": 4}
-            ],
+            "he": [" דַּבֵּר֙", " אֶל־", "בְּנֵ֣י", " יִשְׂרָאֵ֔ל"],
+            "en": [["“Speak", [0]], ["to", [1]], ["the sons of", [2]], ["Israel,", [3]]],
             "verseIndex": 1
           }
         ]
@@ -276,40 +198,29 @@
         "book": 3,
         "chapter": 18,
         "verse": 1,
-        "start": true,
-        "width": 1.0
+        "indexOfFirstWord": 0
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 2,
-        "start": true,
-        "width": 0.38043771291326617
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "8": {
     "text": [
       [
         [
           {
             "he": ["וְאָמַרְתָּ֖", " אֲלֵהֶ֑ם", " אֲנִ֖י", " יְהֹוָ֥ה", " אֱלֹהֵיכֶֽם׃"],
-            "en": [
-              {"words": "[and] tell", "page": 134, "line": 9, "word": 1},
-              {"words": "them:", "page": 134, "line": 9, "word": 2},
-              {"words": "I", "page": 134, "line": 9, "word": 3},
-              {"words": "am the LORD", "page": 134, "line": 9, "word": 4},
-              {"words": "your God.", "page": 134, "line": 9, "word": 5}
-            ],
+            "en": [["and you shall say", [0]], ["to them,", [1]], ["‘I", [2]], ["{am} יהוה", [3]], ["your God.", [4]]],
             "verseIndex": 0
           },
           {
             "he": [" כְּמַעֲשֵׂ֧ה", " אֶֽרֶץ־"],
-            "en": [
-              {"words": "", "page": 134, "line": 10, "word": 5},
-              {"words": "You must not follow", "page": 134, "line": 10, "word": 6}
-            ],
+            "en": [["According to the work of", [0]], ["the land of", [1]]],
             "verseIndex": 1
           }
         ]
@@ -320,34 +231,24 @@
         "book": 3,
         "chapter": 18,
         "verse": 2,
-        "start": false,
-        "width": 0.6195622870867338
+        "indexOfFirstWord": 4
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 3,
-        "start": true,
-        "width": 0.10834008770289087
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "9": {
     "text": [
       [
         [
           {
-            "he": ["מִצְרַ֛יִם", " אֲשֶׁ֥ר", " יְשַׁבְתֶּם", "־בָּ֖הּ", " לֹ֣א", " תַעֲשׂ֑וּ", " וּכְמַעֲשֵׂ֣ה"],
-            "en": [
-              {"words": "the practices", "page": 134, "line": 9, "word": 1},
-              {"words": "of the land", "page": 134, "line": 9, "word": 2},
-              {"words": "of Egypt,", "page": 134, "line": 10, "word": 1},
-              {"words": "where", "page": 134, "line": 10, "word": 2},
-              {"words": "you used to live", "page": 134, "line": 10, "word": 3},
-              {"words": ",", "page": 134, "line": 10, "word": 4},
-              {"words": "[and you must not follow] the practices", "page": 134, "line": 10, "word": 7}
-            ],
+            "he": ["מִצְרַ֛יִם", " אֲשֶׁ֥ר", " יְשַׁבְתֶּם־", "בָּ֖הּ", " לֹ֣א", " תַעֲשׂ֑וּ", " וּכְמַעֲשֵׂ֣ה"],
+            "en": [["Egypt", [0]], ["in", [3]], ["which", [1]], ["you dwelt,", [2]], ["you shall", [5]], ["not", [4]], ["do.", [5]], ["And according to the work of", [6]]],
             "verseIndex": 0
           }
         ]
@@ -358,29 +259,18 @@
         "book": 3,
         "chapter": 18,
         "verse": 3,
-        "start": false,
-        "width": 0.34881642662676393
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "10": {
     "text": [
       [
         [
           {
-            "he": ["אֶֽרֶץ", "־כְּנַ֡עַן", " אֲשֶׁ֣ר", " אֲנִי֩", " מֵבִ֨יא", " אֶתְכֶ֥ם", " שָׁ֙מָּה֙", " לֹ֣א", " תַעֲשׂ֔וּ"],
-            "en": [
-              {"words": "of the land", "page": 134, "line": 11, "word": 1},
-              {"words": "of Canaan,", "page": 134, "line": 11, "word": 2},
-              {"words": "into which", "page": 134, "line": 11, "word": 3},
-              {"words": "I", "page": 134, "line": 11, "word": 4},
-              {"words": "am bringing you.", "page": 134, "line": 11, "word": 5},
-              {"words": "", "page": 134, "line": 11, "word": 6},
-              {"words": "", "page": 134, "line": 11, "word": 7},
-              {"words": "You must", "page": 134, "line": 11, "word": 9},
-              {"words": "not", "page": 134, "line": 11, "word": 8}
-            ],
+            "he": ["אֶֽרֶץ־", "כְּנַ֡עַן", " אֲשֶׁ֣ר", " אֲנִי֩", " מֵבִ֨יא", " אֶתְכֶ֥ם", " שָׁ֙מָּה֙", " לֹ֣א", " תַעֲשׂ֔וּ"],
+            "en": [["the land of", [0]], ["Canaan", [1]], ["to", [6]], ["which", [2]], ["I am", [3]], ["bringing", [4]], ["you,", [5]], ["you shall", [8]], ["not", [7]], ["do.", [8]]],
             "verseIndex": 0
           }
         ]
@@ -391,34 +281,23 @@
         "book": 3,
         "chapter": 18,
         "verse": 3,
-        "start": false,
-        "width": 0.36977575493068976
+        "indexOfFirstWord": 9
       }
     ],
     "isPetucha": false
   },
-  {
+  "11": {
     "text": [
       [
         [
           {
             "he": ["וּבְחֻקֹּתֵיהֶ֖ם", " לֹ֥א", " תֵלֵֽכוּ׃"],
-            "en": [
-              {"words": "walk", "page": 134, "line": 12, "word": 3},
-              {"words": "in their customs", "page": 134, "line": 12, "word": 1},
-              {"words": ".", "page": 134, "line": 12, "word": 2}
-            ],
+            "en": [["And", [0]], ["you shall", [2]], ["not", [1]], ["walk", [2]], ["in their statutes.", [0]]],
             "verseIndex": 0
           },
           {
-            "he": [" אֶת", "־מִשְׁפָּטַ֧י", " תַּעֲשׂ֛וּ", " וְאֶת", "־חֻקֹּתַ֥י"],
-            "en": [
-              {"words": "", "page": 134, "line": 12, "word": 1},
-              {"words": "You are to practice", "page": 134, "line": 12, "word": 3},
-              {"words": "", "page": 134, "line": 12, "word": 4},
-              {"words": "My judgments", "page": 134, "line": 12, "word": 2},
-              {"words": "and keep", "page": 134, "line": 13, "word": 1}
-            ],
+            "he": [" אֶת־", "מִשְׁפָּטַ֧י", " תַּעֲשׂ֛וּ", " וְאֶת־", "חֻקֹּתַ֥י"],
+            "en": [["My customs", [0, 1]], ["you shall do,", [2]], ["and my statutes", [3, 4]]],
             "verseIndex": 1
           }
         ]
@@ -429,40 +308,29 @@
         "book": 3,
         "chapter": 18,
         "verse": 3,
-        "start": false,
-        "width": 0.17306773073965542
+        "indexOfFirstWord": 18
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 4,
-        "start": true,
-        "width": 0.41795537716916537
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "12": {
     "text": [
       [
         [
           {
             "he": ["תִּשְׁמְר֖וּ", " לָלֶ֣כֶת", " בָּהֶ֑ם", " אֲנִ֖י", " יְהֹוָ֥ה", " אֱלֹהֵיכֶֽם׃"],
-            "en": [
-              {"words": "My statutes", "page": 134, "line": 12, "word": 5},
-              {"words": "by walking", "page": 134, "line": 13, "word": 2},
-              {"words": "in them.", "page": 134, "line": 13, "word": 3},
-              {"words": "I", "page": 134, "line": 13, "word": 4},
-              {"words": "am the LORD", "page": 134, "line": 13, "word": 5},
-              {"words": "your God.", "page": 134, "line": 13, "word": 6}
-            ],
+            "en": [["you shall keep,", [0]], ["to walk", [1]], ["in them.", [2]], ["I", [3]], ["{am} יהוה", [4]], ["your God.", [5]]],
             "verseIndex": 0
           },
           {
             "he": [" וּשְׁמַרְתֶּ֤ם"],
-            "en": [
-              {"words": "Keep", "page": 134, "line": 13, "word": 1}
-            ],
+            "en": [["And you shall keep", [0]]],
             "verseIndex": 1
           }
         ]
@@ -473,35 +341,24 @@
         "book": 3,
         "chapter": 18,
         "verse": 4,
-        "start": false,
-        "width": 0.5820446228308346
+        "indexOfFirstWord": 5
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 5,
-        "start": true,
-        "width": 0.13513076881652875
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "13": {
     "text": [
       [
         [
           {
-            "he": ["אֶת", "־חֻקֹּתַי֙", " וְאֶת", "־מִשְׁפָּטַ֔י", " אֲשֶׁ֨ר", " יַעֲשֶׂ֥ה", " אֹתָ֛ם", " הָאָדָ֖ם"],
-            "en": [
-              {"words": "", "page": 134, "line": 14, "word": 1},
-              {"words": "My statutes", "page": 134, "line": 14, "word": 2},
-              {"words": "and", "page": 134, "line": 14, "word": 3},
-              {"words": "My judgments,", "page": 134, "line": 14, "word": 4},
-              {"words": "[for]", "page": 134, "line": 14, "word": 5},
-              {"words": "the man", "page": 134, "line": 14, "word": 8},
-              {"words": "who does these things", "page": 134, "line": 14, "word": 6},
-              {"words": "", "page": 134, "line": 14, "word": 7}
-            ],
+            "he": ["אֶת־", "חֻקֹּתַי֙", " וְאֶת־", "מִשְׁפָּטַ֔י", " אֲשֶׁ֨ר", " יַעֲשֶׂ֥ה", " אֹתָ֛ם", " הָאָדָ֖ם"],
+            "en": [["my statutes", [0, 1]], ["and my customs,", [2, 3]], ["which", [4]], ["the man", [7]], ["shall do", [5]], ["them", [6]]],
             "verseIndex": 0
           }
         ]
@@ -512,34 +369,26 @@
         "book": 3,
         "chapter": 18,
         "verse": 5,
-        "start": false,
-        "width": 0.6203306467536663
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "14": {
     "text": [
       [
         [
           {
             "he": ["וָחַ֣י", " בָּהֶ֑ם", " אֲנִ֖י", " יְהֹוָֽה׃"],
-            "en": [
-              {"words": "will live", "page": 134, "line": 15, "word": 1},
-              {"words": "by them.", "page": 134, "line": 15, "word": 2},
-              {"words": "I", "page": 134, "line": 15, "word": 3},
-              {"words": "am the LORD.", "page": 134, "line": 15, "word": 4}
-            ],
+            "en": [["and he shall live", [0]], ["by them.", [1]], ["I", [2]], ["{am} יהוה.", [3]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" אִ֥ישׁ"],
-            "en": [
-              {"words": "None of", "page": 134, "line": 15, "word": 1}
-            ],
-            "verseIndex": 0
+            "en": [["A man,", [0]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -549,36 +398,24 @@
         "book": 3,
         "chapter": 18,
         "verse": 5,
-        "start": false,
-        "width": 0.2445385844298049
+        "indexOfFirstWord": 9
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 6,
-        "start": true,
-        "width": 0.07227664958152209
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "15": {
     "text": [
       [
         [
           {
-            "he": ["אִישׁ֙", " אֶל", "־כׇּל", "־שְׁאֵ֣ר", " בְּשָׂר֔וֹ", " לֹ֥א", " תִקְרְב֖וּ", " לְגַלּ֣וֹת", " עֶרְוָ֑ה"],
-            "en": [
-              {"words": "", "page": 134, "line": 16, "word": 1},
-              {"words": "", "page": 134, "line": 16, "word": 2},
-              {"words": "you are to approach", "page": 134, "line": 16, "word": 7},
-              {"words": "any", "page": 134, "line": 16, "word": 3},
-              {"words": "", "page": 134, "line": 16, "word": 6},
-              {"words": "close relative", "page": 134, "line": 16, "word": 4},
-              {"words": "", "page": 134, "line": 16, "word": 5},
-              {"words": "to have sexual relations", "page": 134, "line": 16, "word": 8},
-              {"words": ".", "page": 134, "line": 16, "word": 9}
-            ],
+            "he": ["אִישׁ֙", " אֶל־", "כׇּל־", "שְׁאֵ֣ר", " בְּשָׂר֔וֹ", " לֹ֥א", " תִקְרְב֖וּ", " לְגַלּ֣וֹת", " עֶרְוָ֑ה"],
+            "en": [["a man,", [0]], ["you shall", [6]], ["not", [5]], ["draw near", [6]], ["to", [1]], ["any", [2]], ["body of", [3]], ["his flesh", [4]], ["to uncover", [7]], ["nakedness.", [8]]],
             "verseIndex": 0
           }
         ]
@@ -589,32 +426,26 @@
         "book": 3,
         "chapter": 18,
         "verse": 6,
-        "start": false,
-        "width": 0.7813101494409481
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "16": {
     "text": [
       [
         [
           {
             "he": ["אֲנִ֖י", " יְהֹוָֽה׃"],
-            "en": [
-              {"words": "I", "page": 134, "line": 17, "word": 1},
-              {"words": "am the LORD.", "page": 134, "line": 17, "word": 2}
-            ],
+            "en": [["I", [0]], ["am יהוה.", [1]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" עֶרְוַ֥ת"],
-            "en": [
-              {"words": "You must not", "page": 134, "line": 18, "word": 4}
-            ],
-            "verseIndex": 0
+            "en": [["The nakedness of", [0]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -624,36 +455,24 @@
         "book": 3,
         "chapter": 18,
         "verse": 6,
-        "start": false,
-        "width": 0.1464132009775298
+        "indexOfFirstWord": 10
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 7,
-        "start": true,
-        "width": 0.09956365668594029
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "17": {
     "text": [
       [
         [
           {
             "he": ["אָבִ֛יךָ", " וְעֶרְוַ֥ת", " אִמְּךָ֖", " לֹ֣א", " תְגַלֵּ֑ה", " אִמְּךָ֣", " הִ֔וא", " לֹ֥א", " תְגַלֶּ֖ה"],
-            "en": [
-              {"words": "expose the nakedness", "page": 134, "line": 17, "word": 1},
-              {"words": "of your father", "page": 134, "line": 18, "word": 1},
-              {"words": "", "page": 134, "line": 18, "word": 2},
-              {"words": "by having sexual relations with", "page": 134, "line": 18, "word": 5},
-              {"words": "your mother.", "page": 134, "line": 18, "word": 3},
-              {"words": "She", "page": 134, "line": 18, "word": 7},
-              {"words": "is your mother;", "page": 134, "line": 18, "word": 6},
-              {"words": "you must not", "page": 134, "line": 18, "word": 8},
-              {"words": "have sexual relations with her", "page": 134, "line": 18, "word": 9}
-            ],
+            "en": [["your father", [0]], ["and the nakedness of", [1]], ["your mother", [2]], ["you shall", [4]], ["not", [3]], ["uncover.", [4]], ["She", [6]], ["{is} your mother;", [5]], ["you shall", [8]], ["not", [7]], ["uncover", [8]]],
             "verseIndex": 0
           }
         ]
@@ -664,34 +483,26 @@
         "book": 3,
         "chapter": 18,
         "verse": 7,
-        "start": false,
-        "width": 0.771209939169873
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "18": {
     "text": [
       [
         [
           {
             "he": ["עֶרְוָתָֽהּ׃"],
-            "en": [
-              {"words": ".", "page": 134, "line": 19, "word": 1}
-            ],
+            "en": [["her nakedness.", [0]]],
             "verseIndex": 0
           }
         ],
         [
           {
-            "he": [" עֶרְוַ֥ת", " אֵֽשֶׁת", "־אָבִ֖יךָ", " לֹ֣א"],
-            "en": [
-              {"words": "You must not", "page": 134, "line": 19, "word": 4},
-              {"words": "have sexual relations with", "page": 134, "line": 19, "word": 1},
-              {"words": "", "page": 134, "line": 20, "word": 1},
-              {"words": "your father’s", "page": 134, "line": 19, "word": 3}
-            ],
-            "verseIndex": 0
+            "he": [" עֶרְוַ֥ת", " אֵֽשֶׁת־", "אָבִ֖יךָ", " לֹ֣א"],
+            "en": [["The nakedness of", [0]], ["the wife of", [1]], ["your father", [2]], ["you shall", [[134, 19, 0, 0]]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -701,41 +512,32 @@
         "book": 3,
         "chapter": 18,
         "verse": 7,
-        "start": false,
-        "width": 0.12922640414418674
+        "indexOfFirstWord": 10
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 8,
-        "start": true,
-        "width": 0.4768337445092966
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "19": {
     "text": [
       [
         [
           {
             "he": ["תְגַלֵּ֑ה", " עֶרְוַ֥ת", " אָבִ֖יךָ", " הִֽוא׃"],
-            "en": [
-              {"words": "wife;", "page": 134, "line": 19, "word": 2},
-              {"words": "it", "page": 134, "line": 20, "word": 4},
-              {"words": "would dishonor", "page": 134, "line": 20, "word": 2},
-              {"words": "your father.", "page": 134, "line": 20, "word": 3}
-            ],
+            "en": [["not", [[134, 18, 1, 3]]], ["uncover.", [0]], ["It", [3]], ["{is} the nakedness of", [1]], ["your father.", [2]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" עֶרְוַ֨ת"],
-            "en": [
-              {"words": "You must not", "page": 134, "line": 22, "word": 3}
-            ],
-            "verseIndex": 0
+            "en": [["The nakedness of", [0]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -745,36 +547,24 @@
         "book": 3,
         "chapter": 18,
         "verse": 8,
-        "start": false,
-        "width": 0.5231662554907034
+        "indexOfFirstWord": 4
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 9,
-        "start": true,
-        "width": 0.07707411228327066
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "20": {
     "text": [
       [
         [
           {
-            "he": ["אֲחֽוֹתְךָ֤", " בַת", "־אָבִ֙יךָ֙", " א֣וֹ", " בַת", "־אִמֶּ֔ךָ", " מוֹלֶ֣דֶת", " בַּ֔יִת", " א֖וֹ"],
-            "en": [
-              {"words": "have sexual relations with", "page": 134, "line": 22, "word": 4},
-              {"words": "", "page": 134, "line": 22, "word": 5},
-              {"words": "", "page": 134, "line": 20, "word": 1},
-              {"words": "your sister,", "page": 134, "line": 21, "word": 1},
-              {"words": "either your father’s", "page": 134, "line": 21, "word": 3},
-              {"words": "daughter", "page": 134, "line": 21, "word": 2},
-              {"words": "or", "page": 134, "line": 21, "word": 4},
-              {"words": "", "page": 134, "line": 21, "word": 5},
-              {"words": "your mother’s daughter,", "page": 134, "line": 21, "word": 6}
-            ],
+            "he": ["אֲחֽוֹתְךָ֤", " בַת־", "אָבִ֙יךָ֙", " א֣וֹ", " בַת־", "אִמֶּ֔ךָ", " מוֹלֶ֣דֶת", " בַּ֔יִת", " א֖וֹ"],
+            "en": [["your sister,", [0]], ["the daughter of", [1]], ["your father", [2]], ["or", [3]], ["the daughter of", [4]], ["your mother,", [5]], ["born of", [6]], ["{the same} house", [7]], ["or", [8]]],
             "verseIndex": 0
           }
         ]
@@ -785,35 +575,26 @@
         "book": 3,
         "chapter": 18,
         "verse": 9,
-        "start": false,
-        "width": 0.5546939998003262
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "21": {
     "text": [
       [
         [
           {
             "he": ["מוֹלֶ֣דֶת", " ח֑וּץ", " לֹ֥א", " תְגַלֶּ֖ה", " עֶרְוָתָֽן׃"],
-            "en": [
-              {"words": "whether she was born", "page": 134, "line": 21, "word": 7},
-              {"words": "in the same home", "page": 134, "line": 21, "word": 8},
-              {"words": "or", "page": 134, "line": 21, "word": 9},
-              {"words": "", "page": 134, "line": 22, "word": 1},
-              {"words": "elsewhere.", "page": 134, "line": 22, "word": 2}
-            ],
+            "en": [["born", [0]], ["outside {it},", [1]], ["you shall", [3]], ["not", [2]], ["uncover", [3]], ["their nakedness.", [4]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" עֶרְוַ֤ת"],
-            "en": [
-              {"words": "You must not", "page": 134, "line": 23, "word": 6}
-            ],
-            "verseIndex": 0
+            "en": [["The nakedness of", [0]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -823,37 +604,24 @@
         "book": 3,
         "chapter": 18,
         "verse": 9,
-        "start": false,
-        "width": 0.3682318879164032
+        "indexOfFirstWord": 10
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 10,
-        "start": true,
-        "width": 0.10596147687239786
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "22": {
     "text": [
       [
         [
           {
-            "he": ["בַּת", "־בִּנְךָ֙", " א֣וֹ", " בַֽת", "־בִּתְּךָ֔", " לֹ֥א", " תְגַלֶּ֖ה", " עֶרְוָתָ֑ן", " כִּ֥י", " עֶרְוָתְךָ֖"],
-            "en": [
-              {"words": "have sexual relations with", "page": 134, "line": 23, "word": 7},
-              {"words": "", "page": 134, "line": 23, "word": 10},
-              {"words": "", "page": 134, "line": 22, "word": 1},
-              {"words": "your son’s", "page": 134, "line": 23, "word": 2},
-              {"words": "daughter", "page": 134, "line": 23, "word": 1},
-              {"words": "or", "page": 134, "line": 23, "word": 3},
-              {"words": "your daughter’s", "page": 134, "line": 23, "word": 4},
-              {"words": "daughter,", "page": 134, "line": 23, "word": 5},
-              {"words": "for", "page": 134, "line": 23, "word": 9},
-              {"words": "that", "page": 134, "line": 24, "word": 1}
-            ],
+            "he": ["בַּת־", "בִּנְךָ֙", " א֣וֹ", " בַֽת־", "בִּתְּךָ֔", " לֹ֥א", " תְגַלֶּ֖ה", " עֶרְוָתָ֑ן", " כִּ֥י", " עֶרְוָתְךָ֖"],
+            "en": [["the daughter of", [0]], ["your son", [1]], ["or", [2]], ["the daughter of", [3]], ["your daughter—", [4]], ["you shall", [6]], ["not", [5]], ["uncover", [6]], ["their nakedness,", [7]], ["for", [8]], ["they", [[134, 23, 0, 0]]]],
             "verseIndex": 0
           }
         ]
@@ -864,32 +632,26 @@
         "book": 3,
         "chapter": 18,
         "verse": 10,
-        "start": false,
-        "width": 0.814498787573775
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "23": {
     "text": [
       [
         [
           {
             "he": ["הֵֽנָּה׃"],
-            "en": [
-              {"words": "would shame your family.", "page": 134, "line": 23, "word": 8}
-            ],
+            "en": [["{are} your nakedness.", [[134, 22, 0, 9]]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" עֶרְוַ֨ת", " בַּת־"],
-            "en": [
-              {"words": "You must not", "page": 134, "line": 25, "word": 7},
-              {"words": "have sexual relations with", "page": 134, "line": 24, "word": 1}
-            ],
-            "verseIndex": 0
+            "en": [["The nakedness of", [0]], ["the daughter of", [1]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -899,35 +661,24 @@
         "book": 3,
         "chapter": 18,
         "verse": 10,
-        "start": false,
-        "width": 0.07953973555382715
+        "indexOfFirstWord": 11
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 11,
-        "start": true,
-        "width": 0.1485122479114833
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "24": {
     "text": [
       [
         [
           {
             "he": ["אֵ֤שֶׁת", " אָבִ֙יךָ֙", " מוֹלֶ֣דֶת", " אָבִ֔יךָ", " אֲחוֹתְךָ֖", " הִ֑וא", " לֹ֥א", " תְגַלֶּ֖ה"],
-            "en": [
-              {"words": "", "page": 134, "line": 25, "word": 8},
-              {"words": "", "page": 134, "line": 26, "word": 1},
-              {"words": "the daughter", "page": 134, "line": 24, "word": 2},
-              {"words": "of your father’s", "page": 134, "line": 25, "word": 2},
-              {"words": "wife,", "page": 134, "line": 25, "word": 1},
-              {"words": "born", "page": 134, "line": 25, "word": 3},
-              {"words": "to your father;", "page": 134, "line": 25, "word": 4},
-              {"words": "she", "page": 134, "line": 25, "word": 6}
-            ],
+            "en": [["the wife of", [0]], ["your father,", [1]], ["the one born of", [2]], ["your father,", [3]], ["she", [5]], ["{is} your sister.", [4]], ["You shall", [7]], ["not", [6]], ["uncover", [7]]],
             "verseIndex": 0
           }
         ]
@@ -938,35 +689,26 @@
         "book": 3,
         "chapter": 18,
         "verse": 11,
-        "start": false,
-        "width": 0.7298784311345753
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "25": {
     "text": [
       [
         [
           {
             "he": ["עֶרְוָתָֽהּ׃"],
-            "en": [
-              {"words": "is your sister.", "page": 134, "line": 25, "word": 5}
-            ],
+            "en": [["her nakedness.", [0]]],
             "verseIndex": 0
           }
         ],
         [
           {
-            "he": [" עֶרְוַ֥ת", " אֲחוֹת", "־אָבִ֖יךָ", " לֹ֣א", " תְגַלֵּ֑ה"],
-            "en": [
-              {"words": "You must not", "page": 134, "line": 26, "word": 4},
-              {"words": "have sexual relations with", "page": 134, "line": 26, "word": 1},
-              {"words": "", "page": 134, "line": 26, "word": 5},
-              {"words": "your father’s", "page": 134, "line": 26, "word": 3},
-              {"words": "sister;", "page": 134, "line": 26, "word": 2}
-            ],
-            "verseIndex": 0
+            "he": [" עֶרְוַ֥ת", " אֲחוֹת־", "אָבִ֖יךָ", " לֹ֣א", " תְגַלֵּ֑ה"],
+            "en": [["The nakedness of", [0]], ["the sister of", [1]], ["your father,", [2]], ["you shall", [4]], ["not", [3]], ["uncover.", [4]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -976,42 +718,32 @@
         "book": 3,
         "chapter": 18,
         "verse": 11,
-        "start": false,
-        "width": 0.12160932095394138
+        "indexOfFirstWord": 10
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 12,
-        "start": true,
-        "width": 0.6400925536390408
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "26": {
     "text": [
       [
         [
           {
             "he": ["שְׁאֵ֥ר", " אָבִ֖יךָ", " הִֽוא׃"],
-            "en": [
-              {"words": "she", "page": 134, "line": 27, "word": 3},
-              {"words": "is your father’s", "page": 134, "line": 27, "word": 2},
-              {"words": "close relative.", "page": 134, "line": 27, "word": 1}
-            ],
+            "en": [["She", [2]], ["is the flesh of", [0]], ["your father.", [1]]],
             "verseIndex": 0
           }
         ],
         [
           {
-            "he": [" עֶרְוַ֥ת", " אֲחֽוֹת", "־אִמְּךָ֖"],
-            "en": [
-              {"words": "You must not", "page": 134, "line": 28, "word": 1},
-              {"words": "have sexual relations with", "page": 134, "line": 27, "word": 1},
-              {"words": "", "page": 134, "line": 28, "word": 2}
-            ],
-            "verseIndex": 0
+            "he": [" עֶרְוַ֥ת", " אֲחֽוֹת־", "אִמְּךָ֖"],
+            "en": [["The nakedness of", [0]], ["the sister of", [1]], ["your mother,", [2]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -1021,43 +753,32 @@
         "book": 3,
         "chapter": 18,
         "verse": 12,
-        "start": false,
-        "width": 0.35990744636095917
+        "indexOfFirstWord": 5
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 13,
-        "start": true,
-        "width": 0.39075866560104194
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "27": {
     "text": [
       [
         [
           {
-            "he": ["לֹ֣א", " תְגַלֵּ֑ה", " כִּֽי", "־שְׁאֵ֥ר", " אִמְּךָ֖", " הִֽוא׃"],
-            "en": [
-              {"words": "your mother’s", "page": 134, "line": 27, "word": 3},
-              {"words": "sister,", "page": 134, "line": 27, "word": 2},
-              {"words": "for", "page": 134, "line": 28, "word": 3},
-              {"words": "she", "page": 134, "line": 28, "word": 6},
-              {"words": "is your mother’s", "page": 134, "line": 28, "word": 5},
-              {"words": "close relative.", "page": 134, "line": 28, "word": 4}
-            ],
+            "he": ["לֹ֣א", " תְגַלֵּ֑ה", " כִּֽי־", "שְׁאֵ֥ר", " אִמְּךָ֖", " הִֽוא׃"],
+            "en": [["you shall", [1]], ["not", [0]], ["uncover,", [1]], ["for", [2]], ["she", [5]], ["is the flesh of", [3]], ["your mother.", [4]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" עֶרְוַ֥ת"],
-            "en": [
-              {"words": "You must not {dishonor}", "page": 134, "line": 29, "word": 3}
-            ],
-            "verseIndex": 0
+            "en": [["The nakedness of", [0]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -1067,36 +788,24 @@
         "book": 3,
         "chapter": 18,
         "verse": 13,
-        "start": false,
-        "width": 0.609241334398958
+        "indexOfFirstWord": 3
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 14,
-        "start": true,
-        "width": 0.1055413780532264
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "28": {
     "text": [
       [
         [
           {
-            "he": ["אֲחִֽי", "־אָבִ֖יךָ", " לֹ֣א", " תְגַלֵּ֑ה", " אֶל", "־אִשְׁתּוֹ֙", " לֹ֣א", " תִקְרָ֔ב", " דֹּדָֽתְךָ֖"],
-            "en": [
-              {"words": "your father’s", "page": 134, "line": 29, "word": 2},
-              {"words": "brother", "page": 134, "line": 29, "word": 1},
-              {"words": "by approaching", "page": 134, "line": 29, "word": 8},
-              {"words": "", "page": 134, "line": 29, "word": 5},
-              {"words": "", "page": 134, "line": 29, "word": 7},
-              {"words": "his wife", "page": 134, "line": 29, "word": 6},
-              {"words": "to have sexual relations with her", "page": 134, "line": 29, "word": 4},
-              {"words": ";", "page": 134, "line": 28, "word": 1},
-              {"words": "she [is]", "page": 134, "line": 30, "word": 1}
-            ],
+            "he": ["אֲחִֽי־", "אָבִ֖יךָ", " לֹ֣א", " תְגַלֵּ֑ה", " אֶל־", "אִשְׁתּוֹ֙", " לֹ֣א", " תִקְרָ֔ב", " דֹּדָֽתְךָ֖"],
+            "en": [["the brother of", [0]], ["your father,", [1]], ["you shall", [3]], ["not", [2]], ["uncover;", [3]], ["to", [4]], ["his wife", [5]], ["you shall", [7]], ["not", [6]], ["draw near.", [7]], ["She", [[134, 29, 0, 0]]]],
             "verseIndex": 0
           }
         ]
@@ -1107,31 +816,26 @@
         "book": 3,
         "chapter": 18,
         "verse": 14,
-        "start": false,
-        "width": 0.8194722931097339
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "29": {
     "text": [
       [
         [
           {
             "he": ["הִֽוא׃"],
-            "en": [
-              {"words": "your aunt.", "page": 134, "line": 29, "word": 9}
-            ],
+            "en": [["is your aunt.", [[134, 28, 0, 8]]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" עֶרְוַ֥ת"],
-            "en": [
-              {"words": "You must not", "page": 134, "line": 31, "word": 2}
-            ],
-            "verseIndex": 0
+            "en": [["The nakedness of", [0]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -1141,35 +845,24 @@
         "book": 3,
         "chapter": 18,
         "verse": 14,
-        "start": false,
-        "width": 0.07498632883703973
+        "indexOfFirstWord": 10
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 15,
-        "start": true,
-        "width": 0.11167365832489512
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "30": {
     "text": [
       [
         [
           {
             "he": ["כַּלָּֽתְךָ֖", " לֹ֣א", " תְגַלֵּ֑ה", " אֵ֤שֶׁת", " בִּנְךָ֙", " הִ֔וא", " לֹ֥א", " תְגַלֶּ֖ה"],
-            "en": [
-              {"words": "have sexual relations with", "page": 134, "line": 30, "word": 1},
-              {"words": "", "page": 134, "line": 31, "word": 3},
-              {"words": "your daughter-in-law.", "page": 134, "line": 31, "word": 1},
-              {"words": "She", "page": 134, "line": 31, "word": 6},
-              {"words": "is your son’s", "page": 134, "line": 31, "word": 5},
-              {"words": "wife;", "page": 134, "line": 31, "word": 4},
-              {"words": "you are not", "page": 134, "line": 31, "word": 7},
-              {"words": "to have sexual relations with her", "page": 134, "line": 31, "word": 8}
-            ],
+            "en": [["your daughter-in-law,", [0]], ["you shall", [2]], ["not", [1]], ["uncover.", [2]], ["She", [5]], ["is the wife of", [3]], ["your son.", [4]], ["You shall", [7]], ["not", [6]], ["uncover", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1180,35 +873,26 @@
         "book": 3,
         "chapter": 18,
         "verse": 15,
-        "start": false,
-        "width": 0.7433820338492695
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "31": {
     "text": [
       [
         [
           {
             "he": ["עֶרְוָתָֽהּ׃"],
-            "en": [
-              {"words": ".", "page": 134, "line": 32, "word": 1}
-            ],
+            "en": [["her nakedness.", [0]]],
             "verseIndex": 0
           }
         ],
         [
           {
-            "he": [" עֶרְוַ֥ת", " אֵֽשֶׁת", "־אָחִ֖יךָ", " לֹ֣א", " תְגַלֵּ֑ה"],
-            "en": [
-              {"words": "You must not", "page": 134, "line": 32, "word": 4},
-              {"words": "have sexual relations with", "page": 134, "line": 32, "word": 1},
-              {"words": "", "page": 134, "line": 32, "word": 5},
-              {"words": "your brother’s", "page": 134, "line": 32, "word": 3},
-              {"words": "wife;", "page": 134, "line": 32, "word": 2}
-            ],
-            "verseIndex": 0
+            "he": [" עֶרְוַ֥ת", " אֵֽשֶׁת־", "אָחִ֖יךָ", " לֹ֣א", " תְגַלֵּ֑ה"],
+            "en": [["The nakedness of", [0]], ["the wife of", [1]], ["your brother,", [2]], ["you shall", [4]], ["not", [3]], ["uncover.", [4]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -1218,40 +902,32 @@
         "book": 3,
         "chapter": 18,
         "verse": 15,
-        "start": false,
-        "width": 0.1449443078258354
+        "indexOfFirstWord": 9
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 16,
-        "start": true,
-        "width": 0.6214762276852798
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "32": {
     "text": [
       [
         [
           {
             "he": ["עֶרְוַ֥ת", " אָחִ֖יךָ", " הִֽוא׃"],
-            "en": [
-              {"words": "that", "page": 134, "line": 33, "word": 3},
-              {"words": "would shame", "page": 134, "line": 33, "word": 1},
-              {"words": "your brother.", "page": 134, "line": 33, "word": 2}
-            ],
+            "en": [["She", [2]], ["is the nakedness of", [0]], ["your brother.", [1]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" עֶרְוַ֥ת"],
-            "en": [
-              {"words": "You must not", "page": 134, "line": 34, "word": 3}
-            ],
-            "verseIndex": 0
+            "en": [["The nakedness of", [0]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -1261,36 +937,24 @@
         "book": 3,
         "chapter": 18,
         "verse": 16,
-        "start": false,
-        "width": 0.3785237723147202
+        "indexOfFirstWord": 5
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 17,
-        "start": true,
-        "width": 0.06325449281695526
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "33": {
     "text": [
       [
         [
           {
-            "he": ["אִשָּׁ֛ה", " וּבִתָּ֖הּ", " לֹ֣א", " תְגַלֵּ֑ה", " אֶֽת", "־בַּת", "־בְּנָ֞הּ", " וְאֶת", "־בַּת־"],
-            "en": [
-              {"words": "have sexual relations with both", "page": 134, "line": 33, "word": 1},
-              {"words": "", "page": 134, "line": 34, "word": 4},
-              {"words": "", "page": 134, "line": 34, "word": 5},
-              {"words": "a woman", "page": 134, "line": 34, "word": 1},
-              {"words": "and her daughter.", "page": 134, "line": 34, "word": 2},
-              {"words": "You are not", "page": 134, "line": 35, "word": 2},
-              {"words": "to marry", "page": 134, "line": 35, "word": 3},
-              {"words": "her son’s", "page": 134, "line": 34, "word": 7},
-              {"words": "", "page": 134, "line": 34, "word": 8}
-            ],
+            "he": ["אִשָּׁ֛ה", " וּבִתָּ֖הּ", " לֹ֣א", " תְגַלֵּ֑ה", " אֶֽת־", "בַּת־", "בְּנָ֞הּ", " וְאֶת־", "בַּת־"],
+            "en": [["a woman", [0]], ["and her daughter,", [1]], ["you shall", [3]], ["not", [2]], ["uncover.", [3]], ["The daughter of", [4, 5]], ["her son", [6]], ["or the", [7, 8]], ["daughter", [[134, 34, 0, 0]]], ["of", [7, 8]], ["her", [[134, 34, 0, 0]]]],
             "verseIndex": 0
           }
         ]
@@ -1301,28 +965,18 @@
         "book": 3,
         "chapter": 18,
         "verse": 17,
-        "start": false,
-        "width": 0.4218878024799257
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "34": {
     "text": [
       [
         [
           {
             "he": ["בִּתָּ֗הּ", " לֹ֤א", " תִקַּח֙", " לְגַלּ֣וֹת", " עֶרְוָתָ֔הּ", " שַׁאֲרָ֥ה", " הֵ֖נָּה", " זִמָּ֥ה"],
-            "en": [
-              {"words": "daughter", "page": 134, "line": 34, "word": 6},
-              {"words": "or her daughter’s", "page": 134, "line": 34, "word": 9},
-              {"words": "daughter", "page": 134, "line": 35, "word": 1},
-              {"words": "and have sexual relations with her", "page": 134, "line": 35, "word": 4},
-              {"words": ".", "page": 134, "line": 35, "word": 5},
-              {"words": "They", "page": 134, "line": 35, "word": 7},
-              {"words": "are close relatives;", "page": 134, "line": 35, "word": 6},
-              {"words": "it", "page": 134, "line": 36, "word": 1}
-            ],
+            "en": [["daughter,", [[134, 33, 0, 7], [134, 33, 0, 8]]], ["you shall", [2]], ["not", [1]], ["take", [2]], ["to uncover", [3]], ["her nakedness.", [4]], ["They", [6]], ["are flesh.", [5]], ["It", [[134, 35, 0, 0]]]],
             "verseIndex": 0
           }
         ]
@@ -1333,34 +987,23 @@
         "book": 3,
         "chapter": 18,
         "verse": 17,
-        "start": false,
-        "width": 0.4699158791719015
+        "indexOfFirstWord": 10
       }
     ],
     "isPetucha": false
   },
-  {
+  "35": {
     "text": [
       [
         [
           {
             "he": ["הִֽוא׃"],
-            "en": [
-              {"words": "is depraved.", "page": 134, "line": 35, "word": 8}
-            ],
+            "en": [["is depravity.", [[134, 34, 0, 7]]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְאִשָּׁ֥ה", " אֶל", "־אֲחֹתָ֖הּ", " לֹ֣א", " תִקָּ֑ח", " לִצְרֹ֗ר", " לְגַלּ֧וֹת"],
-            "en": [
-              {"words": "You must not", "page": 134, "line": 36, "word": 4},
-              {"words": "take", "page": 134, "line": 36, "word": 5},
-              {"words": "your wife’s", "page": 134, "line": 36, "word": 1},
-              {"words": "", "page": 134, "line": 36, "word": 2},
-              {"words": "sister", "page": 134, "line": 36, "word": 3},
-              {"words": "as a rival wife", "page": 134, "line": 36, "word": 6},
-              {"words": "and have sexual relations with her", "page": 134, "line": 36, "word": 7}
-            ],
+            "he": [" וְאִשָּׁ֥ה", " אֶל־", "אֲחֹתָ֖הּ", " לֹ֣א", " תִקָּ֑ח", " לִצְרֹ֗ר", " לְגַלּ֧וֹת"],
+            "en": [["And a woman", [0]], ["to", [1]], ["her sister,", [2]], ["you shall", [4]], ["not", [3]], ["take", [4]], ["to be a concubine", [5]], ["to uncover", [6]]],
             "verseIndex": 1
           }
         ]
@@ -1371,40 +1014,29 @@
         "book": 3,
         "chapter": 18,
         "verse": 17,
-        "start": false,
-        "width": 0.04494182553121757
+        "indexOfFirstWord": 18
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 18,
-        "start": true,
-        "width": 0.6504255180926395
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "36": {
     "text": [
       [
         [
           {
             "he": ["עֶרְוָתָ֛הּ", " עָלֶ֖יהָ", " בְּחַיֶּֽיהָ׃"],
-            "en": [
-              {"words": "", "page": 134, "line": 37, "word": 1},
-              {"words": "", "page": 134, "line": 37, "word": 2},
-              {"words": "while your wife is still alive.", "page": 134, "line": 37, "word": 3}
-            ],
+            "en": [["her nakedness", [0]], ["on her", [1]], ["in her life.", [2]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְאֶל", "־אִשָּׁ֖ה", " בְּנִדַּ֣ת", " טֻמְאָתָ֑הּ"],
-            "en": [
-              {"words": "", "page": 134, "line": 37, "word": 1},
-              {"words": "You must not", "page": 134, "line": 38, "word": 1},
-              {"words": "approach", "page": 134, "line": 38, "word": 2},
-              {"words": "a woman", "page": 134, "line": 37, "word": 2}
-            ],
+            "he": [" וְאֶל־", "אִשָּׁ֖ה", " בְּנִדַּ֣ת", " טֻמְאָתָ֑הּ"],
+            "en": [["And to", [0]], ["a woman", [1]], ["in the menstruation of", [2]], ["her uncleanness,", [3]]],
             "verseIndex": 1
           }
         ]
@@ -1415,41 +1047,29 @@
         "book": 3,
         "chapter": 18,
         "verse": 18,
-        "start": false,
-        "width": 0.3495744819073605
+        "indexOfFirstWord": 7
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 19,
-        "start": true,
-        "width": 0.49143157066001836
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "37": {
     "text": [
       [
         [
           {
             "he": ["לֹ֣א", " תִקְרַ֔ב", " לְגַלּ֖וֹת", " עֶרְוָתָֽהּ׃"],
-            "en": [
-              {"words": "to have sexual relations with her", "page": 134, "line": 38, "word": 3},
-              {"words": "", "page": 134, "line": 38, "word": 4},
-              {"words": "during her menstrual period", "page": 134, "line": 37, "word": 3},
-              {"words": ".", "page": 134, "line": 37, "word": 4}
-            ],
+            "en": [["you shall", [1]], ["not", [0]], ["draw near", [1]], ["to uncover", [2]], ["her nakedness.", [3]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְאֶל", "־אֵ֙שֶׁת֙", " עֲמִֽיתְךָ֔", " לֹא־"],
-            "en": [
-              {"words": "You must not", "page": 134, "line": 38, "word": 4},
-              {"words": "lie", "page": 134, "line": 39, "word": 1},
-              {"words": "carnally", "page": 134, "line": 39, "word": 2},
-              {"words": "", "page": 134, "line": 39, "word": 3}
-            ],
+            "he": [" וְאֶל־", "אֵ֙שֶׁת֙", " עֲמִֽיתְךָ֔", " לֹא־"],
+            "en": [["And to", [0]], ["the wife of", [1]], ["your fellow citizen,", [2]], ["you shall", [[134, 38, 0, 0]]]],
             "verseIndex": 1
           }
         ]
@@ -1460,41 +1080,29 @@
         "book": 3,
         "chapter": 18,
         "verse": 19,
-        "start": false,
-        "width": 0.5085684293399816
+        "indexOfFirstWord": 4
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 20,
-        "start": true,
-        "width": 0.3942233215900857
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "38": {
     "text": [
       [
         [
           {
-            "he": ["תִתֵּ֥ן", " שְׁכׇבְתְּךָ֖", " לְזָ֑רַע", " לְטׇמְאָה", "־בָֽהּ׃"],
-            "en": [
-              {"words": "with", "page": 134, "line": 38, "word": 1},
-              {"words": "your neighbor’s", "page": 134, "line": 38, "word": 3},
-              {"words": "wife", "page": 134, "line": 38, "word": 2},
-              {"words": "and thus defile yourself", "page": 134, "line": 39, "word": 4},
-              {"words": "with her.", "page": 134, "line": 39, "word": 5}
-            ],
+            "he": ["תִתֵּ֥ן", " שְׁכׇבְתְּךָ֖", " לְזָ֑רַע", " לְטׇמְאָה־", "בָֽהּ׃"],
+            "en": [["not", [[134, 37, 1, 3]]], ["give", [0]], ["your lying", [1]], ["of seed", [2]], ["to become unclean", [3]], ["with her.", [4]]],
             "verseIndex": 0
           },
           {
-            "he": [" וּמִֽזַּרְעֲךָ֥", " לֹא", "־תִתֵּ֖ן"],
-            "en": [
-              {"words": "You must not", "page": 134, "line": 39, "word": 2},
-              {"words": "give", "page": 134, "line": 39, "word": 3},
-              {"words": "any of your children", "page": 134, "line": 39, "word": 1}
-            ],
+            "he": [" וּמִֽזַּרְעֲךָ֥", " לֹא־", "תִתֵּ֖ן"],
+            "en": [["And from your seed,", [0]], ["you shall", [2]], ["not", [1]], ["give {them}", [2]]],
             "verseIndex": 1
           }
         ]
@@ -1505,35 +1113,24 @@
         "book": 3,
         "chapter": 18,
         "verse": 20,
-        "start": false,
-        "width": 0.6057766784099143
+        "indexOfFirstWord": 4
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 21,
-        "start": true,
-        "width": 0.24315690812754642
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "39": {
     "text": [
       [
         [
           {
-            "he": ["לְהַעֲבִ֣יר", " לַמֹּ֑לֶךְ", " וְלֹ֧א", " תְחַלֵּ֛ל", " אֶת", "־שֵׁ֥ם", " אֱלֹהֶ֖יךָ", " אֲנִ֥י"],
-            "en": [
-              {"words": "to be sacrificed", "page": 134, "line": 40, "word": 1},
-              {"words": "to Molech,", "page": 134, "line": 40, "word": 2},
-              {"words": "for you must not", "page": 134, "line": 40, "word": 3},
-              {"words": "profane", "page": 134, "line": 40, "word": 4},
-              {"words": "", "page": 134, "line": 40, "word": 5},
-              {"words": "the name", "page": 134, "line": 40, "word": 6},
-              {"words": "of your God.", "page": 134, "line": 40, "word": 7},
-              {"words": "I", "page": 134, "line": 40, "word": 8}
-            ],
+            "he": ["לְהַעֲבִ֣יר", " לַמֹּ֑לֶךְ", " וְלֹ֧א", " תְחַלֵּ֛ל", " אֶת־", "שֵׁ֥ם", " אֱלֹהֶ֖יךָ", " אֲנִ֥י"],
+            "en": [["to cause {them} to pass over", [0]], ["to Molech.", [1]], ["And", [2]], ["you shall", [3]], ["not", [2]], ["profane", [3]], ["the name of", [4, 5]], ["your God.", [6]], ["I", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1544,34 +1141,23 @@
         "book": 3,
         "chapter": 18,
         "verse": 21,
-        "start": false,
-        "width": 0.6776334665927045
+        "indexOfFirstWord": 3
       }
     ],
     "isPetucha": false
   },
-  {
+  "40": {
     "text": [
       [
         [
           {
             "he": ["יְהֹוָֽה׃"],
-            "en": [
-              {"words": "am the LORD.", "page": 134, "line": 41, "word": 1}
-            ],
+            "en": [["am יהוה.", [0]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְאֶ֨ת", "־זָכָ֔ר", " לֹ֥א", " תִשְׁכַּ֖ב", " מִשְׁכְּבֵ֣י", " אִשָּׁ֑ה", " תּוֹעֵבָ֖ה"],
-            "en": [
-              {"words": "You must not", "page": 134, "line": 41, "word": 3},
-              {"words": "lie", "page": 134, "line": 41, "word": 4},
-              {"words": "with", "page": 134, "line": 41, "word": 1},
-              {"words": "a man", "page": 134, "line": 41, "word": 2},
-              {"words": "as with", "page": 134, "line": 41, "word": 5},
-              {"words": "a woman;", "page": 134, "line": 41, "word": 6},
-              {"words": "that", "page": 134, "line": 42, "word": 1}
-            ],
+            "he": [" וְאֶ֨ת־", "זָכָ֔ר", " לֹ֥א", " תִשְׁכַּ֖ב", " מִשְׁכְּבֵ֣י", " אִשָּׁ֑ה", " תּוֹעֵבָ֖ה"],
+            "en": [["And", [0]], ["you shall", [3]], ["not", [2]], ["lie", [3]], ["with", [0]], ["a male", [1]], ["{as} the lyings of", [4]], ["a woman.", [5]], ["It", [[134, 41, 0, 0]]]],
             "verseIndex": 1
           }
         ]
@@ -1582,41 +1168,29 @@
         "book": 3,
         "chapter": 18,
         "verse": 21,
-        "start": false,
-        "width": 0.07920962527974904
+        "indexOfFirstWord": 11
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 22,
-        "start": true,
-        "width": 0.9031032858320575
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "41": {
     "text": [
       [
         [
           {
             "he": ["הִֽוא׃"],
-            "en": [
-              {"words": "[is] an abomination.", "page": 134, "line": 41, "word": 7}
-            ],
+            "en": [["is an abomination.", [[134, 40, 1, 6]]]],
             "verseIndex": 0
           },
           {
-            "he": [" וּבְכׇל", "־בְּהֵמָ֛ה", " לֹא", "־תִתֵּ֥ן", " שְׁכׇבְתְּךָ֖", " לְטׇמְאָה", "־בָ֑הּ"],
-            "en": [
-              {"words": "You must not", "page": 134, "line": 42, "word": 3},
-              {"words": "lie", "page": 134, "line": 42, "word": 4},
-              {"words": "carnally", "page": 134, "line": 42, "word": 5},
-              {"words": "with any", "page": 134, "line": 42, "word": 1},
-              {"words": "animal,", "page": 134, "line": 42, "word": 2},
-              {"words": "thus defiling yourself", "page": 134, "line": 42, "word": 6},
-              {"words": "with it;", "page": 134, "line": 42, "word": 7}
-            ],
+            "he": [" וּבְכׇל־", "בְּהֵמָ֛ה", " לֹא־", "תִתֵּ֥ן", " שְׁכׇבְתְּךָ֖", " לְטׇמְאָה־", "בָ֑הּ"],
+            "en": [["And with any", [0]], ["animal", [1]], ["you", [3]], ["shall not", [2]], ["give", [3]], ["your lying", [4]], ["to become unclean", [5]], ["by it.", [6]]],
             "verseIndex": 1
           }
         ]
@@ -1627,17 +1201,15 @@
         "book": 3,
         "chapter": 18,
         "verse": 22,
-        "start": false,
-        "width": 0.09689671416794253
+        "indexOfFirstWord": 7
       },
       {
         "book": 3,
         "chapter": 18,
         "verse": 23,
-        "start": true,
-        "width": 0.47241455024518775
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   }
-]
+}

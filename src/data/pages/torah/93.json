@@ -1,21 +1,12 @@
-[
-  {
+{
+  "length": 42,
+  "0": {
     "text": [
       [
         [
           {
-            "he": ["וּבָנָ֛יו", " מֵעֶ֥רֶב", " עַד", "־בֹּ֖קֶר", " לִפְנֵ֣י", " יְהֹוָ֑ה", " חֻקַּ֤ת", " עוֹלָם֙", " לְדֹ֣רֹתָ֔ם"],
-            "en": [
-              {"words": "the lamps", "page": 92, "line": 42, "word": 7},
-              {"words": "before", "page": 93, "line": 1, "word": 5},
-              {"words": "the LORD", "page": 93, "line": 1, "word": 6},
-              {"words": "from evening", "page": 93, "line": 1, "word": 2},
-              {"words": "until", "page": 93, "line": 1, "word": 3},
-              {"words": "morning.", "page": 93, "line": 1, "word": 4},
-              {"words": "This is to be a permanent", "page": 93, "line": 1, "word": 8},
-              {"words": "statute", "page": 93, "line": 1, "word": 7},
-              {"words": "for the Israelites", "page": 93, "line": 2, "word": 2}
-            ],
+            "he": ["וּבָנָ֛יו", " מֵעֶ֥רֶב", " עַד־", "בֹּ֖קֶר", " לִפְנֵ֣י", " יְהֹוָ֑ה", " חֻקַּ֤ת", " עוֹלָם֙", " לְדֹ֣רֹתָ֔ם"],
+            "en": [["it", [[92, 41, 0, 6]]], ["before the face of", [4]], ["יהוה,", [5]], ["from evening", [1]], ["to", [2]], ["morning.", [3]], ["This is", [6]], ["an eternal", [7]], ["statute", [6]], ["throughout the", [8, []]]],
             "verseIndex": 0
           }
         ]
@@ -26,33 +17,26 @@
         "book": 2,
         "chapter": 27,
         "verse": 21,
-        "start": false,
-        "width": 0.4036480927640376
+        "indexOfFirstWord": 10
       }
     ],
     "isPetucha": false
   },
-  {
+  "1": {
     "text": [
       [
         [
           {
             "he": ["מֵאֵ֖ת", " בְּנֵ֥י", " יִשְׂרָאֵֽל׃"],
-            "en": [
-              {"words": "", "page": 93, "line": 2, "word": 3},
-              {"words": "", "page": 93, "line": 2, "word": 1},
-              {"words": "for the generations to come.[’’]", "page": 93, "line": 1, "word": 9}
-            ],
+            "en": [["generations of", [[], 0]], ["the sons of", [1]], ["Israel.", [2]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" וְאַתָּ֡ה"],
-            "en": [
-              {"words": "[“]Next,", "page": 93, "line": 2, "word": 1}
-            ],
-            "verseIndex": 0
+            "en": [["And you,", [0]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -62,36 +46,24 @@
         "book": 2,
         "chapter": 27,
         "verse": 21,
-        "start": false,
-        "width": 0.12997989159836273
+        "indexOfFirstWord": 19
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 1,
-        "start": true,
-        "width": 0.04983724203130539
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "2": {
     "text": [
       [
         [
           {
-            "he": ["הַקְרֵ֣ב", " אֵלֶ֩יךָ֩", " אֶת", "־אַהֲרֹ֨ן", " אָחִ֜יךָ", " וְאֶת", "־בָּנָ֣יו", " אִתּ֗וֹ", " מִתּ֛וֹךְ"],
-            "en": [
-              {"words": "", "page": 93, "line": 3, "word": 3},
-              {"words": "{have} your brother", "page": 93, "line": 3, "word": 5},
-              {"words": "", "page": 93, "line": 3, "word": 6},
-              {"words": "Aaron", "page": 93, "line": 3, "word": 4},
-              {"words": "brought", "page": 93, "line": 3, "word": 1},
-              {"words": "to you", "page": 93, "line": 3, "word": 2},
-              {"words": "from among", "page": 93, "line": 3, "word": 9},
-              {"words": "the Israelites", "page": 93, "line": 4, "word": 1},
-              {"words": ",", "page": 93, "line": 4, "word": 2}
-            ],
+            "he": ["הַקְרֵ֣ב", " אֵלֶ֩יךָ֩", " אֶת־", "אַהֲרֹ֨ן", " אָחִ֜יךָ", " וְאֶת־", "בָּנָ֣יו", " אִתּ֗וֹ", " מִתּ֛וֹךְ"],
+            "en": [["bring", [0]], ["Aaron", [2, 3]], ["your brother,", [4]], ["and", [5]], ["his sons", [6]], ["with him", [7]], ["near", [0]], ["to you", [1]], ["from among", [8]]],
             "verseIndex": 0
           }
         ]
@@ -102,28 +74,18 @@
         "book": 2,
         "chapter": 28,
         "verse": 1,
-        "start": false,
-        "width": 0.39432549445118875
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "3": {
     "text": [
       [
         [
           {
-            "he": ["בְּנֵ֥י", " יִשְׂרָאֵ֖ל", " לְכַהֲנוֹ", "־לִ֑י", " אַהֲרֹ֕ן", " נָדָ֧ב", " וַאֲבִיה֛וּא", " אֶלְעָזָ֥ר"],
-            "en": [
-              {"words": "along with", "page": 93, "line": 3, "word": 8},
-              {"words": "his sons", "page": 93, "line": 3, "word": 7},
-              {"words": "", "page": 93, "line": 5, "word": 3},
-              {"words": "", "page": 93, "line": 5, "word": 2},
-              {"words": "Nadab,", "page": 93, "line": 4, "word": 6},
-              {"words": "Abihu,", "page": 93, "line": 4, "word": 7},
-              {"words": "Eleazar,", "page": 93, "line": 4, "word": 8},
-              {"words": "and Ithamar", "page": 93, "line": 5, "word": 1}
-            ],
+            "he": ["בְּנֵ֥י", " יִשְׂרָאֵ֖ל", " לְכַהֲנוֹ־", "לִ֑י", " אַהֲרֹ֕ן", " נָדָ֧ב", " וַאֲבִיה֛וּא", " אֶלְעָזָ֥ר"],
+            "en": [["the sons of", [0]], ["Israel", [1]], ["to be priests", [2]], ["for me—", [3]], ["Aaron", [4]], ["and Nadab", [5]], ["and Abihu,", [6]], ["Eleazar", [7]]],
             "verseIndex": 0
           }
         ]
@@ -134,34 +96,23 @@
         "book": 2,
         "chapter": 28,
         "verse": 1,
-        "start": false,
-        "width": 0.4036719916633542
+        "indexOfFirstWord": 10
       }
     ],
     "isPetucha": false
   },
-  {
+  "4": {
     "text": [
       [
         [
           {
             "he": ["וְאִיתָמָ֖ר", " בְּנֵ֥י", " אַהֲרֹֽן׃"],
-            "en": [
-              {"words": ",", "page": 93, "line": 4, "word": 4},
-              {"words": "", "page": 93, "line": 4, "word": 5},
-              {"words": "to serve Me as priests.", "page": 93, "line": 4, "word": 3}
-            ],
+            "en": [["and Ithamar,", [0]], ["the sons of", [1]], ["Aaron!", [2]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְעָשִׂ֥יתָ", " בִגְדֵי", "־קֹ֖דֶשׁ", " לְאַהֲרֹ֣ן", " אָחִ֑יךָ"],
-            "en": [
-              {"words": "Make", "page": 93, "line": 5, "word": 1},
-              {"words": "holy", "page": 93, "line": 5, "word": 3},
-              {"words": "garments", "page": 93, "line": 5, "word": 2},
-              {"words": "for your brother", "page": 93, "line": 5, "word": 5},
-              {"words": "Aaron,", "page": 93, "line": 5, "word": 4}
-            ],
+            "he": [" וְעָשִׂ֥יתָ", " בִגְדֵי־", "קֹ֖דֶשׁ", " לְאַהֲרֹ֣ן", " אָחִ֑יךָ"],
+            "en": [["And you shall make", [0]], ["for Aaron", [3]], ["your brother", [4]], ["clothes of", [1]], ["holiness", [2]]],
             "verseIndex": 1
           }
         ]
@@ -172,41 +123,29 @@
         "book": 2,
         "chapter": 28,
         "verse": 1,
-        "start": false,
-        "width": 0.15216527185415168
+        "indexOfFirstWord": 18
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 2,
-        "start": true,
-        "width": 0.6246985788312555
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "5": {
     "text": [
       [
         [
           {
             "he": ["לְכָב֖וֹד", " וּלְתִפְאָֽרֶת׃"],
-            "en": [
-              {"words": "to give him glory", "page": 93, "line": 6, "word": 1},
-              {"words": "and splendor.", "page": 93, "line": 6, "word": 2}
-            ],
+            "en": [["for glory", [0]], ["and for splendor.", [1]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְאַתָּ֗ה", " תְּדַבֵּר֙", " אֶל", "־כׇּל", "־חַכְמֵי", "־לֵ֔ב"],
-            "en": [
-              {"words": "You", "page": 93, "line": 6, "word": 1},
-              {"words": "are to instruct", "page": 93, "line": 6, "word": 2},
-              {"words": "", "page": 93, "line": 6, "word": 3},
-              {"words": "all", "page": 93, "line": 6, "word": 4},
-              {"words": "the skilled craftsmen", "page": 93, "line": 6, "word": 5},
-              {"words": ",", "page": 93, "line": 6, "word": 6}
-            ],
+            "he": [" וְאַתָּ֗ה", " תְּדַבֵּר֙", " אֶל־", "כׇּל־", "חַכְמֵי־", "לֵ֔ב"],
+            "en": [["And you,", [0]], ["you shall speak", [1]], ["to", [2]], ["all of", [3]], ["the wise of", [4]], ["heart,", [5]]],
             "verseIndex": 1
           }
         ]
@@ -217,35 +156,24 @@
         "book": 2,
         "chapter": 28,
         "verse": 2,
-        "start": false,
-        "width": 0.37530142116874454
+        "indexOfFirstWord": 5
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 3,
-        "start": true,
-        "width": 0.31842852723642395
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "6": {
     "text": [
       [
         [
           {
-            "he": ["אֲשֶׁ֥ר", " מִלֵּאתִ֖יו", " ר֣וּחַ", " חׇכְמָ֑ה", " וְעָשׂ֞וּ", " אֶת", "־בִּגְדֵ֧י", " אַהֲרֹ֛ן"],
-            "en": [
-              {"words": "whom", "page": 93, "line": 7, "word": 1},
-              {"words": "I have filled", "page": 93, "line": 7, "word": 2},
-              {"words": "with a spirit", "page": 93, "line": 7, "word": 3},
-              {"words": "of wisdom,", "page": 93, "line": 7, "word": 4},
-              {"words": "to make", "page": 93, "line": 7, "word": 5},
-              {"words": "", "page": 93, "line": 7, "word": 6},
-              {"words": "garments", "page": 93, "line": 7, "word": 7},
-              {"words": "for Aaron’s", "page": 93, "line": 7, "word": 8}
-            ],
+            "he": ["אֲשֶׁ֥ר", " מִלֵּאתִ֖יו", " ר֣וּחַ", " חׇכְמָ֑ה", " וְעָשׂ֞וּ", " אֶת־", "בִּגְדֵ֧י", " אַהֲרֹ֛ן"],
+            "en": [["whom", [0]], ["I have filled", [1]], ["with the spirit of", [2]], ["wisdom,", [3]], ["and they shall make", [4]], ["the clothes of", [5, 6]], ["Aaron", [7]]],
             "verseIndex": 0
           }
         ]
@@ -256,33 +184,23 @@
         "book": 2,
         "chapter": 28,
         "verse": 3,
-        "start": false,
-        "width": 0.4915211338901544
+        "indexOfFirstWord": 6
       }
     ],
     "isPetucha": false
   },
-  {
+  "7": {
     "text": [
       [
         [
           {
-            "he": ["לְקַדְּשׁ֖וֹ", " לְכַהֲנוֹ", "־לִֽי׃"],
-            "en": [
-              {"words": "consecration,", "page": 93, "line": 8, "word": 1},
-              {"words": "so that he may serve Me as priest", "page": 93, "line": 8, "word": 2},
-              {"words": ".", "page": 93, "line": 8, "word": 3}
-            ],
+            "he": ["לְקַדְּשׁ֖וֹ", " לְכַהֲנוֹ־", "לִֽי׃"],
+            "en": [["to set him apart", [0]], ["to be a priest", [1]], ["for me.", [2]]],
             "verseIndex": 0
           },
           {
             "he": [" וְאֵ֨לֶּה", " הַבְּגָדִ֜ים", " אֲשֶׁ֣ר", " יַעֲשׂ֗וּ"],
-            "en": [
-              {"words": "These", "page": 93, "line": 8, "word": 1},
-              {"words": "are the garments", "page": 93, "line": 8, "word": 2},
-              {"words": "that", "page": 93, "line": 8, "word": 3},
-              {"words": "they shall make:", "page": 93, "line": 8, "word": 4}
-            ],
+            "en": [["And these", [0]], ["are the clothes", [1]], ["that", [2]], ["they shall make:", [3]]],
             "verseIndex": 1
           }
         ]
@@ -293,34 +211,24 @@
         "book": 2,
         "chapter": 28,
         "verse": 3,
-        "start": false,
-        "width": 0.19005033887342163
+        "indexOfFirstWord": 14
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 4,
-        "start": true,
-        "width": 0.2138686051715293
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "8": {
     "text": [
       [
         [
           {
             "he": ["חֹ֤שֶׁן", " וְאֵפוֹד֙", " וּמְעִ֔יל", " וּכְתֹ֥נֶת", " תַּשְׁבֵּ֖ץ", " מִצְנֶ֣פֶת", " וְאַבְנֵ֑ט"],
-            "en": [
-              {"words": "a breastpiece,", "page": 93, "line": 9, "word": 1},
-              {"words": "an ephod,", "page": 93, "line": 9, "word": 2},
-              {"words": "a robe,", "page": 93, "line": 9, "word": 3},
-              {"words": "a woven", "page": 93, "line": 9, "word": 5},
-              {"words": "tunic,", "page": 93, "line": 9, "word": 4},
-              {"words": "a turban,", "page": 93, "line": 9, "word": 6},
-              {"words": "and a sash.", "page": 93, "line": 9, "word": 7}
-            ],
+            "en": [["a breastpiece", [0]], ["and an ephod", [1]], ["and a robe", [2]], ["and a tunic of", [3]], ["woven work,", [4]], ["a turban", [5]], ["and a sash.", [6]]],
             "verseIndex": 0
           }
         ]
@@ -331,28 +239,18 @@
         "book": 2,
         "chapter": 28,
         "verse": 4,
-        "start": false,
-        "width": 0.3940425903489527
+        "indexOfFirstWord": 4
       }
     ],
     "isPetucha": false
   },
-  {
+  "9": {
     "text": [
       [
         [
           {
-            "he": ["וְעָשׂ֨וּ", " בִגְדֵי", "־קֹ֜דֶשׁ", " לְאַהֲרֹ֥ן", " אָחִ֛יךָ", " וּלְבָנָ֖יו", " לְכַהֲנוֹ", "־לִֽי׃"],
-            "en": [
-              {"words": "They are to make", "page": 93, "line": 10, "word": 1},
-              {"words": "[these] holy", "page": 93, "line": 10, "word": 3},
-              {"words": "garments", "page": 93, "line": 10, "word": 2},
-              {"words": "for your brother", "page": 93, "line": 10, "word": 5},
-              {"words": "Aaron", "page": 93, "line": 10, "word": 4},
-              {"words": "and his sons,", "page": 93, "line": 10, "word": 6},
-              {"words": "so that they may serve Me as priests", "page": 93, "line": 10, "word": 7},
-              {"words": ".", "page": 93, "line": 10, "word": 8}
-            ],
+            "he": ["וְעָשׂ֨וּ", " בִגְדֵי־", "קֹ֜דֶשׁ", " לְאַהֲרֹ֥ן", " אָחִ֛יךָ", " וּלְבָנָ֖יו", " לְכַהֲנוֹ־", "לִֽי׃"],
+            "en": [["And", [0]], ["they", [6]], ["shall make", [0]], ["clothes of", [1]], ["holiness", [2]], ["for", [3]], ["your brother", [4]], ["Aaron", [3]], ["and for his sons", [5]], ["to be", [6]], ["priests", [5]], ["for me.", [7]]],
             "verseIndex": 0
           }
         ]
@@ -363,28 +261,18 @@
         "book": 2,
         "chapter": 28,
         "verse": 4,
-        "start": false,
-        "width": 0.392088804479518
+        "indexOfFirstWord": 11
       }
     ],
     "isPetucha": false
   },
-  {
+  "10": {
     "text": [
       [
         [
           {
-            "he": ["וְהֵם֙", " יִקְח֣וּ", " אֶת", "־הַזָּהָ֔ב", " וְאֶת", "־הַתְּכֵ֖לֶת", " וְאֶת", "־הָֽאַרְגָּמָ֑ן"],
-            "en": [
-              {"words": "They", "page": 93, "line": 11, "word": 1},
-              {"words": "shall use", "page": 93, "line": 11, "word": 2},
-              {"words": "", "page": 93, "line": 11, "word": 3},
-              {"words": "gold,", "page": 93, "line": 11, "word": 4},
-              {"words": "along with", "page": 93, "line": 11, "word": 5},
-              {"words": "blue,", "page": 93, "line": 11, "word": 6},
-              {"words": "", "page": 93, "line": 11, "word": 7},
-              {"words": "purple,", "page": 93, "line": 11, "word": 8}
-            ],
+            "he": ["וְהֵם֙", " יִקְח֣וּ", " אֶת־", "הַזָּהָ֔ב", " וְאֶת־", "הַתְּכֵ֖לֶת", " וְאֶת־", "הָֽאַרְגָּמָ֑ן"],
+            "en": [["And they", [0]], ["shall take", [1]], ["gold", [2, 3]], ["and", [4]], ["blue", [5]], ["and", [6]], ["purple", [7]]],
             "verseIndex": 0
           }
         ]
@@ -395,25 +283,18 @@
         "book": 2,
         "chapter": 28,
         "verse": 5,
-        "start": true,
-        "width": 0.6247690458679391
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "11": {
     "text": [
       [
         [
           {
-            "he": ["וְאֶת", "־תּוֹלַ֥עַת", " הַשָּׁנִ֖י", " וְאֶת", "־הַשֵּֽׁשׁ׃"],
-            "en": [
-              {"words": "", "page": 93, "line": 12, "word": 1},
-              {"words": "and scarlet yarn", "page": 93, "line": 12, "word": 2},
-              {"words": ",", "page": 93, "line": 12, "word": 3},
-              {"words": "", "page": 93, "line": 12, "word": 4},
-              {"words": "and fine linen.", "page": 93, "line": 12, "word": 5}
-            ],
+            "he": ["וְאֶת־", "תּוֹלַ֥עַת", " הַשָּׁנִ֖י", " וְאֶת־", "הַשֵּֽׁשׁ׃"],
+            "en": [["and", [0]], ["worm of", [1]], ["scarlet", [2]], ["and", [3]], ["fine linen.", [4]]],
             "verseIndex": 0
           }
         ]
@@ -424,28 +305,18 @@
         "book": 2,
         "chapter": 28,
         "verse": 5,
-        "start": false,
-        "width": 0.3752309541320609
+        "indexOfFirstWord": 8
       }
     ],
     "isPetucha": true
   },
-  {
+  "12": {
     "text": [
       [
         [
           {
-            "he": ["וְעָשׂ֖וּ", " אֶת", "־הָאֵפֹ֑ד", " זָ֠הָ֠ב", " תְּכֵ֨לֶת", " וְאַרְגָּמָ֜ן", " תּוֹלַ֧עַת", " שָׁנִ֛י"],
-            "en": [
-              {"words": "They are to make", "page": 93, "line": 13, "word": 1},
-              {"words": "", "page": 93, "line": 13, "word": 2},
-              {"words": "the ephod", "page": 93, "line": 13, "word": 3},
-              {"words": "of finely spun", "page": 93, "line": 14, "word": 2},
-              {"words": "linen", "page": 93, "line": 14, "word": 1},
-              {"words": "embroidered", "page": 93, "line": 14, "word": 3},
-              {"words": "", "page": 93, "line": 14, "word": 4},
-              {"words": "with gold,", "page": 93, "line": 13, "word": 4}
-            ],
+            "he": ["וְעָשׂ֖וּ", " אֶת־", "הָאֵפֹ֑ד", " זָ֠הָ֠ב", " תְּכֵ֨לֶת", " וְאַרְגָּמָ֜ן", " תּוֹלַ֧עַת", " שָׁנִ֛י"],
+            "en": [["And they shall make", [0]], ["the ephod", [1, 2]], ["from gold,", [3]], ["blue,", [4]], ["and purple,", [5]], ["worm of", [6]], ["scarlet,", [7]]],
             "verseIndex": 0
           }
         ]
@@ -456,34 +327,23 @@
         "book": 2,
         "chapter": 28,
         "verse": 6,
-        "start": true,
-        "width": 0.6644007490636704
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "13": {
     "text": [
       [
         [
           {
             "he": ["וְשֵׁ֥שׁ", " מׇשְׁזָ֖ר", " מַעֲשֵׂ֥ה", " חֹשֵֽׁב׃"],
-            "en": [
-              {"words": "and with blue,", "page": 93, "line": 13, "word": 5},
-              {"words": "purple,", "page": 93, "line": 13, "word": 6},
-              {"words": "and scarlet yarn", "page": 93, "line": 13, "word": 7},
-              {"words": ".", "page": 93, "line": 13, "word": 8}
-            ],
+            "en": [["and", [0]], ["twisted", [1]], ["fine linen—", [0]], ["the work of", [2]], ["a skillful craftsman.", [3]]],
             "verseIndex": 0
           },
           {
             "he": [" שְׁתֵּ֧י", " כְתֵפֹ֣ת", " חֹֽבְרֹ֗ת", " יִֽהְיֶה־"],
-            "en": [
-              {"words": "It shall have", "page": 93, "line": 14, "word": 4},
-              {"words": "", "page": 93, "line": 15, "word": 1},
-              {"words": "two", "page": 93, "line": 14, "word": 1},
-              {"words": "shoulder pieces", "page": 93, "line": 14, "word": 2}
-            ],
+            "en": [["It shall have", [3, [93, 14, 0, 0]]], ["two", [0]], ["shoulder pieces", [1]]],
             "verseIndex": 1
           }
         ]
@@ -494,42 +354,29 @@
         "book": 2,
         "chapter": 28,
         "verse": 6,
-        "start": false,
-        "width": 0.3355992509363296
+        "indexOfFirstWord": 8
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 7,
-        "start": true,
-        "width": 0.5010265816200826
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "14": {
     "text": [
       [
         [
           {
-            "he": ["לּ֛וֹ", " אֶל", "־שְׁנֵ֥י", " קְצוֹתָ֖יו", " וְחֻבָּֽר׃"],
-            "en": [
-              {"words": "attached", "page": 93, "line": 14, "word": 3},
-              {"words": "at", "page": 93, "line": 15, "word": 2},
-              {"words": "two", "page": 93, "line": 15, "word": 3},
-              {"words": "of its corners,", "page": 93, "line": 15, "word": 4},
-              {"words": "so it can be fastened.", "page": 93, "line": 15, "word": 5}
-            ],
+            "he": ["לּ֛וֹ", " אֶל־", "שְׁנֵ֥י", " קְצוֹתָ֖יו", " וְחֻבָּֽר׃"],
+            "en": [["joining", [[93, 13, 1, 2]]], ["to", [1]], ["its", [3]], ["two", [2]], ["ends;", [3]], ["so it shall be joined.", [4]]],
             "verseIndex": 0
           },
           {
             "he": [" וְחֵ֤שֶׁב", " אֲפֻדָּתוֹ֙", " אֲשֶׁ֣ר", " עָלָ֔יו"],
-            "en": [
-              {"words": "And the skillfully woven waistband", "page": 93, "line": 15, "word": 1},
-              {"words": "", "page": 93, "line": 15, "word": 3},
-              {"words": "of", "page": 93, "line": 15, "word": 4},
-              {"words": "the ephod", "page": 93, "line": 15, "word": 2}
-            ],
+            "en": [["And the skillfully-crafted sash of", [0]], ["the ephod", [1]], ["which", [2]], ["is on it", [3]]],
             "verseIndex": 1
           }
         ]
@@ -540,34 +387,24 @@
         "book": 2,
         "chapter": 28,
         "verse": 7,
-        "start": false,
-        "width": 0.4989734183799173
+        "indexOfFirstWord": 4
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 8,
-        "start": true,
-        "width": 0.2796906262131573
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "15": {
     "text": [
       [
         [
           {
             "he": ["כְּמַעֲשֵׂ֖הוּ", " מִמֶּ֣נּוּ", " יִהְיֶ֑ה", " זָהָ֗ב", " תְּכֵ֧לֶת", " וְאַרְגָּמָ֛ן", " וְתוֹלַ֥עַת"],
-            "en": [
-              {"words": "must be", "page": 93, "line": 16, "word": 3},
-              {"words": "of one piece,", "page": 93, "line": 16, "word": 2},
-              {"words": "of the same workmanship—", "page": 93, "line": 16, "word": 1},
-              {"words": "with gold,", "page": 93, "line": 16, "word": 4},
-              {"words": "with blue,", "page": 93, "line": 16, "word": 5},
-              {"words": "purple,", "page": 93, "line": 16, "word": 6},
-              {"words": "and scarlet yarn", "page": 93, "line": 16, "word": 7}
-            ],
+            "en": [["shall be", [2]], ["of like workmanship,", [0]], ["from it:", [1]], ["of gold,", [3]], ["blue", [4]], ["and purple", [5]], ["and worm of", [6]]],
             "verseIndex": 0
           }
         ]
@@ -578,34 +415,23 @@
         "book": 2,
         "chapter": 28,
         "verse": 8,
-        "start": false,
-        "width": 0.5525577089616867
+        "indexOfFirstWord": 4
       }
     ],
     "isPetucha": false
   },
-  {
+  "16": {
     "text": [
       [
         [
           {
             "he": ["שָׁנִ֖י", " וְשֵׁ֥שׁ", " מׇשְׁזָֽר׃"],
-            "en": [
-              {"words": ",", "page": 93, "line": 17, "word": 1},
-              {"words": "and with finely spun", "page": 93, "line": 17, "word": 3},
-              {"words": "linen.", "page": 93, "line": 17, "word": 2}
-            ],
+            "en": [["scarlet", [0]], ["and fine", [1]], ["twined", [2]], ["linen.", [1]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְלָ֣קַחְתָּ֔", " אֶת", "־שְׁתֵּ֖י", " אַבְנֵי", "־שֹׁ֑הַם"],
-            "en": [
-              {"words": "Take", "page": 93, "line": 17, "word": 1},
-              {"words": "", "page": 93, "line": 17, "word": 2},
-              {"words": "two", "page": 93, "line": 17, "word": 3},
-              {"words": "onyx", "page": 93, "line": 17, "word": 5},
-              {"words": "stones", "page": 93, "line": 17, "word": 4}
-            ],
+            "he": [" וְלָ֣קַחְתָּ֔", " אֶת־", "שְׁתֵּ֖י", " אַבְנֵי־", "שֹׁ֑הַם"],
+            "en": [["And you shall take", [0]], ["two", [1, 2]], ["stones of", [3]], ["onyx", [4]]],
             "verseIndex": 1
           }
         ]
@@ -616,40 +442,29 @@
         "book": 2,
         "chapter": 28,
         "verse": 8,
-        "start": false,
-        "width": 0.16775166482515602
+        "indexOfFirstWord": 11
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 9,
-        "start": true,
-        "width": 0.4406457946983746
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "17": {
     "text": [
       [
         [
           {
             "he": ["וּפִתַּחְתָּ֣", " עֲלֵיהֶ֔ם", " שְׁמ֖וֹת", " בְּנֵ֥י", " יִשְׂרָאֵֽל׃"],
-            "en": [
-              {"words": "and engrave", "page": 93, "line": 18, "word": 1},
-              {"words": "on them", "page": 93, "line": 18, "word": 2},
-              {"words": "the names", "page": 93, "line": 18, "word": 3},
-              {"words": "of the sons", "page": 93, "line": 18, "word": 4},
-              {"words": "of Israel:", "page": 93, "line": 18, "word": 5}
-            ],
+            "en": [["and you shall engrave", [0]], ["on them", [1]], ["the names of", [2]], ["the sons of", [3]], ["Israel,", [4]]],
             "verseIndex": 0
           },
           {
             "he": [" שִׁשָּׁה֙", " מִשְּׁמֹתָ֔ם"],
-            "en": [
-              {"words": "six", "page": 93, "line": 18, "word": 1},
-              {"words": "of their names", "page": 93, "line": 18, "word": 2}
-            ],
+            "en": [["six of", [0]], ["their names", [1]]],
             "verseIndex": 1
           }
         ]
@@ -660,34 +475,24 @@
         "book": 2,
         "chapter": 28,
         "verse": 9,
-        "start": false,
-        "width": 0.5593542053016254
+        "indexOfFirstWord": 5
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 10,
-        "start": true,
-        "width": 0.1660117138684373
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "18": {
     "text": [
       [
         [
           {
-            "he": ["עַ֖ל", " הָאֶ֣בֶן", " הָאֶחָ֑ת", " וְאֶת", "־שְׁמ֞וֹת", " הַשִּׁשָּׁ֧ה", " הַנּוֹתָרִ֛ים"],
-            "en": [
-              {"words": "on", "page": 93, "line": 19, "word": 1},
-              {"words": "one", "page": 93, "line": 19, "word": 3},
-              {"words": "", "page": 93, "line": 19, "word": 4},
-              {"words": "stone", "page": 93, "line": 19, "word": 2},
-              {"words": "and the remaining", "page": 93, "line": 19, "word": 7},
-              {"words": "six", "page": 93, "line": 19, "word": 6},
-              {"words": "", "page": 93, "line": 19, "word": 5}
-            ],
+            "he": ["עַ֖ל", " הָאֶ֣בֶן", " הָאֶחָ֑ת", " וְאֶת־", "שְׁמ֞וֹת", " הַשִּׁשָּׁ֧ה", " הַנּוֹתָרִ֛ים"],
+            "en": [["on", [0]], ["one", [2]], ["stone", [1]], ["and", [3]], ["the six", [5]], ["remaining", [6]], ["names", [4]]],
             "verseIndex": 0
           }
         ]
@@ -698,33 +503,23 @@
         "book": 2,
         "chapter": 28,
         "verse": 10,
-        "start": false,
-        "width": 0.5094027131607871
+        "indexOfFirstWord": 2
       }
     ],
     "isPetucha": false
   },
-  {
+  "19": {
     "text": [
       [
         [
           {
-            "he": ["עַל", "־הָאֶ֥בֶן", " הַשֵּׁנִ֖ית", " כְּתוֹלְדֹתָֽם׃"],
-            "en": [
-              {"words": "on", "page": 93, "line": 20, "word": 1},
-              {"words": "the other", "page": 93, "line": 20, "word": 3},
-              {"words": ",", "page": 93, "line": 20, "word": 2},
-              {"words": "in the order of their birth.", "page": 93, "line": 20, "word": 4}
-            ],
+            "he": ["עַל־", "הָאֶ֥בֶן", " הַשֵּׁנִ֖ית", " כְּתוֹלְדֹתָֽם׃"],
+            "en": [["on", [0]], ["the second", [2]], ["stone,", [1]], ["according to their genealogies.", [3]]],
             "verseIndex": 0
           },
           {
             "he": [" מַעֲשֵׂ֣ה", " חָרַשׁ֮", " אֶ֒בֶן֒"],
-            "en": [
-              {"words": "", "page": 93, "line": 20, "word": 1},
-              {"words": "Engrave", "page": 93, "line": 21, "word": 3},
-              {"words": "", "page": 93, "line": 21, "word": 4}
-            ],
+            "en": [["You shall engrave", [[93, 20, 0, 2]]], ["the two", [[93, 20, 0, 3], [93, 20, 0, 4]]], ["stones", [[93, 20, 0, 5]]]],
             "verseIndex": 1
           }
         ]
@@ -735,36 +530,24 @@
         "book": 2,
         "chapter": 28,
         "verse": 10,
-        "start": false,
-        "width": 0.32458557297077556
+        "indexOfFirstWord": 9
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 11,
-        "start": true,
-        "width": 0.15811509325082568
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "20": {
     "text": [
       [
         [
           {
-            "he": ["פִּתּוּחֵ֣י", " חֹתָ֗ם", " תְּפַתַּח֙", " אֶת", "־שְׁתֵּ֣י", " הָאֲבָנִ֔ים", " עַל", "־שְׁמֹ֖ת", " בְּנֵ֣י"],
-            "en": [
-              {"words": "", "page": 93, "line": 21, "word": 7},
-              {"words": "the names", "page": 93, "line": 21, "word": 8},
-              {"words": "of the sons", "page": 93, "line": 21, "word": 9},
-              {"words": "of Israel", "page": 93, "line": 22, "word": 1},
-              {"words": "on the two", "page": 93, "line": 21, "word": 5},
-              {"words": "stones", "page": 93, "line": 21, "word": 6},
-              {"words": "the way a gem", "page": 93, "line": 20, "word": 3},
-              {"words": "cutter", "page": 93, "line": 20, "word": 2},
-              {"words": "engraves", "page": 93, "line": 21, "word": 1}
-            ],
+            "he": ["פִּתּוּחֵ֣י", " חֹתָ֗ם", " תְּפַתַּח֙", " אֶת־", "שְׁתֵּ֣י", " הָאֲבָנִ֔ים", " עַל־", "שְׁמֹ֖ת", " בְּנֵ֣י"],
+            "en": [["with", [6]], ["the names of", [7]], ["the sons of", [8]], ["Israel—", [[93, 21, 0, 0]]], ["the work of", [[93, 19, 1, 0]]], ["a craftsman of", [[93, 19, 1, 1]]], ["stone,", [[93, 19, 1, 2]]], ["the engravings of", [0]]],
             "verseIndex": 0
           }
         ]
@@ -775,33 +558,23 @@
         "book": 2,
         "chapter": 28,
         "verse": 11,
-        "start": false,
-        "width": 0.4540253170773632
+        "indexOfFirstWord": 3
       }
     ],
     "isPetucha": false
   },
-  {
+  "21": {
     "text": [
       [
         [
           {
             "he": ["יִשְׂרָאֵ֑ל", " מֻסַבֹּ֛ת", " מִשְׁבְּצ֥וֹת", " זָהָ֖ב", " תַּעֲשֶׂ֥ה", " אֹתָֽם׃"],
-            "en": [
-              {"words": "a seal.", "page": 93, "line": 21, "word": 2},
-              {"words": "Then mount", "page": 93, "line": 22, "word": 2},
-              {"words": "[the stones]", "page": 93, "line": 22, "word": 6},
-              {"words": "in gold", "page": 93, "line": 22, "word": 4},
-              {"words": "filigree settings", "page": 93, "line": 22, "word": 3},
-              {"words": ".", "page": 93, "line": 22, "word": 5}
-            ],
+            "en": [["a signet.", [[93, 20, 0, 1]]], ["You shall make", [4]], ["them", [5]], ["surrounded with", [1]], ["ornamental settings of", [2]], ["gold.", [3]]],
             "verseIndex": 0
           },
           {
             "he": [" וְשַׂמְתָּ֞"],
-            "en": [
-              {"words": "Fasten", "page": 93, "line": 22, "word": 1}
-            ],
+            "en": [["And you shall put", [0]]],
             "verseIndex": 1
           }
         ]
@@ -812,35 +585,24 @@
         "book": 2,
         "chapter": 28,
         "verse": 11,
-        "start": false,
-        "width": 0.3878595896718111
+        "indexOfFirstWord": 12
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 12,
-        "start": true,
-        "width": 0.052580235005261315
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "22": {
     "text": [
       [
         [
           {
-            "he": ["אֶת", "־שְׁתֵּ֣י", " הָאֲבָנִ֗ים", " עַ֚ל", " כִּתְפֹ֣ת", " הָֽאֵפֹ֔ד", " אַבְנֵ֥י", " זִכָּרֹ֖ן"],
-            "en": [
-              {"words": "", "page": 93, "line": 23, "word": 1},
-              {"words": "both", "page": 93, "line": 23, "word": 2},
-              {"words": "stones", "page": 93, "line": 23, "word": 3},
-              {"words": "on", "page": 93, "line": 23, "word": 4},
-              {"words": "the shoulder pieces", "page": 93, "line": 23, "word": 5},
-              {"words": "of the ephod", "page": 93, "line": 23, "word": 6},
-              {"words": "as memorial", "page": 93, "line": 23, "word": 8},
-              {"words": "stones", "page": 93, "line": 23, "word": 7}
-            ],
+            "he": ["אֶת־", "שְׁתֵּ֣י", " הָאֲבָנִ֗ים", " עַ֚ל", " כִּתְפֹ֣ת", " הָֽאֵפֹ֔ד", " אַבְנֵ֥י", " זִכָּרֹ֖ן"],
+            "en": [["the", [2]], ["two", [0, 1]], ["stones", [2]], ["on", [3]], ["the shoulder pieces of", [4]], ["the ephod", [5]], ["as stones of", [6]], ["reminder", [7]]],
             "verseIndex": 0
           }
         ]
@@ -851,28 +613,18 @@
         "book": 2,
         "chapter": 28,
         "verse": 12,
-        "start": false,
-        "width": 0.37126227639424764
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "23": {
     "text": [
       [
         [
           {
-            "he": ["לִבְנֵ֣י", " יִשְׂרָאֵ֑ל", " וְנָשָׂא֩", " אַהֲרֹ֨ן", " אֶת", "־שְׁמוֹתָ֜ם", " לִפְנֵ֧י", " יְהֹוָ֛ה"],
-            "en": [
-              {"words": "for the sons", "page": 93, "line": 24, "word": 1},
-              {"words": "of Israel.", "page": 93, "line": 24, "word": 2},
-              {"words": "Aaron", "page": 93, "line": 24, "word": 4},
-              {"words": "", "page": 93, "line": 24, "word": 5},
-              {"words": "is to bear", "page": 93, "line": 24, "word": 3},
-              {"words": "their names", "page": 93, "line": 24, "word": 6},
-              {"words": "on", "page": 93, "line": 25, "word": 1},
-              {"words": "his two", "page": 93, "line": 25, "word": 2}
-            ],
+            "he": ["לִבְנֵ֣י", " יִשְׂרָאֵ֑ל", " וְנָשָׂא֩", " אַהֲרֹ֨ן", " אֶת־", "שְׁמוֹתָ֜ם", " לִפְנֵ֧י", " יְהֹוָ֛ה"],
+            "en": [["for the sons of", [0]], ["Israel.", [1]], ["And", [2]], ["Aaron", [3]], ["shall carry", [2]], ["their names", [4, 5]], ["before the face of", [6]], ["יהוה", [7]]],
             "verseIndex": 0
           }
         ]
@@ -883,34 +635,26 @@
         "book": 2,
         "chapter": 28,
         "verse": 12,
-        "start": false,
-        "width": 0.39285557699052964
+        "indexOfFirstWord": 9
       }
     ],
     "isPetucha": false
   },
-  {
+  "24": {
     "text": [
       [
         [
           {
-            "he": ["עַל", "־שְׁתֵּ֥י", " כְתֵפָ֖יו", " לְזִכָּרֹֽן׃"],
-            "en": [
-              {"words": "shoulders", "page": 93, "line": 25, "word": 3},
-              {"words": "as a memorial", "page": 93, "line": 25, "word": 4},
-              {"words": "before", "page": 93, "line": 24, "word": 7},
-              {"words": "the LORD.", "page": 93, "line": 24, "word": 8}
-            ],
+            "he": ["עַל־", "שְׁתֵּ֥י", " כְתֵפָ֖יו", " לְזִכָּרֹֽן׃"],
+            "en": [["on", [0]], ["his", [2]], ["two", [1]], ["shoulders", [2]], ["for a reminder.", [3]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" וְעָשִׂ֥יתָ"],
-            "en": [
-              {"words": "Fashion", "page": 93, "line": 25, "word": 1}
-            ],
-            "verseIndex": 0
+            "en": [["And you shall make", [0]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -920,40 +664,29 @@
         "book": 2,
         "chapter": 28,
         "verse": 12,
-        "start": false,
-        "width": 0.18330191160996143
+        "indexOfFirstWord": 17
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 13,
-        "start": true,
-        "width": 0.3442927642120105
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "25": {
     "text": [
       [
         [
           {
             "he": ["מִשְׁבְּצֹ֖ת", " זָהָֽב׃"],
-            "en": [
-              {"words": "gold", "page": 93, "line": 26, "word": 2},
-              {"words": "filigree settings", "page": 93, "line": 26, "word": 1}
-            ],
+            "en": [["ornamental settings of", [0]], ["gold", [1]]],
             "verseIndex": 0
           },
           {
             "he": [" וּשְׁתֵּ֤י", " שַׁרְשְׁרֹת֙", " זָהָ֣ב", " טָה֔וֹר", " מִגְבָּלֹ֛ת"],
-            "en": [
-              {"words": "and two", "page": 93, "line": 26, "word": 1},
-              {"words": "chains", "page": 93, "line": 26, "word": 2},
-              {"words": "of pure", "page": 93, "line": 26, "word": 4},
-              {"words": "gold,", "page": 93, "line": 26, "word": 3},
-              {"words": "made", "page": 93, "line": 27, "word": 1}
-            ],
+            "en": [["and two", [0]], ["twisted", [4]], ["chains of", [1]], ["pure", [3]], ["gold:", [2]]],
             "verseIndex": 1
           }
         ]
@@ -964,34 +697,24 @@
         "book": 2,
         "chapter": 28,
         "verse": 13,
-        "start": false,
-        "width": 0.6557072357879895
+        "indexOfFirstWord": 1
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 14,
-        "start": true,
-        "width": 0.3335948943293576
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "26": {
     "text": [
       [
         [
           {
-            "he": ["תַּעֲשֶׂ֥ה", " אֹתָ֖ם", " מַעֲשֵׂ֣ה", " עֲבֹ֑ת", " וְנָתַתָּ֛ה", " אֶת", "־שַׁרְשְׁרֹ֥ת"],
-            "en": [
-              {"words": "", "page": 93, "line": 27, "word": 2},
-              {"words": "of braided", "page": 93, "line": 26, "word": 5},
-              {"words": "cord", "page": 93, "line": 27, "word": 4},
-              {"words": "work;", "page": 93, "line": 27, "word": 3},
-              {"words": "and attach", "page": 93, "line": 27, "word": 5},
-              {"words": "", "page": 93, "line": 27, "word": 6},
-              {"words": "[these]", "page": 93, "line": 28, "word": 1}
-            ],
+            "he": ["תַּעֲשֶׂ֥ה", " אֹתָ֖ם", " מַעֲשֵׂ֣ה", " עֲבֹ֑ת", " וְנָתַתָּ֛ה", " אֶת־", "שַׁרְשְׁרֹ֥ת"],
+            "en": [["you shall make", [0]], ["them", [1]], ["as a work of", [2]], ["rope,", [3]], ["and you shall attach", [4]], ["the chains of", [5, 6]]],
             "verseIndex": 0
           }
         ]
@@ -1002,33 +725,26 @@
         "book": 2,
         "chapter": 28,
         "verse": 14,
-        "start": false,
-        "width": 0.43925245867336266
+        "indexOfFirstWord": 5
       }
     ],
     "isPetucha": false
   },
-  {
+  "27": {
     "text": [
       [
         [
           {
-            "he": ["הָעֲבֹתֹ֖ת", " עַל", "־הַֽמִּשְׁבְּצֹֽת׃"],
-            "en": [
-              {"words": "chains", "page": 93, "line": 27, "word": 7},
-              {"words": "to", "page": 93, "line": 28, "word": 2},
-              {"words": "the settings.", "page": 93, "line": 28, "word": 3}
-            ],
+            "he": ["הָעֲבֹתֹ֖ת", " עַל־", "הַֽמִּשְׁבְּצֹֽת׃"],
+            "en": [["the rope", [0]], ["to", [1]], ["the ornamental settings.", [2]]],
             "verseIndex": 0
           }
         ],
         [
           {
             "he": [" וְעָשִׂ֜יתָ"],
-            "en": [
-              {"words": "You are also to make", "page": 93, "line": 28, "word": 1}
-            ],
-            "verseIndex": 0
+            "en": [["And you shall make", [0]]],
+            "verseIndex": 1
           }
         ]
       ]
@@ -1038,34 +754,24 @@
         "book": 2,
         "chapter": 28,
         "verse": 14,
-        "start": false,
-        "width": 0.22715264699727977
+        "indexOfFirstWord": 12
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 15,
-        "start": true,
-        "width": 0.06626290535456575
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "28": {
     "text": [
       [
         [
           {
             "he": ["חֹ֤שֶׁן", " מִשְׁפָּט֙", " מַעֲשֵׂ֣ה", " חֹשֵׁ֔ב", " כְּמַעֲשֵׂ֥ה", " אֵפֹ֖ד", " תַּעֲשֶׂ֑נּוּ"],
-            "en": [
-              {"words": "a breastpiece", "page": 93, "line": 29, "word": 1},
-              {"words": "of judgment", "page": 93, "line": 29, "word": 2},
-              {"words": "", "page": 93, "line": 29, "word": 7},
-              {"words": "with the same workmanship", "page": 93, "line": 29, "word": 3},
-              {"words": "", "page": 93, "line": 29, "word": 4},
-              {"words": "", "page": 93, "line": 29, "word": 5},
-              {"words": "as the ephod.", "page": 93, "line": 29, "word": 6}
-            ],
+            "en": [["a breastpiece of", [0]], ["judgment—", [1]], ["the work of", [2]], ["a skillful craftsman—", [3]], ["you shall make it", [6]], ["like the work of", [4]], ["the ephod;", [5]]],
             "verseIndex": 0
           }
         ]
@@ -1076,27 +782,18 @@
         "book": 2,
         "chapter": 28,
         "verse": 15,
-        "start": false,
-        "width": 0.4235546619629707
+        "indexOfFirstWord": 1
       }
     ],
     "isPetucha": false
   },
-  {
+  "29": {
     "text": [
       [
         [
           {
             "he": ["זָ֠הָ֠ב", " תְּכֵ֨לֶת", " וְאַרְגָּמָ֜ן", " וְתוֹלַ֧עַת", " שָׁנִ֛י", " וְשֵׁ֥שׁ", " מׇשְׁזָ֖ר"],
-            "en": [
-              {"words": "Construct", "page": 93, "line": 31, "word": 1},
-              {"words": "it", "page": 93, "line": 31, "word": 2},
-              {"words": "with gold,", "page": 93, "line": 30, "word": 1},
-              {"words": "with blue,", "page": 93, "line": 30, "word": 2},
-              {"words": "purple,", "page": 93, "line": 30, "word": 3},
-              {"words": "and scarlet yarn", "page": 93, "line": 30, "word": 4},
-              {"words": ",", "page": 93, "line": 30, "word": 5}
-            ],
+            "en": [["you shall make", [[93, 30, 0, 0]]], ["it", [[93, 30, 0, 1]]], ["from gold,", [0]], ["blue,", [1]], ["and purple,", [2]], ["and worm of", [3]], ["scarlet,", [4]], ["and", [5]]],
             "verseIndex": 0
           }
         ]
@@ -1107,34 +804,23 @@
         "book": 2,
         "chapter": 28,
         "verse": 15,
-        "start": false,
-        "width": 0.4037325307446559
+        "indexOfFirstWord": 8
       }
     ],
     "isPetucha": false
   },
-  {
+  "30": {
     "text": [
       [
         [
           {
             "he": ["תַּעֲשֶׂ֥ה", " אֹתֽוֹ׃"],
-            "en": [
-              {"words": "and with finely spun", "page": 93, "line": 30, "word": 7},
-              {"words": "linen.", "page": 93, "line": 30, "word": 6}
-            ],
+            "en": [["twisted", [[93, 29, 0, 6]]], ["fine linen.", [[93, 29, 0, 5]]]],
             "verseIndex": 0
           },
           {
             "he": [" רָב֥וּעַ", " יִֽהְיֶ֖ה", " כָּפ֑וּל", " זֶ֥רֶת", " אׇרְכּ֖וֹ", " וְזֶ֥רֶת"],
-            "en": [
-              {"words": "It must be", "page": 93, "line": 31, "word": 2},
-              {"words": "square", "page": 93, "line": 31, "word": 1},
-              {"words": "when folded over double,", "page": 93, "line": 31, "word": 3},
-              {"words": "a span", "page": 93, "line": 31, "word": 4},
-              {"words": "long", "page": 93, "line": 31, "word": 5},
-              {"words": "and a span", "page": 93, "line": 31, "word": 6}
-            ],
+            "en": [["It shall be", [1]], ["square,", [0]], ["folded double;", [2]], ["its length:", [4]], ["a span;", [3]], ["and", [5]], ["its width:", [[93, 31, 0, 0]]]],
             "verseIndex": 1
           }
         ]
@@ -1145,41 +831,29 @@
         "book": 2,
         "chapter": 28,
         "verse": 15,
-        "start": false,
-        "width": 0.1064499019378076
+        "indexOfFirstWord": 15
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 16,
-        "start": true,
-        "width": 0.8410186959106825
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "31": {
     "text": [
       [
         [
           {
             "he": ["רׇחְבּֽוֹ׃"],
-            "en": [
-              {"words": "wide.", "page": 93, "line": 32, "word": 1}
-            ],
+            "en": [["a span.", [[93, 30, 1, 5]]]],
             "verseIndex": 0
           },
           {
             "he": [" וּמִלֵּאתָ֥", " בוֹ֙", " מִלֻּ֣אַת", " אֶ֔בֶן", " אַרְבָּעָ֖ה", " טוּרִ֣ים", " אָ֑בֶן"],
-            "en": [
-              {"words": "And mount", "page": 93, "line": 32, "word": 1},
-              {"words": "on it", "page": 93, "line": 32, "word": 2},
-              {"words": "a setting", "page": 93, "line": 32, "word": 3},
-              {"words": "of gemstones,", "page": 93, "line": 32, "word": 4},
-              {"words": "four", "page": 93, "line": 32, "word": 5},
-              {"words": "rows", "page": 93, "line": 32, "word": 6},
-              {"words": "of stones:", "page": 93, "line": 32, "word": 7}
-            ],
+            "en": [["And you shall set", [0]], ["in it", [1]], ["settings of", [2]], ["precious stone—", [3]], ["four", [4]], ["stone", [6]], ["rows.", [5]]],
             "verseIndex": 1
           }
         ]
@@ -1190,41 +864,29 @@
         "book": 2,
         "chapter": 28,
         "verse": 16,
-        "start": false,
-        "width": 0.15898130408931757
+        "indexOfFirstWord": 6
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 17,
-        "start": true,
-        "width": 0.5243712112500205
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "32": {
     "text": [
       [
         [
           {
             "he": ["ט֗וּר", " אֹ֤דֶם", " פִּטְדָה֙", " וּבָרֶ֔קֶת", " הַטּ֖וּר", " הָאֶחָֽד׃"],
-            "en": [
-              {"words": "In the first", "page": 93, "line": 33, "word": 6},
-              {"words": "row there shall be", "page": 93, "line": 33, "word": 1},
-              {"words": "", "page": 93, "line": 33, "word": 5},
-              {"words": "a ruby,", "page": 93, "line": 33, "word": 2},
-              {"words": "a topaz,", "page": 93, "line": 33, "word": 3},
-              {"words": "and an emerald;", "page": 93, "line": 33, "word": 4}
-            ],
+            "en": [["The first", [5]], ["row", [4]], ["shall be a row with", [0]], ["a ruby,", [1]], ["a topaz,", [2]], ["and a garnet.", [3]]],
             "verseIndex": 0
           },
           {
             "he": [" וְהַטּ֖וּר", " הַשֵּׁנִ֑י"],
-            "en": [
-              {"words": "in the second", "page": 93, "line": 33, "word": 2},
-              {"words": "row", "page": 93, "line": 33, "word": 1}
-            ],
+            "en": [["And the", [0]], ["second", [1]], ["row:", [0]]],
             "verseIndex": 1
           }
         ]
@@ -1235,40 +897,29 @@
         "book": 2,
         "chapter": 28,
         "verse": 17,
-        "start": false,
-        "width": 0.4756287887499795
+        "indexOfFirstWord": 7
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 18,
-        "start": true,
-        "width": 0.41990836791147995
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "33": {
     "text": [
       [
         [
           {
             "he": ["נֹ֥פֶךְ", " סַפִּ֖יר", " וְיָהֲלֹֽם׃"],
-            "en": [
-              {"words": "a turquoise,", "page": 93, "line": 34, "word": 1},
-              {"words": "a sapphire,", "page": 93, "line": 34, "word": 2},
-              {"words": "and a diamond;", "page": 93, "line": 34, "word": 3}
-            ],
+            "en": [["an emerald,", [0]], ["a sapphire,", [1]], ["and a diamond.", [2]]],
             "verseIndex": 0
           },
           {
             "he": [" וְהַטּ֖וּר", " הַשְּׁלִישִׁ֑י", " לֶ֥שֶׁם", " שְׁב֖וֹ"],
-            "en": [
-              {"words": "in the third", "page": 93, "line": 34, "word": 2},
-              {"words": "row", "page": 93, "line": 34, "word": 1},
-              {"words": "a jacinth,", "page": 93, "line": 34, "word": 3},
-              {"words": "an agate,", "page": 93, "line": 34, "word": 4}
-            ],
+            "en": [["And the", [0]], ["third", [1]], ["row:", [0]], ["a jacinth,", [2]], ["an agate,", [3]]],
             "verseIndex": 1
           }
         ]
@@ -1279,39 +930,29 @@
         "book": 2,
         "chapter": 28,
         "verse": 18,
-        "start": false,
-        "width": 0.5800916320885201
+        "indexOfFirstWord": 2
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 19,
-        "start": true,
-        "width": 0.732105071141919
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "34": {
     "text": [
       [
         [
           {
             "he": ["וְאַחְלָֽמָה׃"],
-            "en": [
-              {"words": "and an amethyst;", "page": 93, "line": 35, "word": 1}
-            ],
+            "en": [["and an amethyst.", [0]]],
             "verseIndex": 0
           },
           {
             "he": [" וְהַטּוּר֙", " הָרְבִיעִ֔י", " תַּרְשִׁ֥ישׁ", " וְשֹׁ֖הַם", " וְיָשְׁפֵ֑ה"],
-            "en": [
-              {"words": "and in the fourth", "page": 93, "line": 35, "word": 2},
-              {"words": "row", "page": 93, "line": 35, "word": 1},
-              {"words": "a beryl,", "page": 93, "line": 35, "word": 3},
-              {"words": "an onyx,", "page": 93, "line": 35, "word": 4},
-              {"words": "and a jasper.", "page": 93, "line": 35, "word": 5}
-            ],
+            "en": [["And the", [0]], ["fourth", [1]], ["row:", [0]], ["a beryl,", [2]], ["and an onyx,", [3]], ["and a jasper.", [4]]],
             "verseIndex": 1
           }
         ]
@@ -1322,40 +963,29 @@
         "book": 2,
         "chapter": 28,
         "verse": 19,
-        "start": false,
-        "width": 0.26789492885808097
+        "indexOfFirstWord": 4
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 20,
-        "start": true,
-        "width": 0.5557635525020747
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "35": {
     "text": [
       [
         [
           {
             "he": ["מְשֻׁבָּצִ֥ים", " זָהָ֛ב", " יִהְי֖וּ", " בְּמִלּוּאֹתָֽם׃"],
-            "en": [
-              {"words": "", "page": 93, "line": 36, "word": 1},
-              {"words": "Mount [these stones]", "page": 93, "line": 36, "word": 3},
-              {"words": "in gold", "page": 93, "line": 36, "word": 2},
-              {"words": "filigree settings.", "page": 93, "line": 36, "word": 4}
-            ],
+            "en": [["They shall be", [2]], ["set", [0]], ["in gold—", [1]], ["in their ornamental settings.", [3]]],
             "verseIndex": 0
           },
           {
             "he": [" וְ֠הָאֲבָנִ֠ים", " תִּֽהְיֶ֜יןָ", " עַל־"],
-            "en": [
-              {"words": "The twelve", "page": 93, "line": 37, "word": 4},
-              {"words": "", "page": 93, "line": 37, "word": 5},
-              {"words": "stones", "page": 93, "line": 36, "word": 1}
-            ],
+            "en": [["And the precious stones", [0]], ["shall be", [1]], ["according to", [2]]],
             "verseIndex": 1
           }
         ]
@@ -1366,35 +996,24 @@
         "book": 2,
         "chapter": 28,
         "verse": 20,
-        "start": false,
-        "width": 0.4442364474979254
+        "indexOfFirstWord": 5
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 21,
-        "start": true,
-        "width": 0.1792912500453397
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "36": {
     "text": [
       [
         [
           {
-            "he": ["שְׁמֹ֧ת", " בְּנֵֽי", "־יִשְׂרָאֵ֛ל", " שְׁתֵּ֥ים", " עֶשְׂרֵ֖ה", " עַל", "־שְׁמֹתָ֑ם", " פִּתּוּחֵ֤י"],
-            "en": [
-              {"words": "are", "page": 93, "line": 36, "word": 2},
-              {"words": "to", "page": 93, "line": 36, "word": 3},
-              {"words": "correspond to the names", "page": 93, "line": 37, "word": 1},
-              {"words": "of the sons", "page": 93, "line": 37, "word": 2},
-              {"words": "of Israel,", "page": 93, "line": 37, "word": 3},
-              {"words": "each", "page": 93, "line": 38, "word": 2},
-              {"words": "", "page": 93, "line": 38, "word": 3},
-              {"words": "", "page": 93, "line": 38, "word": 4}
-            ],
+            "he": ["שְׁמֹ֧ת", " בְּנֵֽי־", "יִשְׂרָאֵ֛ל", " שְׁתֵּ֥ים", " עֶשְׂרֵ֖ה", " עַל־", "שְׁמֹתָ֑ם", " פִּתּוּחֵ֤י"],
+            "en": [["the names of", [0]], ["the sons of", [1]], ["Israel—", [2]], ["according to", [5]], ["their", [6]], ["twelve", [3, 4]], ["names.", [6]], ["Each", [[93, 37, 0, 1]]], ["shall be", [[93, 37, 0, 4]]]],
             "verseIndex": 0
           }
         ]
@@ -1405,28 +1024,18 @@
         "book": 2,
         "chapter": 28,
         "verse": 21,
-        "start": false,
-        "width": 0.44191079568124386
+        "indexOfFirstWord": 3
       }
     ],
     "isPetucha": false
   },
-  {
+  "37": {
     "text": [
       [
         [
           {
-            "he": ["חוֹתָם֙", " אִ֣ישׁ", " עַל", "־שְׁמ֔וֹ", " תִּֽהְיֶ֕יןָ", " לִשְׁנֵ֥י", " עָשָׂ֖ר", " שָֽׁבֶט׃"],
-            "en": [
-              {"words": "", "page": 93, "line": 38, "word": 5},
-              {"words": "engraved", "page": 93, "line": 37, "word": 8},
-              {"words": "like a seal", "page": 93, "line": 38, "word": 1},
-              {"words": "with", "page": 93, "line": 37, "word": 6},
-              {"words": "the name", "page": 93, "line": 37, "word": 7},
-              {"words": "of one of the twelve", "page": 93, "line": 38, "word": 6},
-              {"words": "", "page": 93, "line": 38, "word": 7},
-              {"words": "tribes.", "page": 93, "line": 38, "word": 8}
-            ],
+            "he": ["חוֹתָם֙", " אִ֣ישׁ", " עַל־", "שְׁמ֔וֹ", " תִּֽהְיֶ֕יןָ", " לִשְׁנֵ֥י", " עָשָׂ֖ר", " שָֽׁבֶט׃"],
+            "en": [["like the engraving of", [[93, 36, 0, 7]]], ["a signet", [0]], ["according to", [2]], ["its name—", [3]], ["for the twelve", [5, 6]], ["tribes.", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1437,28 +1046,18 @@
         "book": 2,
         "chapter": 28,
         "verse": 21,
-        "start": false,
-        "width": 0.37879795427341645
+        "indexOfFirstWord": 11
       }
     ],
     "isPetucha": false
   },
-  {
+  "38": {
     "text": [
       [
         [
           {
-            "he": ["וְעָשִׂ֧יתָ", " עַל", "־הַחֹ֛שֶׁן", " שַֽׁרְשֹׁ֥ת", " גַּבְלֻ֖ת", " מַעֲשֵׂ֣ה", " עֲבֹ֑ת", " זָהָ֖ב"],
-            "en": [
-              {"words": "For the breastpiece", "page": 93, "line": 39, "word": 3},
-              {"words": ",", "page": 93, "line": 39, "word": 4},
-              {"words": "make", "page": 93, "line": 39, "word": 1},
-              {"words": "", "page": 93, "line": 39, "word": 2},
-              {"words": "braided chains", "page": 93, "line": 39, "word": 5},
-              {"words": "", "page": 93, "line": 39, "word": 7},
-              {"words": "like cords", "page": 93, "line": 39, "word": 6},
-              {"words": "of pure", "page": 93, "line": 40, "word": 1}
-            ],
+            "he": ["וְעָשִׂ֧יתָ", " עַל־", "הַחֹ֛שֶׁן", " שַֽׁרְשֹׁ֥ת", " גַּבְלֻ֖ת", " מַעֲשֵׂ֣ה", " עֲבֹ֑ת", " זָהָ֖ב"],
+            "en": [["And you shall make", [0]], ["twisted", [4]], ["chains", [3]], ["on", [1]], ["the breastpiece,", [2]], ["as a work of", [5]], ["rope—", [6]], ["pure", [[93, 39, 0, 0]]]],
             "verseIndex": 0
           }
         ]
@@ -1469,35 +1068,23 @@
         "book": 2,
         "chapter": 28,
         "verse": 22,
-        "start": true,
-        "width": 0.8821351510396234
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "39": {
     "text": [
       [
         [
           {
             "he": ["טָהֽוֹר׃"],
-            "en": [
-              {"words": "gold.", "page": 93, "line": 39, "word": 8}
-            ],
+            "en": [["gold.", [[93, 38, 0, 7]]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְעָשִׂ֙יתָ֙", " עַל", "־הַחֹ֔שֶׁן", " שְׁתֵּ֖י", " טַבְּע֣וֹת", " זָהָ֑ב", " וְנָתַתָּ֗", " אֶת־"],
-            "en": [
-              {"words": "You are also to make", "page": 93, "line": 40, "word": 1},
-              {"words": "", "page": 93, "line": 40, "word": 2},
-              {"words": "", "page": 93, "line": 40, "word": 3},
-              {"words": "two", "page": 93, "line": 40, "word": 4},
-              {"words": "gold", "page": 93, "line": 40, "word": 6},
-              {"words": "rings", "page": 93, "line": 40, "word": 5},
-              {"words": "and fasten", "page": 93, "line": 40, "word": 7},
-              {"words": "", "page": 93, "line": 40, "word": 8}
-            ],
+            "he": [" וְעָשִׂ֙יתָ֙", " עַל־", "הַחֹ֔שֶׁן", " שְׁתֵּ֖י", " טַבְּע֣וֹת", " זָהָ֑ב", " וְנָתַתָּ֗", " אֶת־"],
+            "en": [["And you shall make", [0]], ["two", [3]], ["rings of", [4]], ["gold", [5]], ["for", [1]], ["the breastpiece,", [2]], ["and you shall put", [6]], ["the", [[93, 40, 0, 1]]]],
             "verseIndex": 1
           }
         ]
@@ -1508,42 +1095,29 @@
         "book": 2,
         "chapter": 28,
         "verse": 22,
-        "start": false,
-        "width": 0.11786484896037662
+        "indexOfFirstWord": 8
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 23,
-        "start": true,
-        "width": 0.5573812756741892
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "40": {
     "text": [
       [
         [
           {
-            "he": ["שְׁתֵּי֙", " הַטַּבָּע֔וֹת", " עַל", "־שְׁנֵ֖י", " קְצ֥וֹת", " הַחֹֽשֶׁן׃"],
-            "en": [
-              {"words": "them", "page": 93, "line": 41, "word": 1},
-              {"words": "", "page": 93, "line": 41, "word": 2},
-              {"words": "to", "page": 93, "line": 41, "word": 3},
-              {"words": "the two", "page": 93, "line": 41, "word": 4},
-              {"words": "corners", "page": 93, "line": 41, "word": 5},
-              {"words": "of the breastpiece.", "page": 93, "line": 41, "word": 6}
-            ],
+            "he": ["שְׁתֵּי֙", " הַטַּבָּע֔וֹת", " עַל־", "שְׁנֵ֖י", " קְצ֥וֹת", " הַחֹֽשֶׁן׃"],
+            "en": [["two", [[93, 39, 1, 7], 0]], ["rings", [1]], ["on", [2]], ["the", [4]], ["two", [3]], ["ends of", [4]], ["the breastpiece.", [5]]],
             "verseIndex": 0
           },
           {
-            "he": [" וְנָתַתָּ֗ה", " אֶת", "־שְׁתֵּי֙"],
-            "en": [
-              {"words": "Then fasten", "page": 93, "line": 41, "word": 1},
-              {"words": "", "page": 93, "line": 41, "word": 2},
-              {"words": "the two", "page": 93, "line": 41, "word": 3}
-            ],
+            "he": [" וְנָתַתָּ֗ה", " אֶת־", "שְׁתֵּי֙"],
+            "en": [["And you shall attach", [0]], ["the", [[93, 41, 0, 0]]]],
             "verseIndex": 1
           }
         ]
@@ -1554,35 +1128,24 @@
         "book": 2,
         "chapter": 28,
         "verse": 23,
-        "start": false,
-        "width": 0.44261872432581084
+        "indexOfFirstWord": 8
       },
       {
         "book": 2,
         "chapter": 28,
         "verse": 24,
-        "start": true,
-        "width": 0.2482492619965955
+        "indexOfFirstWord": 0
       }
     ],
     "isPetucha": false
   },
-  {
+  "41": {
     "text": [
       [
         [
           {
-            "he": ["עֲבֹתֹ֣ת", " הַזָּהָ֔ב", " עַל", "־שְׁתֵּ֖י", " הַטַּבָּעֹ֑ת", " אֶל", "־קְצ֖וֹת", " הַחֹֽשֶׁן׃"],
-            "en": [
-              {"words": "gold", "page": 93, "line": 42, "word": 2},
-              {"words": "chains", "page": 93, "line": 42, "word": 1},
-              {"words": "to", "page": 93, "line": 42, "word": 3},
-              {"words": "the two", "page": 93, "line": 42, "word": 4},
-              {"words": "gold rings", "page": 93, "line": 42, "word": 5},
-              {"words": "at", "page": 93, "line": 42, "word": 6},
-              {"words": "the corners", "page": 93, "line": 42, "word": 7},
-              {"words": "of the breastpiece,", "page": 93, "line": 42, "word": 8}
-            ],
+            "he": ["עֲבֹתֹ֣ת", " הַזָּהָ֔ב", " עַל־", "שְׁתֵּ֖י", " הַטַּבָּעֹ֑ת", " אֶל־", "קְצ֖וֹת", " הַחֹֽשֶׁן׃"],
+            "en": [["two", [[93, 40, 1, 1], [93, 40, 1, 2]]], ["chains of", [0]], ["gold", [1]], ["to the", [2]], ["rings", [4]], ["on", [5]], ["the", [6]], ["two", [3]], ["ends of", [6]], ["the breastpiece.", [7]]],
             "verseIndex": 0
           }
         ]
@@ -1593,10 +1156,9 @@
         "book": 2,
         "chapter": 28,
         "verse": 24,
-        "start": false,
-        "width": 0.7517507380034045
+        "indexOfFirstWord": 3
       }
     ],
     "isPetucha": false
   }
-]
+}
