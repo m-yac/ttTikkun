@@ -24,7 +24,9 @@
 /* ================================ */
 
 body {
+  --text-color: #000;
   font-family: "Crimson Text", serif;
+  color: var(--text-color);
 }
 
 h1, h2, h3, h4 {
@@ -38,4 +40,17 @@ h1 {
 
 p {
   font-size: 14pt;
+}
+
+a,
+a:visited {
+  color: var(--text-color);
+  text-decoration: none;
+  cursor: pointer;
+}
+a:hover,
+a:focus,
+a:visited:hover,
+a:visited:focus {
+  color: ActiveText;
 }
