@@ -1,5 +1,3 @@
-import './style/common.css';
-import './style/transliterate.css';
 import { Text } from 'havarotjs';
 import type { Word } from 'havarotjs/word';
 import { DefaultTransliterationScheme } from 'havarotjs/transliteration';
