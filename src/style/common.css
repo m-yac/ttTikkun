@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+
+@font-face {
+  font-family: "Bitter Hebrew";
+  src: url('../fonts/Bitter-Hebrew-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Shlomo";
+  src: url('../fonts/Shlomo.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Shlomo Stam";
+  src: url('../fonts/ShlomoStam.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ================================ */
+
+body {
+  font-family: "Crimson Text", serif;
+}
+
+h1, h2, h3, h4 {
+  margin-bottom: 5px;
+  text-align: center;
+  font-family: "Crimson Text", serif;
+}
+h1 {
+  font-size: 30pt;
+}
+
+p {
+  font-size: 14pt;
+}

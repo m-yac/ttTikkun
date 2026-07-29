@@ -1,0 +1,69 @@
+.explainer {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.heAndTl {
+  display: flex;
+  --gap: 10px;
+  --edge: 8%;
+  --radius: 4px;
+  gap: var(--gap);
+  margin: 30px auto;
+}
+
+.heOrTl {
+  position: relative;
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 300px;
+  padding: 10px;
+  line-height: 30pt;
+  white-space: pre-wrap;
+  border-radius: var(--radius);
+}
+/* The top/inner lines */
+.heOrTl::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+#he {
+  /* Half the width minus the edge */
+  flex-basis: calc((100% - var(--gap)) / 2 - var(--edge));
+  font-family: "Shlomo", serif;
+  font-size: 16.6666667pt;
+  margin-inline-end: var(--edge);
+}
+#he::before {
+  border-top: 1px solid #aaa;
+  border-right: 1px solid #aaa;
+  border-top-right-radius: var(--radius);
+}
+
+#tl {
+  /* Half the width *including* the edge */
+  flex-basis: calc((100% - var(--gap)) / 2);
+  font-family: "Bitter Hebrew", serif;
+  font-size: 12pt;
+  letter-spacing: -0.02rem;
+  word-spacing: 0.38rem;
+}
+#tl::before {
+  right: calc(2 * var(--edge));
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-top-left-radius: var(--radius);
+}
+
+.line {
+  overflow-wrap: break-word;
+}
+
+.word.highlight {
+  background: #ffe082;
+}

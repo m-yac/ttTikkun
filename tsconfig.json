@@ -12,7 +12,10 @@
     "esModuleInterop": true,
     "isolatedModules": true,
     "useDefineForClassFields": true,
-    "types": ["vite/client"]
+    "types": ["vite/client"],
+    "paths": {
+      "havarotjs/transliteration": ["./node_modules/havarotjs/dist/types/transliteration.d.ts"]
+    }
   },
   "include": ["src"]
 }
