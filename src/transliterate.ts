@@ -131,6 +131,38 @@ function transliterate(word: Word): string {
   }
 }
 
+function syllabify(word: Word): [string[], string[]] {
+  try {
+    const [heParts, tlParts]: [string[], string[]] = [[], []];
+    for (const syl of word.syllables) {
+      heParts.push(syl.text);
+      tlParts.push(scheme.trl(syl));
+    }
+    return [heParts, tlParts];
+  } catch {}
+  // If we failed above, just highlight the entire word as one syllable
+  return [[word.text], [transliterate(word)]];
+}
+
+function makeWord(index: string, syllables: string[], sep: string): HTMLSpanElement {
+  const wordSpan = document.createElement('span');
+  wordSpan.className = 'word';
+  wordSpan.dataset.index = index;
+
+  syllables.forEach((text, i) => {
+    if (i > 0 && sep !== '') {
+      wordSpan.append(sep);
+    }
+    const sylSpan = document.createElement('span');
+    sylSpan.className = 'syl';
+    sylSpan.dataset.syl = String(i);
+    sylSpan.textContent = text;
+    wordSpan.append(sylSpan);
+  });
+
+  return wordSpan;
+}
+
 function render(caret: number | null): void {
   const words = new Text(he.textContent ?? '')
                     .replaceDivineName(scheme.divineName)
@@ -141,18 +173,10 @@ function render(caret: number | null): void {
 
   words.forEach((word, i) => {
     const index = String(i);
+    const [heSyls, tlSyls] = syllabify(word);
 
-    const heSpan = document.createElement('span');
-    heSpan.className = 'word';
-    heSpan.dataset.index = index;
-    heSpan.textContent = word.text;
-    he.append(heSpan);
-
-    const trlSpan = document.createElement('span');
-    trlSpan.className = 'word';
-    trlSpan.dataset.index = index;
-    trlSpan.textContent = transliterate(word);
-    tl.append(trlSpan);
+    he.append(makeWord(index, heSyls, ''));
+    tl.append(makeWord(index, tlSyls, scheme.syllableSeparator));
 
     const sep = word.whiteSpaceAfter ?? '';
     he.append(sep);
@@ -166,27 +190,36 @@ function render(caret: number | null): void {
   }
 }
 
-// =====================
-//  Listeners and setup
-// =====================
+// ============================
+//  Word/Syllable Highlighting
+// ============================
 
-function highlight(index: string | null): void {
-  for (const el of document.querySelectorAll('.word.highlight')) {
-    el.classList.remove('highlight');
+function highlight(index: string | null, syl: string | null): void {
+  for (const el of document.querySelectorAll('.highlight, .sylHighlight')) {
+    el.classList.remove('highlight', 'sylHighlight');
   }
-  if (index !== null) {
-    for (const el of document.querySelectorAll(`.word[data-index="${index}"]`)) {
-      el.classList.add('highlight');
+  if (index === null) {
+    return;
+  }
+  const word = `.word[data-index="${index}"]`;
+  for (const el of document.querySelectorAll(word)) {
+    el.classList.add('highlight');
+  }
+  if (syl !== null) {
+    for (const el of document.querySelectorAll(`${word} > .syl[data-syl="${syl}"]`)) {
+      el.classList.add('sylHighlight');
     }
   }
 }
 
 for (const heOrTl of [he, tl]) {
   heOrTl.addEventListener('mouseover', (e) => {
-    const word = (e.target as HTMLElement).closest<HTMLElement>('.word');
-    highlight(word?.dataset.index ?? null);
+    const target = e.target as HTMLElement;
+    const word = target.closest<HTMLElement>('.word');
+    const syl = target.closest<HTMLElement>('.syl');
+    highlight(word?.dataset.index ?? null, syl?.dataset.syl ?? null);
   });
-  heOrTl.addEventListener('mouseleave', () => highlight(null));
+  heOrTl.addEventListener('mouseleave', () => highlight(null, null));
 }
 
 // =========================================
