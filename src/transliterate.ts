@@ -144,12 +144,16 @@ function syllabify(word: Word): [string[], string[]] {
   return [[word.text], [transliterate(word)]];
 }
 
-function makeWord(index: string, syllables: string[], sep: string): HTMLSpanElement {
+function makeWord(index: string, syllables: string[], sep: string = '', capitalize: boolean = false): HTMLSpanElement {
   const wordSpan = document.createElement('span');
   wordSpan.className = 'word';
   wordSpan.dataset.index = index;
 
   syllables.forEach((text, i) => {
+    if (i === 0 && capitalize) {
+      // Uppercase the first lowercase (unicode!) character
+      text = text.replace(/\p{Ll}/u, (c) => c.toUpperCase());
+    }
     if (i > 0 && sep !== '') {
       wordSpan.append(sep);
     }
@@ -164,9 +168,9 @@ function makeWord(index: string, syllables: string[], sep: string): HTMLSpanElem
 }
 
 function render(caret: number | null): void {
-  const words = new Text(he.textContent ?? '')
-                    .replaceDivineName(scheme.divineName)
-                    .words;
+  const text = he.textContent ?? '';
+  const words = new Text(text).words;
+  const hasSofPassuq = text.includes('׃');
 
   he.replaceChildren();
   tl.replaceChildren();
@@ -175,12 +179,19 @@ function render(caret: number | null): void {
     const index = String(i);
     const [heSyls, tlSyls] = syllabify(word);
 
-    he.append(makeWord(index, heSyls, ''));
-    tl.append(makeWord(index, tlSyls, scheme.syllableSeparator));
+    // Only capitalize if the text contains verses, and this word is either the
+    // very first word, or the first word after the end of a verse
+    const startsVerse = hasSofPassuq && (i === 0 || words[i - 1].text.includes('׃'));
 
-    const sep = word.whiteSpaceAfter ?? '';
-    he.append(sep);
-    tl.append(sep);
+    he.append(makeWord(index, heSyls));
+    tl.append(makeWord(index, tlSyls, scheme.syllableSeparator, startsVerse));
+
+    const heSep = word.whiteSpaceAfter ?? '';
+    he.append(heSep);
+
+    // Add a space after a maqaf in the transliteration
+    const tlSep = heSep === '' && word.text.endsWith('־') ? ' ' : heSep;
+    tl.append(tlSep);
   });
 
   alignLines();
