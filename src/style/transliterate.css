@@ -108,11 +108,10 @@
 
 /* Labels which are samples of transliterated text */
 .checkboxContainer input + label.tlSample {
-  font-family: "Bitter", serif;
+  font-family: "Bitter Hebrew", serif;
   font-size: 11pt;
 }
-.optionsPanel.hasTaam .checkboxContainer input + label.tlSample {
-  font-family: "Bitter Hebrew", serif;
+.checkboxContainer.hasTaam input + label.tlSample {
   padding-top: calc(2px + 0.315em);
 }
 
@@ -195,6 +194,7 @@
   padding: 0;
 }
 #tl.boldAccents b {
+  font-family: "Bitter", serif;
   font-weight: 600;
 }
 #tl::before {

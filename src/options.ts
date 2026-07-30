@@ -177,6 +177,89 @@ export type Options = {
   -readonly [K in keyof OptionSpecs]: OptionValue<OptionSpecs[K]>;
 };
 
+// =========================================================
+//  Saving and restoring options [GENERATED ENTIRELY BY AI]
+// =========================================================
+
+const COOKIE_NAME = 'tlOptions';
+const COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // one year
+
+// What is kept in the cookie: the options which differ from their defaults, and
+// whether the options panel is expanded. Only the differences are saved so that
+// a change of defaults is picked up by anyone who never touched that option.
+interface SavedState {
+  opts: Partial<Record<string, unknown>>;
+  expanded: boolean;
+}
+
+function readCookie(name: string): string | undefined {
+  for (const entry of document.cookie.split('; ')) {
+    const eq = entry.indexOf('=');
+    if (eq > 0 && entry.slice(0, eq) === name) {
+      return decodeURIComponent(entry.slice(eq + 1));
+    }
+  }
+  return undefined;
+}
+
+function writeCookie(name: string, value: string): void {
+  document.cookie = `${name}=${encodeURIComponent(value)}` +
+    `; path=/; max-age=${COOKIE_MAX_AGE}; samesite=lax`;
+}
+
+// Whether a saved value is still one this option can take. A cookie may have
+// been written by an older version of the page, or by hand.
+function isValidValue(spec: OptionSpec, value: unknown): boolean {
+  if (spec.choices !== undefined) {
+    return typeof value === 'string' && spec.choices.includes(value);
+  }
+  return typeof value === 'boolean';
+}
+
+// Apply the saved options, if any, to `options`, and return whether the panel
+// was saved as expanded. Anything unrecognized in the cookie is ignored.
+function loadState(options: Options): boolean {
+  const cookie = readCookie(COOKIE_NAME);
+  if (cookie === undefined) {
+    return false;
+  }
+  let saved: unknown;
+  try {
+    saved = JSON.parse(cookie);
+  } catch {
+    return false;
+  }
+  if (typeof saved !== 'object' || saved === null) {
+    return false;
+  }
+  const state = saved as Partial<SavedState>;
+
+  const specs: Record<string, OptionSpec> = optionSpecs;
+  const values = options as Record<string, unknown>;
+  if (typeof state.opts === 'object' && state.opts !== null) {
+    for (const [key, value] of Object.entries(state.opts)) {
+      const spec = specs[key];
+      if (spec !== undefined && isValidValue(spec, value)) {
+        values[key] = value;
+      }
+    }
+  }
+
+  return state.expanded === true;
+}
+
+function saveState(options: Options, expanded: boolean): void {
+  const values = options as Record<string, unknown>;
+  const defaults = optionDefaults as Record<string, unknown>;
+  const opts: Record<string, unknown> = {};
+  for (const key of Object.keys(optionSpecs)) {
+    if (values[key] !== defaults[key]) {
+      opts[key] = values[key];
+    }
+  }
+  writeCookie(COOKIE_NAME, JSON.stringify({ opts, expanded } satisfies SavedState));
+}
+
 // ============================================
 //  Building the UI [GENERATED ENTIRELY BY AI]
 // ============================================
@@ -421,6 +504,17 @@ function makeGroup(
     container.append(input, label);
   });
 
+  // A taam sits far above the letters it accompanies, so a group containing one
+  // is given room for it - in every one of its buttons, so that they keep to
+  // one height
+  const buttonLabels = group.buttons.map((button) => button.label);
+  const setTaam = () => container.classList.toggle(
+    'hasTaam', buttonLabels.some((l) => hasTaam(expandLabel(l, values))));
+  setTaam();
+  if (buttonLabels.some(hasTemplate)) {
+    updates.push(setTaam);
+  }
+
   return { el: groupDiv, update: () => updates.forEach((u) => u()) };
 }
 
@@ -429,6 +523,12 @@ function makeGroup(
 export function setupOptions(options: Options, changed: () => void): void {
   const toggle = document.getElementById('optionsToggle') as HTMLButtonElement;
   const panel = document.getElementById('optionsPanel') as HTMLDivElement;
+
+  // The cookie is read only here, as the page loads, and written only as the
+  // page is left, so that two tabs may hold different options without either
+  // changing under the other: each keeps what it was loaded with, and the tab
+  // left last is the one a newly opened tab inherits from.
+  let expanded = loadState(options);
 
   // An option's value may appear in another option's label, so every group is
   // updated whenever any option changes
@@ -448,7 +548,8 @@ export function setupOptions(options: Options, changed: () => void): void {
 
   // A taam sits far above the letters it accompanies, so a label containing
   // one is set in a font which leaves room for it - as are all the others, so
-  // that the panel keeps to one font
+  // that the panel keeps to one font. The room itself is made per group, in
+  // `makeGroup`, as only the group with the taam in it needs to be any taller.
   const labels = groups.flatMap((group) => [
     ...group.label === undefined ? [] : [group.label],
     ...group.buttons.map((button) => button.label),
@@ -458,10 +559,23 @@ export function setupOptions(options: Options, changed: () => void): void {
   setFont();
   updates.push(setFont);
 
-  toggle.addEventListener('click', () => {
-    const shown = panel.hidden;
+  const setExpanded = (shown: boolean) => {
+    expanded = shown;
     panel.hidden = !shown;
     toggle.setAttribute('aria-expanded', String(shown));
     toggle.textContent = `${shown ? 'Hide' : 'Show'} transliteration options`;
+  };
+  setExpanded(expanded);
+
+  toggle.addEventListener('click', () => setExpanded(!!panel.hidden));
+
+  // `pagehide` covers leaving the page, including a refresh; `visibilitychange`
+  // is what a mobile browser fires when it discards the page without warning
+  const save = () => saveState(options, expanded);
+  window.addEventListener('pagehide', save);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+      save();
+    }
   });
 }
