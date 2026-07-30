@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "relock": "rm -rf node_modules package-lock.json && npm install --include=optional"
   },
   "dependencies": {
     "havarotjs": "github:m-yac/havarotjs#merged-better-syllable-structure"
