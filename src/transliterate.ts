@@ -91,6 +91,10 @@ function alignLines(): void {
   const heLines = groupIntoLines(he, starts);
   const tlLines = groupIntoLines(tl, starts);
 
+  for (const line of tlLines) {
+    squeezeToFit(line);
+  }
+
   for (let i = 0; i < heLines.length; i++) {
     const height = Math.max(heLines[i].offsetHeight, tlLines[i].offsetHeight);
     heLines[i].style.minHeight = `${height}px`;
@@ -117,6 +121,60 @@ function groupIntoLines(heOrTl: HTMLElement, starts: number[]): HTMLDivElement[]
 
   heOrTl.append(...lines);
   return lines;
+}
+
+// [REMAINDER OF THIS SECTION GENERATED ENTIRELY BY AI]
+
+// A line of `tl` is always a bit wider than the line of `he` it corresponds to,
+// and letting it wrap would break the alignment of the two panels. Instead we
+// tighten its letter spacing until it fits, which never takes much. If even the
+// tightest spacing we allow isn't enough, we give up and let the line wrap.
+const MAX_SQUEEZE_EM = 0.03;
+const SQUEEZE_STEPS = 3;
+// Ignore overflow this small, which is just `scrollWidth` rounding to whole px
+const SQUEEZE_SLACK_PX = 1;
+
+function squeezeToFit(line: HTMLDivElement): void {
+  // Any whitespace at the end of the line is invisible when the line wraps, but
+  // once it can't, a trailing space widens it and a trailing newline doubles its
+  // height, so drop it. (`tl` is rebuilt from scratch on every render, so there
+  // is nothing to restore.)
+  let last = line.lastChild;
+  while (last !== null && last.nodeType === Node.TEXT_NODE &&
+         (last.textContent ?? '').trim() === '') {
+    line.removeChild(last);
+    last = line.lastChild;
+  }
+
+  const chars = line.textContent?.length ?? 0;
+  if (chars === 0) {
+    return;
+  }
+
+  line.style.whiteSpace = 'pre';
+  const style = getComputedStyle(line);
+  const spacing = parseFloat(style.letterSpacing) || 0;
+  const minSpacing = spacing - MAX_SQUEEZE_EM * parseFloat(style.fontSize);
+
+  let current = spacing;
+  for (let i = 0; i < SQUEEZE_STEPS; i++) {
+    const overflow = line.scrollWidth - line.clientWidth;
+    if (overflow <= SQUEEZE_SLACK_PX) {
+      return;
+    }
+    if (current <= minSpacing) {
+      break;
+    }
+    // Letter spacing is added after every character, so this much less of it
+    // per character makes up for the overflow
+    current = Math.max(minSpacing, current - overflow / chars);
+    line.style.letterSpacing = `${current}px`;
+  }
+
+  if (line.scrollWidth - line.clientWidth > SQUEEZE_SLACK_PX) {
+    line.style.whiteSpace = '';
+    line.style.letterSpacing = '';
+  }
 }
 
 // =========================
@@ -369,6 +427,9 @@ new ResizeObserver(([entry]) => {
 
 // re-render whenever a transliteration option is changed
 setupOptions(scheme.opts, () => render(getCaret()));
+
+// re-render whenever a webfont finishes loading
+document.fonts.addEventListener('loadingdone', () => render(getCaret()));
 
 he.textContent = loadFromURL();
 render(null);

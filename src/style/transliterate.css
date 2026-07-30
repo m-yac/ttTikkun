@@ -4,7 +4,6 @@
   flex-direction: column;
   box-sizing: border-box;
   min-height: 100vh;
-  margin: 0;
 }
 
 .explainer {
@@ -48,9 +47,16 @@
   align-items: center;
   gap: 6px 14px;
   max-width: 550px;
+  margin-bottom: 10px;
 }
 .optionsPanel[hidden] {
   display: none;
+}
+
+/* The reset button */
+.optionsPanel .optionsToggle {
+  margin-top: 0;
+  padding-top: 0.3rem;
 }
 
 .optionGroup {

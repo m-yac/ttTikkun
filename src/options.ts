@@ -501,6 +501,8 @@ function makeGroup(
       changed();
     });
 
+    updates.push(() => { input.checked = button.checked(); });
+
     container.append(input, label);
   });
 
@@ -558,6 +560,17 @@ export function setupOptions(options: Options, changed: () => void): void {
     'hasTaam', labels.some((l) => hasTaam(expandLabel(l, values))));
   setFont();
   updates.push(setFont);
+
+  // Text at the end of the panel which puts every option back to its default
+  const reset = document.createElement('button');
+  reset.type = 'button';
+  reset.className = 'optionsToggle';
+  reset.textContent = 'Reset to defaults';
+  reset.addEventListener('click', () => {
+    Object.assign(options, optionDefaults);
+    onChange();
+  });
+  panel.append(reset);
 
   const setExpanded = (shown: boolean) => {
     expanded = shown;
