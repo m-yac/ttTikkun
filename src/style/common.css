@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap');
 
+/* Its own metrics are ascent 0.935em, descent 0.265em; the space needed above
+   and below for accents is added as padding where it is needed, since Safari
+   ignores the `*-override` @font-face descriptors. */
 @font-face {
   font-family: "Bitter Hebrew";
   src: url('../fonts/Bitter-Hebrew-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
 }
 
 @font-face {

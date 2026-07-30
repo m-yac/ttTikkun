@@ -14,10 +14,116 @@
   max-width: 500px;
 }
 
+/* ========================= */
+/*  Transliteration options  */
+/* ========================= */
+
+.options {
+  --button-focus-color: #6af;
+  --button-border-color: #666;
+  --button-bg-color: #eee;
+  --button-light-bg-color: #ddd;
+  margin: 10px auto 0;
+  text-align: center;
+}
+
+.optionsToggle {
+  padding: 2px 4px;
+  border: none;
+  background: none;
+  color: #555;
+  font-family: inherit;
+  font-size: 12pt;
+  cursor: pointer;
+  margin-top: 6px;
+}
+.optionsToggle:hover {
+  color: ActiveText;
+}
+
+.optionsPanel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px 14px;
+  max-width: 550px;
+}
+.optionsPanel[hidden] {
+  display: none;
+}
+
+.optionGroup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.optionLabel {
+  font-size: 12pt;
+}
+
+.inlineHe {
+  font-family: "Shlomo", serif;
+  font-size: 1.25em;
+  unicode-bidi: isolate;
+  margin: 0 0.1rem;
+}
+
+.checkboxContainer {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 8px;
+  background-color: var(--button-light-bg-color);
+  vertical-align: middle;
+}
+.checkboxContainer input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.checkboxContainer input + label {
+  min-width: 1.5em;
+  margin: 0 1px;
+  padding: 2px 6px;
+  border: 1px solid var(--button-light-bg-color);
+  border-radius: 5px;
+  background-color: transparent;
+  font-size: 12pt;
+  text-align: center;
+  cursor: pointer;
+}
+.checkboxContainer input:checked + label {
+  border-color: var(--button-border-color);
+  background-color: var(--button-bg-color);
+}
+.checkboxContainer input + label:hover,
+.checkboxContainer input:focus-visible + label {
+  border-color: var(--button-border-color);
+  box-shadow: 0 0 2pt 1pt var(--button-focus-color);
+}
+
+/* Labels which are samples of transliterated text */
+.checkboxContainer input + label.tlSample {
+  font-family: "Bitter", serif;
+  font-size: 11pt;
+}
+.optionsPanel.hasTaam .checkboxContainer input + label.tlSample {
+  font-family: "Bitter Hebrew", serif;
+  padding-top: calc(2px + 0.315em);
+}
+
+/* =================================== */
+/*  Hebrew and transliteration panels  */
+/* =================================== */
+
 .heAndTl {
   display: flex;
   --gap: 10px;
-  --edge: 8%;
+  --edge: 10%;
   --radius: 4px;
   gap: var(--gap);
   margin-top: 30px;
@@ -32,7 +138,7 @@
   min-width: 0;
   min-height: 300px;
   padding: 10px;
-  line-height: 30pt;
+  line-height: 33.75pt;
   white-space: pre-wrap;
   border-radius: var(--radius);
 }
@@ -53,7 +159,7 @@
   /* Half the width minus the edge */
   flex-basis: calc((100% - var(--gap)) / 2 - var(--edge));
   font-family: "Shlomo", serif;
-  font-size: 16.6666667pt;
+  font-size: 18.75pt;
   margin-inline-end: var(--edge);
 }
 #he::before {
@@ -75,9 +181,21 @@
   /* Half the width *including* the edge */
   flex-basis: calc((100% - var(--gap)) / 2);
   font-family: "Bitter Hebrew", serif;
-  font-size: 12pt;
+  font-size: 13.5pt;
   letter-spacing: -0.02rem;
   word-spacing: 0.38rem;
+}
+#tl .word {
+  line-height: 1;
+  /* Exactly enough room to cover any accent above/below */
+  padding: 0.761em 0 0.33em;
+}
+#tl.boldAccents .word {
+  /* No padding needed since there are no accents */
+  padding: 0;
+}
+#tl.boldAccents b {
+  font-weight: 600;
 }
 #tl::before {
   right: calc(2 * var(--edge));

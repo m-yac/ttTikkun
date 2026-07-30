@@ -1,9 +1,9 @@
 import { Text } from 'havarotjs';
 import type { Word } from 'havarotjs/word';
-import { DefaultTransliterationScheme } from 'havarotjs/transliteration';
 import { EditHistory } from './history';
+import { OptionsScheme, setupOptions } from './options';
 
-const scheme = new DefaultTransliterationScheme();
+const scheme = new OptionsScheme();
 
 const he = document.getElementById('he') as HTMLDivElement;
 const tl = document.getElementById('tl') as HTMLDivElement;
@@ -131,20 +131,37 @@ function transliterate(word: Word): string {
   }
 }
 
-function syllabify(word: Word): [string[], string[]] {
+// Which syllable of a word carries its stress, or -1 if none does.
+//
+// `isAccented` is set on every syllable bearing a taam, of which a word may
+// have more than one: a conjunctive within a word is a secondary accent, as the
+// munach of וְאָ֣הַבְתָּ֔ is, and always precedes the accent proper. (The cases
+// where a taam is instead written away from the stress, as a postpositive or
+// prepositive or with one of the "helper" taamim of MAPM, are already resolved
+// to the one accented syllable by `havarotjs`.) So the stress is the last of
+// them.
+function stressOf(syllables: readonly { isAccented: boolean }[]): number {
+  return syllables.map((syl) => syl.isAccented).lastIndexOf(true);
+}
+
+// The syllables of a word in Hebrew and transliterated, along with an array
+// identifying which of them are non-final stressed syllables
+function syllabify(word: Word): [string[], string[], boolean[]] {
   try {
     const [heParts, tlParts]: [string[], string[]] = [[], []];
     for (const syl of word.syllables) {
       heParts.push(syl.text);
       tlParts.push(scheme.trl(syl));
     }
-    return [heParts, tlParts];
+    const stress = stressOf(word.syllables);
+    const tlStressed = heParts.map((_, i) => i === stress && i < heParts.length - 1);
+    return [heParts, tlParts, tlStressed];
   } catch {}
   // If we failed above, just highlight the entire word as one syllable
-  return [[word.text], [transliterate(word)]];
+  return [[word.text], [transliterate(word)], [false]];
 }
 
-function makeWord(index: string, syllables: string[], sep: string = '', capitalize: boolean = false): HTMLSpanElement {
+function makeWord(index: string, syllables: string[], sep: string = '', capitalize: boolean = false, stressed: boolean[] = []): HTMLSpanElement {
   const wordSpan = document.createElement('span');
   wordSpan.className = 'word';
   wordSpan.dataset.index = index;
@@ -160,7 +177,13 @@ function makeWord(index: string, syllables: string[], sep: string = '', capitali
     const sylSpan = document.createElement('span');
     sylSpan.className = 'syl';
     sylSpan.dataset.syl = String(i);
-    sylSpan.textContent = text;
+    if (scheme.boldAccents && stressed[i]) {
+      const b = document.createElement('b');
+      b.textContent = text;
+      sylSpan.append(b);
+    } else {
+      sylSpan.textContent = text;
+    }
     wordSpan.append(sylSpan);
   });
 
@@ -169,28 +192,35 @@ function makeWord(index: string, syllables: string[], sep: string = '', capitali
 
 function render(caret: number | null): void {
   const text = he.textContent ?? '';
-  const words = new Text(text).words;
+  let words: Word[] = [];
+  try {
+    words = new Text(text, scheme.syllabificationOptions).words;
+  } catch {}
   const hasSofPassuq = text.includes('׃');
 
   he.replaceChildren();
   tl.replaceChildren();
 
+  tl.classList.toggle('boldAccents', scheme.boldAccents);
+
   words.forEach((word, i) => {
     const index = String(i);
-    const [heSyls, tlSyls] = syllabify(word);
+    const [heSyls, tlSyls, tlStressed] = syllabify(word);
 
     // Only capitalize if the text contains verses, and this word is either the
     // very first word, or the first word after the end of a verse
     const startsVerse = hasSofPassuq && (i === 0 || words[i - 1].text.includes('׃'));
 
     he.append(makeWord(index, heSyls));
-    tl.append(makeWord(index, tlSyls, scheme.syllableSeparator, startsVerse));
+    tl.append(makeWord(index, tlSyls,
+                       scheme.syllableSeparator, startsVerse, tlStressed));
 
     const heSep = word.whiteSpaceAfter ?? '';
     he.append(heSep);
 
     // Add a space after a maqaf in the transliteration
-    const tlSep = heSep === '' && word.text.endsWith('־') ? ' ' : heSep;
+    const afterMaqaf = heSep === '' && word.text.endsWith('־');
+    const tlSep = afterMaqaf ? ' ' : heSep;
     tl.append(tlSep);
   });
 
@@ -280,7 +310,13 @@ he.addEventListener('dragstart', (e) => e.preventDefault());
 // ================
 
 const QUERY_KEY = 'q';
-const DEFAULT_TEXT = 'בְּרֵאשִׁ֖ית בָּרָ֣א אֱלֹהִ֑ים';
+const DEFAULT_TEXT =
+  'שְׁמַ֖ע יִשְׂרָאֵ֑ל יְהֹוָ֥ה אֱלֹהֵ֖ינוּ יְהֹוָ֥ה ׀ אֶחָֽד׃\n' +
+  'וְאָ֣הַבְתָּ֔ אֵ֖ת יְהֹוָ֣ה אֱלֹהֶ֑יךָ בְּכׇל־לְבָבְךָ֥ וּבְכׇל־נַפְשְׁךָ֖ וּבְכׇל־מְאֹדֶֽךָ׃\n' +
+  'וְהָי֞וּ הַדְּבָרִ֣ים הָאֵ֗לֶּה אֲשֶׁ֨ר אָנֹכִ֧י מְצַוְּךָ֛ הַיּ֖וֹם עַל־לְבָבֶֽךָ׃\n' +
+  'וְשִׁנַּנְתָּ֣ם לְבָנֶ֔יךָ וְדִבַּרְתָּ֖ בָּ֑ם בְּשִׁבְתְּךָ֤ בְּבֵיתֶ֙ךָ֙ וּבְלֶכְתְּךָ֣ בַדֶּ֔רֶךְ וּֽבְשׇׁכְבְּךָ֖ וּבְקוּמֶֽךָ׃\n' +
+  'וּקְשַׁרְתָּ֥ם לְא֖וֹת עַל־יָדֶ֑ךָ וְהָי֥וּ לְטֹטָפֹ֖ת בֵּ֥ין עֵינֶֽיךָ׃\n' +
+  'וּכְתַבְתָּ֛ם עַל־מְזֻז֥וֹת בֵּיתֶ֖ךָ וּבִשְׁעָרֶֽיךָ׃';
 const MIN_URL_CHANGE_MS = 400;
 
 function loadFromURL(): string {
@@ -315,6 +351,7 @@ window.addEventListener('pagehide', saveTimeout);
 //  Listeners and setup
 // =====================
 
+// re-render on text input
 he.addEventListener('input', () => {
   render(getCaret());
   save();
@@ -329,6 +366,9 @@ new ResizeObserver(([entry]) => {
     render(getCaret());
   }
 }).observe(he);
+
+// re-render whenever a transliteration option is changed
+setupOptions(scheme.opts, () => render(getCaret()));
 
 he.textContent = loadFromURL();
 render(null);
