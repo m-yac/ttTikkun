@@ -96,6 +96,11 @@ function alignLines(): void {
   }
 
   for (let i = 0; i < heLines.length; i++) {
+    // A line only ends with a newline if the text does, so it ends a paragraph
+    if (/\n\s*$/.test(heLines[i].textContent ?? '')) {
+      heLines[i].classList.add('endsParagraph');
+      tlLines[i].classList.add('endsParagraph');
+    }
     const height = Math.max(heLines[i].offsetHeight, tlLines[i].offsetHeight);
     heLines[i].style.minHeight = `${height}px`;
     tlLines[i].style.minHeight = `${height}px`;
@@ -289,9 +294,9 @@ function render(caret: number | null): void {
   }
 }
 
-// ============================
-//  Word/Syllable Highlighting
-// ============================
+// ==============================================
+//  Word/Syllable highlighting and its listeners
+// ==============================================
 
 function highlight(index: string | null, syl: string | null): void {
   for (const el of document.querySelectorAll('.highlight, .sylHighlight')) {
@@ -321,9 +326,9 @@ for (const heOrTl of [he, tl]) {
   heOrTl.addEventListener('mouseleave', () => highlight(null, null));
 }
 
-// =========================================
-//  Keeping the contents of `he` plain text
-// =========================================
+// ===================================================
+//  Listeners to keep the contents of `he` plain text
+// ===================================================
 
 function insertText(text: string): void {
   if (text === '') {
@@ -363,9 +368,9 @@ he.addEventListener('drop', (e) => {
 // Disallow dragging
 he.addEventListener('dragstart', (e) => e.preventDefault());
 
-// ================
-//  URL parameters
-// ================
+// ==================================
+//  URL parameters and its listeners
+// ==================================
 
 const QUERY_KEY = 'q';
 const DEFAULT_TEXT =
@@ -405,9 +410,39 @@ function saveTimeout(): void {
 he.addEventListener('blur', saveTimeout);
 window.addEventListener('pagehide', saveTimeout);
 
-// =====================
-//  Listeners and setup
-// =====================
+// ============================
+//  Printing and its listeners
+// ============================
+
+// In order to `squeezeToFit`, we need to decide a layout in advance
+const PRINT_WIDTH = '7.5in'; // 8.5in - 2 * 0.5in (see @page)
+const PRINT_SCALE = 12 / 13.5;
+const PRINT_LETTER_SPACING = '-0.035em';
+const PRINT_WORD_SPACING = '0.34em';
+const PRINT_EDGE = '5%';
+
+const bodyContainer = document.querySelector('.bodyContainer') as HTMLDivElement;
+const heAndTl = document.querySelector('.heAndTl') as HTMLDivElement;
+
+// Sneakily apply everything on the screen to get our measurements
+function renderForPrint(printing: boolean): void {
+  bodyContainer.style.width = printing ? PRINT_WIDTH : '';
+  heAndTl.style.setProperty('--scale', printing ? String(PRINT_SCALE) : '');
+  heAndTl.style.setProperty('--letter-spacing', printing ? PRINT_LETTER_SPACING : '');
+  heAndTl.style.setProperty('--word-spacing', printing ? PRINT_WORD_SPACING : '');
+  heAndTl.style.setProperty('--edge', printing ? String(PRINT_EDGE) : '');
+  render(null);
+  // Ensure that the `ResizeObserver` doesn't fire
+  const style = getComputedStyle(he);
+  lastWidth = he.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+}
+
+window.addEventListener('beforeprint', () => renderForPrint(true));
+window.addEventListener('afterprint', () => renderForPrint(false));
+
+// ===================================
+//  Other listeners and initial setup
+// ===================================
 
 // re-render on text input
 he.addEventListener('input', () => {

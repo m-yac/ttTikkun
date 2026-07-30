@@ -127,6 +127,9 @@
 
 .heAndTl {
   display: flex;
+  --scale: 1;
+  --letter-spacing: -0.02em;
+  --word-spacing: 0.38em;
   --gap: 10px;
   --edge: 10%;
   --radius: 4px;
@@ -143,7 +146,7 @@
   min-width: 0;
   min-height: 300px;
   padding: 10px;
-  line-height: 33.75pt;
+  line-height: calc(33.75pt * var(--scale));
   white-space: pre-wrap;
   border-radius: var(--radius);
 }
@@ -164,7 +167,7 @@
   /* Half the width minus the edge */
   flex-basis: calc((100% - var(--gap)) / 2 - var(--edge));
   font-family: "Shlomo", serif;
-  font-size: 18.75pt;
+  font-size: calc(18.75pt * var(--scale));
   margin-inline-end: var(--edge);
 }
 #he::before {
@@ -186,9 +189,9 @@
   /* Half the width *including* the edge */
   flex-basis: calc((100% - var(--gap)) / 2);
   font-family: "Bitter Hebrew", serif;
-  font-size: 13.5pt;
-  letter-spacing: -0.02rem;
-  word-spacing: 0.38rem;
+  font-size: calc(13.5pt * var(--scale));
+  letter-spacing: var(--letter-spacing);
+  word-spacing: var(--word-spacing);
 }
 #tl .word {
   line-height: 1;
@@ -215,10 +218,50 @@
   overflow-wrap: break-word;
 }
 
+.line.endsParagraph {
+  margin-bottom: calc(7.875pt * var(--scale));
+}
+
 .word.highlight {
   background: #ffe082;
 }
 
 .syl.sylHighlight {
   color: #c62828;
+}
+
+/* ========== */
+/*  Printing  */
+/* ========== */
+
+/* In order to `squeezeToFit`, we need to decide a layout in advance */
+@page {
+  size: letter;
+  margin: 0.5in;
+}
+
+@media print {
+  /* Show only the Hebrew and transliteration panels */
+  .bodyContainer > :not(.heAndTl) {
+    display: none;
+  }
+  .bodyContainer {
+    min-height: 0;
+  }
+  .heAndTl {
+    margin-top: 0;
+  }
+  .heOrTl {
+    min-height: 0;
+  }
+  .heOrTl::before {
+    display: none;
+  }
+  #he:not(:focus) {
+    outline: none;
+  }
+  /* Never split a line of either panel across a page */
+  .line {
+    break-inside: avoid;
+  }
 }
