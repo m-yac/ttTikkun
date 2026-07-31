@@ -3,7 +3,7 @@ import type { Word } from 'havarotjs/word';
 import { groupsOf, groupsAroundGap, highlightColors, groupingOf,
          syllableColor, type Boundary, type Group, type Hovered,
          type Grouping } from './accents';
-import { EditHistory } from './history';
+import { EditableText } from './editable';
 import { OptionsScheme, setupOptions } from './options';
 
 const scheme = new OptionsScheme();
@@ -11,66 +11,12 @@ const scheme = new OptionsScheme();
 const he = document.getElementById('he') as HTMLDivElement;
 const tl = document.getElementById('tl') as HTMLDivElement;
 
-const editHistory = new EditHistory({
-  el: he,
-  getText: () => he.textContent ?? '',
-  getCaret,
-  restored: (caret) => {
+const heText = new EditableText(he, {
+  changed: (caret) => {
     render(caret);
     save();
   },
 });
-
-// =====================================
-//  Managing the cursor (caret) in `he`
-// =====================================
-
-// The offset of a (node, offset) DOM position in the plain text of `he`
-function offsetOf(node: Node, offset: number): number {
-  const range = document.createRange();
-  range.selectNodeContents(he);
-  range.setEnd(node, offset);
-  return range.toString().length;
-}
-
-// The current selection in `he` as a `[start, end]` pair of plain text offsets
-function getSelectionRange(): [number, number] | null {
-  const sel = window.getSelection();
-  if (!sel || sel.rangeCount === 0 || !sel.anchorNode || !sel.focusNode ||
-      !he.contains(sel.anchorNode) || !he.contains(sel.focusNode)) {
-    return null;
-  }
-  const anchor = offsetOf(sel.anchorNode, sel.anchorOffset);
-  const focus = offsetOf(sel.focusNode, sel.focusOffset);
-  return anchor <= focus ? [anchor, focus] : [focus, anchor];
-}
-
-function getCaret(): number | null {
-  const sel = window.getSelection();
-  if (!sel || sel.rangeCount === 0 || !sel.focusNode || !he.contains(sel.focusNode)) {
-    return null;
-  }
-  return offsetOf(sel.focusNode, sel.focusOffset);
-}
-
-function setCaret(offset: number): void {
-  const walker = document.createTreeWalker(he, NodeFilter.SHOW_TEXT);
-  let seen = 0;
-  let node: Node | null;
-  while ((node = walker.nextNode())) {
-    const len = node.textContent?.length ?? 0;
-    if (seen + len >= offset) {
-      const range = document.createRange();
-      range.setStart(node, offset - seen);
-      range.collapse(true);
-      const sel = window.getSelection();
-      sel?.removeAllRanges();
-      sel?.addRange(range);
-      return;
-    }
-    seen += len;
-  }
-}
 
 // ==============================
 //  Ensuring word/line alignment
@@ -79,6 +25,7 @@ function setCaret(offset: number): void {
 function alignLines(): void {
   const heWords = [...he.querySelectorAll<HTMLElement>(':scope > .word')];
   if (heWords.length === 0) {
+    showEmptyLastLine();
     return;
   }
 
@@ -94,6 +41,10 @@ function alignLines(): void {
   const heLines = groupIntoLines(he, starts);
   const tlLines = groupIntoLines(tl, starts);
 
+  // Before anything is measured, so that the empty line is one of the heights
+  // the two panels are squared up to
+  showEmptyLastLine();
+
   for (const line of tlLines) {
     squeezeToFit(line);
   }
@@ -108,6 +59,14 @@ function alignLines(): void {
     heLines[i].style.minHeight = `${height}px`;
     tlLines[i].style.minHeight = `${height}px`;
   }
+}
+
+function showEmptyLastLine(): void {
+  if (!heText.text.endsWith('\n')) {
+    return;
+  }
+  const lines = he.querySelectorAll(':scope > .line');
+  (lines[lines.length - 1] ?? he).append(document.createElement('br'));
 }
 
 function groupIntoLines(heOrTl: HTMLElement, starts: number[]): HTMLDivElement[] {
@@ -132,7 +91,10 @@ function groupIntoLines(heOrTl: HTMLElement, starts: number[]): HTMLDivElement[]
     cursor = end;
   }
 
-  // Don't call `markEnd` on the last line since it has no ending newline
+  // Don't call `markEnd` on the last line since it has no line below it to
+  // stand in for the newline it ends with - it is left to break as it was
+  // written, giving the empty line at the end of the text somewhere for the
+  // caret to sit
   lines.slice(0, -1).forEach(markEnd);
   markBreaks(lines);
   heOrTl.append(...lines);
@@ -331,8 +293,10 @@ function stressOf(syllables: readonly { isAccented: boolean }[]): number {
 }
 
 // The syllables of a word in Hebrew and transliterated, along with an array
-// identifying which of them are non-final stressed syllables
-function syllabify(word: Word): [string[], string[], boolean[]] {
+// identifying which of them are non-final stressed syllables. The Hebrew is
+// `written`, the word as it stands in the text, cut up by where `havarotjs`
+// divides its own normalization of it - see `sliceSource`.
+function syllabify(word: Word, written: string): [string[], string[], boolean[]] {
   try {
     const [heParts, tlParts]: [string[], string[]] = [[], []];
     for (const syl of word.syllables) {
@@ -341,11 +305,59 @@ function syllabify(word: Word): [string[], string[], boolean[]] {
     }
     const stress = stressOf(word.syllables);
     const tlStressed = heParts.map((_, i) => i === stress && i < heParts.length - 1);
-    return [heParts, tlParts, tlStressed];
+    return [cut(written, heParts), tlParts, tlStressed];
   } catch {}
   // If we failed above, just highlight the entire word as one syllable
-  return [[word.text], [transliterate(word)], [false]];
+  return [[written], [transliterate(word)], [false]];
 }
+
+// `written` divided up as `parts` is. Normalization only ever reorders the
+// points written on a letter, which is well within a syllable, so the two run
+// character for character - but if they somehow don't, the word is left whole.
+function cut(written: string, parts: readonly string[]): string[] {
+  if (parts.reduce((n, part) => n + part.length, 0) !== written.length) {
+    return [written];
+  }
+  let pos = 0;
+  return parts.map((part) => {
+    pos += part.length;
+    return written.slice(pos - part.length, pos);
+  });
+}
+
+// The words of the text as they were written, each with the whitespace which
+// follows it, along with whatever whitespace comes before the first of them.
+// `havarotjs` gives back a normalization of the text with the whitespace
+// around it dropped, so the words are found by walking the text alongside the
+// parse instead, and everything shown in `he` is a piece of the text itself.
+function sliceSource(words: readonly Word[]): { lead: string; pieces: Piece[]; tail: string } {
+  const text = heText.text;
+  let pos = 0;
+  const whitespace = (): string => {
+    const start = pos;
+    while (pos < text.length && /\s/.test(text[pos])) {
+      pos += 1;
+    }
+    return text.slice(start, pos);
+  };
+
+  const lead = whitespace();
+  const pieces = words.map((word) => {
+    // A word of the parse is as long as the word it was made from, unless the
+    // two have somehow fallen out of step, in which case take the run of
+    // non-whitespace written here and continue
+    let len = word.text.length;
+    if (/\s/.test(text.slice(pos, pos + len))) {
+      len = (/^\S*/.exec(text.slice(pos)) ?? [''])[0].length;
+    }
+    pos += len;
+    return { written: text.slice(pos - len, pos), gapAfter: whitespace() };
+  });
+  // Should be unreachable
+  return { lead, pieces, tail: text.slice(pos) };
+}
+
+interface Piece { written: string; gapAfter: string }
 
 function makeWord(index: string, syllables: string[], sep: string = '', capitalize: boolean = false, stressed: boolean[] = []): HTMLSpanElement {
   const wordSpan = document.createElement('span');
@@ -404,22 +416,27 @@ let words: Word[] = [];
 let phrasing: Grouping = groupingOf([]);
 
 function render(caret: number | null): void {
-  const text = he.textContent ?? '';
   words = [];
   try {
-    words = new Text(text, scheme.syllabificationOptions).words;
+    words = new Text(heText.text, scheme.syllabificationOptions).words;
   } catch {}
   phrasing = groupingOf(words);
-  const hasSofPassuq = text.includes('׃');
+  const hasSofPassuq = heText.text.includes('׃');
+  const { lead, pieces, tail } = sliceSource(words);
 
   he.replaceChildren();
   tl.replaceChildren();
 
   tl.classList.toggle('boldAccents', scheme.boldAccents);
 
+  if (lead !== '') {
+    he.append(lead);
+    tl.append(lead);
+  }
+
   words.forEach((word, i) => {
     const index = String(i);
-    const [heSyls, tlSyls, tlStressed] = syllabify(word);
+    const [heSyls, tlSyls, tlStressed] = syllabify(word, pieces[i].written);
 
     // Only capitalize if the text contains verses, and this word is either the
     // very first word, or the first word after the end of a verse
@@ -429,7 +446,7 @@ function render(caret: number | null): void {
     tl.append(makeWord(index, tlSyls,
                        scheme.syllableSeparator, startsVerse, tlStressed));
 
-    const heSep = word.whiteSpaceAfter ?? '';
+    const heSep = pieces[i].gapAfter;
     // Add a space after a maqaf in the transliteration
     const afterMaqaf = heSep === '' && word.text.endsWith('־');
     const tlSep = afterMaqaf ? ' ' : heSep;
@@ -445,10 +462,14 @@ function render(caret: number | null): void {
     }
   });
 
+  if (tail !== '') {
+    he.append(tail);
+  }
+
   alignLines();
 
   if (caret !== null) {
-    setCaret(caret);
+    heText.setCaret(caret);
   }
 }
 
@@ -550,48 +571,6 @@ document.addEventListener('touchstart', (e) => {
 tl.addEventListener('mousedown', () => tl.classList.add('selecting'));
 document.addEventListener('mouseup', () => tl.classList.remove('selecting'));
 
-// ===================================================
-//  Listeners to keep the contents of `he` plain text
-// ===================================================
-
-function insertText(text: string): void {
-  if (text === '') {
-    return;
-  }
-  // `insertText` is deprecated, but it is the only way to insert text into a
-  // `contenteditable` such that `beforeinput`/`input` fire as they do on typing
-  if (document.execCommand('insertText', false, text)) {
-    return;
-  }
-  // If that doesn't work we have to do it manually
-  const heText = he.textContent ?? '';
-  const [start, end] = getSelectionRange() ?? [heText.length, heText.length];
-  const before = { text: heText, caret: start };
-  he.textContent = before.text.slice(0, start) + text + before.text.slice(end);
-  editHistory.push(before, 'insertFromPaste');
-  render(start + text.length);
-  save();
-}
-
-// Normalize text arriving from the clipboard or a drag-and-drop
-function asPlainText(data: DataTransfer | null): string {
-  return (data?.getData('text/plain') ?? '').replace(/\r\n?/g, '\n');
-}
-
-he.addEventListener('paste', (e) => {
-  e.preventDefault();
-  insertText(asPlainText(e.clipboardData));
-});
-
-he.addEventListener('drop', (e) => {
-  e.preventDefault();
-  he.focus();
-  insertText(asPlainText(e.dataTransfer));
-});
-
-// Disallow dragging
-he.addEventListener('dragstart', (e) => e.preventDefault());
-
 // ==================================
 //  URL parameters and its listeners
 // ==================================
@@ -618,12 +597,11 @@ function save(): void {
 }
 function saveTimeout(): void {
   clearTimeout(saveTimer);
-  const text = he.textContent ?? '';
   const url = new URL(window.location.href);
-  if (text === '') {
+  if (heText.text === '') {
     url.searchParams.delete(QUERY_KEY);
   } else {
-    url.searchParams.set(QUERY_KEY, text);
+    url.searchParams.set(QUERY_KEY, heText.text);
   }
   if (url.href !== window.location.href) {
     history.replaceState(null, '', url);
@@ -668,27 +646,21 @@ window.addEventListener('afterprint', () => renderForPrint(false));
 //  Other listeners and initial setup
 // ===================================
 
-// re-render on text input
-he.addEventListener('input', () => {
-  render(getCaret());
-  save();
-});
-
 // re-render on resize
 let lastWidth = 0;
 new ResizeObserver(([entry]) => {
   const width = entry.contentRect.width;
   if (width !== lastWidth) {
     lastWidth = width;
-    render(getCaret());
+    render(heText.caret);
   }
 }).observe(he);
 
 // re-render whenever a transliteration option is changed
-setupOptions(scheme.opts, () => render(getCaret()));
+setupOptions(scheme.opts, () => render(heText.caret));
 
 // re-render whenever a webfont finishes loading
-document.fonts.addEventListener('loadingdone', () => render(getCaret()));
+document.fonts.addEventListener('loadingdone', () => render(heText.caret));
 
-he.textContent = loadFromURL();
+heText.reset(loadFromURL());
 render(null);

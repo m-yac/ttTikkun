@@ -10,7 +10,7 @@ export interface UndoOptions {
   getText(): string;
   getCaret(): number | null;
   // Called after the text of `el` has been set back to a snapshot
-  restored(caret: number): void;
+  restored(snapshot: Snapshot): void;
 }
 
 // Edits of the same type made within this many ms are undone as a group
@@ -85,6 +85,15 @@ export class EditHistory {
     return { text, caret: this.opts.getCaret() ?? text.length };
   }
 
+  // Record an edit which wasn't made by us, meaning the `input` event which
+  // would have recorded the edit never fired
+  applied(before: Snapshot, type: string, data?: string | null): void {
+    this.pending = null;
+    if (before.text !== this.opts.getText()) {
+      this.push(before, type, data);
+    }
+  }
+
   // Record that `el` just changed from `before`, by an edit of type `type`
   push(before: Snapshot, type: string, data?: string | null): void {
     const now = performance.now();
@@ -99,6 +108,15 @@ export class EditHistory {
     this.redoStack.length = 0;
     // Break the group at whitespace, so that undo goes word by word
     this.lastEdit = /\s/.test(data ?? '') ? { type: '', time: -Infinity } : { type, time: now };
+  }
+
+  // Forget everything recorded so far, for a text which is not an edit of what
+  // came before
+  clear(): void {
+    this.undoStack.length = 0;
+    this.redoStack.length = 0;
+    this.pending = null;
+    this.breakGroup();
   }
 
   // Stop the next edit from being coalesced with the previous one
@@ -122,9 +140,8 @@ export class EditHistory {
 
   private restore(to: Snapshot, from: Snapshot[]): void {
     from.push(this.snapshot());
-    this.opts.el.textContent = to.text;
     this.breakGroup();
     this.opts.el.focus();
-    this.opts.restored(to.caret);
+    this.opts.restored(to);
   }
 }
