@@ -10,7 +10,20 @@
   text-align: center;
   display: block;
   margin: 0 auto;
-  max-width: 500px;
+  padding: 0 30px;
+  max-width: 750px;
+}
+
+#hoverOrTap > .tap {
+  display: none;
+}
+@media (hover: none) {
+  #hoverOrTap > .hover {
+    display: none;
+  }
+  #hoverOrTap > .tap {
+    display: inline;
+  }
 }
 
 /* ========================= */
@@ -22,7 +35,7 @@
   --button-border-color: #666;
   --button-bg-color: #eee;
   --button-light-bg-color: #ddd;
-  margin: 10px auto 0;
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -47,7 +60,7 @@
   align-items: center;
   gap: 6px 14px;
   max-width: 550px;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 .optionsPanel[hidden] {
   display: none;
@@ -149,6 +162,12 @@
   line-height: calc(33.75pt * var(--scale));
   white-space: pre-wrap;
   border-radius: var(--radius);
+  cursor: default;
+}
+/* Only use a caret when actually editing hebrew or selecting transliteration */
+#he:focus,
+#tl.selecting {
+  cursor: text;
 }
 /* The top/inner lines, drawn as a 1px ring of gradient */
 .heOrTl::before {
@@ -195,15 +214,17 @@
 }
 #tl .word {
   line-height: 1;
+}
+#tl .word, #tl .group, #tl .gap {
   /* Exactly enough room to cover any accent above/below */
   padding: 0.761em 0 0.33em;
 }
-#tl.boldAccents .word {
+#tl.boldAccents .word, #tl.boldAccents .group, #tl.boldAccents .gap {
   /* No padding needed since there are no accents */
   padding: 0;
 }
 #tl.boldAccents b {
-  font-family: "Bitter", serif;
+  font-family: "Bitter", "Bitter Hebrew", serif;
   font-weight: 600;
 }
 #tl::before {
@@ -221,13 +242,24 @@
 .line.endsParagraph {
   margin-bottom: calc(7.875pt * var(--scale));
 }
+.gap.endsLine {
+  white-space: normal;
+}
 
-.word.highlight {
-  background: #ffe082;
+.group, .word {
+  border-radius: 4px;
+}
+.breaksAfter, .word:has(+ .gap.joins) {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+.breaksBefore, .gap.joins + .word {
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
 }
 
 .syl.sylHighlight {
-  color: #c62828;
+  color: var(--syl-highlight);
 }
 
 /* ========== */

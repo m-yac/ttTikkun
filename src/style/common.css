@@ -57,3 +57,14 @@ a:visited:hover,
 a:visited:focus {
   color: ActiveText;
 }
+
+a.alt,
+a.alt:visited {
+  color: #0645AD;
+}
+a.alt:hover,
+a.alt:focus,
+a.alt:visited:hover,
+a.alt:visited:focus {
+  color: ActiveText;
+}

@@ -5,11 +5,52 @@ import { punctuation, taamim } from 'havarotjs/utils/regularExpressions';
 const ACCENT_BOLD = '<b>ta</b>${syllableSeparator}am';
 const ACCENT_TAAM = 'ta\u{05AB}${syllableSeparator}am';
 
-// ========================================================
-//  The options and the transliteration scheme they define
-// ========================================================
+// ===================
+//  Types for options
+// ===================
+
+// A label for an option: either a string or an array consisting of
+// strings render as English, strings rendered as Hebrew (with tooltip
+// text), or strings wrapped in an HTML tag
+export type Label =
+  string | readonly (string | HebrewSegment | TaggedSegment)[];
+
+export interface HebrewSegment {
+  readonly he: string;
+  readonly name: string;
+}
+
+export interface TaggedSegment {
+  readonly tag: string;
+  readonly text: string
+}
+
+// An option - consisting of a label, some number of choices, optional 
+// tooltip text for those choices, a default value, and whether this option
+// is always visible at the top
+interface OptionSpec {
+  label: Label;
+  choices: readonly string[];
+  names?: Readonly<Record<string, string>>;
+  default: string;
+  alwaysVisible?: boolean;
+};
+
+// =============
+//  The options
+// =============
 
 const optionSpecs = {
+  accents: {
+    label: ["Show accents, ", {he: 'טַ֫עַם', name: 'word accented with a trope marking'}, ' as:'],
+    choices: [ACCENT_BOLD, ACCENT_TAAM],
+    names: {
+      [ACCENT_BOLD]: 'bold accented syllables',
+      [ACCENT_TAAM]: 'keep trope marking on accented syllables',
+    },
+    default: ACCENT_TAAM,
+    alwaysVisible: true,
+  },
   tsere: {
     label: [{ he: 'אֵ', name: 'tsere' }, ' as:'],
     choices: ['e', 'ei'],
@@ -57,20 +98,33 @@ const optionSpecs = {
     },
     default: 'uv',
   },
-  accents: {
-    label: ["Accents, ", {he: 'טַ֫עַם', name: 'word accented with a trope marking'}, ' as:'],
-    choices: [ACCENT_BOLD, ACCENT_TAAM],
-    names: {
-      [ACCENT_BOLD]: 'bold accented syllables',
-      [ACCENT_TAAM]: 'keep trope marking on accented syllables',
-    },
-    default: ACCENT_TAAM,
-  },
 } as const satisfies Record<string, OptionSpec>; // see below for this type
 
+type OptionSpecs = typeof optionSpecs;
+
+// An object that picks a choice for each option in `optionSpecs`
+export type Options = {
+  [O in keyof OptionSpecs]: OptionSpecs[O]['choices'][number];
+};
+
+// The set of default options
 const optionDefaults = Object.fromEntries(
   Object.entries(optionSpecs).map(([key, spec]) => [key, spec.default]),
-) as Options; // see below for how this type is defined in terms of optionsSpecs
+) as Options;
+
+// Option choices which if you choose them, cause other options' choices
+// to be overridden
+const optionOverrides: {
+  [O in keyof Options]?: { [C in Options[O]]?: Partial<Options> }
+} = {
+  ashkenazi: {
+    's/o/oi': { tsere: 'ei', tsereYod: 'ei', vocalSheva: '’' }
+  },
+};
+
+// =====================================================
+//  The transliteration scheme defined by these options
+// =====================================================
 
 export class OptionsScheme extends DefaultTransliterationScheme {
   opts: Options = { ...optionDefaults };
@@ -121,10 +175,10 @@ export class OptionsScheme extends DefaultTransliterationScheme {
   override get hebrewMarks(): { [fromStart: string]: string } {
     const marks = { ...super.hebrewMarks };
     if (this.boldAccents) {
-      marks['א־'] = ''; // maqaf
-      marks['א׀'] = '|'; // paseq
-      marks['א׃'] = ':'; // sof passuq
-      marks['א׆'] = ''; // nun hafukha
+      marks['א־'] = '';
+      marks['א׀'] = '|';
+      marks['א׃'] = ':';
+      marks['א׆'] = '';
     }
     return marks;
   }
@@ -136,46 +190,6 @@ export class OptionsScheme extends DefaultTransliterationScheme {
     return super.hebrewMarkExceptions(m, txt);
   }
 }
-
-// ==================================
-//  Types [GENERATED ENTIRELY BY AI]
-// ==================================
-
-// A Hebrew segment of a label, rendered in the `inlineHe` style. Its `name` is
-// how it is spoken by a screen reader, which cannot be left to the niqqud-blind
-// guesswork of reading e.g. 'אֵ' as 'alef'.
-export interface HebrewSegment {
-  readonly he: string;
-  readonly name: string;
-}
-
-// A segment of a label wrapped in an HTML tag, e.g. `<b>`
-export interface TaggedSegment {
-  readonly tag: string;
-  readonly text: string
-}
-
-// A piece of text which may contain Hebrew or tagged segments
-export type Label =
-  string | readonly (string | HebrewSegment | TaggedSegment)[];
-
-interface OptionSpec {
-  label: Label;
-  choices?: readonly string[];
-  names?: Readonly<Record<string, string>>;
-  default: unknown;
-};
-
-// The value of an option is one of its `choices`, or a boolean if it has none
-type OptionValue<S extends OptionSpec> =
-  S['choices'] extends readonly (infer V)[] ? V : boolean;
-
-type OptionSpecs = typeof optionSpecs;
-
-// The value of every option. Mutable, unlike the `as const` specs it comes from.
-export type Options = {
-  -readonly [K in keyof OptionSpecs]: OptionValue<OptionSpecs[K]>;
-};
 
 // =========================================================
 //  Saving and restoring options [GENERATED ENTIRELY BY AI]
@@ -285,6 +299,8 @@ interface OptionGroup {
   name: string;
   label?: Label;
   radio: boolean;
+  // Whether this group belongs to the panel which is always visible
+  alwaysVisible?: boolean;
   buttons: OptionButton[];
 }
 
@@ -307,6 +323,48 @@ function parseTags(choice: string): Label {
   return segments;
 }
 
+// What the options overridden by the currently chosen values held before they
+// were overridden. A key leaves the stash as soon as its option is set by hand,
+// so that only an untouched override is ever put back.
+const overrideStash: Record<string, unknown> = {};
+
+function clearOverrideStash(): void {
+  for (const key of Object.keys(overrideStash)) {
+    delete overrideStash[key];
+  }
+}
+
+// Only the shape of the overrides matters here, not which options have them
+const overrides: Record<
+  string, Record<string, Record<string, unknown> | undefined> | undefined
+> = optionOverrides;
+
+// Set `key` to `value`, putting back what the value it replaces overrode and
+// overriding what the new value implies
+function setOption(
+  values: Record<string, unknown>, key: string, value: unknown,
+): void {
+  const byValue = overrides[key];
+  // A value set by hand is the user's, so it is no longer ours to put back
+  delete overrideStash[key];
+
+  for (const [k, v] of Object.entries(byValue?.[String(values[key])] ?? {})) {
+    if (k in overrideStash) {
+      if (values[k] === v) {
+        values[k] = overrideStash[k];
+      }
+      delete overrideStash[k];
+    }
+  }
+
+  values[key] = value;
+
+  for (const [k, v] of Object.entries(byValue?.[String(value)] ?? {})) {
+    overrideStash[k] = values[k];
+    values[k] = v;
+  }
+}
+
 // The groups of `optionSpecs`: one per choice, in order, then one containing a
 // checkbox for each boolean option
 function optionGroups(options: Options): OptionGroup[] {
@@ -326,12 +384,13 @@ function optionGroups(options: Options): OptionGroup[] {
         name: key,
         label: spec.label,
         radio: true,
+        alwaysVisible: spec.alwaysVisible,
         buttons: choices.map((value) => ({
           label: parseTags(value),
           name: names[value],
           tlSample: true,
           checked: () => values[key] === value,
-          set: () => { values[key] = value; },
+          set: () => { setOption(values, key, value); },
         })),
       });
     } else {
@@ -339,7 +398,7 @@ function optionGroups(options: Options): OptionGroup[] {
         label: spec.label,
         tlSample: false,
         checked: () => values[key] as boolean,
-        set: (input) => { values[key] = input.checked; },
+        set: (input) => { setOption(values, key, input.checked); },
       });
     }
   }
@@ -524,6 +583,8 @@ function makeGroup(
 // show/hide toggle. `changed` is called whenever an option is changed.
 export function setupOptions(options: Options, changed: () => void): void {
   const toggle = document.getElementById('optionsToggle') as HTMLButtonElement;
+  const alwaysPanel =
+    document.getElementById('alwaysOptionsPanel') as HTMLDivElement;
   const panel = document.getElementById('optionsPanel') as HTMLDivElement;
 
   // The cookie is read only here, as the page loads, and written only as the
@@ -545,19 +606,23 @@ export function setupOptions(options: Options, changed: () => void): void {
   for (const group of groups) {
     const { el, update } = makeGroup(group, values, onChange);
     updates.push(update);
-    panel.append(el);
+    (group.alwaysVisible ? alwaysPanel : panel).append(el);
   }
 
   // A taam sits far above the letters it accompanies, so a label containing
-  // one is set in a font which leaves room for it - as are all the others, so
-  // that the panel keeps to one font. The room itself is made per group, in
-  // `makeGroup`, as only the group with the taam in it needs to be any taller.
+  // one is set in a font which leaves room for it - as are all the others, in
+  // both panels, so that the options keep to one font. The room itself is made
+  // per group, in `makeGroup`, as only the group with the taam in it needs to
+  // be any taller.
   const labels = groups.flatMap((group) => [
     ...group.label === undefined ? [] : [group.label],
     ...group.buttons.map((button) => button.label),
   ]);
-  const setFont = () => panel.classList.toggle(
-    'hasTaam', labels.some((l) => hasTaam(expandLabel(l, values))));
+  const setFont = () => {
+    const taam = labels.some((l) => hasTaam(expandLabel(l, values)));
+    alwaysPanel.classList.toggle('hasTaam', taam);
+    panel.classList.toggle('hasTaam', taam);
+  };
   setFont();
   updates.push(setFont);
 
@@ -568,6 +633,7 @@ export function setupOptions(options: Options, changed: () => void): void {
   reset.textContent = 'Reset to defaults';
   reset.addEventListener('click', () => {
     Object.assign(options, optionDefaults);
+    clearOverrideStash();
     onChange();
   });
   panel.append(reset);
@@ -576,7 +642,8 @@ export function setupOptions(options: Options, changed: () => void): void {
     expanded = shown;
     panel.hidden = !shown;
     toggle.setAttribute('aria-expanded', String(shown));
-    toggle.textContent = `${shown ? 'Hide' : 'Show'} transliteration options`;
+    toggle.textContent =
+      `${shown ? 'Show fewer' : 'Show more'} transliteration options`;
   };
   setExpanded(expanded);
 

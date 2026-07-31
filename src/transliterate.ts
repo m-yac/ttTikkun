@@ -1,5 +1,8 @@
 import { Text } from 'havarotjs';
 import type { Word } from 'havarotjs/word';
+import { groupsOf, groupsAroundGap, highlightColors, groupingOf,
+         syllableColor, type Boundary, type Group, type Hovered,
+         type Grouping } from './accents';
 import { EditHistory } from './history';
 import { OptionsScheme, setupOptions } from './options';
 
@@ -115,20 +118,141 @@ function groupIntoLines(heOrTl: HTMLElement, starts: number[]): HTMLDivElement[]
   for (let i = 0; i < starts.length; i++) {
     const next = starts[i + 1];
     const end = next === undefined ? nodes.length : nodes.findIndex((node) => {
-      return node instanceof HTMLElement && node.dataset.index === String(next);
+      return node instanceof HTMLElement && node.classList.contains('word') &&
+             node.dataset.index === String(next);
     });
+    if (next !== undefined) {
+      splitAtBreak(nodes, end);
+    }
     const line = document.createElement('div');
     line.className = 'line';
     line.append(...nodes.slice(cursor, end));
+    groupIntoSpans(line);
     lines.push(line);
     cursor = end;
   }
 
+  // Don't call `markEnd` on the last line since it has no ending newline
+  lines.slice(0, -1).forEach(markEnd);
+  markBreaks(lines);
   heOrTl.append(...lines);
   return lines;
 }
 
+// Split the whitespace between two lines at the newline character, the
+// whitespace before staying on the line above, and the whitespace after
+// staying on the line below
+function splitAtBreak(nodes: Node[], end: number): void {
+  const node = nodes[end - 1];
+  if (node === undefined || !isBlank(node)) {
+    return;
+  }
+  const gap = node.textContent ?? '';
+  const nl = gap.lastIndexOf('\n');
+  if (nl < 0 || nl === gap.length - 1) {
+    return;
+  }
+  // A gap is a `span` carrying the position it was written at
+  const indent = node.cloneNode(true);
+  node.textContent = gap.slice(0, nl + 1);
+  indent.textContent = gap.slice(nl + 1);
+  nodes.splice(end, 0, indent);
+}
+
+// Add an `.endLine` class to a line that ends with a newline
+function markEnd(line: HTMLDivElement): void {
+  const last = line.lastChild;
+  if (last instanceof HTMLElement && isBlank(last) &&
+      (last.textContent ?? '').includes('\n')) {
+    last.classList.add('endsLine');
+  }
+}
+
+// Mark the `span`s on both sides of a group broken across two lines
+function markBreaks(lines: readonly HTMLDivElement[]): void {
+  const before = new Map<string, HTMLElement>();
+  for (const line of lines) {
+    for (const el of line.querySelectorAll<HTMLElement>('.group')) {
+      const id = el.dataset.group ?? '';
+      const start = before.get(id);
+      if (start !== undefined) {
+        start.classList.add('breaksAfter');
+        el.classList.add('breaksBefore');
+      }
+      before.set(id, el);
+    }
+  }
+}
+
+function isBlank(node: Node): boolean {
+  return (node.textContent ?? '').trim() === '';
+}
+
 // [REMAINDER OF THIS SECTION GENERATED ENTIRELY BY AI]
+
+// Wrap the words of a line into spans for highlighting, where a gap which
+// closes a group is put outside the span of that group
+function groupIntoSpans(line: HTMLDivElement): void {
+  const nodes = [...line.childNodes];
+  // Leave whatever whitespace ends the line where it is, both because there is
+  // nothing there to highlight and because `squeezeToFit` wants to drop it
+  let end = nodes.length;
+  while (end > 0 && isBlank(nodes[end - 1])) {
+    end -= 1;
+  }
+
+  const grouped: Node[] = [];
+  // The groups open around the node being placed, outermost first, along with
+  // the span each of them is being written into on this line
+  let open: { id: number; span: HTMLSpanElement }[] = [];
+
+  // Put a node inside the innermost span open around it, or on the line itself
+  // if there is none
+  const append = (node: Node): void => {
+    const span = open[open.length - 1]?.span;
+    if (span === undefined) {
+      grouped.push(node);
+    } else {
+      span.append(node);
+    }
+  };
+
+  // Close whatever spans the next node doesn't belong to, keeping open those
+  // it shares with the node before it, and open a span for the rest of its
+  // groups
+  const reopen = (chain: readonly Group[]): void => {
+    let shared = 0;
+    while (shared < open.length && shared < chain.length &&
+           open[shared].id === chain[shared].id) {
+      shared += 1;
+    }
+    open = open.slice(0, shared);
+    for (const group of chain.slice(shared)) {
+      const span = document.createElement('span');
+      // The level is what the stylesheet knows a span by, and the id what the
+      // highlighting paints it by
+      span.className = `group ${group.lvl}`;
+      span.dataset.group = String(group.id);
+      append(span);
+      open.push({ id: group.id, span });
+    }
+  };
+
+  for (const node of nodes.slice(0, end)) {
+    const el = node instanceof HTMLElement ? node : null;
+    // A gap belongs to the groups still open across it; any other node belongs
+    // to the groups of the word it is part of
+    const gap = el?.dataset.gap;
+    const index = el?.dataset.index;
+    const chain = gap !== undefined ? groupsAroundGap(phrasing, Number(gap))
+                : index !== undefined ? groupsOf(phrasing, Number(index))
+                : [];
+    reopen(chain);
+    append(node);
+  }
+
+  line.replaceChildren(...grouped, ...nodes.slice(end));
+}
 
 // A line of `tl` is always a bit wider than the line of `he` it corresponds to,
 // and letting it wrap would break the alignment of the two panels. Instead we
@@ -145,8 +269,7 @@ function squeezeToFit(line: HTMLDivElement): void {
   // height, so drop it. (`tl` is rebuilt from scratch on every render, so there
   // is nothing to restore.)
   let last = line.lastChild;
-  while (last !== null && last.nodeType === Node.TEXT_NODE &&
-         (last.textContent ?? '').trim() === '') {
+  while (last !== null && isBlank(last)) {
     line.removeChild(last);
     last = line.lastChild;
   }
@@ -253,12 +376,40 @@ function makeWord(index: string, syllables: string[], sep: string = '', capitali
   return wordSpan;
 }
 
+// Build a span representing the gap between two words, carrying the index of
+// the word before it
+//
+// A gap which `joins` two words - one written within a single accent, as the
+// space before the paseq of a legarmeh is, or that between the two words of an
+// ole-veyored - is instead part of the word before it, and carries its index:
+// it takes the color of the word rather than of the phrase around it, so that
+// the words it falls between are colored as the one accent they are, and is
+// hovered over as that word rather than as a gap between anything.
+function makeGap(text: string, after: number,
+                 boundary: Boundary): HTMLSpanElement {
+  const gap = document.createElement('span');
+  gap.className = boundary.loc === 'sameAccent' ? 'gap joins' : 'gap';
+  if (boundary.loc === 'sameAccent') {
+    gap.dataset.index = String(after);
+  } else {
+    gap.dataset.gap = String(after);
+  }
+  gap.textContent = text;
+  return gap;
+}
+
+// The words of the last render, in the order their `data-index` gives them,
+// and how they divide into groups. Kept for `highlight`, which colors them.
+let words: Word[] = [];
+let phrasing: Grouping = groupingOf([]);
+
 function render(caret: number | null): void {
   const text = he.textContent ?? '';
-  let words: Word[] = [];
+  words = [];
   try {
     words = new Text(text, scheme.syllabificationOptions).words;
   } catch {}
+  phrasing = groupingOf(words);
   const hasSofPassuq = text.includes('׃');
 
   he.replaceChildren();
@@ -279,12 +430,19 @@ function render(caret: number | null): void {
                        scheme.syllableSeparator, startsVerse, tlStressed));
 
     const heSep = word.whiteSpaceAfter ?? '';
-    he.append(heSep);
-
     // Add a space after a maqaf in the transliteration
     const afterMaqaf = heSep === '' && word.text.endsWith('־');
     const tlSep = afterMaqaf ? ' ' : heSep;
-    tl.append(tlSep);
+
+    // What falls between this word and the next says both where the whitespace
+    // between them goes and how it is read
+    const boundary = phrasing.boundaries[i];
+    if (heSep !== '') {
+      he.append(makeGap(heSep, i, boundary));
+    }
+    if (tlSep !== '') {
+      tl.append(makeGap(tlSep, i, boundary));
+    }
   });
 
   alignLines();
@@ -298,33 +456,99 @@ function render(caret: number | null): void {
 //  Word/Syllable highlighting and its listeners
 // ==============================================
 
-function highlight(index: string | null, syl: string | null): void {
+// The highlighting colors all live in `accents.ts`, so the one of them the
+// stylesheet needs is handed to it here
+document.documentElement.style.setProperty('--syl-highlight', syllableColor);
+
+// The words given a background by the last `highlight`, so that only those have
+// to be put back as they were
+let colored: HTMLElement[] = [];
+
+function wordEls(index: number | string): NodeListOf<HTMLElement> {
+  return document.querySelectorAll<HTMLElement>(`.word[data-index="${index}"]`);
+}
+
+function highlight(hovered: Hovered | null, syl: string | null): void {
   for (const el of document.querySelectorAll('.highlight, .sylHighlight')) {
     el.classList.remove('highlight', 'sylHighlight');
   }
-  if (index === null) {
+  for (const el of colored) {
+    el.style.background = '';
+  }
+  colored = [];
+  if (hovered === null) {
     return;
   }
-  const word = `.word[data-index="${index}"]`;
-  for (const el of document.querySelectorAll(word)) {
-    el.classList.add('highlight');
+  const colors = highlightColors(phrasing, hovered, !scheme.boldAccents);
+  const paint = (selector: string, color: string): void => {
+    for (const el of document.querySelectorAll<HTMLElement>(selector)) {
+      el.style.background = color;
+      colored.push(el);
+    }
+  };
+  if (colors !== null) {
+    for (const { id, color } of colors.groups) {
+      paint(`.group[data-group="${id}"]`, color);
+    }
+    for (const i of colors.words.indices) {
+      paint(`.word[data-index="${i}"]`, colors.words.color);
+      // A space written within an accent is colored with it, so that every
+      // word it is written across is one unbroken block
+      paint(`.gap.joins[data-index="${i}"]`, colors.words.color);
+    }
   }
-  if (syl !== null) {
-    for (const el of document.querySelectorAll(`${word} > .syl[data-syl="${syl}"]`)) {
-      el.classList.add('sylHighlight');
+  // Only a word is read syllable by syllable; a gap has none to mark
+  if (hovered.on === 'word') {
+    const word = `.word[data-index="${hovered.index}"]`;
+    for (const el of wordEls(hovered.index)) {
+      el.classList.add('highlight');
+    }
+    if (syl !== null) {
+      for (const el of document.querySelectorAll(`${word} > .syl[data-syl="${syl}"]`)) {
+        el.classList.add('sylHighlight');
+      }
     }
   }
 }
 
+function highlightEl(target: HTMLElement): void {
+  const el = target.closest<HTMLElement>('[data-index], [data-gap]');
+  const syl = target.closest<HTMLElement>('.syl');
+  const gap = el?.dataset.gap;
+  const index = el?.dataset.index;
+  const hovered: Hovered | null =
+      gap !== undefined ? { on: 'gap', after: Number(gap) }
+    : index !== undefined ? { on: 'word', index: Number(index) }
+    : null;
+  highlight(hovered, syl?.dataset.syl ?? null);
+}
+
 for (const heOrTl of [he, tl]) {
   heOrTl.addEventListener('mouseover', (e) => {
-    const target = e.target as HTMLElement;
-    const word = target.closest<HTMLElement>('.word');
-    const syl = target.closest<HTMLElement>('.syl');
-    highlight(word?.dataset.index ?? null, syl?.dataset.syl ?? null);
+    highlightEl(e.target as HTMLElement)
   });
-  heOrTl.addEventListener('mouseleave', () => highlight(null, null));
+  heOrTl.addEventListener('mouseleave', () => {
+    highlight(null, null)
+  });
+  heOrTl.addEventListener('touchstart', (e) => {
+    highlightEl(e.target as HTMLElement);
+  });
 }
+
+// A tap anywhere else clears the highlighting
+document.addEventListener('touchstart', (e) => {
+  const target = e.target as HTMLElement;
+  if (!he.contains(target) && !tl.contains(target)) {
+    highlight(null, null);
+  }
+});
+
+// ==========================================
+//  Showing a caret over `tl` when selecting
+// ==========================================
+
+tl.addEventListener('mousedown', () => tl.classList.add('selecting'));
+document.addEventListener('mouseup', () => tl.classList.remove('selecting'));
 
 // ===================================================
 //  Listeners to keep the contents of `he` plain text
