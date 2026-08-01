@@ -6,11 +6,41 @@ import { groupsOf, groupsAroundGap, highlightColors, groupingOf,
 import { EditableText } from './editable';
 import { OptionsScheme, setupOptions } from './options';
 
-const scheme = new OptionsScheme();
+// =========================
+//  Constants and variables
+// =========================
 
+// The Hebrew text that loads when you first visit the page
+const DEFAULT_TEXT =
+  'שְׁמַ֖ע יִשְׂרָאֵ֑ל יְהֹוָ֥ה אֱלֹהֵ֖ינוּ יְהֹוָ֥ה ׀ אֶחָֽד׃\n' +
+  'וְאָ֣הַבְתָּ֔ אֵ֖ת יְהֹוָ֣ה אֱלֹהֶ֑יךָ בְּכׇל־לְבָבְךָ֥ וּבְכׇל־נַפְשְׁךָ֖ וּבְכׇל־מְאֹדֶֽךָ׃ ' +
+  'וְהָי֞וּ הַדְּבָרִ֣ים הָאֵ֗לֶּה אֲשֶׁ֨ר אָנֹכִ֧י מְצַוְּךָ֛ הַיּ֖וֹם עַל־לְבָבֶֽךָ׃ ' +
+  'וְשִׁנַּנְתָּ֣ם לְבָנֶ֔יךָ וְדִבַּרְתָּ֖ בָּ֑ם בְּשִׁבְתְּךָ֤ בְּבֵיתֶ֙ךָ֙ וּבְלֶכְתְּךָ֣ בַדֶּ֔רֶךְ וּֽבְשׇׁכְבְּךָ֖ וּבְקוּמֶֽךָ׃ ' +
+  'וּקְשַׁרְתָּ֥ם לְא֖וֹת עַל־יָדֶ֑ךָ וְהָי֥וּ לְטֹטָפֹ֖ת בֵּ֥ין עֵינֶֽיךָ׃ ' +
+  'וּכְתַבְתָּ֛ם עַל־מְזֻז֥וֹת בֵּיתֶ֖ךָ וּבִשְׁעָרֶֽיךָ׃';
+
+// URL parameter constants
+const HE_TEXT_PARAM = 'q';
+const MIN_URL_CHANGE_MS = 400;
+
+// Printing constants
+const PRINT_WIDTH = '7.5in'; // 8.5in - 2 * 0.5in (see @page)
+const PRINT_SCALE = 12 / 13.5;
+const PRINT_LETTER_SPACING = '-0.035em';
+const PRINT_WORD_SPACING = '0.34em';
+const PRINT_EDGE = '5%';
+
+// Relevant `HTMLDivElement`s
+const bodyContainer =
+  document.querySelector('.bodyContainer') as HTMLDivElement;
+const heAndTl = document.querySelector('.heAndTl') as HTMLDivElement;
 const he = document.getElementById('he') as HTMLDivElement;
 const tl = document.getElementById('tl') as HTMLDivElement;
 
+// The transliteration options
+const scheme = new OptionsScheme();
+
+// The object that controls edits to the Hebrew text
 const heText = new EditableText(he, {
   changed: (caret) => {
     render(caret);
@@ -18,9 +48,271 @@ const heText = new EditableText(he, {
   },
 });
 
-// ==============================
-//  Ensuring word/line alignment
-// ==============================
+// Suppress re-rendering on resize once
+let dontResize = false;
+
+// Saved values across rendering passes
+let lastWidth = 0;
+let lastGrouping: Grouping = groupingOf([]);
+
+
+// =========================
+//  Rendering `he` and `tl`
+// =========================
+
+// Called whenever the content or formatting of `he` and `tl` changes (see
+// below)
+function render(caret: number | null): void {
+  // Convert the text into words and group them
+  let words: Word[] = [];
+  try {
+    words = new Text(heText.text, scheme.syllabificationOptions).words;
+  } catch (e) {
+    console.error(`Failed to syllabify Hebrew text!`)
+    console.error(e);
+  }
+  lastGrouping = groupingOf(words);
+  const { wsStart, srcWords, wsEnd } = matchWords(heText.text, words);
+  const hasVerses = heText.text.includes('׃');
+
+  // Clear the two divs
+  he.replaceChildren();
+  tl.replaceChildren();
+
+  // Add any classes needed by the options
+  tl.classList.toggle('boldAccents', scheme.boldAccents);
+
+  // Add any initial whitespace
+  if (wsStart !== '') {
+    he.append(wsStart);
+    tl.append(wsStart);
+  }
+
+  // Add the words
+  for (let i = 0; i < words.length; i++) {
+    const index = String(i);
+    const [heSyls, tlSyls, tlStressed] =
+      syllabifyAndTransliterate(words[i], srcWords[i].text);
+
+    // Only capitalize if the text contains verses, and this word is either the
+    // very first word, or the first word after the end of a verse
+    const startsVerse = hasVerses && (i === 0 || words[i - 1].text.includes('׃'));
+
+    he.append(makeWord(index, heSyls));
+    tl.append(makeWord(index, tlSyls,
+                       scheme.syllableSeparator, startsVerse, tlStressed));
+
+    const heSep = srcWords[i].wsAfter;
+    // Add a space after a maqaf in the transliteration
+    const afterMaqaf = heSep === '' && words[i].text.endsWith('־');
+    const tlSep = afterMaqaf ? ' ' : heSep;
+
+    // What falls between this word and the next says both where the whitespace
+    // between them goes and how it is read
+    const boundary = lastGrouping.boundaries[i];
+    if (heSep !== '') {
+      he.append(makeGap(heSep, i, boundary));
+    }
+    if (tlSep !== '') {
+      tl.append(makeGap(tlSep, i, boundary));
+    }
+  };
+
+  // Add any final whitespace
+  if (wsEnd !== '') {
+    he.append(wsEnd);
+    tl.append(wsEnd);
+  }
+
+  // Break and/or stretch `tl` to match the lines of `he`
+  alignLines();
+
+  if (caret !== null) {
+    heText.setCaret(caret);
+  }
+}
+
+// Re-render whenever a transliteration option is changed
+setupOptions(scheme.opts, () => render(heText.caret));
+
+// Re-render whenever a webfont finishes loading
+document.fonts.addEventListener('loadingdone', () => render(heText.caret));
+
+// Re-render on resize
+new ResizeObserver(([entry]) => {
+  if (dontResize) {
+    dontResize = false;
+    return;
+  }
+  const width = entry.contentRect.width;
+  if (width !== lastWidth) {
+    lastWidth = width;
+    render(heText.caret);
+  }
+}).observe(he);
+
+// When printing, sneakily re-render everything on-screen according to the size
+// of our page so we know how to break/stretch `tl`, then set everything back
+window.addEventListener('beforeprint', () => {
+  bodyContainer.style.width = PRINT_WIDTH;
+  heAndTl.style.setProperty('--scale', String(PRINT_SCALE));
+  heAndTl.style.setProperty('--letter-spacing', PRINT_LETTER_SPACING);
+  heAndTl.style.setProperty('--word-spacing', PRINT_WORD_SPACING);
+  heAndTl.style.setProperty('--edge', String(PRINT_EDGE));
+  dontResize = true;
+  render(null);
+});
+window.addEventListener('afterprint', () => {
+  bodyContainer.style.width = '';
+  heAndTl.style.setProperty('--scale', '');
+  heAndTl.style.setProperty('--letter-spacing', '');
+  heAndTl.style.setProperty('--word-spacing', '');
+  heAndTl.style.setProperty('--edge', '');
+  dontResize = true;
+  render(null);
+});
+
+
+// ===================================
+//  Forming words and transliterating
+// ===================================
+
+function syllabifyAndTransliterate(word: Word,src: string) :
+                                  [string[], string[], boolean[]] {
+
+  // First, try to transliterate syllable-by-syllable
+  try {
+    const [heSyls, tlSyls]: [string[], string[]] = [[], []];
+    for (const syl of word.syllables) {
+      heSyls.push(syl.text);
+      tlSyls.push(scheme.trl(syl));
+    }
+    // The stressed syllable is the final accented syllable
+    const heStress = word.syllables.map((syl) => syl.isAccented)
+                                   .lastIndexOf(true);
+    // In the transliteration, we don't display stress on the
+    // final syllable, since it's so common
+    const tlStress = heSyls.map((_, i) => i === heStress &&
+                                          i < heSyls.length - 1);
+    return [matchSyls(src, heSyls), tlSyls, tlStress];
+  } catch (e) {
+    console.error(
+      `Failed to transliterate by syllable: ${word.text}`)
+    console.error(e);
+  }
+
+  // If that failed, try to transliterate the entire word as one unit
+  try {
+    return [[src], [scheme.trl(word)], [false]];
+  } catch (e) {
+    console.error(
+      `Failed to transliterate: ${word.text}`)
+    console.error(e);
+  }
+
+  // If that still failed, just pass along the word without transliterating
+  return [[src], [word.text], [false]];
+}
+
+// Divide up a source string into syllables to match the way the given
+// syllables are divided, since the two strings will usually, but in theory
+// may not always, match
+function matchSyls(src: string, syls: readonly string[]): string[] {
+  const sylsLength = syls.reduce((n, part) => n + part.length, 0);
+  if (sylsLength !== src.length) {
+    return [src];
+  }
+  let pos = 0;
+  return syls.map((part) => {
+    pos += part.length;
+    return src.slice(pos - part.length, pos);
+  });
+}
+
+interface SrcWord { text: string; wsAfter: string }
+
+// Divide up a source string into words to match the way the given words are
+// divided - the two will likely not match up due to whitespace before,
+// between, and after each word
+function matchWords(src: string, words: readonly Word[]): {
+  wsStart: string; srcWords: SrcWord[]; wsEnd: string
+} {
+  let pos = 0;
+  const whitespace = (): string => {
+    const start = pos;
+    while (pos < src.length && /\s/.test(src[pos])) {
+      pos += 1;
+    }
+    return src.slice(start, pos);
+  };
+
+  const lead = whitespace();
+  const pieces = words.map((word) => {
+    // A word of the parse is as long as the word it was made from, unless the
+    // two have somehow fallen out of step, in which case take the run of
+    // non-whitespace written here and continue
+    let len = word.text.length;
+    if (/\s/.test(src.slice(pos, pos + len))) {
+      len = (/^\S*/.exec(src.slice(pos)) ?? [''])[0].length;
+    }
+    pos += len;
+    return { text: src.slice(pos - len, pos), wsAfter: whitespace() };
+  });
+  return { wsStart: lead, srcWords: pieces, wsEnd: src.slice(pos) };
+}
+
+// Build the `<span>` corresponding to a word in `he` or `tl`
+function makeWord(
+  index: string, syllables: string[],
+  sep: string = '', capitalize: boolean = false, stressed: boolean[] = []
+): HTMLSpanElement {
+  const wordSpan = document.createElement('span');
+  wordSpan.className = 'word';
+  wordSpan.dataset.index = index;
+
+  syllables.forEach((text, i) => {
+    if (i === 0 && capitalize) {
+      // Uppercase the first lowercase (unicode!) character
+      text = text.replace(/\p{Ll}/u, (c) => c.toUpperCase());
+    }
+    if (i > 0 && sep !== '') {
+      wordSpan.append(sep);
+    }
+    const sylSpan = document.createElement('span');
+    sylSpan.className = 'syl';
+    sylSpan.dataset.syl = String(i);
+    if (scheme.boldAccents && stressed[i]) {
+      const b = document.createElement('b');
+      b.textContent = text;
+      sylSpan.append(b);
+    } else {
+      sylSpan.textContent = text;
+    }
+    wordSpan.append(sylSpan);
+  });
+
+  return wordSpan;
+}
+
+// Build the span representing the gap between two words (identified by the
+// index of the word before it)
+function makeGap(text: string, after: number,
+                 boundary: Boundary): HTMLSpanElement {
+  const gap = document.createElement('span');
+  gap.className = boundary.loc === 'sameAccent' ? 'gap joins' : 'gap';
+  if (boundary.loc === 'sameAccent') {
+    gap.dataset.index = String(after);
+  } else {
+    gap.dataset.gap = String(after);
+  }
+  gap.textContent = text;
+  return gap;
+}
+
+
+// ====================================================================
+//  Ensuring word/line alignment [THIS SECTION GENERATED MOSTLY BY AI]
+// ====================================================================
 
 function alignLines(): void {
   const heWords = [...he.querySelectorAll<HTMLElement>(':scope > .word')];
@@ -150,8 +442,6 @@ function isBlank(node: Node): boolean {
   return (node.textContent ?? '').trim() === '';
 }
 
-// [REMAINDER OF THIS SECTION GENERATED ENTIRELY BY AI]
-
 // Wrap the words of a line into spans for highlighting, where a gap which
 // closes a group is put outside the span of that group
 function groupIntoSpans(line: HTMLDivElement): void {
@@ -206,8 +496,8 @@ function groupIntoSpans(line: HTMLDivElement): void {
     // to the groups of the word it is part of
     const gap = el?.dataset.gap;
     const index = el?.dataset.index;
-    const chain = gap !== undefined ? groupsAroundGap(phrasing, Number(gap))
-                : index !== undefined ? groupsOf(phrasing, Number(index))
+    const chain = gap !== undefined ? groupsAroundGap(lastGrouping, Number(gap))
+                : index !== undefined ? groupsOf(lastGrouping, Number(index))
                 : [];
     reopen(chain);
     append(node);
@@ -267,216 +557,6 @@ function squeezeToFit(line: HTMLDivElement): void {
   }
 }
 
-// =========================
-//  Rendering `he` and `tl`
-// =========================
-
-function transliterate(word: Word): string {
-  try {
-    return scheme.trl(word);
-  } catch {
-    return word.text;
-  }
-}
-
-// Which syllable of a word carries its stress, or -1 if none does.
-//
-// `isAccented` is set on every syllable bearing a taam, of which a word may
-// have more than one: a conjunctive within a word is a secondary accent, as the
-// munach of וְאָ֣הַבְתָּ֔ is, and always precedes the accent proper. (The cases
-// where a taam is instead written away from the stress, as a postpositive or
-// prepositive or with one of the "helper" taamim of MAPM, are already resolved
-// to the one accented syllable by `havarotjs`.) So the stress is the last of
-// them.
-function stressOf(syllables: readonly { isAccented: boolean }[]): number {
-  return syllables.map((syl) => syl.isAccented).lastIndexOf(true);
-}
-
-// The syllables of a word in Hebrew and transliterated, along with an array
-// identifying which of them are non-final stressed syllables. The Hebrew is
-// `written`, the word as it stands in the text, cut up by where `havarotjs`
-// divides its own normalization of it - see `sliceSource`.
-function syllabify(word: Word, written: string): [string[], string[], boolean[]] {
-  try {
-    const [heParts, tlParts]: [string[], string[]] = [[], []];
-    for (const syl of word.syllables) {
-      heParts.push(syl.text);
-      tlParts.push(scheme.trl(syl));
-    }
-    const stress = stressOf(word.syllables);
-    const tlStressed = heParts.map((_, i) => i === stress && i < heParts.length - 1);
-    return [cut(written, heParts), tlParts, tlStressed];
-  } catch {}
-  // If we failed above, just highlight the entire word as one syllable
-  return [[written], [transliterate(word)], [false]];
-}
-
-// `written` divided up as `parts` is. Normalization only ever reorders the
-// points written on a letter, which is well within a syllable, so the two run
-// character for character - but if they somehow don't, the word is left whole.
-function cut(written: string, parts: readonly string[]): string[] {
-  if (parts.reduce((n, part) => n + part.length, 0) !== written.length) {
-    return [written];
-  }
-  let pos = 0;
-  return parts.map((part) => {
-    pos += part.length;
-    return written.slice(pos - part.length, pos);
-  });
-}
-
-// The words of the text as they were written, each with the whitespace which
-// follows it, along with whatever whitespace comes before the first of them.
-// `havarotjs` gives back a normalization of the text with the whitespace
-// around it dropped, so the words are found by walking the text alongside the
-// parse instead, and everything shown in `he` is a piece of the text itself.
-function sliceSource(words: readonly Word[]): { lead: string; pieces: Piece[]; tail: string } {
-  const text = heText.text;
-  let pos = 0;
-  const whitespace = (): string => {
-    const start = pos;
-    while (pos < text.length && /\s/.test(text[pos])) {
-      pos += 1;
-    }
-    return text.slice(start, pos);
-  };
-
-  const lead = whitespace();
-  const pieces = words.map((word) => {
-    // A word of the parse is as long as the word it was made from, unless the
-    // two have somehow fallen out of step, in which case take the run of
-    // non-whitespace written here and continue
-    let len = word.text.length;
-    if (/\s/.test(text.slice(pos, pos + len))) {
-      len = (/^\S*/.exec(text.slice(pos)) ?? [''])[0].length;
-    }
-    pos += len;
-    return { written: text.slice(pos - len, pos), gapAfter: whitespace() };
-  });
-  // Should be unreachable
-  return { lead, pieces, tail: text.slice(pos) };
-}
-
-interface Piece { written: string; gapAfter: string }
-
-function makeWord(index: string, syllables: string[], sep: string = '', capitalize: boolean = false, stressed: boolean[] = []): HTMLSpanElement {
-  const wordSpan = document.createElement('span');
-  wordSpan.className = 'word';
-  wordSpan.dataset.index = index;
-
-  syllables.forEach((text, i) => {
-    if (i === 0 && capitalize) {
-      // Uppercase the first lowercase (unicode!) character
-      text = text.replace(/\p{Ll}/u, (c) => c.toUpperCase());
-    }
-    if (i > 0 && sep !== '') {
-      wordSpan.append(sep);
-    }
-    const sylSpan = document.createElement('span');
-    sylSpan.className = 'syl';
-    sylSpan.dataset.syl = String(i);
-    if (scheme.boldAccents && stressed[i]) {
-      const b = document.createElement('b');
-      b.textContent = text;
-      sylSpan.append(b);
-    } else {
-      sylSpan.textContent = text;
-    }
-    wordSpan.append(sylSpan);
-  });
-
-  return wordSpan;
-}
-
-// Build a span representing the gap between two words, carrying the index of
-// the word before it
-//
-// A gap which `joins` two words - one written within a single accent, as the
-// space before the paseq of a legarmeh is, or that between the two words of an
-// ole-veyored - is instead part of the word before it, and carries its index:
-// it takes the color of the word rather than of the phrase around it, so that
-// the words it falls between are colored as the one accent they are, and is
-// hovered over as that word rather than as a gap between anything.
-function makeGap(text: string, after: number,
-                 boundary: Boundary): HTMLSpanElement {
-  const gap = document.createElement('span');
-  gap.className = boundary.loc === 'sameAccent' ? 'gap joins' : 'gap';
-  if (boundary.loc === 'sameAccent') {
-    gap.dataset.index = String(after);
-  } else {
-    gap.dataset.gap = String(after);
-  }
-  gap.textContent = text;
-  return gap;
-}
-
-// The words of the last render, in the order their `data-index` gives them,
-// and how they divide into groups. Kept for `highlight`, which colors them.
-let words: Word[] = [];
-let phrasing: Grouping = groupingOf([]);
-
-function render(caret: number | null): void {
-  words = [];
-  try {
-    words = new Text(heText.text, scheme.syllabificationOptions).words;
-  } catch {}
-  phrasing = groupingOf(words);
-  const hasSofPassuq = heText.text.includes('׃');
-  const { lead, pieces, tail } = sliceSource(words);
-
-  he.replaceChildren();
-  tl.replaceChildren();
-
-  tl.classList.toggle('boldAccents', scheme.boldAccents);
-
-  if (lead !== '') {
-    he.append(lead);
-    tl.append(lead);
-  }
-
-  words.forEach((word, i) => {
-    const index = String(i);
-    const [heSyls, tlSyls, tlStressed] = syllabify(word, pieces[i].written);
-
-    // Only capitalize if the text contains verses, and this word is either the
-    // very first word, or the first word after the end of a verse
-    const startsVerse = hasSofPassuq && (i === 0 || words[i - 1].text.includes('׃'));
-
-    he.append(makeWord(index, heSyls));
-    tl.append(makeWord(index, tlSyls,
-                       scheme.syllableSeparator, startsVerse, tlStressed));
-
-    const heSep = pieces[i].gapAfter;
-    // Add a space after a maqaf in the transliteration
-    const afterMaqaf = heSep === '' && word.text.endsWith('־');
-    const tlSep = afterMaqaf ? ' ' : heSep;
-
-    // What falls between this word and the next says both where the whitespace
-    // between them goes and how it is read
-    const boundary = phrasing.boundaries[i];
-    if (heSep !== '') {
-      he.append(makeGap(heSep, i, boundary));
-    }
-    if (tlSep !== '') {
-      tl.append(makeGap(tlSep, i, boundary));
-    }
-  });
-
-  if (tail !== '') {
-    he.append(tail);
-  }
-
-  alignLines();
-
-  if (caret !== null) {
-    heText.setCaret(caret);
-  }
-}
-
-// ==============================================
-//  Word/Syllable highlighting and its listeners
-// ==============================================
-
 // The highlighting colors all live in `accents.ts`, so the one of them the
 // stylesheet needs is handed to it here
 document.documentElement.style.setProperty('--syl-highlight', syllableColor);
@@ -500,7 +580,7 @@ function highlight(hovered: Hovered | null, syl: string | null): void {
   if (hovered === null) {
     return;
   }
-  const colors = highlightColors(phrasing, hovered, !scheme.boldAccents);
+  const colors = highlightColors(lastGrouping, hovered, !scheme.boldAccents);
   const paint = (selector: string, color: string): void => {
     for (const el of document.querySelectorAll<HTMLElement>(selector)) {
       el.style.background = color;
@@ -564,29 +644,14 @@ document.addEventListener('touchstart', (e) => {
   }
 });
 
-// ==========================================
-//  Showing a caret over `tl` when selecting
-// ==========================================
-
-tl.addEventListener('mousedown', () => tl.classList.add('selecting'));
-document.addEventListener('mouseup', () => tl.classList.remove('selecting'));
 
 // ==================================
-//  URL parameters and its listeners
+//  URL parameters and initial setup
 // ==================================
-
-const QUERY_KEY = 'q';
-const DEFAULT_TEXT =
-  'שְׁמַ֖ע יִשְׂרָאֵ֑ל יְהֹוָ֥ה אֱלֹהֵ֖ינוּ יְהֹוָ֥ה ׀ אֶחָֽד׃\n' +
-  'וְאָ֣הַבְתָּ֔ אֵ֖ת יְהֹוָ֣ה אֱלֹהֶ֑יךָ בְּכׇל־לְבָבְךָ֥ וּבְכׇל־נַפְשְׁךָ֖ וּבְכׇל־מְאֹדֶֽךָ׃ ' +
-  'וְהָי֞וּ הַדְּבָרִ֣ים הָאֵ֗לֶּה אֲשֶׁ֨ר אָנֹכִ֧י מְצַוְּךָ֛ הַיּ֖וֹם עַל־לְבָבֶֽךָ׃ ' +
-  'וְשִׁנַּנְתָּ֣ם לְבָנֶ֔יךָ וְדִבַּרְתָּ֖ בָּ֑ם בְּשִׁבְתְּךָ֤ בְּבֵיתֶ֙ךָ֙ וּבְלֶכְתְּךָ֣ בַדֶּ֔רֶךְ וּֽבְשׇׁכְבְּךָ֖ וּבְקוּמֶֽךָ׃ ' +
-  'וּקְשַׁרְתָּ֥ם לְא֖וֹת עַל־יָדֶ֑ךָ וְהָי֥וּ לְטֹטָפֹ֖ת בֵּ֥ין עֵינֶֽיךָ׃ ' +
-  'וּכְתַבְתָּ֛ם עַל־מְזֻז֥וֹת בֵּיתֶ֖ךָ וּבִשְׁעָרֶֽיךָ׃';
-const MIN_URL_CHANGE_MS = 400;
 
 function loadFromURL(): string {
-  return new URL(window.location.href).searchParams.get(QUERY_KEY) ?? DEFAULT_TEXT;
+  return new URL(window.location.href).searchParams
+                                      .get(HE_TEXT_PARAM) ?? DEFAULT_TEXT;
 }
 
 let saveTimer = 0;
@@ -595,13 +660,14 @@ function save(): void {
   clearTimeout(saveTimer);
   saveTimer = setTimeout(saveTimeout, MIN_URL_CHANGE_MS);
 }
+
 function saveTimeout(): void {
   clearTimeout(saveTimer);
   const url = new URL(window.location.href);
   if (heText.text === '') {
-    url.searchParams.delete(QUERY_KEY);
+    url.searchParams.delete(HE_TEXT_PARAM);
   } else {
-    url.searchParams.set(QUERY_KEY, heText.text);
+    url.searchParams.set(HE_TEXT_PARAM, heText.text);
   }
   if (url.href !== window.location.href) {
     history.replaceState(null, '', url);
@@ -612,55 +678,9 @@ function saveTimeout(): void {
 he.addEventListener('blur', saveTimeout);
 window.addEventListener('pagehide', saveTimeout);
 
-// ============================
-//  Printing and its listeners
-// ============================
-
-// In order to `squeezeToFit`, we need to decide a layout in advance
-const PRINT_WIDTH = '7.5in'; // 8.5in - 2 * 0.5in (see @page)
-const PRINT_SCALE = 12 / 13.5;
-const PRINT_LETTER_SPACING = '-0.035em';
-const PRINT_WORD_SPACING = '0.34em';
-const PRINT_EDGE = '5%';
-
-const bodyContainer = document.querySelector('.bodyContainer') as HTMLDivElement;
-const heAndTl = document.querySelector('.heAndTl') as HTMLDivElement;
-
-// Sneakily apply everything on the screen to get our measurements
-function renderForPrint(printing: boolean): void {
-  bodyContainer.style.width = printing ? PRINT_WIDTH : '';
-  heAndTl.style.setProperty('--scale', printing ? String(PRINT_SCALE) : '');
-  heAndTl.style.setProperty('--letter-spacing', printing ? PRINT_LETTER_SPACING : '');
-  heAndTl.style.setProperty('--word-spacing', printing ? PRINT_WORD_SPACING : '');
-  heAndTl.style.setProperty('--edge', printing ? String(PRINT_EDGE) : '');
-  render(null);
-  // Ensure that the `ResizeObserver` doesn't fire
-  const style = getComputedStyle(he);
-  lastWidth = he.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
-}
-
-window.addEventListener('beforeprint', () => renderForPrint(true));
-window.addEventListener('afterprint', () => renderForPrint(false));
-
-// ===================================
-//  Other listeners and initial setup
-// ===================================
-
-// re-render on resize
-let lastWidth = 0;
-new ResizeObserver(([entry]) => {
-  const width = entry.contentRect.width;
-  if (width !== lastWidth) {
-    lastWidth = width;
-    render(heText.caret);
-  }
-}).observe(he);
-
-// re-render whenever a transliteration option is changed
-setupOptions(scheme.opts, () => render(heText.caret));
-
-// re-render whenever a webfont finishes loading
-document.fonts.addEventListener('loadingdone', () => render(heText.caret));
+// Show a caret-cursor over `tl` only when selecting
+tl.addEventListener('mousedown', () => tl.classList.add('selecting'));
+document.addEventListener('mouseup', () => tl.classList.remove('selecting'));
 
 heText.reset(loadFromURL());
 render(null);

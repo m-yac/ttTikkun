@@ -114,7 +114,8 @@ export class EditableText {
     return this.offsetOf(sel.focusNode, sel.focusOffset);
   }
 
-  setCaret(offset: number): void {
+  setCaret(offset: number | null): void {
+    if (!offset) { return; }
     const walker = document.createTreeWalker(this.el, NodeFilter.SHOW_TEXT);
     let seen = 0;
     let last: Node | null = null;
@@ -179,10 +180,10 @@ export class EditableText {
         insert = '\n';
         break;
       case 'deleteContentBackward':
-        start = collapsed ? this.graphemeBefore(start) : start;
+        start = collapsed ? this.codePointBefore(start) : start;
         break;
       case 'deleteContentForward':
-        end = collapsed ? this.graphemeAfter(end) : end;
+        end = collapsed ? this.codePointAfter(end) : end;
         break;
       case 'deleteWordBackward':
         start = collapsed ? this.wordBefore(start) : start;
@@ -218,34 +219,26 @@ export class EditableText {
   //  How far an edit reaches
   // ==================================
 
-  // How far a deletion at `offset` reaches, in the units the browser would 
-  // have used had it done the deleting itself. A backspace takes a whole
-  // grapheme cluster, so that a letter goes together with the points written
-  // on it; the segmenting is done a line at a time, which is all one can be
-  // spread over.
-  private graphemeBefore(offset: number): number {
-    const from = this.lineStart(offset);
-    // At the head of a line there is nothing on it to delete, and what is
-    // being backspaced over is the newline which ended the line above
-    if (offset <= from || graphemes === null) {
-      return Math.max(0, offset - 1);
+  // How far a deletion at `offset` reaches. A backspace takes a single
+  // character rather than the whole grapheme cluster a browser would have
+  // taken, so that the niqqud written on a letter can be deleted one at a time
+  // and the letter left standing. The character is a code point and not a code
+  // unit: the two halves of a surrogate pair are only a character together.
+  private codePointBefore(offset: number): number {
+    if (offset <= 0) {
+      return 0;
     }
-    let start = from;
-    for (const { index } of graphemes.segment(this.value.slice(from, offset))) {
-      start = from + index;
-    }
-    return start;
+    const cp = this.value.codePointAt(offset - 2);
+    const pair = cp !== undefined && cp > 0xffff;
+    return offset - (pair ? 2 : 1);
   }
 
-  private graphemeAfter(offset: number): number {
-    if (offset >= this.value.length || graphemes === null) {
-      return Math.min(this.value.length, offset + 1);
+  private codePointAfter(offset: number): number {
+    if (offset >= this.value.length) {
+      return this.value.length;
     }
-    // A newline is a line's worth of nothing, so make sure there is always at
-    // least one character here to segment
-    const to = Math.max(this.lineEnd(offset), offset + 1);
-    const first = graphemes.segment(this.value.slice(offset, to)).containing(0);
-    return offset + (first?.segment.length ?? 1);
+    const cp = this.value.codePointAt(offset);
+    return Math.min(this.value.length, offset + (cp! > 0xffff ? 2 : 1));
   }
 
   private wordBefore(offset: number): number {
@@ -281,8 +274,6 @@ export class EditableText {
     return nl < 0 ? this.value.length : nl;
   }
 }
-
-const graphemes = typeof Intl.Segmenter === 'function' ? new Intl.Segmenter() : null;
 
 function putCaret(node: Node, offset: number): void {
   const range = document.createRange();

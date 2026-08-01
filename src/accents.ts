@@ -21,7 +21,7 @@ export const syllableColor = 'hsl(0 67% 45%)';
 // Most accents are marked by taamim, but some are special combinations of
 // taamim and/or punctuation marks (see `specialAccents`)
 type Accent = TaamimName | SpecialAccent;
-type SpecialAccent = 'MAQAF' | 'SOF_PASSUQ' | 'LEGARMEH' | 'QADMA_VEAZLA'
+type SpecialAccent = 'MAQAF' | 'SOF_PASSUQ' | 'LEGARMEH'
                    // From the system only used in Psalms, Proverbs, and Job
                    | 'MAHAPAKH_LEGARMEH' | 'AZLA_LEGARMEH'
                    | 'SHALSHELET_GEDOLAH' | 'SHALSHELET_KETANAH'
@@ -51,10 +51,6 @@ const specialAccents: { [A in SpecialAccent]: AccentInfo } = {
   // phrase ending in a 'REVIA'
   'LEGARMEH': {
     taam: 'MUNAH', beforePunct: '׀', beforePhrase: 'REVIA'
-  },
-  // A 'QADMA_VEAZLA' is a 'GERESH' (called an azla here) following a 'QADMA'
-  'QADMA_VEAZLA': {
-    taam: 'GERESH', afterTaam: ['QADMA']
   },
   // A 'MAHAPAKH_LEGARMEH', 'AZLA_LEGARMEH', or 'SHALSHELET_GEDOLAH' is a
   // 'MAHAPAKH', 'QADMA', or 'SHALSHELET', respectively, before a paseq
@@ -163,7 +159,7 @@ const remoteAccents = [
   'REVIA',
   // V (Counts)
   'PAZER', 'QARNEY_PARA', 'TELISHA_GEDOLA',
-  'GERESH', 'QADMA_VEAZLA', 'GERSHAYIM',
+  'GERESH', 'GERSHAYIM',
   // Only used in Psalms, Proverbs, and Job
   'OLE_VEYORED', 'MAHAPAKH_LEGARMEH', 'AZLA_LEGARMEH'
 ] as const satisfies readonly Accent[];
@@ -367,16 +363,8 @@ export interface Grouping {
   boundaries: readonly Boundary[];
 }
 
-// The words are grouped once per render, before anything is hovered over: the
-// groups are what the highlighting colors, and so have to be spans of their
-// own, and where they fall doesn't depend on which word is being read.
-//
-// `poetic` recognizes the accents of the system used only in Psalms, Proverbs,
-// and Job which are written as taamim of the other system - the legarmehs, the
-// two shalshelets and the two revias - and so should only be set for those
-// three books: in the other 21 books a paseq after a mahapakh or a qadma is
-// just a paseq, and there are over a hundred of them which would be taken for
-// legarmehs, and a shalshelet is a remote disjunctive, not a conjunctive.
+// Group a given array of words, including the accents marked as `onlyPoetic`
+// only when `poetic` is set
 export function groupingOf(words: readonly Word[],
                            poetic: boolean = false): Grouping {
   const accentedWords: AccentedWord[] = [];
