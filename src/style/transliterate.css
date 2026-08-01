@@ -11,7 +11,7 @@
   display: block;
   margin: 0 auto;
   padding: 0 30px;
-  max-width: 750px;
+  max-width: 925px;
 }
 
 #hoverOrTap > .tap {
@@ -47,7 +47,6 @@
   font-family: inherit;
   font-size: 12pt;
   cursor: pointer;
-  margin-top: 6px;
 }
 .optionsToggle:hover {
   color: ActiveText;
@@ -57,10 +56,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  gap: 6px 14px;
-  max-width: 550px;
-  margin-bottom: 6px;
+  align-items: end;
+  gap: 14px;
+  max-width: 700px;
+  margin-bottom: 14px;
 }
 .optionsPanel[hidden] {
   display: none;

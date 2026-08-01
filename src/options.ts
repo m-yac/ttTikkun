@@ -51,6 +51,13 @@ const optionSpecs = {
     default: ACCENT_TAAM,
     alwaysVisible: true,
   },
+  syllableSeparator: {
+    label: ["Between syllables:"],
+    choices: ['', '·'],
+    names: { '': 'nothing', '·': 'middle dot' },
+    default: '·',
+    alwaysVisible: true,
+  },
   tsere: {
     label: [{ he: 'אֵ', name: 'tsere' }, ' as:'],
     choices: ['e', 'ei'],
@@ -65,7 +72,12 @@ const optionSpecs = {
     label: ['Vocal ', { he: 'אְ', name: 'sheva' }, ' as:'],
     choices: ['e', '’'],
     names: { 'e': 'e', '’': 'apostrophe' },
-    default: 'e',
+    default: '’',
+  },
+  ashkenazi: {
+    label: [{he: 'ת/אָ/אֹ', name: 'tav/qamats/holam'}, ' as:'],
+    choices: ['t/a/o', 's/o/oi'],
+    default: 't/a/o',
   },
   het: {
     label: [{he: 'ח', name: 'het'}, ' as:'],
@@ -76,17 +88,6 @@ const optionSpecs = {
     label: [{he: 'כ/ך', name: 'khaf (with no dagesh)'}, ' as:'],
     choices: ['ch', 'kh'],
     default: 'ch',
-  },
-  ashkenazi: {
-    label: [{he: 'ת/אָ/אֹ', name: 'tav/qamats/holam'}, ' as:'],
-    choices: ['t/a/o', 's/o/oi'],
-    default: 't/a/o',
-  },
-  syllableSeparator: {
-    label: ["Between syllables:"],
-    choices: ['', '·', '|'],
-    names: { '': 'nothing', '·': 'middle dot', '|': 'vertical bar' },
-    default: '·',
   },
   wawShureq: {
     label: [{he: 'וּבְ', name: 'shureq followed by a consonant with a sheva'}, ' as:'],
