@@ -1,18 +1,9 @@
 import type { Word } from 'havarotjs/word';
 import type { TaamimName } from 'havarotjs/utils/charMap';
 
-// The background color of a hovered element
-const hoveredVerse = 'transparent';
-const hoveredClause = 'hsl(45 100% 90%)';
-const hoveredPhrase = 'hsl(45 100% 70%)';
-const hoveredWord = 'hsl(45 100% 70%)';
-
-// The background color of a hovered syllable
-export const syllableColor = 'hsl(0 67% 45%)';
-
-// ==================
-//  Kinds of accents
-// ==================
+// =============
+//  The accents
+// =============
 
 // NOTE: There are two systems of accents, one used in only in Psalms,
 // Proverbs, and the poetic sections of Job, and another used in the other 21
@@ -99,6 +90,11 @@ const specialPuncts: readonly string[] = [...new Set(
         .filter((punct) => punct !== undefined)
 )];
 
+
+// ==================
+//  Kinds of accents
+// ==================
+
 // Accents can be conjunctive or disjunctive, where disjunctive accents are
 // either near or remote - this language is based on:
 // 'The Syntax of Masoretic Accents' by James D. Price 
@@ -170,6 +166,35 @@ const kinds = new Map<Accent, AccentKind>([
   ...nearAccents  .map((a): [Accent, AccentKind] => [a, 'near'       ]),
   ...remoteAccents.map((a): [Accent, AccentKind] => [a, 'remote'     ]),
 ]);
+
+
+// ==========================================
+//  Grouping levels and highlighting options
+// ==========================================
+
+// Based on accents:
+// - Words are grouped into phrases, ended by a disjunctive accent
+// - Phrases are grouped into clauses, ended by a *remote* disjunctive accent
+// - Clauses are grouped into verses, ended by a 'SOF_PASSUQ'
+export type Level = 'word' | AccentLevel
+export type AccentLevel = (typeof accentLevels)[number];
+export const accentLevels = ['phrase', 'clause', 'verse'] as const;
+
+// Color options for `highlightColors` below
+export type HighlightingOptions = {
+  // When highlighting is active, the color given to all text besides that
+  // colored by `levelColors.hoveredText`/`parentHoveredText`
+  defaultTextColor?: string;
+  // The text color of a hovered syllable
+  syllableColor: string;
+  // The background and text colors for a group of a given level when it and/or
+  // its parent are hovered
+  levelColors: { [L in Level]?: {
+    hovered?:       string; hoveredText?:       string;
+    parentHovered?: string; parentHoveredText?: string;
+  } };
+};
+
 
 // =========================
 //  Reading a word's accent
@@ -301,22 +326,16 @@ function kindOf(accent: Accent | undefined): AccentKind | undefined {
   return accent !== undefined ? kinds.get(accent) : undefined;
 }
 
+
 // ==================================================
 //  Dividing words into phrases, clauses, and verses
 // ==================================================
-
-// Based on accents:
-// - Words are grouped into phrases, ended by a disjunctive accent
-// - Phrases are grouped into clauses, ended by a *remote* disjunctive accent
-// - Clauses are grouped into verses, ended by a 'SOF_PASSUQ'
-export const accentLevels = ['verse', 'clause', 'phrase'] as const;
-export type Level = (typeof accentLevels)[number];
 
 // A group of words (i.e. a phrase, clause, or verse) along with the groups of
 // the level below it, if there are any
 export interface Group {
   id: number;
-  lvl: Level;
+  lvl: AccentLevel;
   // Indices of the first and last word of the group
   start: number;
   end: number;
@@ -527,16 +546,10 @@ export function groupsAroundGap(grouping: Grouping,
            : groupsOf(grouping, i);
 }
 
+
 // ==============
 //  Highlighting
 // ==============
-
-// The background color of a hovered group of each level
-const hoveredGroup: Record<Level, string> = {
-  verse: hoveredVerse,
-  clause: hoveredClause,
-  phrase: hoveredPhrase,
-};
 
 // The location where the user is hovering, i.e. either on a word of a given
 // index, or on the gap after a word of a given index
@@ -545,19 +558,30 @@ export type Hovered =
   // Named by the word the gap follows
   | { on: 'gap'; after: number };
 
-// What to highlight: the groups being hovered and their colors from outer to
-// inner and the words being hovered and their colors
+// The colors to paint something with, either of which may be left out
+export interface Colors {
+  background?: string;
+  text?: string;
+}
+
+// What to highlight: the groups to color, from outer to inner, and the same
+// for the words, along with the color to give everything else
 export interface Highlighting {
-  groups: readonly { id: number; color: string }[];
-  words: { indices: readonly number[]; color: string };
+  // Only set when some group or word is given a text color, since there is
+  // nothing to stand out from otherwise
+  defaultText?: string;
+  groups: readonly ({ id: number } & Colors)[];
+  words: readonly ({ indices: readonly number[] } & Colors)[];
 }
 
 // Given a grouping and something that is being hovered, return what to
-// highlight, or null if nothing should be highlighted - where accents are
-// only taken into account if `accents` is true
-export function highlightColors(grouping: Grouping, hovered: Hovered,
+// highlight, or null if nothing should be highlighted - where the groupings
+// which are only visible in the text through its accents are left alone if
+// `accents` is false, leaving only the grouping into verses
+export function highlightColors(opts: HighlightingOptions,
+                                grouping: Grouping, hovered: Hovered,
                                 accents: boolean): Highlighting | null {
-  const { boundaries, groupOf } = grouping;
+  const { boundaries, groupOf, groups: allGroups } = grouping;
   const at = hovered.on === 'word' ? hovered.index : hovered.after;
   if (at < 0 || at >= groupOf.length || groupOf[at] < 0) {
     return null;
@@ -581,12 +605,78 @@ export function highlightColors(grouping: Grouping, hovered: Hovered,
     }
   }
 
+  // Everything which contains what is hovered - including what is hovered
+  // itself - is given the `hovered` color of its level, and everything whose
+  // parent is one of those is given the `parentHovered` color of its level,
+  // where a level with no such color is simply left alone
   const chain = hovered.on === 'word' ? groupsOf(grouping, at)
                                       : groupsAroundGap(grouping, at);
+  const inChain = new Set(chain.map(({ id }) => id));
+
+  // The colors set for a level in the given relation to what is hovered, or
+  // null where that level sets none
+  const colorsOf = (lvl: Level,
+                    rel: 'hovered' | 'parentHovered'): Colors | null => {
+    const level = opts.levelColors[lvl];
+    const background = level?.[rel];
+    const text = level?.[`${rel}Text`];
+    return background === undefined && text === undefined
+             ? null : { background, text };
+  };
+
+  // Verses are marked by a 'SOF_PASSUQ', which is written whether or not the
+  // accents are, so they are the one grouping still there to see without them
+  // - though only if the text actually ends its verses that way, since
+  // otherwise the single verse it is read as is nowhere to be seen
+  const hasVerses = grouping.roots.some(
+    (id) => allGroups[id].accent !== undefined);
+  const shown = (lvl: Level): boolean =>
+    accents || (lvl === 'verse' && hasVerses);
+
+  const groups: ({ id: number } & Colors)[] = [];
+  for (const group of chain) {
+    if (!shown(group.lvl)) {
+      continue;
+    }
+    const colors = colorsOf(group.lvl, 'hovered');
+    if (colors !== null) {
+      groups.push({ id: group.id, ...colors });
+    }
+    // The groups of the level below this one which aren't themselves
+    // containing what is hovered, i.e. the siblings of the group below
+    for (const id of group.children) {
+      const sibling = colorsOf(allGroups[id].lvl, 'parentHovered');
+      if (!inChain.has(id) && shown(allGroups[id].lvl) && sibling !== null) {
+        groups.push({ id, ...sibling });
+      }
+    }
+  }
+
+  // The words of the innermost group, which are the level below it whenever
+  // it has no groups of its own inside it
+  const words: ({ indices: readonly number[] } & Colors)[] = [];
+  const hoveredWord = colorsOf('word', 'hovered');
+  if (indices.length > 0 && hoveredWord !== null) {
+    words.push({ indices, ...hoveredWord });
+  }
+  // The innermost group here is a phrase, so its words are only marked out
+  // from the rest when the accents that set it apart are there to be seen
+  const inner = accents ? chain[chain.length - 1] : undefined;
+  const siblingWord = colorsOf('word', 'parentHovered');
+  if (inner !== undefined && inner.children.length === 0 &&
+      siblingWord !== null) {
+    const siblings: number[] = [];
+    for (let j = inner.start; j <= inner.end; j++) {
+      if (!indices.includes(j)) {
+        siblings.push(j);
+      }
+    }
+    words.push({ indices: siblings, ...siblingWord });
+  }
+
+  // Only dim the rest of the text if something here is lit up against it
+  const anyText = [...groups, ...words].some(({ text }) => text !== undefined);
   return {
-    groups: accents ? chain.map(({ id, lvl: level }) =>
-                                  ({ id, color: hoveredGroup[level] }))
-                    : [],
-    words: { indices, color: hoveredWord },
+    defaultText: anyText ? opts.defaultTextColor : undefined, groups, words
   };
 }

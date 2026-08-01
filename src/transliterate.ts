@@ -1,8 +1,8 @@
 import { Text } from 'havarotjs';
 import type { Word } from 'havarotjs/word';
 import { groupsOf, groupsAroundGap, highlightColors, groupingOf,
-         syllableColor, type Boundary, type Group, type Hovered,
-         type Grouping } from './accents';
+         type Boundary, type Colors, type Group, type Hovered, type Grouping,
+         HighlightingOptions} from './accents';
 import { EditableText } from './editable';
 import { OptionsScheme, setupOptions } from './options';
 
@@ -29,6 +29,20 @@ const PRINT_SCALE = 12 / 13.5;
 const PRINT_LETTER_SPACING = '-0.035em';
 const PRINT_WORD_SPACING = '0.34em';
 const PRINT_EDGE = '5%';
+
+// Highlighting colors
+const highlightingOpts: HighlightingOptions = {
+  defaultTextColor: '#222',
+  syllableColor: 'hsl(0 67% 45%)',
+  levelColors: {
+    word:   { hovered:       'hsl(45 100% 67%)' /* same as phrase below! */ },
+    phrase: { hovered:       'hsl(45 100% 67%)',
+              parentHovered: 'hsl(45 100% 78.75%)' },
+    clause: { hovered:       'hsl(45 100% 85%)' },
+    verse:  { hovered:       'hsl(45, 100%, 95%)',
+              hoveredText:   '#000' },
+  },
+};
 
 // Relevant `HTMLDivElement`s
 const bodyContainer =
@@ -557,9 +571,7 @@ function squeezeToFit(line: HTMLDivElement): void {
   }
 }
 
-// The highlighting colors all live in `accents.ts`, so the one of them the
-// stylesheet needs is handed to it here
-document.documentElement.style.setProperty('--syl-highlight', syllableColor);
+document.documentElement.style.setProperty('--syl-highlight', highlightingOpts.syllableColor);
 
 // The words given a background by the last `highlight`, so that only those have
 // to be put back as they were
@@ -575,27 +587,46 @@ function highlight(hovered: Hovered | null, syl: string | null): void {
   }
   for (const el of colored) {
     el.style.background = '';
+    el.style.color = '';
   }
   colored = [];
+  // Whatever is colored is colored against this, set on the panels themselves
+  // so that everything not painted below inherits it
+  he.style.color = '';
+  tl.style.color = '';
   if (hovered === null) {
     return;
   }
-  const colors = highlightColors(lastGrouping, hovered, !scheme.boldAccents);
-  const paint = (selector: string, color: string): void => {
+  const colors = highlightColors(highlightingOpts, lastGrouping,
+                                 hovered, !scheme.boldAccents);
+  const paint = (selector: string, { background, text }: Colors): void => {
     for (const el of document.querySelectorAll<HTMLElement>(selector)) {
-      el.style.background = color;
+      if (background !== undefined) {
+        el.style.background = background;
+      }
+      if (text !== undefined) {
+        el.style.color = text;
+      }
       colored.push(el);
     }
   };
   if (colors !== null) {
-    for (const { id, color } of colors.groups) {
-      paint(`.group[data-group="${id}"]`, color);
+    if (colors.defaultText !== undefined) {
+      he.style.color = colors.defaultText;
+      tl.style.color = colors.defaultText;
     }
-    for (const i of colors.words.indices) {
-      paint(`.word[data-index="${i}"]`, colors.words.color);
-      // A space written within an accent is colored with it, so that every
-      // word it is written across is one unbroken block
-      paint(`.gap.joins[data-index="${i}"]`, colors.words.color);
+    // Painted from outer to inner, so that a group takes the color of the
+    // innermost of those it is inside which sets one
+    for (const { id, ...group } of colors.groups) {
+      paint(`.group[data-group="${id}"]`, group);
+    }
+    for (const { indices, ...word } of colors.words) {
+      for (const i of indices) {
+        paint(`.word[data-index="${i}"]`, word);
+        // A space written within an accent is colored with it, so that every
+        // word it is written across is one unbroken block
+        paint(`.gap.joins[data-index="${i}"]`, word);
+      }
     }
   }
   // Only a word is read syllable by syllable; a gap has none to mark

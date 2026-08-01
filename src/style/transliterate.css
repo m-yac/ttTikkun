@@ -127,10 +127,11 @@
 
 /* Labels which are samples of transliterated text */
 .checkboxContainer input + label.tlSample {
-  font-family: "Bitter Hebrew", serif;
+  font-family: "Bitter", "Bitter Hebrew", serif;
   font-size: 11pt;
 }
 .checkboxContainer.hasTaam input + label.tlSample {
+  font-family: "Bitter Hebrew", serif;
   padding-top: calc(2px + 0.315em);
 }
 
