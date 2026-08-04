@@ -17,12 +17,12 @@ top_level = Path(__file__).parent.parent
 src_p = top_level / 'textSources' / 'tikkun.io' / 'src' / 'data'
 uhb_p = top_level / 'textSources' / 'hbo_uhb'
 # Where a run writes when nothing else is asked for; main() takes a path.
-dst_p = top_level / 'dst'
+data_p = top_level / 'src' / 'data'
 # Not the en_ult submodule itself: upstream's bible-editor exports keep landing
 # alignment corruption in whichever book is under active work, so we read the
 # newest revision of each book that parses -- built into the output directory
 # alongside what a run writes. See combine/pull_clean_ult.py.
-ult_p = dst_p / 'en_ult_clean'
+ult_p = top_level / 'textSources' / 'en_ult_clean'
 
 shlomo = TTFont(top_level / 'textSources' / 'tikkun.io' / 'assets' / 'fonts' / 'Shlomosemistam.ttf')
 garamond = TTFont(top_level / 'src' / 'fonts' / 'AGaramondPro-Regular.otf')
@@ -420,7 +420,11 @@ def ult_by_verse(scroll, verse_index):
                         if at[i] not in [ g for g, _ in pieces ] ] if p == 0 else [])
                 he = ([[]] if p > 0 else []) + he + \
                      ([[]] if p < len(pieces)-1 else [])
-            order[f][0]["en"].value.append([text, he])
+            # A footnote hangs off the end of what it annotates, so a broken
+            # alignment carries its notes on its last piece. Only a piece that
+            # has any writes a third element at all.
+            notes = entry["footnotes"] if p == len(pieces)-1 else []
+            order[f][0]["en"].value.append([text, he] + ([notes] if notes else []))
 
 
 
@@ -606,7 +610,7 @@ def combine_by_word(scroll, page, line_num, line):
 #                     print(scroll, page, line_num+1, [obj.value["words"] for obj in fragments[i][j]["en"]])
 
 
-def main(dst=dst_p):
+def main(dst=data_p):
     print("[tikkun.io] Restructuring...")
     for scroll in pages_data:
         book_p = Path('pages') / scroll
@@ -638,7 +642,7 @@ def main(dst=dst_p):
     print("[unfoldingWord Literal Text] Extracting translation...")
     for scroll in pages_data:
         for book, fnm in enumerate(ult_fnms[scroll]):
-            with (dst / 'en_ult_clean' / f'{fnm}.usfm').open() as f:
+            with (ult_p / f'{fnm}.usfm').open() as f:
                 with (uhb_p / f'{fnm}.usfm').open() as g:
                     ult_by_book(scroll, book+1, f.read(), g.read())
 
@@ -696,17 +700,17 @@ def main(dst=dst_p):
         with (dst / lookup_p / f'{scroll}.json').open('w') as f:
             json.dump(lookup_data[scroll], f, ensure_ascii=False, indent=2, cls=NoIndentEncoder)
 
-        english_p = Path('english')
-        (dst / english_p).mkdir(parents=True, exist_ok=True)
-        with (dst / english_p/ f'{scroll}.json').open('w') as f:
-            json.dump(ult_data[scroll], f, ensure_ascii=False, indent=2, cls=NoIndentEncoder)
+        # english_p = Path('english')
+        # (dst / english_p).mkdir(parents=True, exist_ok=True)
+        # with (dst / english_p/ f'{scroll}.json').open('w') as f:
+        #     json.dump(ult_data[scroll], f, ensure_ascii=False, indent=2, cls=NoIndentEncoder)
 
 
 def cli():
     ap = argparse.ArgumentParser(
         description="Combine the tikkun.io pages with the unfoldingWord text.")
-    ap.add_argument('output', type=Path, nargs='?', default=dst_p,
-                    help=f'directory to write (default: {dst_p.name}/)')
+    ap.add_argument('output', type=Path, nargs='?', default=data_p,
+                    help=f'directory to write (default: {data_p.name}/)')
     main(ap.parse_args().output)
 
 if __name__ == "__main__":

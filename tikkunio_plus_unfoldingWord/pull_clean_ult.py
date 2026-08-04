@@ -27,7 +27,7 @@ top_level = Path(__file__).parent.parent
 ult_p, uhb_p = top_level / 'textSources' / 'en_ult', top_level / 'textSources' / 'hbo_uhb'
 # Alongside what `combine` writes, rather than in the source tree: this is built
 # output too, and main.py reads it from there.
-dst_p = top_level / 'dst' / 'en_ult_clean'
+dst_p = top_level / 'textSources' / 'en_ult_clean'
 
 
 def git(*args):
@@ -65,12 +65,9 @@ def find_clean(path, uhb_text, ref, limit):
 
 def write_readme(output, records, ref, ref_sha):
     lines = [
-        '# Clean ULT snapshot',
+        '# `en_ult_clean`',
         '',
-        'The most recent revision of each ULT book that parses cleanly against',
-        'the UHB, collected by `scripts/combine/pull_clean_ult.py`. Do not edit',
-        'these files by hand -- rerun the script instead, and they will advance',
-        'as upstream fixes land.',
+        'The most recent version of each ULT book that successfully matches against the unfoldingWord Hebrew Bible. To regenerate all the files in this directory, including this one, use `poetry run pull-clean-ult`.',
         '',
         f'- Generated: {datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")}',
         f'- Searched: `en_ult` {ref} (`{ref_sha[:10]}`)',
@@ -90,11 +87,9 @@ def write_readme(output, records, ref, ref_sha):
 
     if stale:
         lines += [
-            '## Held back',
+            '## Failed to match',
             '',
-            'These books do not parse at the ref above, so an older revision was',
-            'taken. "Behind" counts how many later commits touched the file but',
-            'would not parse. Every book not listed here is current.',
+            'These books of the unfoldingWord Literal Text failed to match the unfoldingWord Hebrew Bible at the searched refs above, so an older version of the unfoldingWord Literal Text is being used. "Behind" counts how many commits behind we had to search.',
             '',
             '| Book | Behind | Date | SHA | Commit Message |',
             '| --- | --- | --- | --- | --- |',
@@ -105,7 +100,7 @@ def write_readme(output, records, ref, ref_sha):
                 f'`{record["sha"][:10]}` | {record["subject"][:60]} |')
         lines += [
             '',
-            'The first problem each one hits at the ref above:',
+            'The first problem each one hit at the refs in the first section:',
             '',
             '| Book | First problem |',
             '| --- | --- |',
@@ -113,19 +108,14 @@ def write_readme(output, records, ref, ref_sha):
         for name, record in stale:
             lines.append(f'| `{name}` | {record["head_problem"]} |')
 
-    lines += ['', f'## Current ({len(current)} books)', '',
-              'Taken straight from the ref above.', '',
-              ' '.join(f'`{n}`' for n in current)]
-
     if unresolved:
         lines += [
             '',
-            '## No clean revision found',
+            '## No clean version found',
             '',
-            'No revision searched will parse, so these books are absent from this',
-            'directory. Run `poetry run validate-ult <ult> <uhb>` to see why.',
+            'No version searched matched, so these books are absent from this directory - run `poetry run validate-ult <ult> <uhb>` to see why.',
             '',
-            '| Book | First problem at HEAD | Commits searched |',
+            '| Book | First problem | Commits searched |',
             '| --- | --- | --- |',
         ]
         for name, record in unresolved:

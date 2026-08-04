@@ -5,7 +5,7 @@ These read the pages the `built` fixture just wrote -- see conftest.py.
 
 import json
 
-from tikkunio_plus_unfoldingWord.main import dst_p as data_p
+from tikkunio_plus_unfoldingWord.main import data_p as data_p, ult_data
 
 import pytest
 
@@ -24,8 +24,10 @@ def pages(scroll):
     return out
 
 def english(scroll):
-    with (data_p / 'english' / f'{scroll}.json').open() as f:
-        return json.load(f)
+    """The translation the build read, verse by verse. It is no longer written
+    out -- the pages are all there is now -- so it is taken straight from the
+    build that the `built` fixture just ran."""
+    return [ [ entry.value for entry in verse ] for verse in ult_data[scroll] ]
 
 def parts(line):
     """A line's verse parts in reading order."""
@@ -47,7 +49,18 @@ def test_english_reads_in_ult_order_and_nothing_is_lost(built, scroll):
     want = [ word for verse in english(scroll) for entry in verse
              for word in entry["en"].split() ]
     got = [ word for _, _, sub in fragments(scroll)
-            for text, _ in sub["en"] for word in text.split() ]
+            for text, _, *_rest in sub["en"] for word in text.split() ]
+    assert got == want
+
+
+@pytest.mark.parametrize('scroll', scrolls)
+def test_every_footnote_lands_in_the_pages_once(built, scroll):
+    """The pages carry the whole ULT now, notes and all: each one appears once,
+    in the order the translation gives them."""
+    want = [ note for verse in english(scroll) for entry in verse
+             for note in entry["footnotes"] ]
+    got = [ note for _, _, sub in fragments(scroll)
+            for piece in sub["en"] if len(piece) > 2 for note in piece[2] ]
     assert got == want
 
 
@@ -71,7 +84,7 @@ def test_refs_point_at_hebrew_that_exists(built, scroll):
     word somewhere else on the scroll."""
     everything = { tuple(ref): sub for ref, _, sub in fragments(scroll) }
     for ref, _, sub in fragments(scroll):
-        for text, he in sub["en"]:
+        for text, he, *_ in sub["en"]:
             for word in he:
                 if word == []:
                     continue
@@ -90,7 +103,7 @@ def test_continuation_markers_sit_at_the_edges_of_a_ref_list(built, scroll):
     """An empty ref stands in for a neighbouring piece, so it only makes sense
     leading or trailing -- and a piece is never only markers."""
     for ref, _, sub in fragments(scroll):
-        for text, he in sub["en"]:
+        for text, he, *_ in sub["en"]:
             inner = he[1:-1] if len(he) > 1 else []
             assert [] not in inner, (ref, text, he)
             assert any(word != [] for word in he) or len(he) == 0, (ref, text, he)
@@ -102,7 +115,7 @@ def test_each_broken_piece_is_answered_by_the_next_one(built, scroll):
     piece that continues from the one before, and vice versa -- reading in
     order, they alternate."""
     marked = [ (ref, text, he) for ref, _, sub in fragments(scroll)
-               for text, he in sub["en"]
+               for text, he, *_ in sub["en"]
                if len(he) > 0 and (he[0] == [] or he[-1] == []) ]
     expecting = False
     for ref, text, he in marked:
