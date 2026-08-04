@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "tikkunio_plus_unfoldingWord"
+version = "0.1.0"
+description = "The tikkun.io pages combined with the unfoldingWord text."
+authors = ["Matthew Yacavone <matthew@yacavone.net>"]
+readme = "README.md"
+packages = [{ include = "tikkunio_plus_unfoldingWord" }]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fonttools = "^4.60.1"
+requests = "^2.32.5"
+lxml = "^6.0.2"
+num2words = "^0.5.14"
+
+[tool.poetry.scripts]
+combine = "tikkunio_plus_unfoldingWord.main:cli"
+validate-ult = "tikkunio_plus_unfoldingWord.usfm:main"
+pull-clean-ult = "tikkunio_plus_unfoldingWord.pull_clean_ult:main"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^9.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
