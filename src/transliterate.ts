@@ -4,7 +4,7 @@ import { groupsOf, groupsAroundGap, highlightColors, groupingOf,
          type Boundary, type Colors, type Group, type Hovered, type Grouping,
          HighlightingOptions} from './accents';
 import { EditableText } from './editable';
-import { OptionsScheme, setupOptions } from './options';
+import { Transliteration, setupOptions } from './options';
 
 // =========================
 //  Constants and variables
@@ -52,7 +52,7 @@ const he = document.getElementById('he') as HTMLDivElement;
 const tl = document.getElementById('tl') as HTMLDivElement;
 
 // The transliteration options
-const scheme = new OptionsScheme();
+const translit = new Transliteration();
 
 // The object that controls edits to the Hebrew text
 const heText = new EditableText(he, {
@@ -80,7 +80,7 @@ function render(caret: number | null): void {
   // Convert the text into words and group them
   let words: Word[] = [];
   try {
-    words = new Text(heText.text, scheme.syllabificationOptions).words;
+    words = new Text(heText.text, translit.syllabificationOptions).words;
   } catch (e) {
     console.error(`Failed to syllabify Hebrew text!`)
     console.error(e);
@@ -94,7 +94,7 @@ function render(caret: number | null): void {
   tl.replaceChildren();
 
   // Add any classes needed by the options
-  tl.classList.toggle('boldAccents', scheme.boldAccents);
+  tl.classList.toggle('boldAccents', translit.boldAccents);
 
   // Add any initial whitespace
   if (wsStart !== '') {
@@ -105,7 +105,7 @@ function render(caret: number | null): void {
   // Add the words
   for (let i = 0; i < words.length; i++) {
     const index = String(i);
-    const [heSyls, tlSyls, tlStressed] =
+    const { heSyls, tlSyls, tlSeps, tlStressed } =
       syllabifyAndTransliterate(words[i], srcWords[i].text);
 
     // Only capitalize if the text contains verses, and this word is either the
@@ -113,8 +113,7 @@ function render(caret: number | null): void {
     const startsVerse = hasVerses && (i === 0 || words[i - 1].text.includes('׃'));
 
     he.append(makeWord(index, heSyls));
-    tl.append(makeWord(index, tlSyls,
-                       scheme.syllableSeparator, startsVerse, tlStressed));
+    tl.append(makeWord(index, tlSyls, tlSeps, startsVerse, tlStressed));
 
     const heSep = srcWords[i].wsAfter;
     // Add a space after a maqaf in the transliteration
@@ -147,7 +146,7 @@ function render(caret: number | null): void {
 }
 
 // Re-render whenever a transliteration option is changed
-setupOptions(scheme.opts, () => render(heText.caret));
+setupOptions(translit, () => render(heText.caret));
 
 // Re-render whenever a webfont finishes loading
 document.fonts.addEventListener('loadingdone', () => render(heText.caret));
@@ -191,24 +190,31 @@ window.addEventListener('afterprint', () => {
 //  Forming words and transliterating
 // ===================================
 
-function syllabifyAndTransliterate(word: Word,src: string) :
-                                  [string[], string[], boolean[]] {
+interface WordParts {
+  heSyls: string[];
+  tlSyls: string[];
+  tlSeps: string[];
+  tlStressed: boolean[];
+}
+
+function syllabifyAndTransliterate(word: Word, src: string): WordParts {
 
   // First, try to transliterate syllable-by-syllable
   try {
     const [heSyls, tlSyls]: [string[], string[]] = [[], []];
     for (const syl of word.syllables) {
       heSyls.push(syl.text);
-      tlSyls.push(scheme.trl(syl));
+      tlSyls.push(syl.apply(translit));
     }
+    const tlSeps = translit.syllableSeparators(tlSyls);
     // The stressed syllable is the final accented syllable
     const heStress = word.syllables.map((syl) => syl.isAccented)
                                    .lastIndexOf(true);
     // In the transliteration, we don't display stress on the
     // final syllable, since it's so common
-    const tlStress = heSyls.map((_, i) => i === heStress &&
-                                          i < heSyls.length - 1);
-    return [matchSyls(src, heSyls), tlSyls, tlStress];
+    const tlStressed = heSyls.map((_, i) => i === heStress &&
+                                            i < heSyls.length - 1);
+    return { heSyls: matchSyls(src, heSyls), tlSyls, tlSeps, tlStressed };
   } catch (e) {
     console.error(
       `Failed to transliterate by syllable: ${word.text}`)
@@ -217,7 +223,8 @@ function syllabifyAndTransliterate(word: Word,src: string) :
 
   // If that failed, try to transliterate the entire word as one unit
   try {
-    return [[src], [scheme.trl(word)], [false]];
+    return { heSyls: [src], tlSyls: [word.apply(translit)],
+             tlSeps: [], tlStressed: [false] };
   } catch (e) {
     console.error(
       `Failed to transliterate: ${word.text}`)
@@ -225,7 +232,8 @@ function syllabifyAndTransliterate(word: Word,src: string) :
   }
 
   // If that still failed, just pass along the word without transliterating
-  return [[src], [word.text], [false]];
+  return { heSyls: [src], tlSyls: [word.text],
+           tlSeps: [], tlStressed: [false] };
 }
 
 // Divide up a source string into syllables to match the way the given
@@ -278,7 +286,7 @@ function matchWords(src: string, words: readonly Word[]): {
 // Build the `<span>` corresponding to a word in `he` or `tl`
 function makeWord(
   index: string, syllables: string[],
-  sep: string = '', capitalize: boolean = false, stressed: boolean[] = []
+  seps?: string[], capitalize?: boolean, stressed: boolean[] = []
 ): HTMLSpanElement {
   const wordSpan = document.createElement('span');
   wordSpan.className = 'word';
@@ -289,13 +297,14 @@ function makeWord(
       // Uppercase the first lowercase (unicode!) character
       text = text.replace(/\p{Ll}/u, (c) => c.toUpperCase());
     }
-    if (i > 0 && sep !== '') {
+    const sep = i > 0 ? seps?.at(i - 1) ?? '' : '';
+    if (sep !== '') {
       wordSpan.append(sep);
     }
     const sylSpan = document.createElement('span');
     sylSpan.className = 'syl';
     sylSpan.dataset.syl = String(i);
-    if (scheme.boldAccents && stressed[i]) {
+    if (translit.boldAccents && stressed[i]) {
       const b = document.createElement('b');
       b.textContent = text;
       sylSpan.append(b);
@@ -598,7 +607,7 @@ function highlight(hovered: Hovered | null, syl: string | null): void {
     return;
   }
   const colors = highlightColors(highlightingOpts, lastGrouping,
-                                 hovered, !scheme.boldAccents);
+                                 hovered, !translit.boldAccents);
   const paint = (selector: string, { background, text }: Colors): void => {
     for (const el of document.querySelectorAll<HTMLElement>(selector)) {
       if (background !== undefined) {

@@ -1,9 +1,8 @@
-import { DefaultTransliterationScheme } from 'havarotjs/transliteration';
-import type { HebrewMark } from 'havarotjs/syllablePart';
+import type { SylOpts } from 'havarotjs';
+import type { Syllable, SyllableMap } from 'havarotjs/syllable';
+import type { Consonant, HebrewMark, NonHebrew, SyllablePart, SyllablePartMap, SyllablePartMatcher, Vowel } from 'havarotjs/syllablePart';
+import { adonaiOrElohim } from 'havarotjs/utils/divineName';
 import { punctuation, taamim } from 'havarotjs/utils/regularExpressions';
-
-const ACCENT_BOLD = '<b>ta</b>${syllableSeparator}am';
-const ACCENT_TAAM = 'ta\u{05AB}${syllableSeparator}am';
 
 // ===================
 //  Types for options
@@ -40,6 +39,14 @@ interface OptionSpec {
 //  The options
 // =============
 
+// Some complex `choice` names used below - note that the identifiers that are
+// resolved in the strings below come from the keys of `Options` and the keys
+// of `Transliteration`
+const ACCENT_BOLD = '<b>ta</b>${betweenSyllables}am';
+const ACCENT_TAAM = 'ta\u{05AB}${betweenSyllables}am';
+const WAW_SHUREQ_ONE = 'uv';
+const WAW_SHUREQ_TWO = 'u${syllableSeparator}v${vocalSheva}';
+
 const optionSpecs = {
   accents: {
     label: ["Show accents, ", {he: 'טַ֫עַם', name: 'word accented with a trope marking'}, ' as:'],
@@ -51,10 +58,13 @@ const optionSpecs = {
     default: ACCENT_TAAM,
     alwaysVisible: true,
   },
-  syllableSeparator: {
+  betweenSyllables: {
     label: ["Between syllables:"],
-    choices: ['', '·'],
-    names: { '': 'nothing', '·': 'middle dot' },
+    choices: ['’', '·'],
+    names: {
+      '’': 'apostrophe, only when necessary',
+      '·': 'middle dot, always',
+    },
     default: '·',
     alwaysVisible: true,
   },
@@ -91,11 +101,10 @@ const optionSpecs = {
   },
   wawShureq: {
     label: [{he: 'וּבְ', name: 'shureq followed by a consonant with a sheva'}, ' as:'],
-    choices: ['uv', 'u${syllableSeparator}v${vocalSheva}'],
+    choices: [WAW_SHUREQ_ONE, WAW_SHUREQ_TWO],
     names: {
-      'uv': 'one syllable with a silent sheva',
-      'u${syllableSeparator}v${vocalSheva}':
-        'two syllables with a vocal sheva',
+      [WAW_SHUREQ_ONE]: 'one syllable with a silent sheva',
+      [WAW_SHUREQ_TWO]: 'two syllables with a vocal sheva',
     },
     default: 'uv',
   },
@@ -127,68 +136,228 @@ const optionOverrides: {
 //  The transliteration scheme defined by these options
 // =====================================================
 
-export class OptionsScheme extends DefaultTransliterationScheme {
+export class Transliteration implements SyllablePartMap<string>,
+                                        SyllableMap<string> {
+  private digraphs = new Set<string>();
+
+  // The currently set `Options` - note that any time an option is changed,
+  // you must call `update` in order for it to be reflected in the
+  // transliteration!
   opts: Options = { ...optionDefaults };
 
-  // Whether to bold accents or keep taamim
-  get boldAccents(): boolean {
-    return this.opts.accents === ACCENT_BOLD;
-  }
+  // --------------------------------------------
+  //  SyllablePartMap and SyllableMap properties
+  // --------------------------------------------
 
-  override get syllabificationOptions() {
-    const syl = { ...super.syllabificationOptions };
-    syl.wawShureq = this.opts.wawShureq !== optionDefaults.wawShureq;
-    return syl;
-  }
+  readonly syllabificationOptions: SylOpts = {
+    allowNoNiqqud: true,
+    article: true,
+    longVowels: false,
+    shevaAfterMeteg: false,
+    sqnmlvy: true,
+    strict: false,
+    wawShureq: false,
+  };
 
-  override get syllableSeparator() {
-    return this.opts.syllableSeparator;
-  }
+  readonly onConsonant: SyllablePartMatcher<Consonant, string> = {
+    'א': (c) => this.alephAyin(c),
+    'בּ': 'b', 'ב': 'v',
+    'ג': 'g',
+    'ד': 'd',
+    'ה': 'h',
+    'ו': 'v',
+    'ז': 'z',
+    'ח': 'ch',
+    'ט': 't',
+    'י': (c) => this.yod(c),
+    'כּ': 'k', 'ךּ': 'k', 'כ': 'ch', 'ך': 'ch',
+    'ל': 'l',
+    'מ': 'm', 'ם': 'm',
+    'נ': 'n', 'ן': 'n',
+    'ס': 's',
+    'ע': (c) => this.alephAyin(c),
+    'פּ': 'p', 'ףּ': 'p', 'פ': 'f', 'ף': 'f',
+    'צ': 'tz', 'ץ': 'tz',
+    'ק': 'k',
+    'ר': 'r',
+    'ש': 'sh', 'שׁ': 'sh', 'שׂ': 's',
+    'ת': 't', 'תּ': 't',
+  };
 
-  override get vowels(): { [fromStart: string]: string } {
-    const vowels = { ...super.vowels };
-    vowels['אֵ'] = this.opts.tsere;
-    vowels['אֵה'] = this.opts.tsere;
-    vowels['אֵי'] = this.opts.tsereYod;
-    vowels['אְ'] = this.opts.vocalSheva;
-    if (this.opts.ashkenazi !== optionDefaults.ashkenazi) {
-      vowels['אָ'] = 'o';
-      vowels['אָה'] = 'o';
-      vowels['אׇ'] = 'o';
-      vowels['אֹ'] = 'oi';
-      vowels['אֹו'] = 'oi';
+  readonly onGeminatedConsonant: SyllablePartMatcher<Consonant, string> = {
+    '': '', // Always ignore gemination
+  };
+
+  readonly onVowel: SyllablePartMatcher<Vowel, string, 'א'> = {
+    'אְ': '’',
+    'אֲ': 'a', 'אַ': 'a', 'אָ': 'a',
+    'אֱ': 'e', 'אֶ': 'e', 'אֵ': 'e', 'אֵי': 'ei',
+    'אִ': 'i',
+    'אֳ': 'o', 'אׇ': 'o', 'אֺ': 'o', 'אֹ': 'o',
+    'אֻ': 'u', 'אוּ': 'u',
+  };
+
+  readonly onHebrewMark: SyllablePartMatcher<HebrewMark, string, 'א'> = {
+    'אֽ': 'ֽ', // preserve a meteg
+    '': (m) => this.mark(m),
+  };
+
+  readonly onNonHebrew: SyllablePartMatcher<NonHebrew, string, 'א'> = {
+    '': (n) => n.text, // pass along anything non-Hebrew
+  };
+
+  readonly onSyllablePart = (acc?: string, part?: SyllablePart): string => {
+    return (acc ?? '') + (part?.apply(this) ?? '');
+  };
+
+  readonly onSyllable = (acc?: string, syl?: Syllable): string => {
+    const [lhs, rhs] = [acc ?? '', syl?.apply(this) ?? ''];
+    return lhs + this.separator(lhs, rhs) + rhs;
+  };
+
+  readonly divineName = adonaiOrElohim;
+
+  // -----------------------------------------------------------------
+  //  Helper functions for SyllablePartMap and SyllableMap properties
+  // -----------------------------------------------------------------
+
+  private yod(c: Consonant): string {
+    if (c.text === 'י' && c.partOfCoda) {
+      // word-final 'יו' as 'v' instead of 'yv'
+      if (c.syllable.isFinal && c.syllable.coda.length === 2 &&
+          c.syllable.coda[1].text === 'ו') {
+        return '';
+      }
+      // syllable-final 'ay' as 'ai'
+      const v = c.syllable.nucleus;
+      if (v.at(-1)?.apply(this) === 'a') {
+        return 'i';
+      }
     }
-    return vowels;
+    // Otherwise, always 'y'
+    return 'y';
   }
 
-  override get consonants(): { [fromStart: string]: string } {
-    const consonants = { ...super.consonants };
-    consonants['ח'] = this.opts.het;
-    consonants['כ'] = this.opts.khaf;
-    consonants['ך'] = this.opts.khaf;
-    if (this.opts.ashkenazi !== optionDefaults.ashkenazi) {
-      consonants['ת'] = 's';
-      consonants['ּת'] = 't';
-    }
-    return consonants;
-  }
-
-  override get hebrewMarks(): { [fromStart: string]: string } {
-    const marks = { ...super.hebrewMarks };
-    if (this.boldAccents) {
-      marks['א־'] = '';
-      marks['א׀'] = '|';
-      marks['א׃'] = ':';
-      marks['א׆'] = '';
-    }
-    return marks;
-  }
-
-  override hebrewMarkExceptions(m: HebrewMark, txt: string): string | undefined {
-    if (this.boldAccents && !punctuation.test(m.text)) {
+  private alephAyin(c: Consonant): string {
+    // Don't transliterate if all syllables are already separated, we're in
+    // the coda, or we're in the first syllable of the word
+    if (this.syllableSeparator || c.partOfCoda || !c.syllable.prev) {
       return '';
     }
-    return super.hebrewMarkExceptions(m, txt);
+    // Don't transliterate if the previous syllable already ends in an
+    // apostrophe due to a vocal sheva
+    if (c.syllable.prev.coda.length == 0 &&
+        c.syllable.prev.nucleus.at(-1)?.apply(this).at(-1) === '’') {
+      return '';
+    }
+    // Otherwise, always an apostrophe
+    return '’';
+  }
+
+  private ashkenaziHoylem(v: Vowel): string {
+    // Just 'o' if the remainder of this syllable already starts with a 'y'
+    if (v.syllable.coda[0]?.apply(this).startsWith('y')) {
+      return 'o';
+    }
+    // Just 'o' if not all syllables are separated and the next syllable
+    // already starts with a 'y'
+    if (!this.syllableSeparator &&
+        v.syllable.next?.onset[0]?.apply(this).startsWith('y')) {
+      return 'o';
+    }
+    // Otherwise, always 'oy'
+    return 'oy';
+  }
+
+  private mark(m: HebrewMark): string {
+    // Only preserve taamim and punctuation
+    const re = `[${taamim.source.slice(1, -1)}` +
+                `${punctuation.source.slice(1, -1)}]`;
+    return new RegExp(re, 'u').test(m.text) ? m.text : '';
+  }
+
+  // The separator between two transliterated syllables - usually
+  // `syllableSeparator`, but always a middle dot if simply concatenating the
+  // two would result in a `digraph` that already exists in `onConsonant`
+  // (which would have created ambiguity)
+  private separator(lhs: string, rhs: string): string {
+    if (lhs.length == 0 || rhs.length == 0) { return ''; }
+    const possibleDigraph = lhs[lhs.length - 1] + rhs[0];
+    return this.digraphs.has(possibleDigraph) ? '·' : this.syllableSeparator;
+  }
+
+  // ------------------
+  //  Managing options
+  // ------------------
+
+  constructor() {
+    this.update();
+  }
+
+  // Update the transliteration after changing `opts`
+  update(): void {
+    const boldAccents = this.boldAccents;
+    const isAshkenazi = this.isAshkenazi;
+
+    this.syllabificationOptions.wawShureq =
+      this.opts.wawShureq !== optionDefaults.wawShureq;
+
+    this.onConsonant['ח'] = this.opts.het;
+    this.onConsonant['כ'] = this.opts.khaf;
+    this.onConsonant['ך'] = this.opts.khaf;
+    this.onConsonant['ת'] = isAshkenazi ? 's' : 't';
+
+    this.onVowel['אְ']  = this.opts.vocalSheva;
+    this.onVowel['אֵ']  = this.opts.tsere;
+    this.onVowel['אֵי'] = this.opts.tsereYod;
+    this.onVowel['אָ']  = isAshkenazi ? 'o' : 'a';
+    this.onVowel['אֺ']  = isAshkenazi ? (v) => this.ashkenaziHoylem(v) : 'o';
+    this.onVowel['אֹ']  = isAshkenazi ? (v) => this.ashkenaziHoylem(v) : 'o';
+
+    this.onHebrewMark['־'] = boldAccents ? ''  : '־';
+    this.onHebrewMark['׀'] = boldAccents ? '|' : '׀';
+    this.onHebrewMark['׃'] = boldAccents ? ':' : '׃';
+    this.onHebrewMark['׆'] = boldAccents ? ''  : '׆';
+    this.onHebrewMark['']  = boldAccents ? ''  : (m) => this.mark(m);
+
+    this.digraphs = new Set(Object.values(this.onConsonant).filter(
+      (c): c is string => typeof c === 'string' && c.length === 2));
+  }
+
+  // Some properties derived from options
+  get syllableSeparator() {
+    return this.opts.betweenSyllables !== '’' ? this.opts.betweenSyllables
+                                              : '';
+  }
+  get boldAccents() {
+    return this.opts.accents === ACCENT_BOLD;
+  }
+  get isAshkenazi() {
+    return this.opts.ashkenazi !== optionDefaults.ashkenazi;
+  }
+
+  // ---------------------------------------------------
+  //  Utility functions for other parts of the codebase
+  // ---------------------------------------------------
+
+  // Gets the syllable separators between each syllable and its next neighbor,
+  // given a list of already-transliterated syllables
+  syllableSeparators(syls: readonly string[]): string[] {
+    return syls.slice(1).map((syl, i) =>
+      this.separator(syls[i].slice(-1), syl.slice(0, 1)));
+  }
+
+  // Expand within a label any strings of the form `${key}`, where `key` can
+  // refer to the current value of another option or one of this object's
+  // properties
+  expandLabel(label: Label): Label {
+    return (typeof label === 'string' ? [label] : label).map((segment) => {
+      if (typeof segment !== 'string') { return segment; }
+      const schemeValues = this as Record<string, any>;
+      const optionsValues = this.opts as Record<string, any>;
+      return segment.replace(/\$\{(\w+)\}/g, (_, key: string) =>
+        String(key in this ? schemeValues[key] : optionsValues[key]));
+    });
   }
 }
 
@@ -411,21 +580,6 @@ function optionGroups(options: Options): OptionGroup[] {
   return groups;
 }
 
-// A label may refer to the current value of another option as `${key}`, e.g.
-// 'u${syllableSeparator}v${vocalSheva}'. Such labels are expanded here and
-// re-expanded whenever an option changes.
-function expandString(text: string, values: Record<string, unknown>): string {
-  return text.replace(/\$\{(\w+)\}/g, (_, key: string) => String(values[key]));
-}
-
-function expandLabel(label: Label, values: Record<string, unknown>): Label {
-  if (typeof label === 'string') {
-    return expandString(label, values);
-  }
-  return label.map((segment) =>
-    typeof segment === 'string' ? expandString(segment, values) : segment);
-}
-
 // Whether a label contains any `${key}`, and so must be re-expanded on change
 function hasTemplate(label: Label): boolean {
   const segments = typeof label === 'string' ? [label] : label;
@@ -486,8 +640,8 @@ function spokenLabel(label: Label): string {
 // button by the `label` which follows it. The returned `update` re-expands any
 // label which refers to the value of an option.
 function makeGroup(
+  scheme: Transliteration,
   group: OptionGroup,
-  values: Record<string, unknown>,
   changed: () => void,
 ): { el: HTMLDivElement; update: () => void } {
   const groupDiv = document.createElement('div');
@@ -499,7 +653,7 @@ function makeGroup(
   const render = (el: HTMLElement, text: Label) => {
     const fill = () => {
       el.replaceChildren();
-      appendLabel(el, expandLabel(text, values));
+      appendLabel(el, scheme.expandLabel(text));
     };
     fill();
     if (hasTemplate(text)) {
@@ -526,7 +680,7 @@ function makeGroup(
     const label = group.label;
     container.setAttribute('role', 'radiogroup');
     const name = () => container.setAttribute(
-      'aria-label', spokenLabel(expandLabel(label, values)));
+      'aria-label', spokenLabel(scheme.expandLabel(label)));
     name();
     if (hasTemplate(label)) {
       updates.push(name);
@@ -571,7 +725,7 @@ function makeGroup(
   // one height
   const buttonLabels = group.buttons.map((button) => button.label);
   const setTaam = () => container.classList.toggle(
-    'hasTaam', buttonLabels.some((l) => hasTaam(expandLabel(l, values))));
+    'hasTaam', buttonLabels.some((l) => hasTaam(scheme.expandLabel(l))));
   setTaam();
   if (buttonLabels.some(hasTemplate)) {
     updates.push(setTaam);
@@ -580,9 +734,11 @@ function makeGroup(
   return { el: groupDiv, update: () => updates.forEach((u) => u()) };
 }
 
-// Fill in the options panel with the options of `options` and wire up its
-// show/hide toggle. `changed` is called whenever an option is changed.
-export function setupOptions(options: Options, changed: () => void): void {
+// Fill in the options panel with the options of `scheme` and wire up its
+// show/hide toggle. The scheme is put back in step with its options before
+// `changed` is called, so that no one else has to remember to do it.
+export function setupOptions(scheme: Transliteration, changed: () => void): void {
+  const options = scheme.opts;
   const toggle = document.getElementById('optionsToggle') as HTMLButtonElement;
   const alwaysPanel =
     document.getElementById('alwaysOptionsPanel') as HTMLDivElement;
@@ -593,19 +749,20 @@ export function setupOptions(options: Options, changed: () => void): void {
   // changing under the other: each keeps what it was loaded with, and the tab
   // left last is the one a newly opened tab inherits from.
   let expanded = loadState(options);
+  scheme.update();
 
   // An option's value may appear in another option's label, so every group is
   // updated whenever any option changes
   const updates: (() => void)[] = [];
   const onChange = () => {
+    scheme.update();
     updates.forEach((u) => u());
     changed();
   };
 
-  const values = options as Record<string, unknown>;
   const groups = optionGroups(options);
   for (const group of groups) {
-    const { el, update } = makeGroup(group, values, onChange);
+    const { el, update } = makeGroup(scheme, group, onChange);
     updates.push(update);
     (group.alwaysVisible ? alwaysPanel : panel).append(el);
   }
@@ -620,7 +777,7 @@ export function setupOptions(options: Options, changed: () => void): void {
     ...group.buttons.map((button) => button.label),
   ]);
   const setFont = () => {
-    const taam = labels.some((l) => hasTaam(expandLabel(l, values)));
+    const taam = labels.some((l) => hasTaam(scheme.expandLabel(l)));
     alwaysPanel.classList.toggle('hasTaam', taam);
     panel.classList.toggle('hasTaam', taam);
   };
