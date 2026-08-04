@@ -2,9 +2,9 @@ import { Text } from 'havarotjs';
 import type { Word } from 'havarotjs/word';
 import { groupsOf, groupsAroundGap, highlightColors, groupingOf,
          type Boundary, type Colors, type Group, type Hovered, type Grouping,
-         HighlightingOptions} from './accents';
+         HighlightingOptions} from '../accents';
 import { EditableText } from './editable';
-import { Transliteration, setupOptions } from './options';
+import { Transliteration, setupOptions } from '../transliteration';
 
 // =========================
 //  Constants and variables

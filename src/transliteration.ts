@@ -4,9 +4,9 @@ import type { Consonant, HebrewMark, NonHebrew, SyllablePart, SyllablePartMap, S
 import { adonaiOrElohim } from 'havarotjs/utils/divineName';
 import { punctuation, taamim } from 'havarotjs/utils/regularExpressions';
 
-// ===================
-//  Types for options
-// ===================
+// ===================================
+//  Types for transliteration options
+// ===================================
 
 // A label for an option: either a string or an array consisting of
 // strings render as English, strings rendered as Hebrew (with tooltip
@@ -35,9 +35,9 @@ interface OptionSpec {
   alwaysVisible?: boolean;
 };
 
-// =============
-//  The options
-// =============
+// =========================
+//  Transliteration options
+// =========================
 
 // Some complex `choice` names used below - note that the identifiers that are
 // resolved in the strings below come from the keys of `Options` and the keys
@@ -132,9 +132,9 @@ const optionOverrides: {
   },
 };
 
-// =====================================================
-//  The transliteration scheme defined by these options
-// =====================================================
+// ==============================================
+//  The transliteration defined by these options
+// ==============================================
 
 export class Transliteration implements SyllablePartMap<string>,
                                         SyllableMap<string> {
