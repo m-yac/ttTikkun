@@ -66,66 +66,71 @@ export function kri(text: string): string {
 //  Adapted from `tikkun.io/src/components/Line.ts`
 // =================================================
 
-function ktivKriAnnotation(text: string) {
-  return text.replace(/[{]/g, `<span class="ktiv-kri">`)
-             .replace(/[}]/g, `</span>`)
-             .trim();
-}
-
-function petuchaClass(isPetucha: boolean) {
-  return isPetucha ? 'mod-petucha' : '';
-}
-
-function setumaClass(column: unknown[]) {
-  return column.length > 1 ? 'mod-setuma' : '';
+function ktivKriAnnotation(text: string): Node[] {
+  return text.trim().split(/[{}]/g).map((part, i) => {
+    // used to be delimited by `{` and `}`
+    if (i % 2 === 1) {
+      const span = document.createElement('span');
+      span.classList.add('ktiv-kri');
+      span.append(part);
+      return span;
+    }
+    return new Text(part);
+  });
 }
 
 function fragmentText(fragment: Fragment[]) {
   return fragment.map((chunk) => chunk.he.join('')).join('');
 }
 
-function lineHTML(page: Page, index: number): string {
+function lineElement(page: Page, index: number): HTMLTableRowElement {
   const line: Line = page[index];
-  return `
-  <tr data-class="line" data-line-index="${index}">
-    <td class="line ${petuchaClass(line.isPetucha)}">
-      ${line.text
-        .map(
-          (column) => `
-        <div class="column">
-          ${column
-            .map(
-              (fragment) => `
-            <span class="fragment ${setumaClass(
-              column
-            )} mod-annotations-on">${ktivKriAnnotation(
-                ketiv(fragmentText(fragment))
-              )}</span>
-            <span class="fragment ${setumaClass(
-              column
-            )} mod-annotations-off">${ktivKriAnnotation(
-                kri(fragmentText(fragment))
-              )}</span>
-          `
-            )
-            .join('')}
-        </div>
-      `
-        )
-        .join('')}
-      <span class="location-indicator mod-verses">${asVersesRange(
-        // only the verses which *begin* on this line
-        line.verses.filter((verse) => verse.indexOfFirstWord === 0)
-      )}</span>
-    </td>
-  </tr>
-  `;
+
+  const td = document.createElement('td');
+  td.classList.add('line'); 
+  if (line.isPetucha) {
+    td.classList.add('mod-petucha');
+  }
+
+  line.text.forEach((column) => {
+    const isSetuma = column.length > 1;
+    const div = document.createElement('div');
+    div.classList.add('column');
+    column.forEach((fragment) => {
+      const text = fragmentText(fragment);
+      const span0 = document.createElement('span');
+      const span1 = document.createElement('span');
+      span0.classList.add('fragment', 'mod-annotations-off');
+      span1.classList.add('fragment', 'mod-annotations-on');
+      if (isSetuma) {
+        span0.classList.add('mod-setuma');
+        span1.classList.add('mod-setuma');
+      }
+      span0.append(...ktivKriAnnotation(kri(text)));
+      span1.append(...ktivKriAnnotation(ketiv(text)));
+      div.append(span0);
+      div.append(span1);
+    });
+    td.append(div);
+  });
+
+  const startingVerses = line.verses.filter((verse) =>
+    verse.indexOfFirstWord === 0);
+
+  const verseRef = document.createElement('span');
+  verseRef.classList.add('location-indicator', 'mod-verses');
+  verseRef.append(asVersesRange(startingVerses));
+  td.append(verseRef);
+
+  const tr = document.createElement('tr');
+  tr.dataset.class = 'line';
+  tr.dataset.lineIndex = String(index);
+  tr.append(td);
+  return tr;
 }
 
-export function pageHTML(page: Page) {
-  return`
-  <table>
-    ${page.map((_, index) => lineHTML(page, index)).join('')}
-  </table>
-  `;
+export function pageElement(page: Page): HTMLTableElement {
+  const table = document.createElement('table');
+  page.forEach((_, index) => table.append(lineElement(page, index)));
+  return table;
 }

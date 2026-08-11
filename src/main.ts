@@ -1,11 +1,11 @@
 import { loadPage } from "./data"
-import { pageHTML } from "./tikkun";
+import { pageElement } from "./tikkun";
 
 // Just load this page for now as a test
 const page = await loadPage('torah', 1);
 const pageDiv = document.createElement('div');
 pageDiv.classList.add('tikkun-page');
-pageDiv.innerHTML = pageHTML(page);
+pageDiv.append(pageElement(page));
 document.getElementById('pages')!.append(pageDiv);
 
 export {}
