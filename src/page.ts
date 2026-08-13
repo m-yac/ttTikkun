@@ -4,21 +4,25 @@ import { Text as HavarotjsText } from 'havarotjs';
 import { Transliteration } from "./transliteration";
 
 /**
- * [THIS FUNCTION GENERATED ENTIRELY BY AI]
- * The number of lines the contents of `element` are laid out on. Only the
+ * [THIS FUNCTION WAS ORIGINALLY GENERATED ENTIRELY BY AI]
+ * Whether the contents of `element` are laid out on at most one line. Only the
  * element's actual contents are measured, not any of its pseudo-elements.
  */
-function countLines(element: Element): number {
-  const range = document.createRange();
-  range.selectNodeContents(element);
-  const tops = [...range.getClientRects()]
-    .filter((rect) => rect.width > 0 && rect.height > 0)
-    .map((rect) => rect.top)
-    .sort((a, b) => a - b);
-  // Rects on the same line need not have exactly the same top, so only count
-  // a rect as starting a new line if it is more than a pixel below the last
-  return tops.reduce((count, top, i) =>
-    i > 0 && top - tops[i - 1] <= 1 ? count : count + 1, 0);
+function isOneLine(root: Element, query='.fragment'): boolean {
+  for (const element of root.querySelectorAll<HTMLElement>(query)) {
+    const range = document.createRange();
+    range.selectNodeContents(element);
+    const tops = [...range.getClientRects()]
+      .filter((rect) => rect.width > 0 && rect.height > 0)
+      .map((rect) => rect.top)
+      .sort((a, b) => a - b);
+    // Rects on the same line need not have exactly the same top, so only count
+    // a rect as starting a new line if it is more than a pixel below the last
+    if (!tops.every((top, i) => i === 0 || top - tops[i - 1] <= 1)) {
+      return false;
+    }
+  }
+  return true;
 }
 
 /**
@@ -74,15 +78,15 @@ export abstract class Page {
 
   ensureNoLineBreaks(): void {
     this.withSavedDisplay(() => {
-      for (const fragment of this.element.querySelectorAll<HTMLElement>
-                                                          ('.fragment')) {
-        if (countLines(fragment) <= 1) { continue; }
+      for (const column of this.element.querySelectorAll<HTMLElement>
+                                                        ('.column')) {
+        if (isOneLine(column)) { continue; }
 
         // If we wouldn't get everything on one line even with the minimum
         // font stretch, just disable wrapping and continue
-        fragment.style.fontStretch = `${this.minFontStretch}%`;
-        if (countLines(fragment) > 1) {
-          fragment.style.whiteSpace = 'nowrap';
+        column.style.fontStretch = `${this.minFontStretch}%`;
+        if (!isOneLine(column)) {
+          column.style.whiteSpace = 'nowrap';
           continue;
         }
 
@@ -94,8 +98,8 @@ export abstract class Page {
         // While our range is more than at least one tenth wide...
         while (hiTenths - loTenths > 1) {
           const midTenths = Math.floor((loTenths + hiTenths) / 2);
-          fragment.style.fontStretch = `${midTenths / 10}%`;
-          if (countLines(fragment) > 1) {
+          column.style.fontStretch = `${midTenths / 10}%`;
+          if (!isOneLine(column)) {
             // We must to go lower, so move our range down by half:
             // [lo, hi] -> [lo, mid]
             hiTenths = midTenths;
@@ -106,7 +110,7 @@ export abstract class Page {
             loTenths = midTenths;
           }
         }
-        fragment.style.fontStretch = `${loTenths / 10}%`;
+        column.style.fontStretch = `${loTenths / 10}%`;
       }
     });
   }
