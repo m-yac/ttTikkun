@@ -1,4 +1,4 @@
-import { VerseRef, type Fragment, type Line, type Page } from "./data"
+import { VerseRef, type Fragment, type LineData, type PageData } from "./data"
 
 // ================================================
 //  Adapted from `tikkun.io/src/hebrew-numeral.ts`
@@ -66,7 +66,7 @@ export function kri(text: string): string {
 //  Adapted from `tikkun.io/src/components/Line.ts`
 // =================================================
 
-function ktivKriAnnotation(text: string): Node[] {
+export function ktivKriAnnotation(text: string): Node[] {
   return text.trim().split(/[{}]/g).map((part, i) => {
     // used to be delimited by `{` and `}`
     if (i % 2 === 1) {
@@ -79,58 +79,60 @@ function ktivKriAnnotation(text: string): Node[] {
   });
 }
 
-function fragmentText(fragment: Fragment[]) {
+export function fragmentText(fragment: Fragment[]): string {
   return fragment.map((chunk) => chunk.he.join('')).join('');
 }
 
-function lineElement(page: Page, index: number): HTMLTableRowElement {
-  const line: Line = page[index];
+export function lineElement(
+  page: PageData, index: number,
+  onFragments: (fragments: Fragment[]) => (string | Node)[]
+): HTMLTableRowElement {
+  const line: LineData = page[index];
 
-  const td = document.createElement('td');
-  td.classList.add('line'); 
+  const lineTd = document.createElement('td');
+  lineTd.classList.add('line'); 
   if (line.isPetucha) {
-    td.classList.add('mod-petucha');
+    lineTd.classList.add('is-petucha');
   }
 
-  line.text.forEach((column) => {
-    const isSetuma = column.length > 1;
-    const div = document.createElement('div');
-    div.classList.add('column');
-    column.forEach((fragment) => {
-      const text = fragmentText(fragment);
-      const span0 = document.createElement('span');
-      const span1 = document.createElement('span');
-      span0.classList.add('fragment', 'mod-annotations-off');
-      span1.classList.add('fragment', 'mod-annotations-on');
-      if (isSetuma) {
-        span0.classList.add('mod-setuma');
-        span1.classList.add('mod-setuma');
+  line.text.columns.forEach((column) => {
+    const columnDiv = document.createElement('div');
+    columnDiv.classList.add('column');
+
+    column.forEach((fragments) => {
+      const fragmentsSpan = document.createElement('span');
+      fragmentsSpan.classList.add('fragments');
+      if (line.text.format === 'setuma') {
+        fragmentsSpan.classList.add('is-setuma');
       }
-      span0.append(...ktivKriAnnotation(kri(text)));
-      span1.append(...ktivKriAnnotation(ketiv(text)));
-      div.append(span0);
-      div.append(span1);
+
+      fragmentsSpan.append(...onFragments(fragments));
+      columnDiv.append(fragmentsSpan);
     });
-    td.append(div);
+    lineTd.append(columnDiv);
   });
 
   const startingVerses = line.verses.filter((verse) =>
     verse.indexOfFirstWord === 0);
 
-  const verseRef = document.createElement('span');
-  verseRef.classList.add('location-indicator', 'mod-verses');
-  verseRef.append(asVersesRange(startingVerses));
-  td.append(verseRef);
+  const verseRefSpan = document.createElement('span');
+  verseRefSpan.classList.add('verse-ref');
+  verseRefSpan.append(asVersesRange(startingVerses));
+  lineTd.append(verseRefSpan);
 
-  const tr = document.createElement('tr');
-  tr.dataset.class = 'line';
-  tr.dataset.lineIndex = String(index);
-  tr.append(td);
-  return tr;
+  const lineTr = document.createElement('tr');
+  lineTr.dataset.class = 'line';
+  lineTr.dataset.lineIndex = String(index);
+  lineTr.append(lineTd);
+  return lineTr;
 }
 
-export function pageElement(page: Page): HTMLTableElement {
-  const table = document.createElement('table');
-  page.forEach((_, index) => table.append(lineElement(page, index)));
-  return table;
+export function pageElement(
+  page: PageData,
+  onFragments: (fragments: Fragment[]) => (string | Node)[]
+): HTMLTableElement {
+  const pageTable = document.createElement('table');
+  page.forEach((_, index) =>
+    pageTable.append(lineElement(page, index, onFragments)));
+  return pageTable;
 }

@@ -55,6 +55,29 @@ export const Fragment = z.object({
 export type Fragment = z.infer<typeof Fragment>;
 
 /**
+ * Some number of `Fragment`s, formatted as two columns, as a single column
+ * with a setuma break, or as a single unbroken line
+ */
+export type Text
+  = { format: 'columns', columns: [ [Fragment[]], [Fragment[]] ] }
+  | { format: 'setuma',  columns: [ [Fragment[], Fragment[]] ] }
+  | { format: 'none',    columns: [ [Fragment[]] ] };
+export const Text = z.union([
+  z.tuple([z.tuple([z.array(Fragment)]), z.tuple([z.array(Fragment)])]),
+  z.tuple([z.tuple([z.array(Fragment), z.array(Fragment)])]),
+  z.tuple([z.tuple([z.array(Fragment)])]),
+]).transform((columns): Text => {
+  if (columns.length === 2) {
+    return { format: 'columns', columns: columns }
+  }
+  const [column] = columns;
+  if (column.length === 2) {
+    return { format: 'setuma', columns: [column] }
+  }
+  return { format: 'none', columns: [column] }
+});
+
+/**
  * A reference to a verse:
  * - The verse's book, chapter, and verse
  * - The index into the full verse's words that corresponds to the first word
@@ -76,18 +99,18 @@ export type VerseRef = z.infer<typeof VerseRef>;
  * - The list of `VerseRef`s that this line includes
  * - Whether this line ends in a petucha break
  */
-export const Line = z.object({
-  text: z.array(z.array(z.array(Fragment))),
+export const LineData = z.object({
+  text: Text,
   verses: z.array(VerseRef),
   isPetucha: z.boolean(),
 });
-export type Line = z.infer<typeof Line>;
+export type LineData = z.infer<typeof LineData>;
 
 /**
  * A page as an array of `Line`s
  */
-export const Page = z.array(Line);
-export type Page = z.infer<typeof Page>;
+export const PageData = z.array(LineData);
+export type PageData = z.infer<typeof PageData>;
 
 
 // =====================================
@@ -128,9 +151,9 @@ type Book = 'torah' | 'esther';
 /**
  * Load a `Page` (indexed from 1) from a `Book`
  */
-export async function loadPage(book: Book, page: number): Promise<Page> {
+export async function loadPage(book: Book, page: number): Promise<PageData> {
   const module = await import(`./data/pages/${book}/${page}.json`);
-  return Page.parse(Array.from(module.default));
+  return PageData.parse(Array.from(module.default));
 }
 
 /**
@@ -147,4 +170,26 @@ export async function loadLookup(book: Book): Promise<Lookup> {
 export async function loadLookups(): Promise<Record<Book, Lookup>> {
   return { torah: await loadLookup('torah'),
            esther: await loadLookup('esther') };
+}
+
+/**
+ * Returns the error thrown if any of the data does not match this scheme
+ */
+export async function validateData(): Promise<Error | null> {
+  try {
+    for (let i = 1; i <= 245; i++) {
+      await loadPage('torah', 1);
+    }
+    for (let i = 1; i <= 17; i++) {
+      await loadPage('esther', 1);
+    }
+    await loadLookups();
+  }
+  catch (e) {
+    if (e instanceof Error) {
+      return e;
+    }
+    return new Error(`Thrown in validateData: ${e}`);
+  }
+  return null;
 }

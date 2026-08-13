@@ -29,7 +29,7 @@
   justify-content: space-between;
 }
 
-.line.mod-petucha {
+.line.is-petucha {
   text-align: start;
 }
 
@@ -50,26 +50,21 @@
   width: 12em;
 }
 
-.fragment {
+.fragments {
   width: 100%;
 }
 
-.tikkun-book.mod-annotations-off .fragment.mod-annotations-on,
-.tikkun-book.mod-annotations-on .fragment.mod-annotations-off {
-  display: none;
-}
-
-.fragment.mod-setuma {
+.fragments.is-setuma {
   width: auto;
 }
 
-.fragment:after {
+.fragments:after {
   content: '';
   width: 100%;
   display: inline-block;
 }
 
-.location-indicator.mod-verses {
+.verse-ref {
   position: absolute;
   right: -6ch;
   font-family: sans-serif;
