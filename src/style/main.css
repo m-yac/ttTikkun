@@ -24,6 +24,7 @@
 }
 
 .tikkun-page table {
+  table-layout: fixed;
   border-spacing: 0;
 }
 
@@ -34,8 +35,8 @@
 .line {
   position: relative;
   text-align: justify;
-  /* Divide by two to compensate for .fragment:after */
-  line-height: calc(33.75pt * var(--scale) / 2);
+  text-align-last: justify;
+  line-height: calc(33.75pt * var(--scale));
   display: flex;
   justify-content: space-between;
   gap: 5em;
@@ -67,12 +68,6 @@
 
 .fragment.is-setuma {
   width: auto;
-}
-
-.fragment:after {
-  content: '';
-  width: 100%;
-  display: inline-block;
 }
 
 .verse-ref {

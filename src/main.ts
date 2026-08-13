@@ -12,8 +12,10 @@ const lookups = await loadLookups();
 const translit = new Transliteration();
 
 // For now, just load this page as a test
-// const page = await loadPage('torah', lookups['torah'][2][15][1].refs[0].page);
-const page = await loadPage('torah', lookups['torah'][5][32][1].refs[0].page);
+// const page = await loadPage('torah', 8);
+const page = await loadPage('torah', lookups['torah'][2][15][1].refs[0].page);
+// const page = await loadPage('torah', lookups['torah'][5][32][1].refs[0].page);
+// const page = await loadPage('esther', lookups['esther'][1][9][7].refs[0].page);
 
 const tikkunPageDiv = document.createElement('div');
 tikkunPageDiv.classList.add('tikkun-page');
