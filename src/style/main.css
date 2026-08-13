@@ -23,12 +23,22 @@
   justify-content: center;
 }
 
+.tikkun-page table {
+  border-spacing: 0;
+}
+
+.tikkun-page td {
+  padding: 0;
+}
+
 .line {
   position: relative;
   text-align: justify;
-  line-height: 100%;
+  /* Divide by two to compensate for .fragment:after */
+  line-height: calc(33.75pt * var(--scale) / 2);
   display: flex;
   justify-content: space-between;
+  gap: 5em;
 }
 
 .line.is-petucha {
@@ -42,13 +52,12 @@
   min-width: 18ch; /* HACK: This provides the most gap possible for עשרת בני המן in מגילת אסתר without compromising the layout for האזינו */
 }
 
-.column:nth-child(2) {
+.column.is-two-column {
   /*HACK: this rule is a special hack for פרשת האזינו
     to properly display the columns:
         a) with space between the columns
         b) without the column line breaking into two
   */
-  margin-right: 5em;
   width: 12em;
 }
 
@@ -100,22 +109,22 @@
 }
 .en {
   display: none;
-  font-family: "Georgia", serif;
+  font-family: "Noto Serif", serif;
   font-size: calc(13.5pt * var(--scale));
   letter-spacing: var(--letter-spacing);
 }
 
 .tikkun-page.show-ketiv .ketiv {
-  display: block;
+  display: table;
 }
 .tikkun-page.show-kri .kri {
-  display: block;
+  display: table;
 }
 .tikkun-page.show-tl .tl {
-  display: block;
+  display: table;
 }
 .tikkun-page.show-en .en {
-  display: block;
+  display: table;
 }
 
 /********************
@@ -131,7 +140,7 @@
   position: absolute;
   left: -5px;
   top: -5px;
-  width: calc(100% + 8px);
+  width: calc(100% + 7px);
   height: calc(100% + 10px);
   border: 1px dashed rgba(0, 0, 0, 75%);
   border-radius: 2px;

@@ -99,6 +99,9 @@ export function lineElement(
   line.text.columns.forEach((column) => {
     const columnDiv = document.createElement('div');
     columnDiv.classList.add('column');
+    if (line.text.format === 'columns') {
+      columnDiv.classList.add('is-two-column');
+    }
 
     column.forEach((fragment) => {
       const fragmentSpan = document.createElement('span');

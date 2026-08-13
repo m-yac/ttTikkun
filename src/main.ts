@@ -12,14 +12,28 @@ const lookups = await loadLookups();
 const translit = new Transliteration();
 
 // For now, just load this page as a test
-const page = await loadPage('torah', lookups['torah'][2][15][1].refs[0].page);
+// const page = await loadPage('torah', lookups['torah'][2][15][1].refs[0].page);
+const page = await loadPage('torah', lookups['torah'][5][32][1].refs[0].page);
+
 const tikkunPageDiv = document.createElement('div');
 tikkunPageDiv.classList.add('tikkun-page');
-tikkunPageDiv.append(new KetivPage(page).element);
-tikkunPageDiv.append(new KriPage(page).element);
-tikkunPageDiv.append(new TranslitPage(page, translit).element);
-tikkunPageDiv.append(new EnglishPage(page).element);
+const pages = [
+  new KetivPage(page),
+  new KriPage(page),
+  new TranslitPage(page, translit),
+  new EnglishPage(page),
+];
+tikkunPageDiv.append(...pages.map((page) => page.element));
 document.getElementById('pages')!.append(tikkunPageDiv);
+
+for (const page of pages) {
+  await page.ensureFontLoaded();
+}
+const width = pages[0].getWidth();
+for (const page of pages) {
+  page.setWidth(width);
+  page.ensureNoLineBreaks();
+}
 
 // For now, press 1,2,3,4 to switch between the pages
 let shown = 'show-ketiv';
