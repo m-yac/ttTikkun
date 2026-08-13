@@ -1,4 +1,4 @@
-import { VerseRef, type Fragment, type LineData, type PageData } from "./data"
+import { type VerseRef, type Fragment, type LineData, type PageData } from "./data"
 
 // ================================================
 //  Adapted from `tikkun.io/src/hebrew-numeral.ts`
@@ -23,8 +23,8 @@ function asVersesRange(verses: VerseRef[]): string {
 
 const NUN_HAFUCHA = '׆';
 
-/** Strips the ketiv, leaving the (vocalized) kri wrapped in `{`...`}`. */
-export function ketiv(text: string): string {
+/** NOTE: In `tikkun.io`, this name is mistakenly swapped with `ketiv` */
+export function kri(text: string): string {
   return text
     .replace('#(פ)', '')
     .replace(`(${NUN_HAFUCHA})#`, `${NUN_HAFUCHA} `)
@@ -49,8 +49,8 @@ export function ketiv(text: string): string {
     .replace(/\]/g, '}');
 }
 
-/** Strips the kri and all vocalization, leaving the bare text of the scroll. */
-export function kri(text: string): string {
+/** NOTE: In `tikkun.io`, this name is mistakenly swapped with `kri` */
+export function ketiv(text: string): string {
   return text
     .replace('#(פ)', '')
     .replace(`(${NUN_HAFUCHA})#`, `${NUN_HAFUCHA} `)
@@ -66,12 +66,13 @@ export function kri(text: string): string {
 //  Adapted from `tikkun.io/src/components/Line.ts`
 // =================================================
 
-export function ktivKriAnnotation(text: string): Node[] {
+// To be applied to the output of `kri` with argument 'ketiv-kri'
+export function expandAnnotation(text: string, cssClass: string): Node[] {
   return text.trim().split(/[{}]/g).map((part, i) => {
     // used to be delimited by `{` and `}`
     if (i % 2 === 1) {
       const span = document.createElement('span');
-      span.classList.add('ktiv-kri');
+      span.classList.add(cssClass);
       span.append(part);
       return span;
     }
@@ -79,13 +80,13 @@ export function ktivKriAnnotation(text: string): Node[] {
   });
 }
 
-export function fragmentText(fragment: Fragment[]): string {
-  return fragment.map((chunk) => chunk.he.join('')).join('');
+export function fragmentText(fragment: Fragment): string {
+  return fragment.map((part) => part.he.join('')).join('');
 }
 
 export function lineElement(
   page: PageData, index: number,
-  onFragments: (fragments: Fragment[]) => (string | Node)[]
+  onFragment: (fragment: Fragment) => (string | Node)[]
 ): HTMLTableRowElement {
   const line: LineData = page[index];
 
@@ -99,15 +100,15 @@ export function lineElement(
     const columnDiv = document.createElement('div');
     columnDiv.classList.add('column');
 
-    column.forEach((fragments) => {
-      const fragmentsSpan = document.createElement('span');
-      fragmentsSpan.classList.add('fragments');
+    column.forEach((fragment) => {
+      const fragmentSpan = document.createElement('span');
+      fragmentSpan.classList.add('fragment');
       if (line.text.format === 'setuma') {
-        fragmentsSpan.classList.add('is-setuma');
+        fragmentSpan.classList.add('is-setuma');
       }
 
-      fragmentsSpan.append(...onFragments(fragments));
-      columnDiv.append(fragmentsSpan);
+      fragmentSpan.append(...onFragment(fragment));
+      columnDiv.append(fragmentSpan);
     });
     lineTd.append(columnDiv);
   });
@@ -118,7 +119,7 @@ export function lineElement(
   const verseRefSpan = document.createElement('span');
   verseRefSpan.classList.add('verse-ref');
   verseRefSpan.append(asVersesRange(startingVerses));
-  lineTd.append(verseRefSpan);
+  // lineTd.append(verseRefSpan);
 
   const lineTr = document.createElement('tr');
   lineTr.dataset.class = 'line';
@@ -129,10 +130,10 @@ export function lineElement(
 
 export function pageElement(
   page: PageData,
-  onFragments: (fragments: Fragment[]) => (string | Node)[]
+  onFragment: (fragment: Fragment) => (string | Node)[]
 ): HTMLTableElement {
   const pageTable = document.createElement('table');
   page.forEach((_, index) =>
-    pageTable.append(lineElement(page, index, onFragments)));
+    pageTable.append(lineElement(page, index, onFragment)));
   return pageTable;
 }

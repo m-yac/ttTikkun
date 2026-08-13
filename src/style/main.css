@@ -5,6 +5,9 @@
  *****************************************/
 
 .tikkun-book {
+  --scale: 1;
+  --letter-spacing: -0.05em;
+  --word-spacing: 0.25em;
   padding-top: 1em;
   padding-bottom: 5em;
   font-size: 1.5em;
@@ -18,7 +21,6 @@
 .tikkun-page {
   display: flex;
   justify-content: center;
-  font-family: "Shlomo Stam";
 }
 
 .line {
@@ -50,15 +52,15 @@
   width: 12em;
 }
 
-.fragments {
+.fragment {
   width: 100%;
 }
 
-.fragments.is-setuma {
+.fragment.is-setuma {
   width: auto;
 }
 
-.fragments:after {
+.fragment:after {
   content: '';
   width: 100%;
   display: inline-block;
@@ -75,10 +77,67 @@
   user-select: none;
 }
 
-.ktiv-kri {
-  background-color: hsla(0, 0%, 0%, 0.1);
-  padding: 0.1rem 0.1rem;
-  border: 1px solid hsla(0, 0%, 0%, 0.1);
-  border-radius: 8px;
+/*********************************************
+  Formatting for the different types of pages
+ *********************************************/
+
+.ketiv {
+  display: none;
+  font-family: "Shlomo Stam", serif;
+  font-size: calc(18.75pt * var(--scale));
+}
+.kri {
+  display: none;
+  font-family: "Shlomo", serif;
+  font-size: calc(18.75pt * var(--scale));
+}
+.tl {
+  display: none;
+  font-family: "Bitter Hebrew", serif;
+  font-size: calc(13.5pt * var(--scale));
+  letter-spacing: var(--letter-spacing);
+  word-spacing: var(--word-spacing);
+}
+.en {
+  display: none;
+  font-family: "Georgia", serif;
+  font-size: calc(13.5pt * var(--scale));
+  letter-spacing: var(--letter-spacing);
+}
+
+.tikkun-page.show-ketiv .ketiv {
+  display: block;
+}
+.tikkun-page.show-kri .kri {
+  display: block;
+}
+.tikkun-page.show-tl .tl {
+  display: block;
+}
+.tikkun-page.show-en .en {
+  display: block;
+}
+
+/********************
+  Special formatting
+ ********************/
+
+.ketiv-kri {
   position: relative;
+}
+
+.ketiv-kri::after {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  width: calc(100% + 8px);
+  height: calc(100% + 10px);
+  border: 1px dashed rgba(0, 0, 0, 75%);
+  border-radius: 2px;
+  z-index: -1;
+}
+
+.implied-word {
+  color: #999;
 }

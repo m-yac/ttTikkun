@@ -6,14 +6,14 @@ import * as z from 'zod';
 
 /**
  * A reference that links an `EnChunk` to a Hebrew word - either:
- * - A word at a specific index within this fragment
- * - A word at a specific index in a different fragment
- * - An indicator that this `EnChunk` either continues in the next fragment or
- *   is continued from the previous fragment (depending on its position)
+ * - A word at a specific index within this part
+ * - A word at a specific index in a different part
+ * - An indicator that this `EnChunk` either continues in the next part or
+ *   is continued from the previous part (depending on its position)
  */
 export type WordRef 
   = { type: 'word', word: number }
-  | { type: 'ref', page: number, line: number, fragment: number, word: number }
+  | { type: 'ref', page: number, line: number, part: number, word: number }
   | { type: 'continued' };
 export const WordRef = z.union([
   z.int(),
@@ -24,7 +24,7 @@ export const WordRef = z.union([
     return { type: 'word', word: v };
   }
   if (v.length !== 0) {
-    return { type: 'ref', page: v[0], line: v[1], fragment: v[2], word: v[3] };
+    return { type: 'ref', page: v[0], line: v[1], part: v[2], word: v[3] };
   }
   return { type: 'continued' };
 });
@@ -47,34 +47,41 @@ export const EnChunk =
  * A run of Hebrew words and linked English words, along with the index of the
  * `VerseRef` in `Line.verses` that it is a part of
  */
-export const Fragment = z.object({
+export const Part = z.object({
   he: z.array(z.string()),
   en: z.array(EnChunk),
   verseIndex: z.int().nonnegative(),
 });
+export type Part = z.infer<typeof Part>;
+
+/**
+ * A fragment of text which is not broken up by columns, setuma breaks, or line
+ * breaks - consisting of some number of `Part`s (may be zero)
+ */
+export const Fragment = z.array(Part);
 export type Fragment = z.infer<typeof Fragment>;
 
 /**
- * Some number of `Fragment`s, formatted as two columns, as a single column
- * with a setuma break, or as a single unbroken line
+ * Some number of `Fragment`s, formatted either as two columns, as a single
+ * column with setuma break(s), or as a single unbroken line
  */
 export type Text
-  = { format: 'columns', columns: [ [Fragment[]], [Fragment[]] ] }
-  | { format: 'setuma',  columns: [ [Fragment[], Fragment[]] ] }
-  | { format: 'none',    columns: [ [Fragment[]] ] };
+  = { format: 'columns', columns: [ [Fragment], [Fragment] ] }
+  | { format: 'setuma',  columns: [ [Fragment, Fragment, ...Fragment[]] ] }
+  | { format: 'line',    columns: [ [Fragment] ] }
 export const Text = z.union([
-  z.tuple([z.tuple([z.array(Fragment)]), z.tuple([z.array(Fragment)])]),
-  z.tuple([z.tuple([z.array(Fragment), z.array(Fragment)])]),
-  z.tuple([z.tuple([z.array(Fragment)])]),
+  z.tuple([z.tuple([Fragment]), z.tuple([Fragment])]),
+  z.tuple([z.array(Fragment).nonempty()])
 ]).transform((columns): Text => {
   if (columns.length === 2) {
     return { format: 'columns', columns: columns }
   }
-  const [column] = columns;
-  if (column.length === 2) {
-    return { format: 'setuma', columns: [column] }
+  const [[fragment0, ...fragments1]] = columns;
+  if (fragments1.length === 0) {
+    return { format: 'line', columns: [[fragment0]] }    
   }
-  return { format: 'none', columns: [column] }
+  const [fragment1, ...fragments2] = fragments1;
+  return { format: 'setuma', columns: [[fragment0, fragment1, ...fragments2]] }
 });
 
 /**
@@ -176,20 +183,29 @@ export async function loadLookups(): Promise<Record<Book, Lookup>> {
  * Returns the error thrown if any of the data does not match this scheme
  */
 export async function validateData(): Promise<Error | null> {
-  try {
-    for (let i = 1; i <= 245; i++) {
-      await loadPage('torah', 1);
+  for (const [book, pages] of [['torah', 245], ['esther', 17]] as [Book, number][]) {
+    for (let i = 1; i <= pages; i++) {
+      try {
+        await loadPage(book, i);
+      }
+      catch (e) {
+        if (e instanceof Error) {
+          e.message = `Failed to load ${book} page ${i}:\n` + e.message;
+          return e;
+        }
+        return new Error(`Failed to load ${book} page ${i}:\n ${e}`);
+      }
     }
-    for (let i = 1; i <= 17; i++) {
-      await loadPage('esther', 1);
+    try {
+      await loadLookup(book);
     }
-    await loadLookups();
-  }
-  catch (e) {
-    if (e instanceof Error) {
-      return e;
+    catch (e) {
+      if (e instanceof Error) {
+        e.message = `Failed to load ${book} lookup:\n` + e.message;
+        return e;
+      }
+      return new Error(`Failed to load ${book} lookup:\n ${e}`);
     }
-    return new Error(`Thrown in validateData: ${e}`);
   }
   return null;
 }
