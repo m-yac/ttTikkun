@@ -21,9 +21,16 @@
 .tikkun-page {
   display: flex;
   justify-content: center;
+  transform-origin: top center;
+  gap: 32px;
+}
+
+.tikkun-page.is-reversed {
+  flex-direction: row-reverse;
 }
 
 .tikkun-page table {
+  flex: none;
   table-layout: fixed;
   border-spacing: 0;
 }

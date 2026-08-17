@@ -1,5 +1,5 @@
 import { loadLookups, loadPage } from "./data"
-import { KriPage, KetivPage, EnglishPage, TranslitPage } from "./page";
+import { TikkunPage, pageTypes } from "./page";
 import { Transliteration } from "./transliteration";
 
 // import { validateData } from "./data";
@@ -17,35 +17,19 @@ const page = await loadPage('torah', lookups['torah'][2][15][1].refs[0].page);
 // const page = await loadPage('torah', lookups['torah'][5][32][1].refs[0].page);
 // const page = await loadPage('esther', lookups['esther'][1][9][7].refs[0].page);
 
-const tikkunPageDiv = document.createElement('div');
-tikkunPageDiv.classList.add('tikkun-page');
-const pages = [
-  new KetivPage(page),
-  new KriPage(page),
-  new TranslitPage(page, translit),
-  new EnglishPage(page),
-];
-tikkunPageDiv.append(...pages.map((page) => page.element));
-document.getElementById('pages')!.append(tikkunPageDiv);
+const tikkunPage = new TikkunPage(page, translit);
+document.getElementById('pages')!.append(tikkunPage.element);
+await tikkunPage.loadPrerequisites();
+tikkunPage.ensureNoLineWraps();
+tikkunPage.updatePages();
 
-for (const page of pages) {
-  await page.ensureFontLoaded();
-}
-const width = pages[0].getWidth();
-for (const page of pages) {
-  page.setWidth(width);
-  page.ensureNoLineBreaks();
-}
+// For now, press 1,2,3,4 to choose the left page and 7,8,9,0 the right page
+const leftKeys = ['1', '2', '3', '4'];
+const rightKeys = ['7', '8', '9', '0'];
 
-// For now, press 1,2,3,4 to switch between the pages
-let shown = 'show-ketiv';
-function updateShown(key: string) {
-  tikkunPageDiv.classList.remove(shown);
-  if (key == '1') { shown = 'show-ketiv'; }
-  if (key == '2') { shown = 'show-kri'; }
-  if (key == '3') { shown = 'show-tl'; }
-  if (key == '4') { shown = 'show-en'; }
-  tikkunPageDiv.classList.add(shown);
-}
-updateShown('ketiv');
-window.addEventListener('keydown', (event) => updateShown(event.key));
+window.addEventListener('keydown', (event) => {
+  const left = pageTypes[leftKeys.indexOf(event.key)];
+  const right = pageTypes[rightKeys.indexOf(event.key)];
+  if (left != undefined) { tikkunPage.updateLeftPage(left); }
+  if (right != undefined) { tikkunPage.updateRightPage(right); }
+});
