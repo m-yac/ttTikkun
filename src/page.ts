@@ -278,7 +278,7 @@ export class TranslitPage extends Page {
  */
 export class EnglishPage extends Page {
   type = 'en' as const;
-  minFontStretch = 62.5;
+  minFontStretch = 50;
 
   onFragment = (fragment: Fragment): (string | Node)[] => {
     return fragment.flatMap(({en}) => en.flatMap((chunk) => {
@@ -300,7 +300,7 @@ export class TikkunPage extends PageElement {
   readonly element: HTMLElement;
   readonly pages: Record<PageType, Page>;
   private left: PageType = 'ketiv';
-  private right: PageType = 'kri';
+  private right: PageType = 'en';
 
   constructor(data: PageData, translit: Transliteration) {
     super();

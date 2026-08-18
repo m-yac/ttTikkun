@@ -24,8 +24,8 @@ data_p = top_level / 'src' / 'data'
 # alongside what a run writes. See combine/pull_clean_ult.py.
 ult_p = top_level / 'textSources' / 'en_ult_clean'
 
-shlomo = TTFont(top_level / 'textSources' / 'tikkun.io' / 'assets' / 'fonts' / 'Shlomosemistam.ttf')
-garamond = TTFont(top_level / 'src' / 'fonts' / 'AGaramondPro-Regular.otf')
+heFont = TTFont(top_level / 'src' / 'fonts' / 'ShlomoStam' / 'ShlomoStam.ttf')
+enFont = TTFont(top_level / 'src' / 'fonts' / 'amstelvar-v1' / 'Amstelvar-Roman[GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,wdth,wght,opsz].ttf')
 
 ult_fnms = { "torah": ['01-GEN', '02-EXO', '03-LEV', '04-NUM', '05-DEU'], "esther": ['17-EST'] }
 
@@ -68,11 +68,11 @@ def text_width(font, s, fallback=None):
 def en_prefixes(words):
     """Width of the first k of `words`, set with spaces between them, for every
     k -- the width at each position the English could be broken at."""
-    space = text_width(garamond, ' ')
+    space = text_width(enFont, ' ')
     prefixes = [0]
     for k, word in enumerate(words):
         prefixes.append(prefixes[-1] + (space if k > 0 else 0) +
-                        text_width(garamond, word, fallback=shlomo))
+                        text_width(enFont, word, fallback=heFont))
     return prefixes
 
 def break_at(prefixes, lo, hi, candidates, he_before, he_after):
@@ -386,7 +386,7 @@ def ult_by_verse(scroll, verse_index):
         starts.append(starts[-1] + len(w))
     prefixes = en_prefixes([ word for w in words for word in w ])
 
-    he_widths = { i: text_width(shlomo, ktiv(frags[i][0]["he"].value[refs[i][3]]))
+    he_widths = { i: text_width(heFont, ktiv(frags[i][0]["he"].value[refs[i][3]]))
                   for i in refs }
     bounds = [0] + verse_breaks(entries, at, len(order), he_widths,
                                 prefixes, starts) + [starts[-1]]

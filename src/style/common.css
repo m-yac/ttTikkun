@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wdth@62.5..100&display=swap');
 
 /* Its own metrics are ascent 0.935em, descent 0.265em; the space needed above
    and below for accents is added as padding where it is needed, since Safari
@@ -12,14 +11,22 @@
 
 @font-face {
   font-family: "Shlomo";
-  src: url('../fonts/Shlomo.ttf') format('truetype');
+  src: url('../fonts/Shlomo/Shlomo.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Shlomo Stam";
-  src: url('../fonts/ShlomoStam.ttf') format('truetype');
+  src: url('../fonts/ShlomoStam/ShlomoStam.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Amstelvar";
+  src: url('../fonts/amstelvar-v1/Amstelvar-Roman[GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,wdth,wght,opsz].ttf') format('truetype');
+  font-variation-settings: 'XOPQ' 150, 'YOPQ' 95, 'GRAD' 160;
   font-weight: normal;
   font-style: normal;
 }

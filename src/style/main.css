@@ -112,9 +112,9 @@
 }
 .en {
   display: none;
-  font-family: "Noto Serif", serif;
+  font-family: "Amstelvar", serif;
   font-size: calc(13.5pt * var(--scale));
-  letter-spacing: var(--letter-spacing);
+  letter-spacing: calc(0.5 * var(--letter-spacing));
 }
 
 .tikkun-page.show-ketiv .ketiv {
