@@ -4,16 +4,44 @@ import { type VerseRef, type Fragment, type LineData, type PageData } from "./da
 //  Adapted from `tikkun.io/src/hebrew-numeral.ts`
 // ================================================
 
-function asVersesRange(verses: VerseRef[]): string {
-  const strings = verses.map((verse) => {
-    const components = verse.verse === 1 ? [verse.chapter, verse.verse]
-                                         : [verse.verse];
-    return components.join(':');
-  });
+const hebrewNumeralLetters = [
+  { glyph: 'א', value: 1 },
+  { glyph: 'ב', value: 2 },
+  { glyph: 'ג', value: 3 },
+  { glyph: 'ד', value: 4 },
+  { glyph: 'ה', value: 5 },
+  { glyph: 'ו', value: 6 },
+  { glyph: 'ז', value: 7 },
+  { glyph: 'ח', value: 8 },
+  { glyph: 'ט', value: 9 },
+  { glyph: 'י', value: 10 },
+  { glyph: 'כ', value: 20 },
+  { glyph: 'ל', value: 30 },
+  { glyph: 'מ', value: 40 },
+  { glyph: 'נ', value: 50 },
+  { glyph: 'ס', value: 60 },
+  { glyph: 'ע', value: 70 },
+  { glyph: 'פ', value: 80 },
+  { glyph: 'צ', value: 90 },
+  { glyph: 'ק', value: 100 },
+  { glyph: 'ר', value: 200 },
+  { glyph: 'ש', value: 300 },
+  { glyph: 'ת', value: 400 },
+].reverse();
 
-  if (strings.length === 0) return '';
-  if (strings.length === 1) return strings[0];
-  return [strings[0], strings[strings.length - 1]].join('-');
+export function hebrewNumeral(n: number): string {
+  if (n <= 0) return '';
+  if (n === 15) return 'טו';
+  if (n === 16) return 'טז';
+
+  let i = 0;
+  while (n < hebrewNumeralLetters[i].value) {
+    ++i;
+  }
+
+  const letter = hebrewNumeralLetters[i];
+
+  return `${letter.glyph}${hebrewNumeral(n - letter.value)}`;
 }
 
 
@@ -84,45 +112,18 @@ export function fragmentText(fragment: Fragment): string {
   return fragment.map((part) => part.he.join('')).join('');
 }
 
-export function lineElement(
+
+// ========================================================
+//  Originally based on `tikkun.io/src/components/Line.ts`
+// ========================================================
+
+function buildLine(
   page: PageData, index: number,
-  onFragment: (fragment: Fragment) => (string | Node)[]
+  onLineTd: (line: LineData, lineTd: HTMLTableCellElement) => void
 ): HTMLTableRowElement {
-  const line: LineData = page[index];
-
   const lineTd = document.createElement('td');
-  lineTd.classList.add('line'); 
-  if (line.isPetucha) {
-    lineTd.classList.add('is-petucha');
-  }
-
-  line.text.columns.forEach((column) => {
-    const columnDiv = document.createElement('div');
-    columnDiv.classList.add('column');
-    if (line.text.format === 'columns') {
-      columnDiv.classList.add('is-two-column');
-    }
-
-    column.forEach((fragment) => {
-      const fragmentSpan = document.createElement('span');
-      fragmentSpan.classList.add('fragment');
-      if (line.text.format === 'setuma') {
-        fragmentSpan.classList.add('is-setuma');
-      }
-
-      fragmentSpan.append(...onFragment(fragment));
-      columnDiv.append(fragmentSpan);
-    });
-    lineTd.append(columnDiv);
-  });
-
-  const startingVerses = line.verses.filter((verse) =>
-    verse.indexOfFirstWord === 0);
-
-  const verseRefSpan = document.createElement('span');
-  verseRefSpan.classList.add('verse-ref');
-  verseRefSpan.append(asVersesRange(startingVerses));
-  // lineTd.append(verseRefSpan);
+  lineTd.classList.add('line');
+  onLineTd(page[index], lineTd);
 
   const lineTr = document.createElement('tr');
   lineTr.dataset.class = 'line';
@@ -133,10 +134,64 @@ export function lineElement(
 
 export function pageElement(
   page: PageData,
-  onFragment: (fragment: Fragment) => (string | Node)[]
+  onFragment: (fragment: Fragment, verses: VerseRef[]) => (string | Node)[]
 ): HTMLTableElement {
   const pageTable = document.createElement('table');
   page.forEach((_, index) =>
-    pageTable.append(lineElement(page, index, onFragment)));
+    pageTable.append(buildLine(page, index, (line, lineTd) => {
+      if (line.isPetucha) {
+        lineTd.classList.add('is-petucha');
+      }
+      // Add each column
+      line.text.columns.forEach((column) => {
+        const columnDiv = document.createElement('div');
+        columnDiv.classList.add('column');
+        if (line.text.format === 'columns') {
+          columnDiv.classList.add('is-two-column');
+        }
+        // Add each fragment
+        column.forEach((fragment) => {
+          const fragmentSpan = document.createElement('span');
+          fragmentSpan.classList.add('fragment');
+          if (line.text.format === 'setuma') {
+            fragmentSpan.classList.add('is-setuma');
+          }
+          // Add each part
+          fragmentSpan.append(...onFragment(fragment, line.verses));
+          columnDiv.append(fragmentSpan);
+        });
+        lineTd.append(columnDiv);
+      });
+    }))
+  );
   return pageTable;
+}
+
+export type VerseNumberType = 'hindu-arabic' | 'hebrew' | 'none';
+
+export function verseRefElement(page: PageData,
+                                type: VerseNumberType): HTMLTableElement {
+  const verseRefTable = document.createElement('table');
+  page.forEach((_, index) =>
+    verseRefTable.append(buildLine(page, index, (line, lineTd) => {
+        if (type === 'none') { return; }
+
+        for (let i = 0; i < line.verses.length; i++) {
+          if (line.verses[i].indexOfFirstWord !== 0) { continue; }
+          const [cls, n] = line.verses[i].verse === 1
+                         ? ['chapter-number', line.verses[i].chapter]
+                         : ['verse-number', line.verses[i].verse];
+
+          if (i > 0) {
+            lineTd.append(new Text(' '));
+          }
+
+          const refSpan = document.createElement('span');
+          refSpan.classList.add(cls);
+          refSpan.append(type === 'hebrew' ? hebrewNumeral(n) : String(n));
+          lineTd.append(refSpan);
+        }
+    }))
+  );
+  return verseRefTable;
 }

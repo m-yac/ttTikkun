@@ -5,9 +5,14 @@
  *****************************************/
 
 .tikkun-book {
-  --scale: 1;
+  --scale: 0.75;
   --letter-spacing: -0.05em;
   --word-spacing: 0.25em;
+  --line-height: calc(45pt * var(--scale));
+  --verse-ref-width: calc(60pt * var(--scale));
+  --verse-ref-gap: calc(24pt * var(--scale));
+  --chapter-number-opacity: 0.5;
+  --verse-number-opacity: 0.4;
   padding-top: 1em;
   padding-bottom: 5em;
   font-size: 1.5em;
@@ -22,35 +27,53 @@
   display: flex;
   justify-content: center;
   transform-origin: top center;
-  gap: 32px;
+  gap: calc(2 * var(--verse-ref-gap));
 }
-
 .tikkun-page.is-reversed {
   flex-direction: row-reverse;
 }
 
-.tikkun-page table {
+.page {
+  display: none;
+  align-items: flex-start;
+  gap: var(--verse-ref-gap);
+}
+.page.is-reversed {
+  flex-direction: row-reverse;
+}
+
+.page table {
   flex: none;
   table-layout: fixed;
   border-spacing: 0;
 }
 
-.tikkun-page td {
+.page td {
   padding: 0;
 }
 
 .line {
   position: relative;
+  height: var(--line-height);
+  line-height: var(--line-height);
   text-align: justify;
   text-align-last: justify;
-  line-height: calc(33.75pt * var(--scale));
   display: flex;
   justify-content: space-between;
   gap: 5em;
 }
-
 .line.is-petucha {
   text-align: start;
+  text-align-last: start;
+}
+.verse-ref .line {
+  text-align: start;
+  text-align-last: start;
+  justify-content: flex-start;
+  gap: var(--word-spacing);
+}
+.page.is-reversed .verse-ref .line {
+  justify-content: flex-end;
 }
 
 .column {
@@ -79,14 +102,10 @@
 }
 
 .verse-ref {
-  position: absolute;
-  right: -6ch;
-  font-family: sans-serif;
-  font-size: 0.8em;
-  color: hsla(0, 0%, 0%, 0.35);
-
-  -webkit-user-select: none;
-  user-select: none;
+  width: var(--verse-ref-width);
+  white-space: nowrap;
+  color: hsla(0, 0%, 0%, var(--verse-number-opacity));
+  letter-spacing: 0;
 }
 
 /*********************************************
@@ -96,38 +115,38 @@
 .ketiv {
   display: none;
   font-family: "Shlomo Stam", serif;
-  font-size: calc(18.75pt * var(--scale));
+  font-size: calc(25pt * var(--scale));
 }
 .kri {
   display: none;
   font-family: "Shlomo", serif;
-  font-size: calc(18.75pt * var(--scale));
+  font-size: calc(25pt * var(--scale));
 }
 .tl {
   display: none;
   font-family: "Bitter Hebrew", serif;
-  font-size: calc(13.5pt * var(--scale));
+  font-size: calc(18pt * var(--scale));
   letter-spacing: var(--letter-spacing);
   word-spacing: var(--word-spacing);
 }
 .en {
   display: none;
   font-family: "Amstelvar", serif;
-  font-size: calc(13.5pt * var(--scale));
+  font-size: calc(18pt * var(--scale));
   letter-spacing: calc(0.5 * var(--letter-spacing));
 }
 
 .tikkun-page.show-ketiv .ketiv {
-  display: table;
+  display: flex;
 }
 .tikkun-page.show-kri .kri {
-  display: table;
+  display: flex;
 }
 .tikkun-page.show-tl .tl {
-  display: table;
+  display: flex;
 }
 .tikkun-page.show-en .en {
-  display: table;
+  display: flex;
 }
 
 /********************
@@ -152,4 +171,13 @@
 
 .implied-word {
   color: #999;
+}
+
+.verse-ref .chapter-number {
+  color: hsla(0, 0%, 0%, var(--chapter-number-opacity));
+}
+
+.verse-ref .verse-number {
+  font-size: 0.7em;
+  vertical-align: middle;
 }

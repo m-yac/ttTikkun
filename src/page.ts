@@ -1,5 +1,5 @@
-import { type Fragment, type PageData } from "./data";
-import { fragmentText, ketiv, kri, expandAnnotation, pageElement } from "./tikkun";
+import { type Fragment, type PageData, type VerseRef } from "./data";
+import { fragmentText, ketiv, kri, expandAnnotation, pageElement, verseRefElement, type VerseNumberType } from "./tikkun";
 import { Text as HavarotjsText } from 'havarotjs';
 import { Transliteration } from "./transliteration";
 
@@ -12,7 +12,7 @@ import { Transliteration } from "./transliteration";
  * `TikkunPage`), consisting of some common abstract methods and an interface
  * that wraps an `HTMLElement`
  */
-abstract class PageElement {
+abstract class PageElement<T extends HTMLElement = HTMLElement> {
   /**
    * Load any prerequisites needed during the implementation of 
    * `ensureNoLineWraps` - by default does nothing
@@ -27,11 +27,14 @@ abstract class PageElement {
   /**
    * The `HTMLElement` representing this element
    */
-  abstract get element(): HTMLElement;
+  abstract get element(): T;
 
   // Wrappers around some `HTMLElement` methods
   get classList(): DOMTokenList {
     return this.element.classList;
+  }
+  set isReversed(isReversed: boolean) {
+    this.classList.toggle('is-reversed', isReversed);
   }
   get style(): CSSStyleDeclaration {
     return this.element.style;
@@ -168,18 +171,24 @@ export const dir: Record<PageType, 'ltr' | 'rtl'> = {
 };
 
 /**
- * The base class for every type of page
+ * The base class for every type of page - where each page is a `div`
+ * containing two `table`s: the text of the page itself, and the verse
+ * references for each of its lines
  */
-export abstract class Page extends PageElement {
+export abstract class Page extends PageElement<HTMLDivElement> {
   readonly data: PageData;
   readonly minFontStretch: number = 100;
-  abstract type: PageType;
+  abstract readonly type: PageType;
+  abstract readonly verseNumbers: VerseNumberType;
 
-  // Has to be optional because the abstract `onFragment` can't be called in
-  // the constructor
-  private optElement?: HTMLTableElement;
+  // These have to be optional because the abstract property `type` can't be
+  // accessed in the constructor
+  private _element?: HTMLDivElement;
+  private _pageTable?: HTMLTableElement;
+  private _verseRefTable?: HTMLTableElement;
 
-  abstract onFragment: (fragment: Fragment) => (string | Node)[];
+  abstract onFragment:
+    (fragment: Fragment, verses: VerseRef[]) => (string | Node)[];
 
   constructor(data: PageData) {
     super();
@@ -199,29 +208,47 @@ export abstract class Page extends PageElement {
         new Column(col, this.minFontStretch, d).ensureNoLineWraps()));
   }
   
-  get element(): HTMLTableElement {
-    if (this.optElement === undefined) {
-      this.optElement = pageElement(this.data, this.onFragment);
-      this.optElement.classList.add(this.type);
-      this.optElement.dir = dir[this.type];
+  get element(): HTMLDivElement {
+    if (this._element === undefined) {
+      this._element = document.createElement('div');
+      this._element.classList.add('page', this.type);
+      this._element.append(this.pageTable, this.verseRefTable);
     }
-    return this.optElement;
+    return this._element;
   }
 
-  // We override `width` since a page may not always be visible
+  get pageTable(): HTMLTableElement {
+    if (this._pageTable === undefined) {
+      this._pageTable = pageElement(this.data, this.onFragment);
+      this._pageTable.dir = dir[this.type];
+    }
+    return this._pageTable;
+  }
+
+  get verseRefTable(): HTMLTableElement {
+    if (this._verseRefTable === undefined) {
+      this._verseRefTable = verseRefElement(this.data, this.verseNumbers);
+      this._verseRefTable.classList.add('verse-ref');
+    }
+    return this._verseRefTable;
+  }
+
+  // We override `width` to refer to the width of just the text of this page
+  // - or if `display` is `none`, what it would be if that was not the case
   get width(): number {
-    return this.whileTemporarilyVisible(() => super.width);
+    return this.whileTemporarilyVisible(() =>
+      this.pageTable.getBoundingClientRect().width);
   }
 
   set width(width: number) {
-    this.style.width = `${width}px`;
+    this.pageTable.style.width = `${width}px`;
   }
 
   private whileTemporarilyVisible<T>(callback: () => T): T {
     // Save the old value of the display style
     const displayBefore = this.style.display;
-    // Set the display style to `table` (i.e. not `none`)
-    this.style.display = 'table';
+    // Set the display style to `flex` (i.e. not `none`)
+    this.style.display = 'flex';
     const ret = callback();
     // Restore whatever display style we had at the start
     this.style.display = displayBefore;
@@ -234,6 +261,7 @@ export abstract class Page extends PageElement {
  */
 export class KetivPage extends Page {
   type = 'ketiv' as const;
+  verseNumbers = 'none' as const;
 
   onFragment = (fragment: Fragment): (string | Node)[] => {
     return [ketiv(fragmentText(fragment))];
@@ -245,6 +273,7 @@ export class KetivPage extends Page {
  */
 export class KriPage extends Page {
   type = 'kri' as const;
+  verseNumbers = 'hebrew' as const;
 
   onFragment = (fragment: Fragment): (string | Node)[] => {
     return expandAnnotation(kri(fragmentText(fragment)), 'ketiv-kri');
@@ -256,6 +285,7 @@ export class KriPage extends Page {
  */
 export class TranslitPage extends Page {
   type = 'tl' as const;
+  verseNumbers = 'hindu-arabic' as const;
   readonly translit: Transliteration;
 
   constructor(data: PageData, translit: Transliteration) {
@@ -263,12 +293,22 @@ export class TranslitPage extends Page {
     this.translit = translit;
   }
 
-  onFragment = (fragment: Fragment): (string | Node)[] => {
+  onFragment = (fragment: Fragment, verses: VerseRef[]): (string | Node)[] => {
     if (fragment.length === 0) { return []; }
     const text = kri(fragmentText(fragment));
     const opts = this.translit.syllabificationOptions;
     const words = new HavarotjsText(text, opts).words;
-    const tlWords = words.map((word) => word.apply(this.translit));
+    const tlWords = words.map((word, i) => {
+      const tlWord = word.apply(this.translit);
+      // If we're the first word and it begins its verse, or the previous word
+      // ends a verse...
+      if (i === 0 && verses[fragment[0].verseIndex].indexOfFirstWord === 0 ||
+          i  >  0 && words[i - 1].text.includes('׃')) {
+        // Uppercase its first lowercase (unicode!) character
+        return tlWord.replace(/\p{Ll}/u, (c) => c.toUpperCase());
+      } 
+      return tlWord;
+    });
     return expandAnnotation(tlWords.join(' '), 'ketiv-kri');
   }
 }
@@ -278,6 +318,7 @@ export class TranslitPage extends Page {
  */
 export class EnglishPage extends Page {
   type = 'en' as const;
+  verseNumbers = 'hindu-arabic' as const;
   minFontStretch = 50;
 
   onFragment = (fragment: Fragment): (string | Node)[] => {
@@ -296,8 +337,8 @@ export class EnglishPage extends Page {
 /**
  * A set of of pages, two of which are shown side-by-side at a time
  */
-export class TikkunPage extends PageElement {
-  readonly element: HTMLElement;
+export class TikkunPage extends PageElement<HTMLDivElement> {
+  readonly element: HTMLDivElement;
   readonly pages: Record<PageType, Page>;
   private left: PageType = 'ketiv';
   private right: PageType = 'en';
@@ -342,17 +383,23 @@ export class TikkunPage extends PageElement {
   updatePages(pages?: [PageType, PageType]) {
     // Only change page visibility when the two pages are actually different
     if (pages !== undefined && pages[0] !== pages[1]) {
+      // Reverse the layout of the page on the left so that the verse refs are
+      // always on the outside
+      this.pages[this.left].isReversed = false;
       [this.left, this.right] = pages;
+      this.pages[this.left].isReversed = true;
+
       this.classList.remove(...pageTypes.map((page) => `show-${page}`));
       this.classList.add(`show-${this.left}`, `show-${this.right}`);
+
       // Reverse the layout if the page that's supposed to be on the left
       // actually comes after the page that's supposed to be on the right
-      this.classList.toggle('is-reversed',
-        pageTypes.indexOf(this.left) > pageTypes.indexOf(this.right));
+      this.isReversed = pageTypes.indexOf(this.left) >
+                        pageTypes.indexOf(this.right);
     }
     this.style.transform = '';
     // The pages which are not currently shown contribute nothing to this width
-    const width = this.getContentWidth(':scope > table');
+    const width = this.getContentWidth(':scope > .page');
     const available = document.documentElement.clientWidth;
     if (width > available) {
       this.style.transform = `scale(${available / width})`;
