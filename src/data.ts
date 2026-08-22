@@ -15,7 +15,7 @@ export type WordRef
   = { type: 'word', word: number }
   | { type: 'ref', page: number, line: number, part: number, word: number }
   | { type: 'continued' };
-export const WordRef = z.union([
+const WordRef = z.union([
   z.int(),
   z.tuple([z.int(), z.int(), z.int(), z.int()]),
   z.tuple([])
@@ -37,7 +37,7 @@ export type EnChunk = {
   refs: WordRef[],
   footnotes: string[]
 };
-export const EnChunk =
+const EnChunk =
   z.tuple([z.string(), z.array(WordRef)], z.array(z.string()))
    .transform(([text, refs, ...footnotes]): EnChunk => ({
     text, refs, footnotes: footnotes.flat(),
@@ -47,19 +47,19 @@ export const EnChunk =
  * A run of Hebrew words and linked English words, along with the index of the
  * `VerseRef` in `Line.verses` that it is a part of
  */
-export const Part = z.object({
+export type Part = z.infer<typeof Part>;
+const Part = z.object({
   he: z.array(z.string()),
   en: z.array(EnChunk),
   verseIndex: z.int().nonnegative(),
 });
-export type Part = z.infer<typeof Part>;
 
 /**
  * A fragment of text which is not broken up by columns, setuma breaks, or line
  * breaks - consisting of some number of `Part`s (may be zero)
  */
-export const Fragment = z.array(Part);
 export type Fragment = z.infer<typeof Fragment>;
+const Fragment = z.array(Part);
 
 /**
  * Some number of `Fragment`s, formatted either as two columns, as a single
@@ -69,7 +69,7 @@ export type Text
   = { format: 'columns', columns: [ [Fragment], [Fragment] ] }
   | { format: 'setuma',  columns: [ [Fragment, Fragment, ...Fragment[]] ] }
   | { format: 'line',    columns: [ [Fragment] ] }
-export const Text = z.union([
+const Text = z.union([
   z.tuple([z.tuple([Fragment]), z.tuple([Fragment])]),
   z.tuple([z.array(Fragment).nonempty()])
 ]).transform((columns): Text => {
@@ -92,13 +92,13 @@ export const Text = z.union([
  *   first word of the `Line` is also the first word of the verse, and
  *   otherwise is higher)
  */
-export const VerseRef = z.object({
+export type VerseRef = z.infer<typeof VerseRef>;
+const VerseRef = z.object({
   book: z.number().nonnegative(),
   chapter: z.number().nonnegative(),
   verse: z.number().nonnegative(),
   indexOfFirstWord: z.number().nonnegative(),
 });
-export type VerseRef = z.infer<typeof VerseRef>;
 
 /**
  * A line, consisting of:
@@ -106,18 +106,20 @@ export type VerseRef = z.infer<typeof VerseRef>;
  * - The list of `VerseRef`s that this line includes
  * - Whether this line ends in a petucha break
  */
-export const LineData = z.object({
+export type LineData = z.infer<typeof LineData>;
+const LineData = z.object({
   text: Text,
   verses: z.array(VerseRef),
   isPetucha: z.boolean(),
 });
-export type LineData = z.infer<typeof LineData>;
 
 /**
- * A page as an array of `Line`s
+ * A page is an array of `Line`s with a particular index
  */
-export const PageData = z.array(LineData);
-export type PageData = z.infer<typeof PageData>;
+export type PageData = {
+  index: number,
+  lines: LineData[],
+};
 
 
 // =====================================
@@ -127,23 +129,23 @@ export type PageData = z.infer<typeof PageData>;
 /**
  * An index into `Line.verses` for a particular line on a page
  */
-export const LookupEntry = z.object({
+export type LookupEntry = z.infer<typeof LookupEntry>;
+const LookupEntry = z.object({
   page: z.int().positive(),
   line: z.int().nonnegative(),
   index: z.int().nonnegative(),
 });
-export type LookupEntry = z.infer<typeof LookupEntry>;
 
 /**
  * For each book, chapter, and verse, a `LookupEntry` for each line it
  * appears in
  */
-export const Lookup =
+export type Lookup = z.infer<typeof Lookup>;
+const Lookup =
   z.record(z.int().positive(), // book
   z.record(z.int().positive(), // chapter
   z.record(z.int().positive(), // verse
   z.object({ refs: z.array(LookupEntry) }))));
-export type Lookup = z.infer<typeof Lookup>;
 
 
 // ====================
@@ -151,16 +153,23 @@ export type Lookup = z.infer<typeof Lookup>;
 // ====================
 
 /**
+ * The number of pages in each of the currently available books
+ */
+export const bookPageCounts = { torah: 245, esther: 17 } as const;
+
+/**
  * The currently available books
  */
-type Book = 'torah' | 'esther';
+export type Book = keyof typeof bookPageCounts;
+export const books = Object.keys(bookPageCounts) as Book[];
 
 /**
  * Load a `Page` (indexed from 1) from a `Book`
  */
-export async function loadPage(book: Book, page: number): Promise<PageData> {
-  const module = await import(`./data/pages/${book}/${page}.json`);
-  return PageData.parse(Array.from(module.default));
+export async function loadPage(book: Book, index: number): Promise<PageData> {
+  const module = await import(`./data/pages/${book}/${index}.json`);
+  return z.array(LineData).transform((lines) => ({ lines, index }))
+                          .parse(Array.from(module.default));
 }
 
 /**
@@ -175,15 +184,19 @@ export async function loadLookup(book: Book): Promise<Lookup> {
  * Load all available `Lookup`s
  */
 export async function loadLookups(): Promise<Record<Book, Lookup>> {
-  return { torah: await loadLookup('torah'),
-           esther: await loadLookup('esther') };
+  const lookups = {} as Record<Book, Lookup>;
+  for (const book of books) {
+    lookups[book] = await loadLookup(book);
+  }
+  return lookups;
 }
 
 /**
  * Returns the error thrown if any of the data does not match this scheme
  */
 export async function validateData(): Promise<Error | null> {
-  for (const [book, pages] of [['torah', 245], ['esther', 17]] as [Book, number][]) {
+  for (const book of books) {
+    const pages = bookPageCounts[book];
     for (let i = 1; i <= pages; i++) {
       try {
         await loadPage(book, i);

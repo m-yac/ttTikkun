@@ -123,10 +123,9 @@ function buildLine(
 ): HTMLTableRowElement {
   const lineTd = document.createElement('td');
   lineTd.classList.add('line');
-  onLineTd(page[index], lineTd);
+  onLineTd(page.lines[index], lineTd);
 
   const lineTr = document.createElement('tr');
-  lineTr.dataset.class = 'line';
   lineTr.dataset.lineIndex = String(index);
   lineTr.append(lineTd);
   return lineTr;
@@ -137,7 +136,7 @@ export function pageElement(
   onFragment: (fragment: Fragment, verses: VerseRef[]) => (string | Node)[]
 ): HTMLTableElement {
   const pageTable = document.createElement('table');
-  page.forEach((_, index) =>
+  page.lines.forEach((_, index) =>
     pageTable.append(buildLine(page, index, (line, lineTd) => {
       if (line.isPetucha) {
         lineTd.classList.add('is-petucha');
@@ -172,7 +171,7 @@ export type VerseNumberType = 'hindu-arabic' | 'hebrew' | 'none';
 export function verseRefElement(page: PageData,
                                 type: VerseNumberType): HTMLTableElement {
   const verseRefTable = document.createElement('table');
-  page.forEach((_, index) =>
+  page.lines.forEach((_, index) =>
     verseRefTable.append(buildLine(page, index, (line, lineTd) => {
         if (type === 'none') { return; }
 

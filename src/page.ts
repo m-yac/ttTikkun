@@ -14,12 +14,6 @@ import { Transliteration } from "./transliteration";
  */
 abstract class PageElement<T extends HTMLElement = HTMLElement> {
   /**
-   * Load any prerequisites needed during the implementation of 
-   * `ensureNoLineWraps` - by default does nothing
-   */
-  async loadPrerequisites(): Promise<void> {}
-
-  /**
    * Modify this element's style to ensure that no child line-wraps
    */
   abstract ensureNoLineWraps(): void;
@@ -195,19 +189,13 @@ export abstract class Page extends PageElement<HTMLDivElement> {
     this.data = data;
   }
 
-  async loadPrerequisites(): Promise<void> {
-    const style = getComputedStyle(this.element);
-    await document.fonts.load([style.fontStyle, style.fontWeight,
-                               style.fontSize, style.fontFamily].join(' '));
-  }
-
   ensureNoLineWraps(): void {
     const d = dir[this.type];
     this.whileTemporarilyVisible(() =>
       this.querySelectorAll('.column').map((col) =>
         new Column(col, this.minFontStretch, d).ensureNoLineWraps()));
   }
-  
+
   get element(): HTMLDivElement {
     if (this._element === undefined) {
       this._element = document.createElement('div');
@@ -297,7 +285,9 @@ export class TranslitPage extends Page {
     if (fragment.length === 0) { return []; }
     const text = kri(fragmentText(fragment));
     const opts = this.translit.syllabificationOptions;
-    const words = new HavarotjsText(text, opts).words;
+    // Drop any whitespace-only words since we will add whitespace ourselves
+    const words = new HavarotjsText(text, opts).words
+                      .filter((word) => word.text.trim() !== '');
     const tlWords = words.map((word, i) => {
       const tlWord = word.apply(this.translit);
       // If we're the first word and it begins its verse, or the previous word
@@ -335,13 +325,18 @@ export class EnglishPage extends Page {
 // ==============
 
 /**
- * A set of of pages, two of which are shown side-by-side at a time
+ * A set of pages, two of which are shown side-by-side at a time
  */
 export class TikkunPage extends PageElement<HTMLDivElement> {
   readonly element: HTMLDivElement;
   readonly pages: Record<PageType, Page>;
+
   private left: PageType = 'ketiv';
   private right: PageType = 'en';
+  private appended = new Set<PageType>();
+  private hasNoLineWraps = new Set<PageType>();
+  private ketivWidth: number | null = null;
+  private unscaled: { width: number, height: number } | null = null;
 
   constructor(data: PageData, translit: Transliteration) {
     super();
@@ -352,57 +347,89 @@ export class TikkunPage extends PageElement<HTMLDivElement> {
       en: new EnglishPage(data),
     };
     this.element = document.createElement('div');
-    this.classList.add('tikkun-page');
-    for (const page of pageTypes) {
-      this.element.append(this.pages[page].element);
-    }
-    window.addEventListener('resize', () => this.updatePages());
+    this.element.classList.add('tikkun-page');
+    this.element.dataset.index = String(data.index);
   }
 
-  async loadPrerequisites(): Promise<void> {
-    for (const page of pageTypes) {
-      await this.pages[page].loadPrerequisites();
+  private ensureAppended(page: PageType) {
+    if (!this.appended.has(page)) {
+      this.element.append(this.pages[page].element);
+      this.appended.add(page);
     }
   }
 
   ensureNoLineWraps(): void {
-    const ketivWidth = this.pages['ketiv'].width;
-    for (const page of pageTypes) {
-      this.pages[page].width = ketivWidth;
-      this.pages[page].ensureNoLineWraps();
+    // This never changes, so only ever needs to be computed once
+    if (this.ketivWidth === null) {
+      this.ensureAppended('ketiv');
+      this.ketivWidth = this.pages['ketiv'].width;
     }
-    this.updatePages([this.left, this.right]);
+    for (const page of [this.left, this.right]) {
+      // The result of calling ensureNoLineWraps never changes, so only ever
+      // needs to be called once per page type
+      if (!this.hasNoLineWraps.has(page)) {
+        this.ensureAppended(page);
+        this.pages[page].width = this.ketivWidth;
+        this.pages[page].ensureNoLineWraps();
+        this.hasNoLineWraps.add(page);
+      }
+    }
   }
 
   get leftPage() { return this.left; }
   get rightPage() { return this.right; }
 
-  updateLeftPage(left: PageType) { this.updatePages([left, this.right]); }
-  updateRightPage(right: PageType) { this.updatePages([this.left, right]); }
+  updateLeftPage(left: PageType) { this.updatePages(left, this.right); }
+  updateRightPage(right: PageType) { this.updatePages(this.left, right); }
 
-  updatePages(pages?: [PageType, PageType]) {
+  updatePages(left: PageType, right: PageType) {
     // Only change page visibility when the two pages are actually different
-    if (pages !== undefined && pages[0] !== pages[1]) {
-      // Reverse the layout of the page on the left so that the verse refs are
-      // always on the outside
-      this.pages[this.left].isReversed = false;
-      [this.left, this.right] = pages;
-      this.pages[this.left].isReversed = true;
+    if (left === right) { return; }
 
-      this.classList.remove(...pageTypes.map((page) => `show-${page}`));
-      this.classList.add(`show-${this.left}`, `show-${this.right}`);
+    // Reverse the layout of the page on the left so that the verse refs are
+    // always on the outside
+    this.pages[this.left].isReversed = false;
+    this.pages[left].isReversed = true;
 
-      // Reverse the layout if the page that's supposed to be on the left
-      // actually comes after the page that's supposed to be on the right
-      this.isReversed = pageTypes.indexOf(this.left) >
-                        pageTypes.indexOf(this.right);
+    this.classList.remove(`show-${this.left}`, `show-${this.right}`);
+    this.classList.add(`show-${left}`, `show-${right}`);
+
+    // Reverse the entire layout if the page that's supposed to be on the left
+    // actually comes after the page that's supposed to be on the right
+    this.isReversed = pageTypes.indexOf(left) > pageTypes.indexOf(right);
+
+    [this.left, this.right] = [left, right];
+    this.ensureNoLineWraps();
+    this.updateScale();
+  }
+
+  updateScale() {
+    // This never changes, so only ever needs to be computed once
+    if (this.unscaled === null) {
+      this.style.transform = '';
+      this.style.marginBottom = '';
+      this.unscaled = {
+        width: this.getContentWidth(':scope > .page'),
+        height: this.element.offsetHeight
+      };
     }
-    this.style.transform = '';
-    // The pages which are not currently shown contribute nothing to this width
-    const width = this.getContentWidth(':scope > .page');
-    const available = document.documentElement.clientWidth;
-    if (width > available) {
-      this.style.transform = `scale(${available / width})`;
-    }
+    const { width, height } = this.unscaled;
+    const parentWidth = this.element.parentElement!.clientWidth;
+
+    // Only update the scale if we're actually overflowing our parent
+    if (width <= parentWidth) { return; }
+
+    const scale = parentWidth / width;
+    this.style.transform = `scale(${scale})`;
+    // [GENERATED BY AI] A transform doesn't affect layout, so the page would
+    // still take up its full unscaled height in the scroll. We take the
+    // difference back out of the gap below the page - we can't just set a
+    // height, since that would clip the page's contents, which may overflow it
+    // horizontally
+    this.style.marginBottom = `calc(var(--page-gap) - ${height*(1-scale)}px)`;
+  }
+
+  get leftLines(): HTMLTableRowElement[] {
+    return [...this.pages[this.left].pageTable.rows];
   }
 }
