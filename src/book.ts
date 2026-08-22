@@ -18,6 +18,7 @@ async function loadPageFonts(book: HTMLElement): Promise<void> {
   // faces get loaded depends only on the family, the style, and the weight
   await Promise.all(pageTypes.map((type) =>
     document.fonts.load(`1em ${style.getPropertyValue(`--${type}-font`)}`)));
+  await document.fonts.load(`1em ${style.getPropertyValue(`--divine-name-font`)}`);
 }
 
 /**

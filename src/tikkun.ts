@@ -118,26 +118,29 @@ export function fragmentText(fragment: Fragment): string {
 // ========================================================
 
 function buildLine(
-  page: PageData, index: number,
+  data: PageData, lineIndex: number,
   onLineTd: (line: LineData, lineTd: HTMLTableCellElement) => void
 ): HTMLTableRowElement {
   const lineTd = document.createElement('td');
   lineTd.classList.add('line');
-  onLineTd(page.lines[index], lineTd);
+  onLineTd(data.lines[lineIndex], lineTd);
 
   const lineTr = document.createElement('tr');
-  lineTr.dataset.lineIndex = String(index);
+  lineTr.dataset.lineIndex = String(lineIndex);
   lineTr.append(lineTd);
   return lineTr;
 }
 
+export type OnFragment = 
+  (lineIndex: number, fragment: Fragment, verses: VerseRef[])
+    => (string | Node)[];
+
 export function pageElement(
-  page: PageData,
-  onFragment: (fragment: Fragment, verses: VerseRef[]) => (string | Node)[]
+  data: PageData, onFragment: OnFragment
 ): HTMLTableElement {
   const pageTable = document.createElement('table');
-  page.lines.forEach((_, index) =>
-    pageTable.append(buildLine(page, index, (line, lineTd) => {
+  data.lines.forEach((_, lineIndex) =>
+    pageTable.append(buildLine(data, lineIndex, (line, lineTd) => {
       if (line.isPetucha) {
         lineTd.classList.add('is-petucha');
       }
@@ -156,7 +159,8 @@ export function pageElement(
             fragmentSpan.classList.add('is-setuma');
           }
           // Add each part
-          fragmentSpan.append(...onFragment(fragment, line.verses));
+          const nodes = onFragment(lineIndex, fragment, line.verses);
+          fragmentSpan.append(...nodes);
           columnDiv.append(fragmentSpan);
         });
         lineTd.append(columnDiv);
@@ -168,11 +172,11 @@ export function pageElement(
 
 export type VerseNumberType = 'hindu-arabic' | 'hebrew' | 'none';
 
-export function verseRefElement(page: PageData,
+export function verseRefElement(data: PageData,
                                 type: VerseNumberType): HTMLTableElement {
   const verseRefTable = document.createElement('table');
-  page.lines.forEach((_, index) =>
-    verseRefTable.append(buildLine(page, index, (line, lineTd) => {
+  data.lines.forEach((_, lineIndex) =>
+    verseRefTable.append(buildLine(data, lineIndex, (line, lineTd) => {
         if (type === 'none') { return; }
 
         for (let i = 0; i < line.verses.length; i++) {

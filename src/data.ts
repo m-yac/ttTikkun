@@ -114,9 +114,10 @@ const LineData = z.object({
 });
 
 /**
- * A page is an array of `Line`s with a particular index
+ * A page is an array of `Line`s, but we also store its book and index
  */
 export type PageData = {
+  book: Book,
   index: number,
   lines: LineData[],
 };
@@ -205,7 +206,7 @@ export function numLines(data: BookData, index: number): number {
  */
 export async function loadPage(book: Book, index: number): Promise<PageData> {
   const module = await import(`./data/pages/${book}/${index}.json`);
-  return z.array(LineData).transform((lines) => ({ lines, index }))
+  return z.array(LineData).transform((lines) => ({ book, index, lines }))
                           .parse(Array.from(module.default));
 }
 

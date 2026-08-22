@@ -1,11 +1,33 @@
 import { type Fragment, type PageData, type VerseRef } from "./data";
-import { fragmentText, ketiv, kri, expandAnnotation, pageElement, verseRefElement, type VerseNumberType } from "./tikkun";
+import { fragmentText, ketiv, kri, expandAnnotation, pageElement, verseRefElement, type VerseNumberType, OnFragment } from "./tikkun";
 import { Text as HavarotjsText } from 'havarotjs';
 import { Transliteration } from "./transliteration";
+import { withBigLetters } from "./bigLetters";
 
-// ================
-//  Helper classes
-// ================
+// ==============================
+//  Helper functions and classes
+// ==============================
+
+/**
+ * Wrap every occurrence of the divine name in a `span.divine-name`
+ */
+export function wrapDivineName(nodes: Node[]): Node[] {
+  return nodes.flatMap((node) => {
+    if (node instanceof Element) {
+      node.replaceChildren(...wrapDivineName([...node.childNodes]));
+      return [node];
+    }
+    if (!(node instanceof Text)) { return [node]; }
+    return node.data.split(/(יהוה)/g).filter((part) => part !== '')
+                    .map((part) => {
+      if (part !== 'יהוה') { return new Text(part); }
+      const span = document.createElement('span');
+      span.classList.add('divine-name');
+      span.append(part);
+      return span;
+    });
+  });
+}
 
 /**
  * The superclass for all the classes in this file (`Column`, `Page`, and
@@ -137,15 +159,22 @@ class Column extends PageElement {
     for (const element of this.querySelectorAll(selectors)) {
       const range = document.createRange();
       range.selectNodeContents(element);
-      const tops = [...range.getClientRects()]
+      const rects = [...range.getClientRects()]
         .filter((rect) => rect.width > 0 && rect.height > 0)
-        .map((rect) => rect.top)
-        .sort((a, b) => a - b);
-      // Rects on the same line need not have exactly the same top, so only
-      // count a rect as starting a new line if it is more than a pixel below
-      // the last
-      if (!tops.every((top, i) => i === 0 || top - tops[i - 1] <= 1)) {
-        return false;
+        .sort((a, b) => a.top - b.top);
+      // Rects on the same line need not have the same top or height - e.g. a
+      // `.divine-name` is set in another font - so instead of comparing tops,
+      // count a rect as starting a new line only if it fails to overlap the
+      // line so far by more than a pixel
+      let bottom = -Infinity;
+      for (const rect of rects) {
+        if (rect.top >= bottom - 1) {
+          if (bottom !== -Infinity) { return false; }
+          bottom = rect.bottom;
+        }
+        else {
+          bottom = Math.max(bottom, rect.bottom);
+        }
       }
     }
     return true;
@@ -181,8 +210,7 @@ export abstract class Page extends PageElement<HTMLDivElement> {
   private _pageTable?: HTMLTableElement;
   private _verseRefTable?: HTMLTableElement;
 
-  abstract onFragment:
-    (fragment: Fragment, verses: VerseRef[]) => (string | Node)[];
+  abstract onFragment: OnFragment;
 
   constructor(data: PageData) {
     super();
@@ -251,8 +279,10 @@ export class KetivPage extends Page {
   type = 'ketiv' as const;
   verseNumbers = 'none' as const;
 
-  onFragment = (fragment: Fragment): (string | Node)[] => {
-    return [ketiv(fragmentText(fragment))];
+  onFragment = (lineIndex: number, fragment: Fragment) => {
+    return withBigLetters(this.data, lineIndex, fragment, ketiv,
+      [ketiv(fragmentText(fragment))]
+    );
   }
 }
 
@@ -263,8 +293,10 @@ export class KriPage extends Page {
   type = 'kri' as const;
   verseNumbers = 'hebrew' as const;
 
-  onFragment = (fragment: Fragment): (string | Node)[] => {
-    return expandAnnotation(kri(fragmentText(fragment)), 'ketiv-kri');
+  onFragment = (lineIndex: number, fragment: Fragment) => {
+    return withBigLetters(this.data, lineIndex, fragment, kri,
+      expandAnnotation(kri(fragmentText(fragment)), 'ketiv-kri')
+    );
   }
 }
 
@@ -281,7 +313,7 @@ export class TranslitPage extends Page {
     this.translit = translit;
   }
 
-  onFragment = (fragment: Fragment, verses: VerseRef[]): (string | Node)[] => {
+  onFragment = (_: number, fragment: Fragment, verses: VerseRef[]) => {
     if (fragment.length === 0) { return []; }
     const text = kri(fragmentText(fragment));
     const opts = this.translit.syllabificationOptions;
@@ -311,10 +343,12 @@ export class EnglishPage extends Page {
   verseNumbers = 'hindu-arabic' as const;
   minFontStretch = 50;
 
-  onFragment = (fragment: Fragment): (string | Node)[] => {
+  onFragment = (_: number, fragment: Fragment): (string | Node)[] => {
     return fragment.flatMap(({en}) => en.flatMap((chunk) => {
-      const node = expandAnnotation(chunk.text, 'implied-word');
-      return [...node, new Text(' ')];
+      const nodes = wrapDivineName(expandAnnotation(chunk.text, 'implied-word'));
+      // Only add a space if we don't end in a hyphen
+      if (/-[}\s]*$/.test(chunk.text)) { return nodes; }
+      return [...nodes, new Text(' ')];
     }));
   }
 }

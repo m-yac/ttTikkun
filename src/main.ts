@@ -14,8 +14,9 @@ const translit = new Transliteration();
 
 // For now, always start at a fixed spot
 const [book, start]: [Book, LookupEntry] =
+  ['torah', books['torah'].lookup[5][6][4].refs[0]];
   // ['torah', books['torah'].lookup[2][15][1].refs[0]];
-  ['torah', books['torah'].lookup[5][32][1].refs[0]];
+  // ['torah', books['torah'].lookup[5][32][1].refs[0]];
   // ['esther', books['esther'].lookup[1][9][7].refs[0]];
 
 const pagesDiv = document.getElementById('pages')!;

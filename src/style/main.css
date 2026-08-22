@@ -19,6 +19,7 @@
   --kri-font: "Shlomo", serif;
   --tl-font: "Bitter Hebrew", serif;
   --en-font: "Amstelvar", serif;
+  --divine-name-font: "Noto Serif Hebrew", serif;
   font-size: 1.5em;
   height: 100vh;
   position: relative; /* so we can measure each page's offsetTop */
@@ -163,6 +164,10 @@
   font-size: calc(18pt * var(--scale));
   letter-spacing: calc(0.5 * var(--letter-spacing));
 }
+.en .divine-name {
+  font-family: var(--divine-name-font);
+  font-size: 1.2em;
+}
 
 .tikkun-page.show-ketiv .ketiv {
   display: flex;
@@ -181,10 +186,22 @@
   Special formatting
  ********************/
 
+.big {
+  display: inline-block;
+  font-size: larger;
+  vertical-align: center;
+}
+.ketiv .big {
+  font-size: 1.6em;
+  transform: translateY(0.04em);
+}
+.kri .big {
+  transform: translateY(0.02em);
+}
+
 .ketiv-kri {
   position: relative;
 }
-
 .ketiv-kri::after {
   content: "";
   position: absolute;
@@ -198,7 +215,7 @@
 }
 
 .implied-word {
-  color: #999;
+  color: #888;
 }
 
 .verse-ref .chapter-number {
