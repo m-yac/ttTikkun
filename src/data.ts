@@ -123,7 +123,7 @@ export type PageData = {
 
 
 // =====================================
-//  Schema for `src/data/lookup/*.json`
+//  Schema for `src/data/books/*.json`
 // =====================================
 
 /**
@@ -147,6 +147,21 @@ const Lookup =
   z.record(z.int().positive(), // verse
   z.object({ refs: z.array(LookupEntry) }))));
 
+/**
+ * Data about a book, specifically:
+ * - How many pages it has
+ * - How many lines a page normally has
+ * - Which pages have a different number of lines
+ * - A `Lookup`
+ */
+export type BookData = z.infer<typeof BookData> & { book: Book };
+const BookData = z.object({
+  pageCount: z.int().positive(),
+  standardNumLines: z.int().positive(),
+  variantNumLines: z.record(z.int().positive(), z.int()),
+  lookup: Lookup,
+});
+
 
 // ====================
 //  Loading data files
@@ -155,22 +170,38 @@ const Lookup =
 /**
  * The currently available books
  */
-export type Book = 'torah' | 'esther';
+export const bookNames = ['torah', 'esther'] as const;
+export type Book = typeof bookNames[number];
 
 /**
- * The currently available books along with each's page count and standard
- * number of lines on a page (although not every page will have exactly this
- * number)
+ * Load the `BookData` for a `Book`
  */
-export const books: Record<Book, {
-  pageCount: number, standardNumLines: number
-}> = {
-  'torah': { pageCount: 245, standardNumLines: 42 },
-  'esther': { pageCount: 17, standardNumLines: 28 },
-};
+export async function loadBook(book: Book): Promise<BookData> {
+  const module = await import(`./data/books/${book}.json`);
+  return { ...BookData.parse(module.default), book };
+}
 
 /**
- * Load a `Page` (indexed from 1) from a `Book`
+ * Load the `BookData` for all available books
+ */
+export async function loadBooks(): Promise<Record<Book, BookData>> {
+  const books = {} as Record<Book, BookData>;
+  for (const book of bookNames) {
+    books[book] = await loadBook(book);
+  }
+  return books;
+}
+
+/**
+ * Given a `BookData` object, return many lines are on the given page (indexed
+ * from 1)
+ */
+export function numLines(data: BookData, index: number): number {
+  return data.variantNumLines[index] ?? data.standardNumLines;
+}
+
+/**
+ * Load the `PageData` for given page (indexed from 1) from a `Book`
  */
 export async function loadPage(book: Book, index: number): Promise<PageData> {
   const module = await import(`./data/pages/${book}/${index}.json`);
@@ -179,32 +210,29 @@ export async function loadPage(book: Book, index: number): Promise<PageData> {
 }
 
 /**
- * Load a `Lookup` for a `Book`
- */
-export async function loadLookup(book: Book): Promise<Lookup> {
-  const module = await import(`./data/lookup/${book}.json`);
-  return Lookup.parse(module.default);
-}
-
-/**
- * Load all available `Lookup`s
- */
-export async function loadLookups(): Promise<Record<Book, Lookup>> {
-  const lookups = {} as Record<Book, Lookup>;
-  for (const book of Object.keys(books) as Book[]) {
-    lookups[book] = await loadLookup(book);
-  }
-  return lookups;
-}
-
-/**
  * Returns the error thrown if any of the data does not match this scheme
  */
 export async function validateData(): Promise<Error | null> {
-  for (const book of Object.keys(books) as Book[]) {
-    for (let i = 1; i <= books[book].pageCount; i++) {
+  for (const book of bookNames) {
+    let data: BookData;
+    try {
+      data = await loadBook(book);
+    }
+    catch (e) {
+      if (e instanceof Error) {
+        e.message = `Failed to load ${book}:\n` + e.message;
+        return e;
+      }
+      return new Error(`Failed to load ${book}:\n ${e}`);
+    }
+    for (let i = 1; i <= data.pageCount; i++) {
       try {
-        await loadPage(book, i);
+        const page = await loadPage(book, i);
+        if (page.lines.length !== numLines(data, i)) {
+          return new Error(`Failed to load ${book} page ${i}:\n ` +
+                           `expected ${numLines(data, i)} lines, ` +
+                           `found ${page.lines.length}`);
+        }
       }
       catch (e) {
         if (e instanceof Error) {
@@ -213,16 +241,6 @@ export async function validateData(): Promise<Error | null> {
         }
         return new Error(`Failed to load ${book} page ${i}:\n ${e}`);
       }
-    }
-    try {
-      await loadLookup(book);
-    }
-    catch (e) {
-      if (e instanceof Error) {
-        e.message = `Failed to load ${book} lookup:\n` + e.message;
-        return e;
-      }
-      return new Error(`Failed to load ${book} lookup:\n ${e}`);
     }
   }
   return null;

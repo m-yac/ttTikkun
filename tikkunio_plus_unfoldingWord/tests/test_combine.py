@@ -14,4 +14,4 @@ def test_combine_builds_the_data(build):
         raise build
     for scroll in ['torah', 'esther']:
         assert (data_p / 'pages' / scroll / '1.json').exists()
-        assert (data_p / 'lookup' / f'{scroll}.json').exists()
+        assert (data_p / 'books' / f'{scroll}.json').exists()

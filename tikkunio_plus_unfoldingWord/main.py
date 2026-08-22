@@ -1,4 +1,5 @@
 import argparse
+from collections import Counter
 import csv
 from difflib import SequenceMatcher
 from fontTools.ttLib import TTFont
@@ -300,6 +301,14 @@ def array_like(items):
     `{` in a page of them is `"23": {` instead."""
     return { "length": len(items), **{ str(i): item
                                        for i, item in enumerate(items) } }
+
+def num_lines(pages):
+    """How many lines a page of this scroll normally has, and which pages have
+    some other number."""
+    counts = [ len(lines) for lines in pages ]
+    standard = Counter(counts).most_common(1)[0][0]
+    return standard, { str(i): n for i, n in enumerate(counts, 1)
+                       if n != standard }
 
 def frag_sequence(frags):
     """The fragments a verse's Hebrew lands in, in reading order, and which of
@@ -695,15 +704,15 @@ def main(dst=data_p):
                 json.dump(array_like(pages_data[scroll][i]), f,
                           ensure_ascii=False, indent=2, cls=NoIndentEncoder)
 
-        lookup_p = Path('lookup')
-        (dst / lookup_p).mkdir(parents=True, exist_ok=True)
-        with (dst / lookup_p / f'{scroll}.json').open('w') as f:
-            json.dump(lookup_data[scroll], f, ensure_ascii=False, indent=2, cls=NoIndentEncoder)
-
-        # english_p = Path('english')
-        # (dst / english_p).mkdir(parents=True, exist_ok=True)
-        # with (dst / english_p/ f'{scroll}.json').open('w') as f:
-        #     json.dump(ult_data[scroll], f, ensure_ascii=False, indent=2, cls=NoIndentEncoder)
+        books_p = Path('books')
+        (dst / books_p).mkdir(parents=True, exist_ok=True)
+        standard, variants = num_lines(pages_data[scroll])
+        with (dst / books_p / f'{scroll}.json').open('w') as f:
+            json.dump({ "pageCount": len(pages_data[scroll]),
+                        "standardNumLines": standard,
+                        "variantNumLines": variants,
+                        "lookup": lookup_data[scroll] },
+                      f, ensure_ascii=False, indent=2, cls=NoIndentEncoder)
 
 
 def cli():

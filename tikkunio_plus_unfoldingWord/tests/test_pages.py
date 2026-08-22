@@ -12,6 +12,12 @@ import pytest
 scrolls = ['torah', 'esther']
 
 
+def book_data(scroll):
+    """What the build wrote about the scroll itself: its page count, its line
+    counts, and its lookup."""
+    with (data_p / 'books' / f'{scroll}.json').open() as f:
+        return json.load(f)
+
 def pages(scroll):
     """Every page's lines, read back out of the array-like object each page is
     written as."""
@@ -146,9 +152,21 @@ def test_a_verses_words_are_numbered_straight_through(built, scroll):
 
 
 @pytest.mark.parametrize('scroll', scrolls)
+def test_book_counts_the_pages_and_their_lines(built, scroll):
+    """`standardNumLines` and `variantNumLines` together give every page's line
+    count, which is what the reader leaves room for before it lays a page out."""
+    data, all_pages = book_data(scroll), pages(scroll)
+    assert data["pageCount"] == len(all_pages)
+    for page, lines in enumerate(all_pages, 1):
+        expected = data["variantNumLines"].get(str(page),
+                                               data["standardNumLines"])
+        assert len(lines) == expected
+    assert data["standardNumLines"] not in data["variantNumLines"].values()
+
+
+@pytest.mark.parametrize('scroll', scrolls)
 def test_lookup_points_at_the_verse_it_claims(built, scroll):
-    with (data_p / 'lookup' / f'{scroll}.json').open() as f:
-        lookup = json.load(f)
+    lookup = book_data(scroll)["lookup"]
     all_pages = pages(scroll)
     for book, chapters in lookup.items():
         for chapter, verses in chapters.items():

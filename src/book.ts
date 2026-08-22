@@ -2,17 +2,15 @@
 //  A scrolling view of a book [GENERATED ENTIRELY BY AI]
 // ============================================================
 
-import { books, loadPage, type Book, type LookupEntry } from "./data";
+import { loadPage, numLines, type BookData, type LookupEntry } from "./data";
 import { pageTypes, TikkunPage, type PageType } from "./page";
 import { Transliteration } from "./transliteration";
 
 /**
  * Load the font every type of page is set in, as named by the `--*-font`
- * custom properties on the `book` element (see `main.css`).
- *
- * Until a page's font has loaded its text is laid out in a fallback font, and
- * so cannot be usefully measured - so this must resolve before any of the
- * `TikkunPage`s in `book` are laid out.
+ * custom properties on the `book` element (see `main.css`). Until a page's
+ * font has loaded its text is laid out in a fallback font, and so cannot be
+ * usefully measured - this must resolve before any page is laid out.
  */
 async function loadPageFonts(book: HTMLElement): Promise<void> {
   const style = getComputedStyle(book);
@@ -43,14 +41,6 @@ type Anchor = {
 const loadMargin = 0.5;
 
 /**
- * The maximum number of pages to keep rendered at once. Every rendered page
- * costs us a full (and fairly expensive) layout whenever the window is
- * resized, so we keep only what we need: the visible page, plus enough on
- * either side to cover `loadMargin`.
- */
-const maxRenderedPages = 3;
-
-/**
  * How long after the last `resize` event we consider a burst of resizes to be
  * over, in milliseconds
  */
@@ -59,23 +49,28 @@ const resizeIdleMs = 200;
 /**
  * One page of the book as it appears in the scroll: either a `TikkunPage`
  * which has been built and laid out, or - until we have got to it - a blank
- * placeholder which is about as tall as that page will turn out to be (see
- * `.placeholder-tikkun-page` in `main.css`, which is where that height comes from).
+ * placeholder about as tall as that page will turn out to be (see
+ * `.placeholder-tikkun-page` in `main.css`).
  *
- * Making a placeholder costs nothing, while building and laying out a page
- * costs most of a frame, so a page always goes into the scroll as a
- * placeholder first: that way the reader can carry on scrolling into it
- * immediately, and we put the text in behind them (see `fill`).
+ * A placeholder costs nothing while laying out a page costs most of a frame,
+ * so every page is in the scroll as a placeholder from the start, and the text
+ * goes into the ones the reader has got to as they go (see `fill`).
  */
 class Slot {
   readonly pageIndex: number;
   private placeholder: HTMLElement;
   private tikkunPage: TikkunPage | null = null;
 
-  constructor(pageIndex: number) {
+  /**
+   * @param numLines how many lines the page this slot stands in for has, which
+   * is what `main.css` sizes the placeholder from - a page with fewer lines
+   * than the rest of its book needs correspondingly less room
+   */
+  constructor(pageIndex: number, numLines: number) {
     this.pageIndex = pageIndex;
     this.placeholder = document.createElement('div');
     this.placeholder.classList.add('placeholder-tikkun-page');
+    this.placeholder.style.setProperty('--numLines', String(numLines));
   }
 
   /** The page in this slot, or `null` if it is still a placeholder */
@@ -87,48 +82,73 @@ class Slot {
   }
 
   /**
-   * Put `page` in the scroll in place of this slot's placeholder. The page
-   * still has to be laid out afterwards - it has no size worth speaking of
-   * until it is.
+   * Put `page` in the scroll in place of this slot's placeholder. It still has
+   * to be laid out afterwards - until then it has no size worth speaking of.
    */
   fill(page: TikkunPage) {
     this.placeholder.replaceWith(page.element);
     this.tikkunPage = page;
   }
 
-  remove() { this.element.remove(); }
+  /**
+   * Put the placeholder back in place of this slot's page, fixed at exactly
+   * the room the page turned out to need - a page's real height is rarely the
+   * one `main.css` guesses, and this way giving a page up and coming back over
+   * it later both move nothing.
+   */
+  empty() {
+    const page = this.tikkunPage;
+    if (page === null) { return; }
+    // A scaled-down page takes its full unscaled height in the layout and
+    // gives the difference back out of its bottom margin (see `updateScale`),
+    // so the room it occupies is the two together
+    const margin = parseFloat(getComputedStyle(page.element).marginBottom);
+    this.placeholder.style.height =
+      `${page.element.offsetHeight + margin}px`;
+    page.element.replaceWith(this.placeholder);
+    this.tikkunPage = null;
+  }
+
+  /**
+   * Forget a height measured by `empty`, which is only good for the layout it
+   * was measured in
+   */
+  forgetHeight() {
+    this.placeholder.style.removeProperty('height');
+  }
 }
 
 /**
  * A scrolling view of a whole book, which renders only the pages near the
  * visible area and loads more as the user scrolls in either direction. This
  * takes the place of `tikkun.io`'s `infinite-scroller.ts`, but differs from it
- * in three ways worth noting:
+ * in a few ways worth noting:
  *
- * - Pages are dropped once they get far enough away, instead of accumulating
- *   forever. (We can afford to keep them even less than `tikkun.io` can, since
- *   each of our pages carries up to four typeset copies of its text.)
+ * - Rendered pages are given up once they get far enough away, instead of
+ *   accumulating forever - we can afford to keep them even less than
+ *   `tikkun.io` can, since each of our pages carries up to four typeset copies
+ *   of its text.
+ * - The scroll is never extended, because it is never short: a placeholder for
+ *   every page goes in at the start, at one empty `div` each. Nothing the
+ *   reader can do outruns the loading, since `render` only ever puts text into
+ *   room which is already there.
  * - Loading is driven by a single re-entrant `fill` loop which runs until the
  *   margins on both sides are satisfied, rather than by one fetch per `scroll`
  *   event - which never gets started if the initial content is shorter than
- *   the window, and falls behind if the user scrolls quickly. However fast the
- *   reader scrolls, the loop keeps extending the scroll ahead of them: room
- *   for a page is made as soon as it is asked for (`extend`), and the page
- *   itself is laid out into that room a frame at a time afterwards (`render`).
- * - Everything which changes the height of the content - inserting a page
- *   above the viewport, dropping one, filling in a placeholder, resizing,
- *   switching page types - is wrapped in an explicit scroll correction, and
- *   native scroll anchoring is turned off (see `overflow-anchor` in
- *   `main.css`) so that the two cannot fight each other.
+ *   the window, and falls behind if the user scrolls quickly.
+ * - Everything which changes the height of the content is wrapped in an
+ *   explicit scroll correction, and native scroll anchoring is turned off (see
+ *   `overflow-anchor` in `main.css`) so the two cannot fight each other. A
+ *   slot which has held a page remembers how tall it was, so a correction is
+ *   only ever needed for a page the reader has not seen before.
  */
 export class TikkunBook {
   /** The scrolling container which holds every rendered `TikkunPage` */
   readonly element: HTMLElement;
-  readonly book: Book;
+  readonly data: BookData;
   private readonly translit: Transliteration;
-  private readonly pageCount: number;
 
-  /** The pages currently in the scroll, in order, with contiguous numbers */
+  /** Every page of the book, in order: `slots[i]` holds page `i + 1` */
   private slots: Slot[] = [];
   private left: PageType = 'ketiv';
   private right: PageType = 'en';
@@ -144,19 +164,25 @@ export class TikkunBook {
   private resizeFrame: number | null = null;
   private resizeIdleTimer: ReturnType<typeof setTimeout> | null = null;
 
-  private constructor(element: HTMLElement, book: Book,
+  private constructor(element: HTMLElement, data: BookData,
                       translit: Transliteration) {
     this.element = element;
-    this.book = book;
+    this.data = data;
     this.translit = translit;
-    this.pageCount = books[book].pageCount;
 
     this.element.classList.add('tikkun-book');
-    // How tall `main.css` makes a placeholder for a page we have not laid out
-    // yet: the room a page of this book needs when it has the standard number
-    // of lines and is not scaled down to fit
-    this.element.style.setProperty('--standardNumLines',
-                                   String(books[book].standardNumLines));
+
+    // Lay the whole book out as placeholders at once - an empty `div` per
+    // page, a couple of hundred at most - so that the scroll is the right
+    // length from the first frame and never has to grow
+    const placeholders = document.createDocumentFragment();
+    for (let pageIndex = 1; pageIndex <= data.pageCount; pageIndex++) {
+      const slot = new Slot(pageIndex, numLines(data, pageIndex));
+      this.slots.push(slot);
+      placeholders.append(slot.element);
+    }
+    this.element.append(placeholders);
+
     this.element.addEventListener('scroll', () => { void this.fill(); },
                                   { passive: true });
     window.addEventListener('resize', () => this.onResize());
@@ -165,10 +191,10 @@ export class TikkunBook {
   /**
    * Create a `TikkunBook` in `element` and scroll it to the given line
    */
-  static async open(element: HTMLElement, book: Book,
+  static async open(element: HTMLElement, data: BookData,
                     translit: Transliteration,
                     at: LookupEntry): Promise<TikkunBook> {
-    const tikkunBook = new TikkunBook(element, book, translit);
+    const tikkunBook = new TikkunBook(element, data, translit);
     // Every page is laid out by measuring its own text, so nothing can be
     // rendered until the fonts that text will be set in are available
     await loadPageFonts(element);
@@ -181,34 +207,38 @@ export class TikkunBook {
    * is centered vertically in the visible area
    */
   async goTo({ page, line = 0 }: { page: number, line?: number }) {
-    for (const slot of this.slots) { slot.remove(); }
-    this.slots = [];
     this.anchor = null;
+    // Nothing we have rendered is anywhere near where we are going
+    for (const slot of this.renderedSlots) { this.unrender(slot); }
 
-    const slot = new Slot(page);
-    this.element.append(slot.element);
-    this.slots.push(slot);
+    const slot = this.slots[page - 1];
+    if (slot === undefined) { return; }
+    // The placeholder for the page we want is already in the scroll, so we can
+    // simply jump to it, and only then find out how tall the page really is
+    this.element.scrollTop = this.topOf(slot);
     const tikkunPage = await this.render(slot);
 
     this.anchor = { page: tikkunPage, lineIndex: line, offsetFromCenter: 0 };
     try {
-      // Fill in the pages around the target line first - only once there is
-      // content above it can we actually scroll it to the center
+      this.restoreAnchor();
+      // Hold the target line in place while the pages around it go in, since
+      // they are rarely quite as tall as the placeholders they replace
       await this.fill();
       this.restoreAnchor();
     }
     finally { this.anchor = null; }
-    // Now fill in whatever that scroll uncovered
+    // Now fill in whatever that last correction uncovered
     await this.fill();
+  }
+
+  /** The slots which currently hold a rendered page, in order */
+  private get renderedSlots(): Slot[] {
+    return this.slots.filter((slot) => slot.page !== null);
   }
 
   /** Every page in the scroll which has actually been built */
   private get rendered(): TikkunPage[] {
-    const pages: TikkunPage[] = [];
-    for (const slot of this.slots) {
-      if (slot.page !== null) { pages.push(slot.page); }
-    }
-    return pages;
+    return this.renderedSlots.map((slot) => slot.page!);
   }
 
   /**
@@ -222,6 +252,8 @@ export class TikkunBook {
     this.right = right;
     this.withAnchor(() => {
       for (const page of this.rendered) { page.updatePages(left, right); }
+      // Every page we have measured was measured showing the old pair
+      this.forgetMeasuredHeights();
     });
   }
 
@@ -229,18 +261,36 @@ export class TikkunBook {
   updateRightPage(right: PageType) { this.updatePages(this.left, right); }
 
 
-  // ==================
+  // ============================================================
   //  Loading pages in
-  // ==================
+  //
+  //  Where a slot is is measured in scroll coordinates, with
+  //  `offsetTop`: unlike a bounding box, those do not shift when
+  //  we correct the scroll, and they are unaffected by the
+  //  transform a page is scaled by. (The anchoring code below
+  //  cannot work this way, since a line's offset parent is its
+  //  own page rather than the scroll.)
+  // ============================================================
+
+  /** Where the top of `slot` sits in the scroll */
+  private topOf(slot: Slot): number { return slot.element.offsetTop; }
 
   /**
-   * Make room for and then lay out pages until there is at least `loadMargin`
-   * screenfuls of content above and below the visible area (or until we run
-   * out of book).
-   *
-   * Only one of these ever runs at a time; a call made while one is in flight
-   * joins it, and since the loop re-checks the scroll position after every
-   * page, whatever prompted the second call is handled before it returns.
+   * Where the room `slot` takes up in the scroll ends, which is exactly where
+   * the next slot begins - a page's own height leaves out the gap below it,
+   * and is the height it would have had if it had not been scaled down
+   */
+  private bottomOf(slot: Slot): number {
+    const next = this.slots[slot.pageIndex];
+    return next === undefined ? this.element.scrollHeight : this.topOf(next);
+  }
+
+  /**
+   * Lay out pages until every placeholder within `loadMargin` screenfuls of
+   * the visible area has been replaced by its text. Only one of these ever
+   * runs at a time; a call made while one is in flight joins it, and since the
+   * loop re-checks the scroll position after every page, whatever prompted
+   * that call is handled before it returns.
    */
   private fill(): Promise<void> {
     if (this.filling !== null) { return this.filling; }
@@ -250,12 +300,8 @@ export class TikkunBook {
 
   private async fillUntilFull(): Promise<void> {
     for (;;) {
-      // Whatever else we do, get rid of anything we have scrolled well past
-      this.dropDistantPages();
-      // Make room for as many pages as the margins are short of, all at once
-      // and without waiting for any of them to be built - the reader can
-      // scroll on into that room while we are still filling it in
-      this.extend();
+      // Whatever else we do, give up anything we have scrolled well past
+      this.unrenderDistantPages();
 
       const slot = this.nextToRender();
       if (slot === null) { break; }
@@ -268,52 +314,22 @@ export class TikkunBook {
   }
 
   /**
-   * Add placeholders at whichever ends of the scroll are within `loadMargin`
-   * of the visible area, until neither is (or we run out of book).
-   *
-   * This is what keeps a fast scroll from ever running out of room: a
-   * placeholder costs nothing but a `div` of about the right height, so
-   * however far the reader gets ahead of us, the scroll gets that far ahead
-   * of them.
-   */
-  private extend() {
-    for (;;) {
-      const { scrollTop, scrollHeight, clientHeight } = this.element;
-      const above = scrollTop;
-      const below = scrollHeight - scrollTop - clientHeight;
-      const first = this.slots[0]?.pageIndex ?? 1;
-      const last = this.slots[this.slots.length - 1]?.pageIndex ?? 0;
-
-      if (below < loadMargin * clientHeight && last < this.pageCount) {
-        const slot = new Slot(last + 1);
-        this.element.append(slot.element);
-        this.slots.push(slot);
-      }
-      else if (above < loadMargin * clientHeight && first > 1) {
-        const slot = new Slot(first - 1);
-        // Everything already on screen has to stay where it is, and the page
-        // we are putting above it is going to push it all down
-        this.keepInPlace(this.slots[0]?.element, () => {
-          this.element.prepend(slot.element);
-          this.slots.unshift(slot);
-        });
-      }
-      else { return; }
-    }
-  }
-
-  /**
-   * The placeholder nearest the visible area, which is the one whose text the
-   * reader is most likely to want next
+   * The placeholder nearest the visible area which is still within
+   * `loadMargin` of it, this being the one whose text the reader is most
+   * likely to want next - or `null` if there is no such placeholder left
    */
   private nextToRender(): Slot | null {
-    const center = this.viewportCenter;
+    const { top, bottom, center } = this.loadRegion();
+
     let nearest: Slot | null = null;
     let nearestDistance = Infinity;
-    for (const slot of this.slots) {
+    for (let i = this.firstSlotEndingBelow(top); i < this.slots.length; i++) {
+      const slot = this.slots[i];
+      const slotTop = this.topOf(slot);
+      if (slotTop >= bottom) { break; }
       if (slot.page !== null) { continue; }
-      const box = slot.element.getBoundingClientRect();
-      const distance = Math.max(box.top - center, center - box.bottom, 0);
+      const distance =
+        Math.max(slotTop - center, center - this.bottomOf(slot), 0);
       if (distance < nearestDistance) {
         nearestDistance = distance;
         nearest = slot;
@@ -323,30 +339,52 @@ export class TikkunBook {
   }
 
   /**
+   * The stretch of the scroll we want laid out: the visible area with
+   * `loadMargin` of it added on either side
+   */
+  private loadRegion(): { top: number, bottom: number, center: number } {
+    const { scrollTop, clientHeight } = this.element;
+    const margin = loadMargin * clientHeight;
+    return {
+      top: scrollTop - margin,
+      bottom: scrollTop + clientHeight + margin,
+      center: scrollTop + clientHeight / 2,
+    };
+  }
+
+  /**
+   * The index of the first slot which ends below `y`, found by bisection - the
+   * slots are in document order, and so in order of position, but there are
+   * far too many of them to measure one by one
+   */
+  private firstSlotEndingBelow(y: number): number {
+    let low = 0;
+    let high = this.slots.length;
+    while (low < high) {
+      const middle = (low + high) >> 1;
+      if (this.bottomOf(this.slots[middle]) <= y) { low = middle + 1; }
+      else { high = middle; }
+    }
+    return low;
+  }
+
+  /**
    * Load, build, and lay out the page a placeholder is standing in for,
-   * keeping the content already on screen exactly where it was.
-   *
-   * Everything after the `await` is synchronous, so the page is measured,
-   * typeset, and paid for with a scroll correction all within one frame - the
-   * user never sees the intermediate, unstretched layout.
+   * keeping the content already on screen exactly where it was. Everything
+   * after the `await` is synchronous, so the page is measured, typeset, and
+   * paid for with a scroll correction all within one frame - the reader never
+   * sees the intermediate, unstretched layout.
    */
   private async render(slot: Slot): Promise<TikkunPage> {
-    const data = await loadPage(this.book, slot.pageIndex);
-    // The slot may have been dropped while its data was being loaded
-    const index = this.slots.indexOf(slot);
-    const page = new TikkunPage(data, this.translit);
-    if (index < 0) {
-      slot.fill(page);
-      page.updatePages(this.left, this.right);
-      return page;
-    }
+    const pageData = await loadPage(this.data.book, slot.pageIndex);
+    // `goTo` and `fill` can both be waiting on the same page at once
+    if (slot.page !== null) { return slot.page; }
+    const page = new TikkunPage(pageData, this.translit);
 
-    // A page is rarely exactly as tall as the placeholder standing in for it -
-    // it is usually shorter, having been scaled down to fit - so if it begins
-    // above the visible area we hold on to what comes after it, and its text
-    // then appears without moving anything else
-    const above = slot.element.getBoundingClientRect().top < this.viewportTop;
-    this.keepInPlace(above ? this.slots[index + 1]?.element : undefined, () => {
+    // A page we have not seen before is rarely exactly as tall as the
+    // placeholder standing in for it - it is usually shorter, having been
+    // scaled down to fit - so its text has to be paid for with a correction
+    this.changeHeightOf(slot, () => {
       slot.fill(page);
       page.updatePages(this.left, this.right);
     });
@@ -354,78 +392,86 @@ export class TikkunBook {
   }
 
   /**
-   * Drop pages from whichever end is further from the visible area until we
-   * are down to `maxRenderedPages`, never dropping the page we are anchored
-   * to, and never dropping one which is still within `loadMargin` of the
-   * visible area - that one would only be asked for again by `extend`
+   * Take the text back out of a page, leaving its placeholder - fixed at the
+   * height the page turned out to be - standing in the same room
    */
-  private dropDistantPages() {
-    while (this.slots.length > maxRenderedPages) {
-      const first = this.slots[0];
-      const last = this.slots[this.slots.length - 1];
-      const center = this.viewportCenter;
-      const fromStart = center - first.element.getBoundingClientRect().bottom;
-      const fromEnd = last.element.getBoundingClientRect().top - center;
-
-      const dropStart = fromStart >= fromEnd;
-      const slot = dropStart ? first : last;
-      if (this.anchor?.page === slot.page) { break; }
-      const margin = (0.5 + loadMargin) * this.element.clientHeight;
-      if (Math.max(fromStart, fromEnd) < margin) { break; }
-
-      if (dropStart) {
-        // Whatever is left at the top of the scroll is on its way to becoming
-        // the first page, and must not move while it does
-        this.keepInPlace(this.slots[1].element, () => {
-          slot.remove();
-          this.slots.shift();
-        });
-      }
-      else {
-        slot.remove();
-        this.slots.pop();
-      }
-    }
+  private unrender(slot: Slot) {
+    this.changeHeightOf(slot, () => slot.empty());
   }
 
-
   /**
-   * Run `change`, which is expected to alter the height of the content above
-   * the viewport, with `element` kept exactly where it was on screen
+   * Run `change`, which is expected to alter the height of `slot`, without
+   * moving anything the reader can see
    */
-  private keepInPlace(element: HTMLElement | undefined, change: () => void) {
-    const before = element?.getBoundingClientRect().top;
+  private changeHeightOf(slot: Slot, change: () => void) {
+    const below = this.slots[slot.pageIndex];
+    // A slot which starts at or below the top of the visible area only pushes
+    // around what comes after it, which is either off screen or on its way
+    // there anyway; one above it would push everything on screen down
+    if (below === undefined || this.topOf(slot) >= this.element.scrollTop) {
+      change();
+      return;
+    }
+    const before = this.topOf(below);
     change();
-    if (element !== undefined && before !== undefined) {
-      this.element.scrollTop += element.getBoundingClientRect().top - before;
+    // Everything from `below` on has moved by exactly the change in height, so
+    // taking that back out of the scroll puts it all back where it was
+    this.element.scrollTop += this.topOf(below) - before;
+  }
+
+  /**
+   * Give back every page which has fallen outside the stretch we want laid
+   * out - except the one we are anchored to, which has to stay where it is.
+   * Nothing inside that stretch is ever given up, since `fill` would only lay
+   * it out again, and the stretch is only a couple of screenfuls tall, so this
+   * is what keeps the number of rendered pages down.
+   */
+  private unrenderDistantPages() {
+    for (const slot of this.renderedSlots) {
+      if (this.anchor?.page === slot.page) { continue; }
+      // Recomputed each time round, since giving a page up above the visible
+      // area moves the whole scroll out from under the previous answer
+      const { top, bottom } = this.loadRegion();
+      if (this.bottomOf(slot) > top && this.topOf(slot) < bottom) { continue; }
+      this.unrender(slot);
     }
   }
 
+  /**
+   * Forget every height measured by `Slot.empty`, which the change now being
+   * made to the layout would leave wrong
+   */
+  private forgetMeasuredHeights() {
+    for (const slot of this.slots) { slot.forgetHeight(); }
+  }
 
-  // =========================================
+
+  // ==========================================================
   //  Resizing, while keeping our place fixed
-  // =========================================
+  //
+  //  Here we are holding on to a line rather than a page, so
+  //  everything is measured in client coordinates - a line's
+  //  offset parent is its own page, not the scroll.
+  // ==========================================================
 
   /**
-   * Each page's layout depends on how much room it has, so every page has to
-   * be laid out again from scratch when the window is resized - which is far
-   * too slow to do on every event of a drag. Instead, while the drag is going
-   * on we only rescale each page to fit, which is cheap, and do the real
-   * layout once the drag has settled.
-   *
-   * Throughout, we hold on to the line which was at the center of the screen
-   * when the resize began, and put it back after every change - so the reader
-   * keeps their place for the whole drag, instead of drifting as the pages
-   * around them change height.
+   * A page is laid out by measuring its own text, in units which owe nothing
+   * to the size of the window (see `main.css`), so a resize cannot change the
+   * shape of a page - only how far it is scaled down to fit, which is cheap
+   * enough to redo on every frame of a drag. What a resize does change is where the reader is, since every page around
+   * them changes height as it is rescaled. So we hold on to the line which was
+   * at the center of the screen when the drag began and put that same line
+   * back after every frame - picking a new one each time would let the reader
+   * drift over the course of the drag.
    */
   private onResize() {
     if (this.resizeIdleTimer === null) { this.captureAnchor(); }
     else { clearTimeout(this.resizeIdleTimer); }
+    // Once the events stop the drag is over, and we can let go of the line it
+    // was centered on - an anchor we never let go of would pin its page in the
+    // scroll forever
     this.resizeIdleTimer = setTimeout(() => {
       this.resizeIdleTimer = null;
-      this.relayout();
-      // The drag is over, so stop holding on to the line it was centered on -
-      // an anchor we never let go of would pin its page in the scroll forever
       this.anchor = null;
     }, resizeIdleMs);
 
@@ -437,12 +483,14 @@ export class TikkunBook {
   }
 
   /**
-   * Apply `update` to every rendered page, keeping the anchored line in place.
-   * Unlike `withAnchor`, this keeps the anchor captured at the start of the
-   * resize, rather than picking a new one each time.
+   * Rescale every rendered page to the room it now has, keeping the anchored
+   * line in place. Unlike `withAnchor`, this keeps the anchor captured at the
+   * start of the resize, rather than picking a new one each time.
    */
   private relayout() {
     for (const page of this.rendered) { page.updateScale(); }
+    // Every page we have measured was measured at the old size
+    this.forgetMeasuredHeights();
     this.restoreAnchor();
     void this.fill();
   }
@@ -461,14 +509,10 @@ export class TikkunBook {
     void this.fill();
   }
 
-  /** The y coordinate of the top of the visible area */
-  private get viewportTop(): number {
-    return this.element.getBoundingClientRect().top;
-  }
-
-  /** The y coordinate of the center of the visible area */
+  /** The y coordinate of the center of the visible area, on screen */
   private get viewportCenter(): number {
-    return this.viewportTop + this.element.clientHeight / 2;
+    return this.element.getBoundingClientRect().top
+         + this.element.clientHeight / 2;
   }
 
   /**
@@ -498,23 +542,17 @@ export class TikkunBook {
   }
 
   /**
-   * The rendered line whose center is closest to the y coordinate `y`.
-   *
-   * We scan the lines rather than using `elementFromPoint`, since the center
-   * of the screen falls in the gap between the two visible pages, and since
-   * the pages may be scaled by a transform (which `getBoundingClientRect`
-   * accounts for, so all of these coordinates remain comparable).
+   * The rendered line whose center is closest to the y coordinate `y`. We scan
+   * the lines rather than using `elementFromPoint`, since the center of the
+   * screen falls in the gap between the two visible pages, and since the pages
+   * may be scaled by a transform (which `getBoundingClientRect` accounts for,
+   * so all of these coordinates remain comparable).
    */
   private lineNearest(y: number):
       { page: TikkunPage, lineIndex: number } | null {
     let nearest: { page: TikkunPage, lineIndex: number } | null = null;
     let nearestDistance = Infinity;
     for (const page of this.rendered) {
-      const box = page.element.getBoundingClientRect();
-      // Skip pages which cannot contain anything closer than what we have
-      if (box.top - y > nearestDistance || y - box.bottom > nearestDistance) {
-        continue;
-      }
       page.leftLines.forEach((line, lineIndex) => {
         const distance = Math.abs(lineCenter(line) - y);
         if (distance < nearestDistance) {

@@ -20,6 +20,7 @@
   --en-font: "Amstelvar", serif;
   font-size: 1.5em;
   height: 100vh;
+  position: relative; /* so we can measure each page's offsetTop */
   overflow-anchor: none; /* we change the scroll position ourselves */
   overflow-x: hidden;
 }
@@ -30,8 +31,8 @@
 
 .placeholder-tikkun-page {
   width: 100%;
-  /* `--standardNumLines` is set by its parent `.tikkun-book`, see `book.ts` */
-  height: calc(var(--standardNumLines) * var(--line-height) + var(--page-gap));
+  /* `--numLines` is set by its parent `.tikkun-book`, see `book.ts` */
+  height: calc(var(--numLines) * var(--line-height) + var(--page-gap));
 }
 
 .tikkun-page {
