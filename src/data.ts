@@ -175,6 +175,15 @@ export const bookNames = ['torah', 'esther'] as const;
 export type Book = typeof bookNames[number];
 
 /**
+ * The name of each of the actual books making up a `Book`
+ */
+export const bookTitles: Record<Book, Record<number, string>> = {
+  torah: { 1: 'Genesis', 2: 'Exodus', 3: 'Leviticus',
+           4: 'Numbers', 5: 'Deuteronomy' },
+  esther: { 1: 'Esther' },
+};
+
+/**
  * Load the `BookData` for a `Book`
  */
 export async function loadBook(book: Book): Promise<BookData> {

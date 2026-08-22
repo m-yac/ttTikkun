@@ -2,7 +2,8 @@
 //  A scrolling view of a book [GENERATED ENTIRELY BY AI]
 // ============================================================
 
-import { loadPage, numLines, type BookData, type LookupEntry } from "./data";
+import { loadPage, numLines, type BookData, type LookupEntry,
+         type VerseRef } from "./data";
 import { pageTypes, TikkunPage, type PageType } from "./page";
 import { Transliteration } from "./transliteration";
 
@@ -154,6 +155,9 @@ export class TikkunBook {
   private left: PageType = 'ketiv';
   private right: PageType = 'en';
 
+  /** What to tell whenever `currentVerse` or which pages are shown changes */
+  private readonly listeners: (() => void)[] = [];
+
   /** The `fill` currently in progress, if any */
   private filling: Promise<void> | null = null;
 
@@ -184,8 +188,10 @@ export class TikkunBook {
     }
     this.element.append(placeholders);
 
-    this.element.addEventListener('scroll', () => { void this.fill(); },
-                                  { passive: true });
+    this.element.addEventListener('scroll', () => {
+      void this.fill();
+      this.changed();
+    }, { passive: true });
     window.addEventListener('resize', () => this.onResize());
   }
 
@@ -230,6 +236,7 @@ export class TikkunBook {
     finally { this.anchor = null; }
     // Now fill in whatever that last correction uncovered
     await this.fill();
+    this.changed();
   }
 
   /** The slots which currently hold a rendered page, in order */
@@ -256,10 +263,35 @@ export class TikkunBook {
       // Every page we have measured was measured showing the old pair
       this.forgetMeasuredHeights();
     });
+    this.changed();
   }
 
   updateLeftPage(left: PageType) { this.updatePages(left, this.right); }
   updateRightPage(right: PageType) { this.updatePages(this.left, right); }
+
+  /** Which page type is currently shown on each side */
+  get leftPage(): PageType { return this.left; }
+  get rightPage(): PageType { return this.right; }
+
+  /**
+   * The verse being read at the moment: the first verse of the line nearest
+   * the center of the visible area, or `null` if nothing is rendered there
+   */
+  get currentVerse(): VerseRef | null {
+    const nearest = this.lineNearest(this.viewportCenter);
+    if (nearest === null) { return null; }
+    const { verses } = nearest.page.data.lines[nearest.lineIndex];
+    return verses[0] ?? null;
+  }
+
+  /**
+   * Ask to be told whenever `currentVerse` or which pages are shown changes -
+   * which is as often as every scroll event, so a listener which does anything
+   * expensive should wait for a frame of its own
+   */
+  onChange(listener: () => void) { this.listeners.push(listener); }
+
+  private changed() { for (const listener of this.listeners) { listener(); } }
 
 
   // ============================================================
@@ -389,6 +421,7 @@ export class TikkunBook {
       slot.fill(page);
       page.updatePages(this.left, this.right);
     });
+    this.changed();
     return page;
   }
 
@@ -494,6 +527,7 @@ export class TikkunBook {
     this.forgetMeasuredHeights();
     this.restoreAnchor();
     void this.fill();
+    this.changed();
   }
 
   /**

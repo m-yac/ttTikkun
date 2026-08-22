@@ -363,6 +363,7 @@ export class EnglishPage extends Page {
  */
 export class TikkunPage extends PageElement<HTMLDivElement> {
   readonly element: HTMLDivElement;
+  readonly data: PageData;
   readonly pages: Record<PageType, Page>;
 
   private left: PageType = 'ketiv';
@@ -374,6 +375,7 @@ export class TikkunPage extends PageElement<HTMLDivElement> {
 
   constructor(data: PageData, translit: Transliteration) {
     super();
+    this.data = data;
     this.pages = {
       ketiv: new KetivPage(data),
       kri: new KriPage(data),

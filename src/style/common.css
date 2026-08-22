@@ -36,6 +36,10 @@
 
 body {
   --text-color: #000;
+  --button-focus-color: #6af;
+  --button-border-color: #666;
+  --button-bg-color: #eee;
+  --button-light-bg-color: #ddd;
   font-family: "Crimson Text", serif;
   color: var(--text-color);
   margin: 0;
@@ -76,4 +80,49 @@ a.alt:focus,
 a.alt:visited:hover,
 a.alt:visited:focus {
   color: ActiveText;
+}
+
+.checkboxContainer {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 8px;
+  background-color: var(--button-light-bg-color);
+  vertical-align: middle;
+}
+.checkboxContainer input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.checkboxContainer input + label {
+  min-width: 1.5em;
+  margin: 0 1px;
+  padding: 2px 6px;
+  border: 1px solid var(--button-light-bg-color);
+  border-radius: 5px;
+  background-color: transparent;
+  font-size: 12pt;
+  text-align: center;
+  cursor: pointer;
+}
+.checkboxContainer input:checked + label {
+  border-color: var(--button-border-color);
+  background-color: var(--button-bg-color);
+}
+.checkboxContainer input + label:hover,
+.checkboxContainer input:focus-visible + label {
+  border-color: var(--button-border-color);
+  box-shadow: 0 0 2pt 1pt var(--button-focus-color);
+}
+/* A button which is already showing what it would show */
+.checkboxContainer input:disabled + label {
+  color: #999;
+  cursor: default;
+}
+.checkboxContainer input:disabled + label:hover {
+  border-color: var(--button-light-bg-color);
+  box-shadow: none;
 }

@@ -1,6 +1,7 @@
 import { Book, loadBooks, LookupEntry } from "./data"
 import { TikkunBook } from "./book";
 import { pageTypes } from "./page";
+import { NavBar } from "./nav";
 import { Transliteration } from "./transliteration";
 
 // import { validateData } from "./data";
@@ -21,6 +22,9 @@ const [book, start]: [Book, LookupEntry] =
 
 const pagesDiv = document.getElementById('pages')!;
 const tikkunBook = await TikkunBook.open(pagesDiv, books[book], translit, start);
+
+const navDiv = document.getElementById('nav')!;
+new NavBar(navDiv, tikkunBook, translit);
 
 // For now, press 1,2,3,4 to choose the left page and 7,8,9,0 the right page
 const leftKeys = ['1', '2', '3', '4'];

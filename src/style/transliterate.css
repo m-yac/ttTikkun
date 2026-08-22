@@ -31,10 +31,6 @@
 /* ========================= */
 
 .options {
-  --button-focus-color: #6af;
-  --button-border-color: #666;
-  --button-bg-color: #eee;
-  --button-light-bg-color: #ddd;
   margin: 0 auto;
   text-align: center;
 }
@@ -86,42 +82,6 @@
   font-size: 1.25em;
   unicode-bidi: isolate;
   margin: 0 0.1rem;
-}
-
-.checkboxContainer {
-  display: inline-flex;
-  padding: 3px;
-  border-radius: 8px;
-  background-color: var(--button-light-bg-color);
-  vertical-align: middle;
-}
-.checkboxContainer input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: 0;
-  opacity: 0;
-  pointer-events: none;
-}
-.checkboxContainer input + label {
-  min-width: 1.5em;
-  margin: 0 1px;
-  padding: 2px 6px;
-  border: 1px solid var(--button-light-bg-color);
-  border-radius: 5px;
-  background-color: transparent;
-  font-size: 12pt;
-  text-align: center;
-  cursor: pointer;
-}
-.checkboxContainer input:checked + label {
-  border-color: var(--button-border-color);
-  background-color: var(--button-bg-color);
-}
-.checkboxContainer input + label:hover,
-.checkboxContainer input:focus-visible + label {
-  border-color: var(--button-border-color);
-  box-shadow: 0 0 2pt 1pt var(--button-focus-color);
 }
 
 /* Labels which are samples of transliterated text */
