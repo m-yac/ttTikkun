@@ -12,6 +12,7 @@
   --verse-ref-width: calc(60pt * var(--scale));
   --verse-ref-gap: calc(24pt * var(--scale));
   --page-gap: calc(2 * var(--line-height));
+  --page-divider-inset: 100px;
   --chapter-number-opacity: 0.5;
   --verse-number-opacity: 0.4;
   --ketiv-font: "Shlomo Stam", serif;
@@ -36,14 +37,27 @@
 }
 
 .tikkun-page {
+  --page-scale: 1;
+  position: relative;
   display: flex;
   justify-content: center;
   transform-origin: top center;
+  transform: scale(var(--page-scale));
   gap: calc(2 * var(--verse-ref-gap));
   margin-bottom: var(--page-gap);
 }
 .tikkun-page.is-reversed {
   flex-direction: row-reverse;
+}
+
+.tikkun-page:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  border: 1px solid rgba(0, 0, 0, 25%);
+  /* Need to compensate for the `--page-scale` since `--page-gap` and `--page-divider-inset` don't/shouldn't scale */
+  top: calc(-0.5 * var(--page-gap) / var(--page-scale));
+  left: calc(50% - (50% - var(--page-divider-inset)) / var(--page-scale));
+  right: calc(50% - (50% - var(--page-divider-inset)) / var(--page-scale));
 }
 
 .page {
