@@ -153,15 +153,21 @@ const Lookup =
 // ====================
 
 /**
- * The number of pages in each of the currently available books
- */
-export const bookPageCounts = { torah: 245, esther: 17 } as const;
-
-/**
  * The currently available books
  */
-export type Book = keyof typeof bookPageCounts;
-export const books = Object.keys(bookPageCounts) as Book[];
+export type Book = 'torah' | 'esther';
+
+/**
+ * The currently available books along with each's page count and standard
+ * number of lines on a page (although not every page will have exactly this
+ * number)
+ */
+export const books: Record<Book, {
+  pageCount: number, standardNumLines: number
+}> = {
+  'torah': { pageCount: 245, standardNumLines: 42 },
+  'esther': { pageCount: 17, standardNumLines: 28 },
+};
 
 /**
  * Load a `Page` (indexed from 1) from a `Book`
@@ -185,7 +191,7 @@ export async function loadLookup(book: Book): Promise<Lookup> {
  */
 export async function loadLookups(): Promise<Record<Book, Lookup>> {
   const lookups = {} as Record<Book, Lookup>;
-  for (const book of books) {
+  for (const book of Object.keys(books) as Book[]) {
     lookups[book] = await loadLookup(book);
   }
   return lookups;
@@ -195,9 +201,8 @@ export async function loadLookups(): Promise<Record<Book, Lookup>> {
  * Returns the error thrown if any of the data does not match this scheme
  */
 export async function validateData(): Promise<Error | null> {
-  for (const book of books) {
-    const pages = bookPageCounts[book];
-    for (let i = 1; i <= pages; i++) {
+  for (const book of Object.keys(books) as Book[]) {
+    for (let i = 1; i <= books[book].pageCount; i++) {
       try {
         await loadPage(book, i);
       }

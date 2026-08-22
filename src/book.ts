@@ -2,7 +2,7 @@
 //  A scrolling view of a book [GENERATED ENTIRELY BY AI]
 // ============================================================
 
-import { bookPageCounts, loadPage, type Book, type LookupEntry } from "./data";
+import { books, loadPage, type Book, type LookupEntry } from "./data";
 import { pageTypes, TikkunPage, type PageType } from "./page";
 import { Transliteration } from "./transliteration";
 
@@ -51,12 +51,6 @@ const loadMargin = 0.5;
 const maxRenderedPages = 3;
 
 /**
- * What to assume a page's height is until we have laid one out, as a fraction
- * of the height of the visible area
- */
-const initialPageHeight = 0.9;
-
-/**
  * How long after the last `resize` event we consider a burst of resizes to be
  * over, in milliseconds
  */
@@ -65,7 +59,8 @@ const resizeIdleMs = 200;
 /**
  * One page of the book as it appears in the scroll: either a `TikkunPage`
  * which has been built and laid out, or - until we have got to it - a blank
- * placeholder which is about as tall as that page will turn out to be.
+ * placeholder which is about as tall as that page will turn out to be (see
+ * `.placeholder-tikkun-page` in `main.css`, which is where that height comes from).
  *
  * Making a placeholder costs nothing, while building and laying out a page
  * costs most of a frame, so a page always goes into the scroll as a
@@ -77,11 +72,10 @@ class Slot {
   private placeholder: HTMLElement;
   private tikkunPage: TikkunPage | null = null;
 
-  constructor(pageIndex: number, height: number) {
+  constructor(pageIndex: number) {
     this.pageIndex = pageIndex;
     this.placeholder = document.createElement('div');
-    this.placeholder.classList.add('page-placeholder');
-    this.placeholder.style.height = `${height}px`;
+    this.placeholder.classList.add('placeholder-tikkun-page');
   }
 
   /** The page in this slot, or `null` if it is still a placeholder */
@@ -90,11 +84,6 @@ class Slot {
   /** Whatever is currently standing in this slot */
   get element(): HTMLElement {
     return this.tikkunPage?.element ?? this.placeholder;
-  }
-
-  /** How tall the placeholder in this slot is; ignored once it is filled */
-  set estimatedHeight(height: number) {
-    this.placeholder.style.height = `${height}px`;
   }
 
   /**
@@ -144,10 +133,6 @@ export class TikkunBook {
   private left: PageType = 'ketiv';
   private right: PageType = 'en';
 
-  /** The running mean of the heights of the pages we have laid out */
-  private heightSum = 0;
-  private heightCount = 0;
-
   /** The `fill` currently in progress, if any */
   private filling: Promise<void> | null = null;
 
@@ -164,9 +149,14 @@ export class TikkunBook {
     this.element = element;
     this.book = book;
     this.translit = translit;
-    this.pageCount = bookPageCounts[book];
+    this.pageCount = books[book].pageCount;
 
     this.element.classList.add('tikkun-book');
+    // How tall `main.css` makes a placeholder for a page we have not laid out
+    // yet: the room a page of this book needs when it has the standard number
+    // of lines and is not scaled down to fit
+    this.element.style.setProperty('--standardNumLines',
+                                   String(books[book].standardNumLines));
     this.element.addEventListener('scroll', () => { void this.fill(); },
                                   { passive: true });
     window.addEventListener('resize', () => this.onResize());
@@ -195,7 +185,7 @@ export class TikkunBook {
     this.slots = [];
     this.anchor = null;
 
-    const slot = new Slot(page, this.pageEstimate);
+    const slot = new Slot(page);
     this.element.append(slot.element);
     this.slots.push(slot);
     const tikkunPage = await this.render(slot);
@@ -211,16 +201,6 @@ export class TikkunBook {
     // Now fill in whatever that scroll uncovered
     await this.fill();
   }
-
-  /**
-   * Jump to a `LookupEntry`, as returned by a `Lookup` from `data.ts`
-   */
-  async goToEntry(entry: LookupEntry) {
-    await this.goTo({ page: entry.page, line: entry.line });
-  }
-
-  get leftPage() { return this.left; }
-  get rightPage() { return this.right; }
 
   /** Every page in the scroll which has actually been built */
   private get rendered(): TikkunPage[] {
@@ -242,9 +222,6 @@ export class TikkunBook {
     this.right = right;
     this.withAnchor(() => {
       for (const page of this.rendered) { page.updatePages(left, right); }
-      // Every page just changed height, so what we are guessing the pages we
-      // have not built yet are worth has to be worked out again
-      this.remeasure();
     });
   }
 
@@ -308,12 +285,12 @@ export class TikkunBook {
       const last = this.slots[this.slots.length - 1]?.pageIndex ?? 0;
 
       if (below < loadMargin * clientHeight && last < this.pageCount) {
-        const slot = new Slot(last + 1, this.pageEstimate);
+        const slot = new Slot(last + 1);
         this.element.append(slot.element);
         this.slots.push(slot);
       }
       else if (above < loadMargin * clientHeight && first > 1) {
-        const slot = new Slot(first - 1, this.pageEstimate);
+        const slot = new Slot(first - 1);
         // Everything already on screen has to stay where it is, and the page
         // we are putting above it is going to push it all down
         this.keepInPlace(this.slots[0]?.element, () => {
@@ -364,14 +341,14 @@ export class TikkunBook {
       return page;
     }
 
-    // A page is hardly ever exactly as tall as the placeholder we guessed for
-    // it, so if it begins above the visible area we hold on to what comes
-    // after it - its text then appears without moving anything else
+    // A page is rarely exactly as tall as the placeholder standing in for it -
+    // it is usually shorter, having been scaled down to fit - so if it begins
+    // above the visible area we hold on to what comes after it, and its text
+    // then appears without moving anything else
     const above = slot.element.getBoundingClientRect().top < this.viewportTop;
     this.keepInPlace(above ? this.slots[index + 1]?.element : undefined, () => {
       slot.fill(page);
       page.updatePages(this.left, this.right);
-      this.record(page);
     });
     return page;
   }
@@ -411,38 +388,6 @@ export class TikkunBook {
     }
   }
 
-
-  // ==========================================
-  //  Guessing at the pages we have not built
-  // ==========================================
-
-  /** What we currently take the height of a page to be */
-  private get pageEstimate(): number {
-    if (this.heightCount > 0) { return this.heightSum / this.heightCount; }
-    return Math.max((this.element.clientHeight || window.innerHeight)
-                    * initialPageHeight, 1);
-  }
-
-  /** Fold the height of a freshly laid out page into our estimate */
-  private record(page: TikkunPage) {
-    const height = pageHeight(page.element);
-    if (height <= 0) { return; }
-    this.heightSum += height;
-    this.heightCount += 1;
-  }
-
-  /**
-   * Throw away our estimate and measure every page we have built again, for
-   * when something has changed the height of all of them at once
-   */
-  private remeasure() {
-    this.heightSum = 0;
-    this.heightCount = 0;
-    for (const page of this.rendered) { this.record(page); }
-    for (const slot of this.slots) {
-      if (slot.page === null) { slot.estimatedHeight = this.pageEstimate; }
-    }
-  }
 
   /**
    * Run `change`, which is expected to alter the height of the content above
@@ -498,8 +443,6 @@ export class TikkunBook {
    */
   private relayout() {
     for (const page of this.rendered) { page.updateScale(); }
-    // Every page just changed height, and so has every page we have not built
-    this.remeasure();
     this.restoreAnchor();
     void this.fill();
   }
@@ -587,16 +530,6 @@ export class TikkunBook {
 function lineCenter(line: HTMLElement): number {
   const box = line.getBoundingClientRect();
   return box.top + box.height / 2;
-}
-
-/**
- * How much room a page takes up in the scroll, including the gap below it. A
- * page which is scaled down still occupies its full, unscaled height (see
- * `updatePages` in `page.ts`), which is what `offsetHeight` reports.
- */
-function pageHeight(element: HTMLElement): number {
-  const margin = parseFloat(getComputedStyle(element).marginBottom);
-  return element.offsetHeight + (Number.isFinite(margin) ? margin : 0);
 }
 
 /** Resolve on the next animation frame */
