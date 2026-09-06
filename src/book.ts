@@ -140,6 +140,66 @@ class Slot {
   }
 }
 
+
+/**
+ * A verse, without the position within it which a `VerseRef` also carries
+ */
+export type Verse = Pick<VerseRef, 'book' | 'chapter' | 'verse'>;
+
+/**
+ * One line which a verse appears on: a `LookupEntry` along with the verse it
+ * was listed under
+ */
+type VerseLine = LookupEntry & { verse: Verse };
+
+/**
+ * Every line of the book which any verse appears on, in reading order - the
+ * `Lookup` turned inside out, so that a line can be asked which verse is on
+ * it (see `verseOnLine`) without its page having been loaded at all
+ */
+function verseLines(data: BookData): VerseLine[] {
+  const lines: VerseLine[] = [];
+  for (const [book, chapters] of Object.entries(data.lookup)) {
+    for (const [chapter, verses] of Object.entries(chapters)) {
+      for (const [verse, { refs }] of Object.entries(verses)) {
+        const at: Verse = { book: Number(book), chapter: Number(chapter),
+                            verse: Number(verse) };
+        for (const ref of refs) { lines.push({ ...ref, verse: at }); }
+      }
+    }
+  }
+  // The keys above are visited in numeric order, and so nearly in reading
+  // order already, but nothing guarantees that a book's pages follow its
+  // predecessor's - so put them in order rather than assume it
+  return lines.sort(compareVerseLines);
+}
+
+function compareVerseLines(a: LookupEntry, b: LookupEntry): number {
+  return a.page - b.page || a.line - b.line || a.index - b.index;
+}
+
+/**
+ * Which verse is being read on line `line` of page `page`: the first verse
+ * listed on that line, or - for a line no verse is listed on - the last verse
+ * to have appeared before it. `lines` must be what `verseLines` returned for
+ * the book in question; `null` means nothing is listed before this line at
+ * all.
+ */
+function verseOnLine(lines: VerseLine[], page: number,
+                     line: number): Verse | null {
+  // The last line at or before `{ page, line, index: 0 }`, which is the first
+  // of the entries for this line if it has any
+  let low = 0;
+  let high = lines.length;
+  const target = { page, line, index: 0 };
+  while (low < high) {
+    const middle = (low + high) >> 1;
+    if (compareVerseLines(lines[middle], target) <= 0) { low = middle + 1; }
+    else { high = middle; }
+  }
+  return lines[low - 1]?.verse ?? null;
+}
+
 /**
  * A scrolling view of a whole book, which renders only the pages near the
  * visible area and loads more as the user scrolls in either direction. This
@@ -180,6 +240,12 @@ export class TikkunBook {
 
   /** The `fill` currently in progress, if any */
   private filling: Promise<void> | null = null;
+
+  /**
+   * Where every verse of the book falls, built the first time we have to
+   * guess at a verse we have not loaded the page of (see `estimatedVerse`)
+   */
+  private verses: VerseLine[] | null = null;
 
   /**
    * The line to keep in place, for as long as whatever is moving the content
@@ -297,11 +363,33 @@ export class TikkunBook {
    * The verse being read at the moment: the first verse of the line nearest
    * the center of the visible area, or `null` if nothing is rendered there
    */
-  get currentVerse(): VerseRef | null {
+  get currentVerse(): Verse | null {
+    const slot = this.slotAt(this.scrollCenter);
+    if (slot === undefined) { return null; }
+    // A reader who has scrolled ahead of the loading is over a placeholder,
+    // whose lines we can only guess at
+    if (slot.page === null) { return this.estimatedVerse(slot); }
     const nearest = this.lineNearest(this.viewportCenter);
-    if (nearest === null) { return null; }
+    if (nearest === null) { return this.estimatedVerse(slot); }
     const { verses } = nearest.page.data.lines[nearest.lineIndex];
     return verses[0] ?? null;
+  }
+
+  /**
+   * A guess at the verse being read over a page which has not been laid out:
+   * which line of it the center of the screen falls on, if the page turns out
+   * to be exactly as tall as the placeholder standing in for it, and which
+   * verse the book's lookup says is on that line. This is replaced by the
+   * real answer as soon as the page goes in.
+   */
+  private estimatedVerse(slot: Slot): Verse | null {
+    this.verses ??= verseLines(this.data);
+    const top = this.topOf(slot);
+    const height = Math.max(this.bottomOf(slot) - top, 1);
+    const lines = numLines(this.data, slot.pageIndex);
+    const line = Math.min(lines - 1, Math.max(0,
+      Math.floor((this.scrollCenter - top) / height * lines)));
+    return verseOnLine(this.verses, slot.pageIndex, line);
   }
 
   /**
@@ -324,6 +412,16 @@ export class TikkunBook {
   //  cannot work this way, since a line's offset parent is its
   //  own page rather than the scroll.)
   // ============================================================
+
+  /** The center of the visible area, in scroll coordinates */
+  private get scrollCenter(): number {
+    return this.element.scrollTop + this.element.clientHeight / 2;
+  }
+
+  /** The slot whose room in the scroll the coordinate `y` falls in */
+  private slotAt(y: number): Slot | undefined {
+    return this.slots[this.firstSlotEndingBelow(y)];
+  }
 
   /** Where the top of `slot` sits in the scroll */
   private topOf(slot: Slot): number { return slot.element.offsetTop; }
@@ -401,7 +499,7 @@ export class TikkunBook {
     return {
       top: scrollTop - margin,
       bottom: scrollTop + clientHeight + margin,
-      center: scrollTop + clientHeight / 2,
+      center: this.scrollCenter,
     };
   }
 

@@ -258,15 +258,68 @@ body {
 }
 
 /* A fixed width, so that neither set of buttons moves as we scroll from one
-   verse to the next */
+   verse to the next - the dropdowns inside it are each only as wide as the
+   text they are showing, and stay centered as that changes */
 .nav-ref {
   flex: none;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2px;
   width: 12em;
-  text-align: center;
   font-size: 14pt;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+}
+
+/* A dropdown is otherwise as wide as its widest option, which would leave
+   'Genesis 1:1' set out for 'Deuteronomy 34:12'. So each is taken out of the
+   flow and stretched over a hidden copy of the text it is showing (see
+   `makeField` in `nav.ts`), which is what gives the wrapper its width. */
+.nav-ref-field {
+  flex: none;
+  position: relative;
+  display: inline-block;
+  min-width: 0;
+}
+.nav-ref-field > * {
+  box-sizing: border-box;
+  padding: 0 2px;
+  border: 1px solid transparent;
+}
+.nav-ref-sizer {
+  display: block;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* The dropdowns read as the reference they show rather than as three form
+   controls, so they carry no border or arrow until they are pointed at */
+.nav-ref select {
+  position: absolute;
+  inset: 0;
+  min-width: 0;
+  border-radius: 5px;
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: center;
+  text-align-last: center;
+  appearance: none;
+  cursor: pointer;
+}
+.nav-ref select:hover,
+.nav-ref select:focus-visible {
+  border-color: var(--button-border-color);
+  background-color: var(--button-bg-color);
+}
+.nav-ref select:focus-visible {
+  outline: none;
+  box-shadow: 0 0 2pt 1pt var(--button-focus-color);
+}
+
+.nav-ref-colon {
+  flex: none;
+  margin: 0 -1px;
 }
 
 /* Every button is one line of one of the four page types, so they are given a
