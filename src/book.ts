@@ -8,18 +8,38 @@ import { pageTypes, TikkunPage, type PageType } from "./page";
 import { Transliteration } from "./transliteration";
 
 /**
+ * A specimen of the text each type of page is actually set in, and of the
+ * divine name. A family may be split into several faces by `unicode-range`
+ * (as the Google Fonts families are), and `document.fonts.load` only fetches
+ * the faces which would be used for the text it is given - which defaults to
+ * Latin, so asking without a specimen never loads a Hebrew subset.
+ */
+const fontSpecimens: Record<PageType | 'divine-name', string> = {
+  ketiv: '\u05d0', kri: '\u05d0', tl: 'a', en: 'a', 'divine-name': '\u05d9\u05d4\u05d5\u05d4'
+};
+
+/**
  * Load the font every type of page is set in, as named by the `--*-font`
  * custom properties on the `book` element (see `main.css`). Until a page's
  * font has loaded its text is laid out in a fallback font, and so cannot be
  * usefully measured - this must resolve before any page is laid out.
  */
 async function loadPageFonts(book: HTMLElement): Promise<void> {
+  // `document.fonts` only knows about the faces of the stylesheets which have
+  // already been parsed, so a `load` before the font stylesheets have arrived
+  // matches nothing and resolves immediately, having loaded nothing at all
+  if (document.readyState !== 'complete') {
+    await new Promise((resolve) =>
+      window.addEventListener('load', resolve, { once: true }));
+  }
   const style = getComputedStyle(book);
   // The size in a font shorthand is required but irrelevant here, since which
   // faces get loaded depends only on the family, the style, and the weight
-  await Promise.all(pageTypes.map((type) =>
-    document.fonts.load(`1em ${style.getPropertyValue(`--${type}-font`)}`)));
-  await document.fonts.load(`1em ${style.getPropertyValue(`--divine-name-font`)}`);
+  await Promise.all([...pageTypes, 'divine-name' as const].map((type) =>
+    document.fonts.load(`1em ${style.getPropertyValue(`--${type}-font`)}`,
+                        fontSpecimens[type])));
+  // In case anything we set text in was missed by the specimens above
+  await document.fonts.ready;
 }
 
 /**
