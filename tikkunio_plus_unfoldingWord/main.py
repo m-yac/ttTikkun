@@ -5,6 +5,7 @@ from difflib import SequenceMatcher
 from fontTools.ttLib import TTFont
 import json
 from lxml import etree
+from . import aliyot
 from .NoIndentEncoder import NoIndent, NoIndentEncoder
 from .usfm import parse
 from num2words import num2words
@@ -32,6 +33,7 @@ ult_fnms = { "torah": ['01-GEN', '02-EXO', '03-LEV', '04-NUM', '05-DEU'], "esthe
 
 pages_data = { 'torah': [], 'esther': [] }
 lookup_data = { 'torah': {}, 'esther': {} }
+aliyah_data = { 'torah': {}, 'esther': {} }
 uhb_data = { 'torah': [], 'esther': [] }
 ult_data = { 'torah': [], 'esther': [] }
 
@@ -189,10 +191,9 @@ def tikkun_io_by_line(scroll, page, line_num, line):
         if v["chapter"] not in lookup_data[scroll][v["book"]]:
             lookup_data[scroll][v["book"]][v["chapter"]] = {}
         if v["verse"] not in lookup_data[scroll][v["book"]][v["chapter"]]:
-            lookup_data[scroll][v["book"]][v["chapter"]][v["verse"]] = { "refs": [] }
-        entry = lookup_data[scroll][v["book"]][v["chapter"]][v["verse"]]
-        ref = { "page": page, "line": line_num, "index": i }
-        entry["refs"].append(NoIndent(ref))
+            lookup_data[scroll][v["book"]][v["chapter"]][v["verse"]] = NoIndent([])
+        ref = [page, line_num, i]
+        lookup_data[scroll][v["book"]][v["chapter"]][v["verse"]].value.append(ref)
 
     del line["aliyot"]
 
@@ -636,6 +637,10 @@ def main(dst=data_p):
         #         for verse in lookup_data[scroll][book][chapter]:
         #             tikkun_io_by_verse(scroll, int(book), int(chapter), int(verse), lookup_data[scroll]    [book][chapter][verse])
 
+    print("[hebcal] Building list of aliyot...")
+    for scroll in pages_data:
+        aliyah_data[scroll] = aliyot.lookups(scroll)
+
     print("[unfoldingWord Hebrew Bible] Extracting words...")
     for scroll in pages_data:
         for book, fnm in enumerate(ult_fnms[scroll]):
@@ -711,7 +716,8 @@ def main(dst=data_p):
             json.dump({ "pageCount": len(pages_data[scroll]),
                         "standardNumLines": standard,
                         "variantNumLines": variants,
-                        "lookup": lookup_data[scroll] },
+                        "verseLookup": lookup_data[scroll],
+                        **aliyah_data[scroll] },
                       f, ensure_ascii=False, indent=2, cls=NoIndentEncoder)
 
 

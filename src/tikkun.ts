@@ -1,4 +1,5 @@
-import { type VerseRef, type Fragment, type LineData, type PageData } from "./data"
+import { type VerseRef, type VersesEntry, type Fragment, type LineData,
+         type PageData } from "./data"
 
 // ================================================
 //  Adapted from `tikkun.io/src/hebrew-numeral.ts`
@@ -131,12 +132,26 @@ function buildLine(
   return lineTr;
 }
 
-export type OnFragment = 
-  (lineIndex: number, fragment: Fragment, verses: VerseRef[])
-    => (string | Node)[];
+// Arguments to the callback passed to `pageElement`
+export interface OnFragmentArgs {
+  lineIndex: number;
+  fragment: Fragment;
+  verses: VersesEntry[];
+  wordOffset: number;
+  isFirst: boolean;
+}
 
+// A unique key for each verse, in order, so they can be quickly compared
+export function verseKey({book, chapter, verse}: VerseRef): number {
+  return (book * 1000 + chapter) * 1000 + verse;
+}
+
+/**
+ * Build the text of a page, one line at a time.
+ */
 export function pageElement(
-  data: PageData, onFragment: OnFragment
+  data: PageData, onFragment: (args: OnFragmentArgs) => (string | Node)[],
+  splitVerses: boolean
 ): HTMLTableElement {
   const pageTable = document.createElement('table');
   data.lines.forEach((_, lineIndex) =>
@@ -144,6 +159,7 @@ export function pageElement(
       if (line.isPetucha) {
         lineTd.classList.add('is-petucha');
       }
+      let wordOffset = 0;
       // Add each column
       line.text.columns.forEach((column) => {
         const columnDiv = document.createElement('div');
@@ -158,9 +174,36 @@ export function pageElement(
           if (line.text.format === 'setuma') {
             fragmentSpan.classList.add('is-setuma');
           }
-          // Add each part
-          const nodes = onFragment(lineIndex, fragment, line.verses);
-          fragmentSpan.append(...nodes);
+          // [LOGIC AROUND `runs` AND `run` BELOW GENERATED ALMOST ENTIRELY BY AI]
+          let runs: Fragment[] = [];
+          if (splitVerses && fragment.length > 0) {
+            for (const part of fragment) {
+              const last = runs[runs.length - 1];
+              if (last !== undefined && last[0].verseIndex === part.verseIndex) {
+                last.push(part);
+              }
+              else { runs.push([part]); }
+            }
+          }
+          else {
+            runs = [fragment];
+          }
+          runs.forEach((run, i) => {
+            const nodes = onFragment({ lineIndex, fragment: run,
+                                       verses: line.verses, wordOffset,
+                                       isFirst: i === 0 });
+            wordOffset += run.reduce((n, part) => n + part.he.length, 0);
+            if (!splitVerses || fragment.length === 0) {
+              fragmentSpan.append(...nodes);
+              return;
+            }
+            const runSpan = document.createElement('span');
+            runSpan.classList.add('verse-part');
+            runSpan.dataset.verse =
+              String(verseKey(line.verses[run[0].verseIndex]));
+            runSpan.append(...nodes);
+            fragmentSpan.append(runSpan);
+          });
           columnDiv.append(fragmentSpan);
         });
         lineTd.append(columnDiv);
@@ -191,6 +234,7 @@ export function verseRefElement(data: PageData,
 
           const refSpan = document.createElement('span');
           refSpan.classList.add(cls);
+          refSpan.dataset.verse = String(verseKey(line.verses[i]));
           refSpan.append(type === 'hebrew' ? hebrewNumeral(n) : String(n));
           lineTd.append(refSpan);
         }

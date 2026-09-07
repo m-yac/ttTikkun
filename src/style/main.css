@@ -56,12 +56,13 @@ body {
   transform: scale(var(--page-scale));
   gap: calc(2 * var(--verse-ref-gap));
   margin-bottom: var(--page-gap);
+  margin-top: calc(0.75 * var(--line-height));
 }
 .tikkun-page.is-reversed {
   flex-direction: row-reverse;
 }
 
-.tikkun-page:not(:last-child)::after {
+.tikkun-page::after {
   content: "";
   position: absolute;
   border: 1px solid rgba(0, 0, 0, 25%);
@@ -138,6 +139,10 @@ body {
 
 .fragment.is-setuma {
   width: auto;
+}
+
+.is-outside-aliyah {
+  opacity: 0.25;
 }
 
 .verse-ref {
@@ -259,22 +264,45 @@ body {
 
 /* A fixed width, so that neither set of buttons moves as we scroll from one
    verse to the next - the dropdowns inside it are each only as wide as the
-   text they are showing, and stay centered as that changes */
+   text they are showing, and stay centered as that changes. It is wide enough
+   for the longest aliyah reference, 'Bechukotai Maftir (Year 2 of TST -
+   2027)' being about as long as they get. */
 .nav-ref {
   flex: none;
   display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 2px;
-  width: 12em;
+  flex-direction: column;
+  align-items: center;
+  width: 27em;
   font-size: 14pt;
   white-space: nowrap;
+  overflow-x: clip;
+  overflow-clip-margin: 5px;
+}
+
+/* Each line of the reference - the verse, and the aliyah it is part of */
+.nav-ref-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  max-width: 100%;
+}
+/* A book which is not read in parashiyot has no aliyah line at all */
+.nav-ref-line[hidden] {
+  display: none;
+}
+
+/* A part of the reference with nothing to say about the reading being shown -
+   the division of a reading which has only the one (see `setShown` in
+   `nav.ts`) */
+.nav-ref-line [hidden] {
+  display: none;
 }
 
 /* A dropdown is otherwise as wide as its widest option, which would leave
    'Genesis 1:1' set out for 'Deuteronomy 34:12'. So each is taken out of the
-   flow and stretched over a hidden copy of the text it is showing (see
-   `makeField` in `nav.ts`), which is what gives the wrapper its width. */
+   flow and stretched over a copy of the text it is showing (see `RefLine` in
+   `nav.ts`), which is what gives the wrapper its width - and, the dropdown
+   being invisible, is the text the reference is read from. */
 .nav-ref-field {
   flex: none;
   position: relative;
@@ -286,40 +314,88 @@ body {
   padding: 0 2px;
   border: 1px solid transparent;
 }
+/* What the reference actually shows, the dropdown over it being invisible:
+   text like any other on the page, which can be selected and copied as such
+   (see `RefLine` in `nav.ts`) */
 .nav-ref-sizer {
   display: block;
-  visibility: hidden;
-  pointer-events: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 /* The dropdowns read as the reference they show rather than as three form
-   controls, so they carry no border or arrow until they are pointed at */
+   controls, so each is invisible and out of the pointer's way, leaving the
+   text beneath it to be selected - a click on which opens the dropdown (see
+   `RefLine` in `nav.ts`). It is still what holds the choice, and what a
+   screen reader and the keyboard see.
+
+   The list a dropdown opens is left to the browser to draw, as the one thing
+   here which should look like the system it is running on rather than like
+   the page. A browser which can be asked to draw it as part of the page
+   instead - `appearance: base-select`, which every browser but Firefox now
+   understands - is not asked to.
+
+   That list is drawn to the width of the dropdown it hangs from, so a
+   dropdown stretched over the one option it is showing would have the rest of
+   them cut short, and that one cut short as well by the width of the tick
+   drawn beside it, 'Rosh Chodesh' opening as 'Rosh'. The box is therefore
+   left as wide as its widest option, as a dropdown normally is, with room
+   beside it for the tick, and stripped of the appearance it would otherwise
+   carry so that it is laid out as it is asked to be. None of that width is
+   seen: the dropdown is invisible, only the text beneath it is laid out, and
+   what hangs out over the rest of the reference is clipped by `.nav-ref`
+   rather than around each dropdown, which leaves the text its focus ring in
+   the browsers which do not honour a clip margin. */
 .nav-ref select {
   position: absolute;
   inset: 0;
+  inset-inline-end: auto;
   min-width: 0;
-  border-radius: 5px;
-  background-color: transparent;
-  color: inherit;
-  font: inherit;
-  text-align: center;
-  text-align-last: center;
+  box-sizing: content-box;
+  inline-size: max-content;
+  min-inline-size: 100%;
+  padding-inline-end: 2em;
+  opacity: 0;
+  pointer-events: none;
   appearance: none;
-  cursor: pointer;
+  font: inherit;
 }
-.nav-ref select:hover,
-.nav-ref select:focus-visible {
+
+/* The border and background the dropdown itself would carry when it is
+   pointed at or focused, drawn around the text which stands in for it */
+.nav-ref-field:hover > .nav-ref-sizer,
+.nav-ref-field:has(select:focus-visible) > .nav-ref-sizer {
   border-color: var(--button-border-color);
   background-color: var(--button-bg-color);
 }
+.nav-ref-field:has(select:focus-visible) > .nav-ref-sizer {
+  box-shadow: 0 0 2pt 1pt var(--button-focus-color);
+}
 .nav-ref select:focus-visible {
   outline: none;
-  box-shadow: 0 0 2pt 1pt var(--button-focus-color);
+}
+
+.nav-ref option {
+  color: inherit;
+  font: inherit;
 }
 
 .nav-ref-colon {
   flex: none;
   margin: 0 -1px;
+}
+
+/* Unlike the colon, each bracket belongs to the division it encloses rather
+   than standing between two choices, so it is pulled in over that dropdown's
+   own padding as well as over the gap */
+.nav-ref-open {
+  flex: none;
+  margin-right: -4px;
+}
+.nav-ref-close {
+  flex: none;
+  margin-left: -4px;
+  margin-right: -1px;
 }
 
 /* Every button is one line of one of the four page types, so they are given a

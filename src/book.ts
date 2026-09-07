@@ -2,8 +2,8 @@
 //  A scrolling view of a book [GENERATED ENTIRELY BY AI]
 // ============================================================
 
-import { loadPage, numLines, type BookData, type LookupEntry,
-         type VerseRef } from "./data";
+import { loadPage, numLines, type BookData, type LineVersesRef,
+         type VerseRange, type VerseRef } from "./data";
 import { pageTypes, TikkunPage, type PageType } from "./page";
 import { Transliteration } from "./transliteration";
 
@@ -142,29 +142,37 @@ class Slot {
 
 
 /**
- * A verse, without the position within it which a `VerseRef` also carries
+ * A verse, without the position within a line which a `VersesEntry` also
+ * carries
  */
-export type Verse = Pick<VerseRef, 'book' | 'chapter' | 'verse'>;
+export type Verse = VerseRef;
 
 /**
- * One line which a verse appears on: a `LookupEntry` along with the verse it
+ * Where in the book a line is: which page it is on, and its index within that
+ * page. Two of these compare as the lines do in reading order (see
+ * `atOrBefore` in `nav.ts`).
+ */
+export type Position = Pick<LineVersesRef, 'page' | 'line'>;
+
+/**
+ * One line which a verse appears on: a `LineVersesRef` along with the verse it
  * was listed under
  */
-type VerseLine = LookupEntry & { verse: Verse };
+type VerseLine = LineVersesRef & { verse: Verse };
 
 /**
  * Every line of the book which any verse appears on, in reading order - the
- * `Lookup` turned inside out, so that a line can be asked which verse is on
- * it (see `verseOnLine`) without its page having been loaded at all
+ * `VerseLookup` turned inside out, so that a line can be asked which verse is
+ * on it (see `verseOnLine`) without its page having been loaded at all
  */
 function verseLines(data: BookData): VerseLine[] {
   const lines: VerseLine[] = [];
-  for (const [book, chapters] of Object.entries(data.lookup)) {
-    for (const [chapter, verses] of Object.entries(chapters)) {
-      for (const [verse, { refs }] of Object.entries(verses)) {
+  for (const [book, chapters] of Object.entries(data.verseLookup)) {
+    for (const [chapter, verses] of Object.entries(chapters ?? {})) {
+      for (const [verse, refs] of Object.entries(verses ?? {})) {
         const at: Verse = { book: Number(book), chapter: Number(chapter),
                             verse: Number(verse) };
-        for (const ref of refs) { lines.push({ ...ref, verse: at }); }
+        for (const ref of refs ?? []) { lines.push({ ...ref, verse: at }); }
       }
     }
   }
@@ -174,7 +182,7 @@ function verseLines(data: BookData): VerseLine[] {
   return lines.sort(compareVerseLines);
 }
 
-function compareVerseLines(a: LookupEntry, b: LookupEntry): number {
+function compareVerseLines(a: LineVersesRef, b: LineVersesRef): number {
   return a.page - b.page || a.line - b.line || a.index - b.index;
 }
 
@@ -247,6 +255,9 @@ export class TikkunBook {
    */
   private verses: VerseLine[] | null = null;
 
+  /** The aliyah being read, which is the text shown at full strength */
+  private aliyah: VerseRange | null = null;
+
   /**
    * The line to keep in place, for as long as whatever is moving the content
    * around is still going on - see `withAnchor` and `onResize`
@@ -286,7 +297,7 @@ export class TikkunBook {
    */
   static async open(element: HTMLElement, data: BookData,
                     translit: Transliteration,
-                    at: LookupEntry): Promise<TikkunBook> {
+                    at: LineVersesRef): Promise<TikkunBook> {
     const tikkunBook = new TikkunBook(element, data, translit);
     // Every page is laid out by measuring its own text, so nothing can be
     // rendered until the fonts that text will be set in are available
@@ -376,20 +387,66 @@ export class TikkunBook {
   }
 
   /**
-   * A guess at the verse being read over a page which has not been laid out:
-   * which line of it the center of the screen falls on, if the page turns out
-   * to be exactly as tall as the placeholder standing in for it, and which
-   * verse the book's lookup says is on that line. This is replaced by the
-   * real answer as soon as the page goes in.
+   * The line being read at the moment - the one nearest the center of the
+   * visible area - or `null` if nothing is rendered there.
+   *
+   * This is what `currentVerse` is worked out from, and says more than the
+   * verse does: a line can hold the end of one verse and the start of the
+   * next, and the reader is reading both, so a caller which wants to know
+   * exactly where in the book they are (rather than which verse to name)
+   * should ask for the line.
    */
-  private estimatedVerse(slot: Slot): Verse | null {
-    this.verses ??= verseLines(this.data);
+  get currentLine(): Position | null {
+    const slot = this.slotAt(this.scrollCenter);
+    if (slot === undefined) { return null; }
+    // A reader who has scrolled ahead of the loading is over a placeholder,
+    // whose lines we can only guess at
+    if (slot.page === null) { return this.estimatedLine(slot); }
+    const nearest = this.lineNearest(this.viewportCenter);
+    if (nearest === null) { return this.estimatedLine(slot); }
+    return { page: nearest.page.data.index, line: nearest.lineIndex };
+  }
+
+  /**
+   * A guess at which line is being read over a page which has not been laid
+   * out: which line of it the center of the screen falls on, if the page
+   * turns out to be exactly as tall as the placeholder standing in for it.
+   * This is replaced by the real answer as soon as the page goes in.
+   */
+  private estimatedLine(slot: Slot): Position {
     const top = this.topOf(slot);
     const height = Math.max(this.bottomOf(slot) - top, 1);
     const lines = numLines(this.data, slot.pageIndex);
-    const line = Math.min(lines - 1, Math.max(0,
-      Math.floor((this.scrollCenter - top) / height * lines)));
-    return verseOnLine(this.verses, slot.pageIndex, line);
+    return { page: slot.pageIndex, line: Math.min(lines - 1, Math.max(0,
+      Math.floor((this.scrollCenter - top) / height * lines))) };
+  }
+
+  /**
+   * A guess at the verse being read over a page which has not been laid out:
+   * whichever verse the book's lookup says is on the line `estimatedLine`
+   * puts the center of the screen at
+   */
+  private estimatedVerse(slot: Slot): Verse | null {
+    this.verses ??= verseLines(this.data);
+    const { page, line } = this.estimatedLine(slot);
+    return verseOnLine(this.verses, page, line);
+  }
+
+  /**
+   * Show `aliyah` as the aliyah being read, on every page we have laid out
+   * and on every page we lay out from here on: the verses outside it are
+   * dimmed, so that what is being read stands out from what is around it
+   * (see `setAliyah` in `page.ts`). `null` dims nothing at all.
+   *
+   * This is told to us as often as every scroll event, so an aliyah we are
+   * already showing is left alone rather than applied over again.
+   */
+  setAliyah(aliyah: VerseRange | null) {
+    if (aliyah === this.aliyah) { return; }
+    this.aliyah = aliyah;
+    for (const page of this.rendered) {
+      page.aliyah = aliyah;
+    }
   }
 
   /**
@@ -531,6 +588,7 @@ export class TikkunBook {
     // `goTo` and `fill` can both be waiting on the same page at once
     if (slot.page !== null) { return slot.page; }
     const page = new TikkunPage(pageData, this.translit);
+    page.aliyah = this.aliyah;
 
     // A page we have not seen before is rarely exactly as tall as the
     // placeholder standing in for it - it is usually shorter, having been

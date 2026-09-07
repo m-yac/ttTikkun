@@ -10,6 +10,9 @@
     "relock": "rm -rf node_modules package-lock.json && npm install --include=optional"
   },
   "dependencies": {
+    "@hebcal/core": "^6.9.2",
+    "@hebcal/leyning": "^10.0.0",
+    "@hebcal/triennial": "^6.3.2",
     "havarotjs": "github:m-yac/havarotjs#merged-better-syllable-structure",
     "zod": "^4.4.3"
   },

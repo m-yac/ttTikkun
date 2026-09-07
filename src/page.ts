@@ -1,5 +1,5 @@
-import { type Fragment, type PageData, type VerseRef } from "./data";
-import { fragmentText, ketiv, kri, expandAnnotation, pageElement, verseRefElement, type VerseNumberType, OnFragment } from "./tikkun";
+import { type PageData, type VerseRange } from "./data";
+import { fragmentText, ketiv, kri, expandAnnotation, pageElement, verseRefElement, type OnFragmentArgs, type VerseNumberType, verseKey } from "./tikkun";
 import { Text as HavarotjsText } from 'havarotjs';
 import { Transliteration } from "./transliteration";
 import { withBigLetters } from "./bigLetters";
@@ -210,7 +210,10 @@ export abstract class Page extends PageElement<HTMLDivElement> {
   private _pageTable?: HTMLTableElement;
   private _verseRefTable?: HTMLTableElement;
 
-  abstract onFragment: OnFragment;
+  // The currently focused aliyah
+  private _aliyah: VerseRange | null = null;
+
+  abstract onFragment: (args: OnFragmentArgs) => (string | Node)[];
 
   constructor(data: PageData) {
     super();
@@ -229,16 +232,39 @@ export abstract class Page extends PageElement<HTMLDivElement> {
       this._element = document.createElement('div');
       this._element.classList.add('page', this.type);
       this._element.append(this.pageTable, this.verseRefTable);
+      // Whatever we have been told to show as being read has to be applied
+      // to the text we have only now built
+      this.applyAliyah();
     }
     return this._element;
   }
 
   get pageTable(): HTMLTableElement {
     if (this._pageTable === undefined) {
-      this._pageTable = pageElement(this.data, this.onFragment);
+      // A page with no verse numbers has nothing to dim the verses alongside,
+      // and so is built whole rather than a verse at a time
+      this._pageTable = pageElement(this.data, this.onFragment,
+                                    this.verseNumbers !== 'none');
       this._pageTable.dir = dir[this.type];
     }
     return this._pageTable;
+  }
+
+  set aliyah(aliyah: VerseRange | null) {
+    this._aliyah = aliyah;
+    if (this._element !== undefined) {
+      this.applyAliyah();
+    }
+  }
+
+  private applyAliyah() {
+    const from = this._aliyah === null ? -Infinity : verseKey(this._aliyah.begin);
+    const to = this._aliyah === null ? Infinity : verseKey(this._aliyah.end);
+    for (const element of this.querySelectorAll('[data-verse]')) {
+      const verse = Number(element.dataset.verse);
+      element.classList.toggle('is-outside-aliyah',
+                               verse < from || verse > to);
+    }
   }
 
   get verseRefTable(): HTMLTableElement {
@@ -279,8 +305,8 @@ export class KetivPage extends Page {
   type = 'ketiv' as const;
   verseNumbers = 'none' as const;
 
-  onFragment = (lineIndex: number, fragment: Fragment) => {
-    return withBigLetters(this.data, lineIndex, fragment, ketiv,
+  onFragment = ({ lineIndex, fragment, wordOffset }: OnFragmentArgs) => {
+    return withBigLetters(this.data, lineIndex, fragment, wordOffset, ketiv,
       [ketiv(fragmentText(fragment))]
     );
   }
@@ -293,10 +319,13 @@ export class KriPage extends Page {
   type = 'kri' as const;
   verseNumbers = 'hebrew' as const;
 
-  onFragment = (lineIndex: number, fragment: Fragment) => {
-    return withBigLetters(this.data, lineIndex, fragment, kri,
-      expandAnnotation(kri(fragmentText(fragment)), 'ketiv-kri')
-    );
+  onFragment = ({ lineIndex, fragment, wordOffset, isFirst }: OnFragmentArgs) => {
+    // Each run of a verse is built on its own and set out on its own, so the
+    // space which held it apart from the verse before it has to be put back
+    return [...(isFirst ? [] : [' ']),
+            ...withBigLetters(this.data, lineIndex, fragment, wordOffset, kri,
+              expandAnnotation(kri(fragmentText(fragment)), 'ketiv-kri')
+            )];
   }
 }
 
@@ -313,7 +342,7 @@ export class TranslitPage extends Page {
     this.translit = translit;
   }
 
-  onFragment = (_: number, fragment: Fragment, verses: VerseRef[]) => {
+  onFragment = ({ fragment, verses, isFirst }: OnFragmentArgs) => {
     if (fragment.length === 0) { return []; }
     const text = kri(fragmentText(fragment));
     const opts = this.translit.syllabificationOptions;
@@ -322,16 +351,18 @@ export class TranslitPage extends Page {
                       .filter((word) => word.text.trim() !== '');
     const tlWords = words.map((word, i) => {
       const tlWord = word.apply(this.translit);
-      // If we're the first word and it begins its verse, or the previous word
-      // ends a verse...
-      if (i === 0 && verses[fragment[0].verseIndex].indexOfFirstWord === 0 ||
-          i  >  0 && words[i - 1].text.includes('׃')) {
+      // A run of text is all one verse, so the only word of it which can
+      // begin a verse is its first
+      if (i === 0 && verses[fragment[0].verseIndex].indexOfFirstWord === 0) {
         // Uppercase its first lowercase (unicode!) character
         return tlWord.replace(/\p{Ll}/u, (c) => c.toUpperCase());
-      } 
+      }
       return tlWord;
     });
-    return expandAnnotation(tlWords.join(' '), 'ketiv-kri');
+    // The words of a run are spaced by us rather than by the text they came
+    // from, so the space before the run is ours to put back as well
+    return [...(isFirst ? [] : [' ']),
+            ...expandAnnotation(tlWords.join(' '), 'ketiv-kri')];
   }
 }
 
@@ -343,7 +374,7 @@ export class EnglishPage extends Page {
   verseNumbers = 'hindu-arabic' as const;
   minFontStretch = 50;
 
-  onFragment = (_: number, fragment: Fragment): (string | Node)[] => {
+  onFragment = ({ fragment }: OnFragmentArgs): (string | Node)[] => {
     return fragment.flatMap(({en}) => en.flatMap((chunk) => {
       const nodes = wrapDivineName(expandAnnotation(chunk.text, 'implied-word'));
       // Only add a space if we don't end in a hyphen
@@ -372,6 +403,7 @@ export class TikkunPage extends PageElement<HTMLDivElement> {
   private hasNoLineWraps = new Set<PageType>();
   private ketivWidth: number | null = null;
   private unscaled: { width: number, height: number } | null = null;
+  private _aliyah: VerseRange | null = null;
 
   constructor(data: PageData, translit: Transliteration) {
     super();
@@ -390,7 +422,15 @@ export class TikkunPage extends PageElement<HTMLDivElement> {
   private ensureAppended(page: PageType) {
     if (!this.appended.has(page)) {
       this.element.append(this.pages[page].element);
+      this.pages[page].aliyah = this._aliyah;
       this.appended.add(page);
+    }
+  }
+
+  set aliyah(aliyah: VerseRange | null) {
+    this._aliyah = aliyah;
+    for (const page of this.appended) {
+      this.pages[page].aliyah = aliyah;
     }
   }
 

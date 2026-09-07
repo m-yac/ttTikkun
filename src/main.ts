@@ -1,4 +1,4 @@
-import { Book, loadBooks, LookupEntry } from "./data"
+import { Book, loadBooks, lookupVerseRef, type VerseRef } from "./data"
 import { TikkunBook } from "./book";
 import { pageTypes } from "./page";
 import { NavBar } from "./nav";
@@ -14,11 +14,12 @@ const books = await loadBooks();
 const translit = new Transliteration();
 
 // For now, always start at a fixed spot
-const [book, start]: [Book, LookupEntry] =
-  ['torah', books['torah'].lookup[5][6][4].refs[0]];
-  // ['torah', books['torah'].lookup[2][15][1].refs[0]];
-  // ['torah', books['torah'].lookup[5][32][1].refs[0]];
-  // ['esther', books['esther'].lookup[1][9][7].refs[0]];
+const [book, ref]: [Book, VerseRef] =
+  ['torah', { book: 5, chapter: 6, verse: 5 }];
+  // ['torah', { book: 2, chapter: 15, verse: 1 }];
+  // ['torah', { book: 5, chapter: 32, verse: 1 }];
+  // ['esther', { book: 1, chapter: 9, verse: 7 }];
+const start = lookupVerseRef(books[book].verseLookup, ref)![0];
 
 const pagesDiv = document.getElementById('pages')!;
 const tikkunBook = await TikkunBook.open(pagesDiv, books[book], translit, start);

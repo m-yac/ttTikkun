@@ -5,6 +5,8 @@ These read the pages the `built` fixture just wrote -- see conftest.py.
 
 import json
 
+from tikkunio_plus_unfoldingWord.aliyot import (holiday_readings,
+                                                parashah_divisions)
 from tikkunio_plus_unfoldingWord.main import data_p as data_p, ult_data
 
 import pytest
@@ -14,7 +16,7 @@ scrolls = ['torah', 'esther']
 
 def book_data(scroll):
     """What the build wrote about the scroll itself: its page count, its line
-    counts, and its lookup."""
+    counts, and its lookups."""
     with (data_p / 'books' / f'{scroll}.json').open() as f:
         return json.load(f)
 
@@ -166,7 +168,7 @@ def test_book_counts_the_pages_and_their_lines(built, scroll):
 
 @pytest.mark.parametrize('scroll', scrolls)
 def test_lookup_points_at_the_verse_it_claims(built, scroll):
-    lookup = book_data(scroll)["lookup"]
+    lookup = book_data(scroll)["verseLookup"]
     all_pages = pages(scroll)
     for book, chapters in lookup.items():
         for chapter, verses in chapters.items():
@@ -176,6 +178,111 @@ def test_lookup_points_at_the_verse_it_claims(built, scroll):
                     found = line["verses"][ref["index"]]
                     assert [found["book"], found["chapter"], found["verse"]] == \
                            [int(book), int(chapter), int(verse)]
+
+
+def check_lines_run_between(scroll, listed):
+    """Each aliyah is listed as running between the lines its first and last
+    verses are on: the first line of the first verse, the last of the last."""
+    lookup = book_data(scroll)["verseLookup"]
+    for key, span in listed.items():
+        assert span["begin"] <= span["end"], key
+        for verse, want, first in [(span["begin"], span["firstLine"], True),
+                                   (span["end"], span["lastLine"], False)]:
+            book, chapter, num = verse
+            refs = lookup[str(book)][str(chapter)][str(num)]["refs"]
+            ref = refs[0] if first else refs[-1]
+            assert { k: ref[k] for k in want } == want, key
+
+
+@pytest.mark.parametrize('scroll', scrolls)
+def test_every_aliyah_of_every_parashah_is_placed_in_the_scroll(built, scroll):
+    """The `aliyahLookup` holds every way hebcal divides every parashah, each
+    aliyah placed at the lines its verses fall on."""
+    listed = {}
+    for parashah, divisions in book_data(scroll)["aliyahLookup"].items():
+        assert divisions
+        for division, aliyot in divisions.items():
+            assert aliyot
+            for num, span in aliyot.items():
+                listed[(parashah, division, num)] = span
+    check_lines_run_between(scroll, listed)
+
+
+@pytest.mark.parametrize('scroll', scrolls)
+def test_every_holiday_reading_is_placed_in_the_scroll(built, scroll):
+    """The `holidayLookup` holds every reading hebcal lists for a holiday
+    under hebcal's own key, each aliyah placed at the lines its verses fall
+    on. A day which reads nothing of the Torah is listed with no aliyot at
+    all, so that `holidays.ts` is shown every reading there is.
+
+    Nothing more is asked of them than that. A holiday's aliyot are read on
+    the day rather than in the order of the scroll, so unlike the parashiyot
+    they need not follow one another and need not run forwards -- see
+    `HolidayLookup` in `data.ts`.
+    """
+    holidays = book_data(scroll)["holidayLookup"]
+    assert set(holidays) == \
+        (set(holiday_readings()) if scroll == 'torah' else set())
+
+    listed = { (name, num): span
+               for name, aliyot in holidays.items()
+               for num, span in aliyot.items() }
+    check_lines_run_between(scroll, listed)
+
+
+@pytest.mark.parametrize('scroll', scrolls)
+def test_every_alias_stands_for_a_reading_that_is_there(built, scroll):
+    """Each of `holidayAliases` names a reading the `holidayLookup` holds, so
+    that following one always arrives somewhere."""
+    data = book_data(scroll)
+    for alias, key in data["holidayAliases"].items():
+        assert key in data["holidayLookup"], alias
+        assert alias not in data["holidayLookup"], alias
+
+
+@pytest.mark.parametrize('scroll', scrolls)
+def test_the_parashiyot_tile_the_scroll_in_order(built, scroll):
+    """Every scroll read in parashiyot is covered by them exactly once: each
+    full kriyah runs straight through its parashah, and each parashah picks up
+    where the one before it left off. This is what lets the nav bar find the
+    parashah a verse belongs to by looking for the last one to begin at or
+    before it.
+
+    A doubled parashah is not part of that run -- it covers the same verses as
+    the two it joins, and is listed before them so that the singles are what
+    the nav bar settles on.
+    """
+    aliyot = book_data(scroll)["aliyahLookup"]
+    joins = { name: parashah["joins"]
+              for name, parashah in parashah_divisions().items() } \
+            if scroll == 'torah' else {}
+    assert set(aliyot) == set(joins)
+
+    def run_through(parashah):
+        """A parashah's full kriyah, aliyah by aliyah. The maftir repeats the
+        end of the seventh rather than following it, so it is no part of it."""
+        full = aliyot[parashah]["full"]
+        run = [ full[str(num)] for num in range(1, 9) if str(num) in full ]
+        for before, after in zip(run, run[1:]):
+            assert before["end"] < after["begin"], parashah
+        if "M" in full:
+            last = str(len(run))
+            assert full[last]["begin"] <= full["M"]["begin"]
+            assert full["M"]["end"] == full[last]["end"]
+        return run
+
+    ends_at = None
+    for parashah, parts in joins.items():
+        run = run_through(parashah)
+        if parts:
+            # The pair takes in its two parashiyot and nothing besides
+            first, second = (run_through(part) for part in parts)
+            assert run[0]["begin"] == first[0]["begin"]
+            assert run[-1]["end"] == second[-1]["end"]
+            continue
+        if ends_at is not None:
+            assert ends_at < run[0]["begin"], parashah
+        ends_at = run[-1]["end"]
 
 
 def test_the_decalogue_reads_its_four_commandments_as_one_verse(built):

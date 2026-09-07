@@ -1,4 +1,4 @@
-import { type Book, type Fragment, type LineData, type PageData } from "./data";
+import { type Book, type Fragment, type PageData } from "./data";
 
 // Source: https://www.sofer.co.uk/large-letters
 // Note that except for the ן of משפטן of Num 27:5, which Sefaria includes,
@@ -35,18 +35,6 @@ const bigLetters:
  */
 function fragmentWords(fragment: Fragment): string[] {
   return fragment.flatMap((part) => part.he);
-}
-
-/**
- * The index within its line of the first word of `fragment`
- */
-function wordOffset(line: LineData, fragment: Fragment): number {
-  let offset = 0;
-  for (const other of line.text.columns.flat()) {
-    if (other === fragment) { break; }
-    offset += fragmentWords(other).length;
-  }
-  return offset;
 }
 
 // The Hebrew letters, and the marks (niqqud, taamim, ...) which attach to
@@ -118,14 +106,13 @@ function markNodes(nodes: (string | Node)[], targets: Set<number>,
 /**
  * Wrap in a `span.big` every big letter of `fragment` occurring in `nodes`,
  * the already-built rendering of `fragment` as text transformed by
- * `transform` (i.e. `ketiv` or `kri`)
+ * `transform` (i.e. `ketiv` or `kri`) - `offset` being how many of the
+ * line's words come before the fragment
  */
 export function withBigLetters(
-  data: PageData, lineIndex: number, fragment: Fragment,
+  data: PageData, lineIndex: number, fragment: Fragment, offset: number,
   transform: (word: string) => string, nodes: (string | Node)[]
 ): (string | Node)[] {
-  const line = data.lines[lineIndex];
-  const offset = wordOffset(line, fragment);
   const words = fragmentWords(fragment);
 
   // Convert each big letter's word and consonant indices into the index of
