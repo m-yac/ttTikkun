@@ -1181,6 +1181,7 @@ export class NavBar {
   private readonly ref: RefChoice;
   private readonly choices: Record<'left' | 'right', PageChoice>;
   private frame: number | null = null;
+  private fitted: number | null = null;
 
   constructor(element: HTMLElement, book: TikkunBook,
               translit: Transliteration) {
@@ -1204,6 +1205,52 @@ export class NavBar {
     // only be worked out by measuring, so we do it at most once a frame
     book.onChange(() => this.updateSoon());
     this.update();
+
+    // The bar is only as wide as the window, so it is refitted whenever that
+    // changes - and once more when the fonts it is measured in have loaded,
+    // the widths before then being those of whatever stood in for them
+    new ResizeObserver(() => this.fit()).observe(this.element);
+    void document.fonts.ready.then(() => this.fit(true));
+    this.fit();
+  }
+
+  /**
+   * Draw the bar at whatever fraction of its full size fits in the window -
+   * or at its full size, if that already fits. Scaling its contents can
+   * change the bar's height, which is a resize of its own, so a width it has
+   * already been fitted to is left alone unless we are told to `remeasure`
+   * because what is in it has changed.
+   */
+  private fit(remeasure = false) {
+    const room = this.element.clientWidth;
+    if (room === this.fitted && !remeasure) { return; }
+    this.fitted = room;
+
+    // What the bar needs is measured with nothing scaled down, so that the
+    // fraction which fits is worked out from its full size each time rather
+    // than from whatever size it happens to be drawn at
+    this.element.style.setProperty('--fit', '1');
+    const needed = this.fullWidth();
+    if (room > 0 && needed > room) {
+      this.element.style.setProperty('--fit', `${room / needed}`);
+    }
+  }
+
+  /**
+   * How wide the bar's contents are at their full size. This is not its
+   * `scrollWidth`, which would miss what hangs off the start of a bar whose
+   * contents are centered, so the widths of the contents are added up
+   * instead - each of them being laid out at its own width (`flex: none`).
+   */
+  private fullWidth() {
+    const style = getComputedStyle(this.element);
+    const parts = [...this.element.children];
+    const gap = parseFloat(style.columnGap) || 0;
+    const gaps = Math.max(parts.length - 1, 0) * gap;
+    const padding =
+      parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+    return parts.reduce((width, part) =>
+      width + part.getBoundingClientRect().width, gaps + padding);
   }
 
   private updateSoon() {
