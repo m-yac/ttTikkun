@@ -44,6 +44,18 @@ const names: Record<PageType, string> = {
 };
 
 /**
+ * Where the text of each type of page comes from, which the question mark
+ * beside a side's buttons links to - the ketiv and the kri being two halves
+ * of the same source, and the transliteration being made here out of the kri
+ */
+const sources: Record<PageType, string> = {
+  ketiv: 'https://github.com/akivajgordon/tikkun.io#readme',
+  kri: 'https://github.com/akivajgordon/tikkun.io#readme',
+  tl: 'transliterate',
+  en: 'https://git.door43.org/unfoldingWord/en_ult/#readme',
+};
+
+/**
  * The URL parameter each part of the aliyah reference is saved under, in the
  * order they are written into the URL (see `writeRef`) - which is the one
  * place to change to rename a parameter or to reorder them, every part of the
@@ -75,13 +87,17 @@ function transliterate(he: string, translit: Transliteration): string {
 class PageChoice {
   readonly element: HTMLDivElement;
   private readonly inputs: Record<PageType, HTMLInputElement>;
+  private readonly source: HTMLAnchorElement;
 
   constructor(side: 'left' | 'right', translit: Transliteration,
               choose: (page: PageType) => void) {
     this.element = document.createElement('div');
-    this.element.className = 'checkboxContainer';
-    this.element.setAttribute('role', 'radiogroup');
-    this.element.setAttribute('aria-label', `${side} page`);
+    this.element.className = 'nav-pages';
+
+    const buttons = document.createElement('div');
+    buttons.className = 'checkboxContainer';
+    buttons.setAttribute('role', 'radiogroup');
+    buttons.setAttribute('aria-label', `${side} page`);
 
     this.inputs = {} as Record<PageType, HTMLInputElement>;
     for (const type of pageTypes) {
@@ -107,9 +123,20 @@ class PageChoice {
       sample.textContent = typeof text === 'string' ? text : text(translit);
       label.append(sample);
 
-      this.element.append(input, label);
+      buttons.append(input, label);
       this.inputs[type] = input;
     }
+
+    // Where this side's text comes from, which is the one thing beside the
+    // buttons rather than in among them - and so sits on the far side of
+    // them, away from the middle of the bar
+    this.source = document.createElement('a');
+    this.source.className = 'nav-help';
+    this.source.textContent = '?';
+    this.source.target = '_blank';
+    this.source.rel = 'noopener noreferrer';
+    this.element.append(
+      ...(side === 'left' ? [this.source, buttons] : [buttons, this.source]));
   }
 
   /**
@@ -121,6 +148,10 @@ class PageChoice {
       this.inputs[type].checked = type === shown;
       this.inputs[type].disabled = type === other;
     }
+    this.source.href = sources[shown];
+    const where = `${names[shown]} source`;
+    this.source.title = where;
+    this.source.setAttribute('aria-label', where);
   }
 }
 
@@ -414,6 +445,34 @@ type AliyahPart = typeof aliyahPartNames[number];
  */
 const HOLIDAYS = 'Holidays';
 const SPECIAL_SHABBATOT = 'Additions for Special Shabbatot';
+
+/**
+ * The page hebcal describes a holiday on, where it is not the one its name
+ * makes: a special shabbat of Chanukah is described among the days of
+ * Chanukah, and Rosh Chodesh is described a month at a time and never as
+ * itself, so a reading of it has no page of its own to be sent to (see
+ * `sourceUrl`)
+ */
+const holidayPages: Record<string, string | null> = {
+  'Shabbat Chanukah': 'chanukah',
+  'Rosh Chodesh': null,
+  'Shabbat Rosh Chodesh': null,
+};
+
+/** Hebcal's list of holidays, which is where a holiday with no page of its
+ * own is described among the rest
+ */
+const HOLIDAY_LIST = 'https://www.hebcal.com/holidays/';
+
+/**
+ * A name as hebcal writes it into a URL: lowercased, without the apostrophes
+ * it leaves out, and with its spaces written as dashes (this is
+ * `urlFriendly` of `@hebcal/core`, which names the page of a parashah or of
+ * a holiday)
+ */
+function urlName(name: string): string {
+  return name.toLowerCase().replace(/'/g, '').replace(/ +/g, '-');
+}
 
 /**
  * What the reference is saved as in the URL: a parameter per dropdown of the
@@ -778,6 +837,8 @@ class AliyahChoice extends RefLine<AliyahPart> {
   private names: string[] | null = null;
   /** Each reading's days, with the ones never read left out */
   private readonly days = new Map<string, Days>();
+  /** The link to where the reading being shown is described */
+  private readonly source: HTMLAnchorElement;
 
   constructor(book: TikkunBook, start: LineVersesRef) {
     super(['reading', 'day',
@@ -790,6 +851,17 @@ class AliyahChoice extends RefLine<AliyahPart> {
     this.book = book;
     this.holidays = new Holidays(book.data);
     this.start = start;
+
+    // Where the reading being shown is described, which stands at the end of
+    // the line as the sources of the pages stand beside their buttons - the
+    // link itself depending on which kind of reading it is (see `show`)
+    this.source = document.createElement('a');
+    this.source.className = 'nav-help';
+    this.source.textContent = '?';
+    this.source.target = '_blank';
+    this.source.rel = 'noopener noreferrer';
+    this.element.append(this.source);
+
     // The years are shown on the day and division dropdowns and nowhere else,
     // so the calendar they come from is fetched when the reader first reaches
     // for one rather than on the way in - and the options listed again once
@@ -1164,6 +1236,20 @@ class AliyahChoice extends RefLine<AliyahPart> {
   }
 
   /**
+   * Where hebcal describes the reading being shown: a parashah's own page, or
+   * a holiday's page at the readings of it - a holiday hebcal describes on no
+   * page of its own being left to its list of holidays (see `holidayPages`)
+   */
+  private sourceUrl(reading: string, kind: Kind): string {
+    if (kind === 'parashah') {
+      return `https://www.hebcal.com/sedrot/${urlName(reading)}`;
+    }
+    const page = reading in holidayPages ? holidayPages[reading]
+                                         : urlName(reading);
+    return page === null ? HOLIDAY_LIST : `${HOLIDAY_LIST}${page}#reading`;
+  }
+
+  /**
    * Show an aliyah of a portion, listing alongside it every reading there is,
    * every day the one being shown falls on, every aliyah of the reading of
    * that day, and every occasion that day can be
@@ -1182,6 +1268,11 @@ class AliyahChoice extends RefLine<AliyahPart> {
     setOptions(this.selects.reading, this.readingNames(), (r) => r,
                (r) => headings[this.kindOf(r)](r));
     this.selects.reading.value = portion.reading;
+
+    this.source.href = this.sourceUrl(portion.reading, kind);
+    const where = `Reading source`;
+    this.source.title = where;
+    this.source.setAttribute('aria-label', where);
 
     // A section names the years the option under it is next read in, which is
     // as much a property of the reading as of the day or the division - so a

@@ -65,9 +65,9 @@ a:visited {
   cursor: pointer;
 }
 a:hover,
-a:focus,
+a:focus-visible,
 a:visited:hover,
-a:visited:focus {
+a:visited:focus-visible {
   color: ActiveText;
 }
 
@@ -76,9 +76,9 @@ a.alt:visited {
   color: #0645AD;
 }
 a.alt:hover,
-a.alt:focus,
+a.alt:focus-visible,
 a.alt:visited:hover,
-a.alt:visited:focus {
+a.alt:visited:focus-visible {
   color: ActiveText;
 }
 

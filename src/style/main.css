@@ -265,15 +265,13 @@ body {
 
 /* A fixed width, so that neither set of buttons moves as we scroll from one
    verse to the next - the dropdowns inside it are each only as wide as the
-   text they are showing, and stay centered as that changes. It is wide enough
-   for the longest aliyah reference, 'Bechukotai Maftir (Year 2 of TST -
-   2027)' being about as long as they get. */
+   text they are showing, and stay centered as that changes. */
 .nav-ref {
   flex: none;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 27em;
+  width: 21em;
   font-size: calc(14pt * var(--fit));
   white-space: nowrap;
   overflow-x: clip;
@@ -402,6 +400,50 @@ body {
   flex: none;
   margin-left: -4px;
   margin-right: -1px;
+}
+
+/* One side's buttons, with the link to where that side's text comes from
+   standing outside them - so the buttons themselves keep their own size and
+   background, and the link is clear of them */
+.nav-bar .nav-pages {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: calc(14pt * var(--scale));
+}
+
+/* A circle - its corner radius being half its size in either direction -
+   which stays out of the way until it is pointed at */
+.nav-bar .nav-help {
+  flex: none;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0.0625em;
+  width: calc(25pt * var(--scale));
+  height: calc(25pt * var(--scale));
+  border: 1px solid var(--button-border-color);
+  border-radius: 50%;
+  background-color: var(--button-bg-color);
+  line-height: 1;
+  opacity: 0.4;
+}
+.nav-bar .nav-help:hover,
+.nav-bar .nav-help:focus-visible {
+  opacity: 1;
+}
+.nav-bar .nav-help:focus-visible {
+  outline: none;
+  box-shadow: 0 0 2pt 1pt var(--button-focus-color);
+}
+
+/* The one at the end of the aliyah line stands beside text rather than
+   between buttons, so it is centered against that text rather than sat on its
+   baseline */
+.nav-ref-line .nav-help {
+  align-self: center;
+  margin-left: calc(13pt * var(--scale));
 }
 
 /* Every button is one line of one of the four page types, so they are given a

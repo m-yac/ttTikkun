@@ -704,7 +704,7 @@ function save(): void {
 function saveTimeout(): void {
   clearTimeout(saveTimer);
   const url = new URL(window.location.href);
-  if (heText.text === '') {
+  if (heText.text === '' || heText.text === DEFAULT_TEXT) {
     url.searchParams.delete(HE_TEXT_PARAM);
   } else {
     url.searchParams.set(HE_TEXT_PARAM, heText.text);
