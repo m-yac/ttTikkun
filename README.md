@@ -4,7 +4,7 @@ An online [<ins>Tikkun</ins>](https://en.wikipedia.org/wiki/Tikkun_(book)) with 
 
 At its heart, this project is just a very careful combination of the following excellent sources:
 - [tikkun.io](https://github.com/akivajgordon/tikkun.io#readme) for the Hebrew text and its layout
-- [havarotjs](https://github.com/charlesLoder/havarotjs#readme) for generating the transliteration
+- [havarotjs](https://github.com/charlesLoder/havarotjs#readme) for generating the [custom transliteration](https://www.yacavone.net/ttTikkun/transliterate)
 - The [unfoldingWord Literal Text](https://git.door43.org/unfoldingWord/en_ult.git) for the English translation
 - [hebcal-leyning](https://github.com/hebcal/hebcal-leyning#readme) and [hebcal-triennial](https://github.com/hebcal/hebcal-triennial#readme) for the weekly and holiday readings
 
