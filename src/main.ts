@@ -2,7 +2,7 @@ import { Book, loadBooks, lookupVerseRef, type VerseRef } from "./data"
 import { TikkunBook } from "./book";
 import { pageTypes } from "./page";
 import { NavBar, refStart } from "./nav";
-import { Transliteration } from "./transliteration";
+import { Transliteration, loadSavedOptions } from "./transliteration";
 
 // import { validateData } from "./data";
 // const e = await validateData();
@@ -12,6 +12,7 @@ import { Transliteration } from "./transliteration";
 const books = await loadBooks();
 
 const translit = new Transliteration();
+loadSavedOptions(translit);
 
 // The default starting place
 const [book, ref]: [Book, VerseRef] =

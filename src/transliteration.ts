@@ -444,6 +444,14 @@ function saveState(options: Options, expanded: boolean): void {
   writeCookie(COOKIE_NAME, JSON.stringify({ opts, expanded } satisfies SavedState));
 }
 
+// Apply the saved options to `scheme`, for a page which has no options panel
+// of its own: it simply follows whatever was last chosen on the
+// transliteration page.
+export function loadSavedOptions(scheme: Transliteration): void {
+  loadState(scheme.opts);
+  scheme.update();
+}
+
 // ============================================
 //  Building the UI [GENERATED ENTIRELY BY AI]
 // ============================================
