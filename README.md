@@ -1,6 +1,6 @@
 # [ttTikkun](https://www.yacavone.net/ttTikkun/)
 
-An online [<u>Tikkun</u>](https://en.wikipedia.org/wiki/Tikkun_(book)) with <u>t</u>ransliteration and <u>t</u>ranslation!
+An online [<ins>Tikkun</ins>](https://en.wikipedia.org/wiki/Tikkun_(book)) with <ins>t</ins>ransliteration and <ins>t</ins>ranslation!
 
 At its heart, this project is just a very careful combination of the following excellent sources:
 - [tikkun.io](https://github.com/akivajgordon/tikkun.io#readme) for the Hebrew text and its layout
@@ -26,7 +26,7 @@ and in `page.ts` there are a couple JSDoc comments beginning with:
  * [THIS FUNCTION WAS GENERATED ENTIRELY BY AI]
 ```
 
-For the Python sub-project (see below), there is no clear line - although a careful reader could probably pick out most of the AI code based on its comments. The reason for this is that using AI to revive some old (extremely messy code) I wrote years ago which I never wanted to touch again was how this project got started.
+For the Python sub-project (see below), there is no clear line - although a careful reader could probably pick out most of the AI code based on its comments. The reason for this is that using AI to revive some old (extremely messy) code I wrote years ago which I never wanted to touch again was how this project got started.
 
 ## Sub-project: tikkunio_plus_unfoldingWord
 

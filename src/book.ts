@@ -8,6 +8,45 @@ import { pageTypes, TikkunPage, type PageType } from "./page";
 import { Transliteration } from "./transliteration";
 
 /**
+ * The cookie which remembers which page the reader last chose to show on
+ * either side, and the choice made for them if there is none - which is only
+ * ever used by someone who has not chosen for themselves
+ */
+const PAGES_COOKIE = 'pages';
+const PAGES_COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // one year
+const defaultPages: { left: PageType, right: PageType } =
+  { left: 'ketiv', right: 'en' };
+
+/**
+ * Which pages to open with: whatever was last chosen, if that is still a
+ * choice which could be made now, and the defaults otherwise. A cookie may
+ * have been written by an older version of the page, or by hand, so nothing
+ * in it is trusted - and two of the same page is no more a choice here than
+ * it is in `updatePages`.
+ */
+function loadPages(): { left: PageType, right: PageType } {
+  const cookie = document.cookie.split('; ').find(
+    (entry) => entry.startsWith(`${PAGES_COOKIE}=`));
+  if (cookie === undefined) { return defaultPages; }
+  const [left, right] =
+    decodeURIComponent(cookie.slice(PAGES_COOKIE.length + 1)).split(',');
+  const isPage = (type: string): type is PageType =>
+    (pageTypes as readonly string[]).includes(type);
+  if (!isPage(left) || !isPage(right) || left === right) {
+    return defaultPages;
+  }
+  return { left, right };
+}
+
+/**
+ * Remember this choice of pages for the next time the book is opened
+ */
+function savePages(left: PageType, right: PageType): void {
+  document.cookie = `${PAGES_COOKIE}=${left},${right}` +
+    `; path=/; max-age=${PAGES_COOKIE_MAX_AGE}; samesite=lax`;
+}
+
+/**
  * A specimen of the text each type of page is actually set in, and of the
  * divine name. A family may be split into several faces by `unicode-range`
  * (as the Google Fonts families are), and `document.fonts.load` only fetches
@@ -240,8 +279,9 @@ export class TikkunBook {
 
   /** Every page of the book, in order: `slots[i]` holds page `i + 1` */
   private slots: Slot[] = [];
-  private left: PageType = 'ketiv';
-  private right: PageType = 'en';
+  /** Which page is shown on either side, as last chosen (see `loadPages`) */
+  private left: PageType;
+  private right: PageType;
 
   /** What to tell whenever `currentVerse` or which pages are shown changes */
   private readonly listeners: (() => void)[] = [];
@@ -277,6 +317,7 @@ export class TikkunBook {
     this.element = element;
     this.data = data;
     this.translit = translit;
+    ({ left: this.left, right: this.right } = loadPages());
 
     this.element.classList.add('tikkun-book');
 
@@ -369,6 +410,7 @@ export class TikkunBook {
     if (left === right) { return; }
     this.left = left;
     this.right = right;
+    savePages(left, right);
     this.withAnchor(() => {
       for (const page of this.rendered) { page.updatePages(left, right); }
       // Every page we have measured was measured showing the old pair
