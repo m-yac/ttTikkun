@@ -385,6 +385,11 @@ body {
   flex: none;
   margin: 0 -1px;
 }
+.nav-ref-comma {
+  flex: none;
+  margin-left: -4px;
+  margin-right: 1px;
+}
 
 /* Unlike the colon, each bracket belongs to the division it encloses rather
    than standing between two choices, so it is pulled in over that dropdown's

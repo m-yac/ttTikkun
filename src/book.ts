@@ -263,6 +263,12 @@ export class TikkunBook {
    * around is still going on - see `withAnchor` and `onResize`
    */
   private anchor: Anchor | null = null;
+  /**
+   * The size of our box when the scroll was last put where it is, which is
+   * what a change of size is measured against (see `onBoxResize`)
+   */
+  private placedWidth: number | null = null;
+  private placedHeight: number | null = null;
   private resizeFrame: number | null = null;
   private resizeIdleTimer: ReturnType<typeof setTimeout> | null = null;
 
@@ -289,7 +295,11 @@ export class TikkunBook {
       void this.fill();
       this.changed();
     }, { passive: true });
-    window.addEventListener('resize', () => this.onResize());
+    // Our box changes size for reasons no `resize` event is fired for: the
+    // book is given whatever room the nav bar leaves it, and that bar goes in
+    // after the book has been scrolled somewhere, and is refitted again once
+    // its own fonts have loaded. So we watch the box rather than the window.
+    new ResizeObserver(() => this.onBoxResize()).observe(this.element);
   }
 
   /**
@@ -311,6 +321,10 @@ export class TikkunBook {
    * is centered vertically in the visible area
    */
   async goTo({ page, line = 0 }: { page: number, line?: number }) {
+    // The scroll is being put where we want it for the box as it is now, so a
+    // change of size we have yet to be told about is already accounted for
+    // and is nothing to correct for afterwards (see `onBoxResize`)
+    this.placedHeight = this.element.clientHeight;
     this.anchor = null;
     // Nothing we have rendered is anywhere near where we are going
     for (const slot of this.renderedSlots) { this.unrender(slot); }
@@ -665,14 +679,50 @@ export class TikkunBook {
   // ==========================================================
 
   /**
+   * Keep our place when our own box changes size - which is not always
+   * something the window has done, and is why this watches the box (see the
+   * `ResizeObserver` above).
+   *
+   * The two sides of the box are nothing alike here. Only its width reaches
+   * the pages, which are scaled to the room they have, so a change of that
+   * goes the long way round (see `onResize`). A change of height leaves every
+   * page exactly as it was and moves nothing on screen at all - and still
+   * moves the reader, since where they are reading is the center of the box
+   * and the box has only lost or gained room at its bottom.
+   *
+   * The correction is measured against the size the scroll was last put
+   * where it is for, rather than against the size we were last told about, so
+   * that a `goTo` between the two is not corrected on top of.
+   */
+  private onBoxResize() {
+    const { clientWidth, clientHeight } = this.element;
+    const [width, height] = [this.placedWidth, this.placedHeight];
+    [this.placedWidth, this.placedHeight] = [clientWidth, clientHeight];
+
+    // A box which has lost height has lost it from the bottom, so the text
+    // stays where it is while the center slides up it - and half the height
+    // is what it takes to put the same line back under that center
+    if (height !== null && clientHeight !== height) {
+      this.element.scrollTop += (height - clientHeight) / 2;
+      // A scroll at either end of the book cannot give the whole difference
+      // back, and is left with a different line at its center either way
+      void this.fill();
+      this.changed();
+    }
+    // A change of width is a change to the pages themselves, which are scaled
+    // to the room they have, so that one goes the long way round
+    if (width !== null && clientWidth !== width) { this.onResize(); }
+  }
+
+  /**
    * A page is laid out by measuring its own text, in units which owe nothing
    * to the size of the window (see `main.css`), so a resize cannot change the
    * shape of a page - only how far it is scaled down to fit, which is cheap
-   * enough to redo on every frame of a drag. What a resize does change is where the reader is, since every page around
-   * them changes height as it is rescaled. So we hold on to the line which was
-   * at the center of the screen when the drag began and put that same line
-   * back after every frame - picking a new one each time would let the reader
-   * drift over the course of the drag.
+   * enough to redo on every frame of a drag. What it does change is where the
+   * reader is, since every page around them changes height as it is rescaled.
+   * So we hold on to the line which was at the center of the screen when the
+   * drag began and put that same line back after every frame - picking a new
+   * one each time would let the reader drift over the course of the drag.
    */
   private onResize() {
     if (this.resizeIdleTimer === null) { this.captureAnchor(); }

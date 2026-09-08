@@ -5,8 +5,9 @@
 import { aliyahName, aliyahOrder, aliyotOf, bookTitles, divisionName,
          divisionOrder, divisionIsAlt, divisionYear, divisionPatternName,
          divisionsOf, lookupVerseRef, splitYearIndices, Aliyah, Division,
-         FULL_KRIYAH, MAFTIR, type Reading, type TriennialPatternMap,
-         type VerseRange, type VerseRef } from "./data";
+         FULL_KRIYAH, MAFTIR, type BookData, type LineVersesRef,
+         type Reading, type TriennialPatternMap, type VerseRange,
+         type VerseRef } from "./data";
 import { holidayYears, loadCalendar, neverFalls,
          parashahYears } from "./calendar";
 import { Holidays, NONE } from "./holidays";
@@ -40,6 +41,19 @@ const labels:
  */
 const names: Record<PageType, string> = {
   ketiv: 'Ketiv', kri: 'Kri', tl: 'Transliteration', en: 'English',
+};
+
+/**
+ * The URL parameter each part of the aliyah reference is saved under, in the
+ * order they are written into the URL (see `writeRef`) - which is the one
+ * place to change to rename a parameter or to reorder them, every part of the
+ * reference having to be named here for the URL to carry it at all.
+ */
+const refParams: Record<AliyahPart, string> = {
+  reading: 'reading',
+  day: 'day',
+  aliyah: 'aliyah',
+  division: 'var',
 };
 
 /**
@@ -320,12 +334,15 @@ type VersePart = typeof versePartNames[number];
  */
 class VerseChoice extends RefLine<VersePart> {
   private readonly book: TikkunBook;
+  /** Told whenever a choice here is about to jump the book somewhere */
+  private readonly jumping: () => void;
 
-  constructor(book: TikkunBook) {
+  constructor(book: TikkunBook, jumping: () => void) {
     super(['book', 'chapter',
            { text: ':', className: 'nav-ref-colon' }, 'verse'],
           (which) => this.choose(which));
     this.book = book;
+    this.jumping = jumping;
   }
 
   /**
@@ -378,6 +395,7 @@ class VerseChoice extends RefLine<VersePart> {
     // Show where we are going before we get there, since laying the page out
     // takes a moment - `update` will confirm it once the scroll has settled
     this.update({ book, chapter, verse });
+    this.jumping();
     void this.book.goTo(at);
   }
 }
@@ -396,6 +414,79 @@ type AliyahPart = typeof aliyahPartNames[number];
  */
 const HOLIDAYS = 'Holidays';
 const SPECIAL_SHABBATOT = 'Additions for Special Shabbatot';
+
+/**
+ * What the reference is saved as in the URL: a parameter per dropdown of the
+ * aliyah line, named as `refParams` names it - so that a reader who reloads
+ * the page, or follows a link someone sent them, comes back to the reading
+ * rather than to the top of the scroll.
+ *
+ * The verse line is not saved. A link is to a reading, not to a place within
+ * it, so the aliyah is as far down as the URL goes.
+ */
+type SavedRef = Partial<Record<AliyahPart, string>>;
+
+/** The parts the URL carries, in the order `refParams` names them */
+const savedParts = Object.keys(refParams) as AliyahPart[];
+
+/**
+ * The reference the URL names, whatever it says - it being no better placed
+ * than the reader to know which readings this book has (see `restore`)
+ */
+function readRef(): SavedRef {
+  const params = new URLSearchParams(window.location.search);
+  const ref: SavedRef = {};
+  for (const part of savedParts) {
+    const value = params.get(refParams[part]);
+    if (value !== null) { ref[part] = value; }
+  }
+  return ref;
+}
+
+/**
+ * What the URL would say for a reference: a parameter per part of it, as
+ * `refParams` names them, alongside whatever else the URL already carries.
+ *
+ * A part with nothing to say - the day of a parashah, the occasion of a
+ * holiday read only the one way - is left out rather than written empty, as
+ * it is left out of the bar itself.
+ */
+function refSearch(ref: SavedRef): string {
+  const params = new URLSearchParams(window.location.search);
+  // The reference is written out afresh, in the order named above, rather
+  // than each part left in whatever place the URL already had it - so that
+  // the order is `refParams`' to say and not the incoming link's
+  for (const part of savedParts) { params.delete(refParams[part]); }
+  for (const part of savedParts) {
+    const value = ref[part];
+    if (value === undefined || value === NONE) { continue; }
+    params.set(refParams[part], value);
+  }
+  return params.toString();
+}
+
+/**
+ * Write a reference into the URL, either as a step of its own through the
+ * history or in place of whatever the URL said before - and say whether
+ * anything was written at all.
+ *
+ * The reference follows the scroll, so a reading passed through on the way
+ * somewhere else is written in place of the one before it rather than being
+ * one more step back through the history. A reading which cannot be read
+ * back into is `push`ed instead, so that the reader can step back to it (see
+ * `AliyahChoice.write`).
+ *
+ * A reference which says what the URL already does is not written again,
+ * there being only so many of these a browser will take in a row.
+ */
+function writeRef(search: string, push: boolean): boolean {
+  if (search === window.location.search.replace(/^\?/, '')) { return false; }
+  const { pathname, hash } = window.location;
+  const url = `${pathname}${search === '' ? '' : `?${search}`}${hash}`;
+  if (push) { window.history.pushState(null, '', url); }
+  else { window.history.replaceState(null, '', url); }
+  return true;
+}
 
 /**
  * Which of the three kinds of reading the first dropdown offers one is: a
@@ -463,6 +554,122 @@ function rangeOf(aliyot: Reading, n: Aliyah | null): VerseRange[] {
 }
 
 /**
+ * Which aliyah of a reading to show, given the one asked for: that one, where
+ * the reading has it - and otherwise the last one before it, which only a
+ * choice made higher up the reference can leave us asking for. Where nothing
+ * was asked for at all it is the reading's first, and where the reading has
+ * no aliyot there is none to show.
+ */
+function aliyahIn(aliyot: Reading,
+                  wanted: Aliyah | undefined): Aliyah | undefined {
+  const numbers = aliyotOf(aliyot);
+  return wanted === undefined ? numbers[0]
+    : aliyot[wanted] !== undefined ? wanted
+    : numbers.filter((n) => aliyahOrder(n, wanted) < 0).pop() ?? numbers[0];
+}
+
+/**
+ * The ways a reading can be read: every day it falls on, and for each of
+ * those every occasion that day can be. A parashah is read on no day of its
+ * own, so its divisions are all filed under the one day `NONE`.
+ *
+ * A day the calendar never comes round to is not one the reader can ever be
+ * reading, so it is left out of every answer rather than only of the
+ * dropdown - which is what keeps a reading carried over from the parashah
+ * before from landing on one (see `divisionFor`). A day whose every
+ * occasion goes that way is no day of ours either. A parashah needs no such
+ * weeding: every division our data lists is one our calendar reads.
+ */
+function readingsOf(data: BookData, holidays: Holidays,
+                    reading: string): Days | undefined {
+  const parashah = data.aliyahLookup[reading];
+  const all: Days | undefined = parashah !== undefined
+    ? { [NONE]: parashah }
+    : holidays.holidays[reading] ?? holidays.special[reading];
+  if (all === undefined) { return undefined; }
+
+  const read: Days = {};
+  for (const day of Object.keys(all)) {
+    const divisions = all[day] ?? {};
+    const kept = parashah !== undefined ? divisions : Object.fromEntries(
+      Object.entries(divisions).filter(([occasion]) =>
+        !neverFalls(reading, day, occasion)));
+    if (Object.keys(kept).length > 0) { read[day] = kept; }
+  }
+  return read;
+}
+
+/**
+ * Which of a holiday's days and occasions to show it under, given the ones
+ * asked for: no two holidays fall on quite the same set of days, so a reading
+ * which has not got the day being asked for falls back to its first, and
+ * likewise for the occasion within that day.
+ */
+function holidayPortion(days: Days, reading: string, day: string | undefined,
+                        division: string | undefined): Portion {
+  const on = day !== undefined && days[day] !== undefined
+    ? day : Object.keys(days)[0];
+  const divisions = days[on] ?? {};
+  return { reading, day: on,
+           division: division !== undefined && divisions[division] !== undefined
+             ? division : Object.keys(divisions)[0] };
+}
+
+/**
+ * Where the URL says to be: the portion it names, which aliyah of it, and
+ * the line that aliyah begins on - or `null` where it names no reading this
+ * book has, or none we can find a line for.
+ *
+ * Nothing is taken on trust: a URL is a reference from outside this book, and
+ * may name a reading of another one, a division no parashah of ours is read
+ * as, or nothing at all. A part it leaves out falls back the way a dropdown's
+ * would - the division to the full kriyah, the day to the reading's first,
+ * the aliyah to the first of whatever the portion has.
+ */
+function refPortion(data: BookData, holidays: Holidays):
+    { portion: Portion, aliyah: Aliyah, at: LineVersesRef } | null {
+  const ref = readRef();
+  const { reading } = ref;
+  if (reading === undefined) { return null; }
+  const days = readingsOf(data, holidays, reading);
+  if (days === undefined) { return null; }
+
+  let portion: Portion;
+  if (reading in data.aliyahLookup) {
+    const chosen = Division.safeParse(ref.division);
+    portion = { reading, day: NONE, division:
+      chosen.success && divisionsOf(data.aliyahLookup, reading)
+                          .includes(chosen.data)
+        ? chosen.data : FULL_KRIYAH };
+  }
+  else {
+    portion = holidayPortion(days, reading, ref.day, ref.division);
+  }
+
+  const aliyot = days[portion.day]?.[portion.division] ?? {};
+  const asked = Aliyah.safeParse(ref.aliyah);
+  const aliyah = aliyahIn(aliyot, asked.success ? asked.data : undefined);
+  const begin = aliyah === undefined ? undefined : aliyot[aliyah]?.begin;
+  const at = begin === undefined
+    ? undefined : lookupVerseRef(data.verseLookup, begin)?.[0];
+  return aliyah === undefined || at === undefined
+    ? null : { portion, aliyah, at };
+}
+
+/**
+ * The line the URL says to open this book at, or `null` where it says
+ * nothing this book can answer - which is the caller's cue to open wherever
+ * it would have anyway (see `main.ts`).
+ *
+ * The book is opened here rather than scrolled here once it is open, so that
+ * a link lands on the reading it names instead of laying out a default spot
+ * and then jumping away from it.
+ */
+export function refStart(data: BookData): LineVersesRef | null {
+  return refPortion(data, new Holidays(data))?.at ?? null;
+}
+
+/**
  * The second line of the reference: which aliyah is being read, as four
  * dropdowns - 'Bereshit 1 (Year 1)', 'Yom Kippur Morning 3 (Shabbat)'. As
  * with the verse above it, they follow the scroll and choosing from any of
@@ -499,6 +706,11 @@ class AliyahChoice extends RefLine<AliyahPart> {
   /** Every holiday reading of this book, under the names we give them */
   private readonly holidays: Holidays;
   /**
+   * Where the book opens when the URL names no reading, which is what a step
+   * back to a URL naming none takes the reader to (see `back`)
+   */
+  private readonly start: LineVersesRef;
+  /**
    * Which parashah the reader is in, which they may have asked for. A holiday
    * is shown over the top of this rather than in place of it, so that reading
    * past the end of one picks the parashiyot up where they were left.
@@ -528,6 +740,31 @@ class AliyahChoice extends RefLine<AliyahPart> {
    * several positions before it lands on the one they asked for.
    */
   private maftir = false;
+  /**
+   * Whether the reference is the reader's to keep track of yet, which it is
+   * only once the page has opened where it is going to open: everything up
+   * to that is the URL being read rather than written (see `restore`).
+   */
+  private started = false;
+  /**
+   * Whether the step of the history now showing is one of ours. The first
+   * reference we write is written as a step of its own, so that a reader who
+   * goes back from it comes to the page as they opened it - the URL they
+   * followed, or the one they arrived at with nothing in it at all.
+   */
+  private ownEntry = false;
+  /**
+   * Whether the reference now in the URL is one to keep, the next one being
+   * written as a step of its own rather than in place of it. A reading which
+   * was asked for and cannot be read back into is one such (see `write`).
+   */
+  private keep = false;
+  /**
+   * What the URL would say for the reading the page opened at - which, while
+   * the URL says nothing, is what it goes on saying: a reader who has not
+   * gone anywhere yet has nowhere to be brought back to (see `write`).
+   */
+  private opened: string | null = null;
   /** The book's pairs, under each of the three names each one goes by */
   private pairs: Map<string, Pair> | null = null;
   /**
@@ -542,14 +779,17 @@ class AliyahChoice extends RefLine<AliyahPart> {
   /** Each reading's days, with the ones never read left out */
   private readonly days = new Map<string, Days>();
 
-  constructor(book: TikkunBook) {
-    super(['reading', 'day', 'aliyah',
+  constructor(book: TikkunBook, start: LineVersesRef) {
+    super(['reading', 'day',
+           { text: ', ', className: 'nav-ref-comma', with: 'aliyah' },
+           'aliyah',
            { text: '(', className: 'nav-ref-open', with: 'division' },
            'division',
            { text: ')', className: 'nav-ref-close', with: 'division' }],
           (which) => this.choose(which));
     this.book = book;
     this.holidays = new Holidays(book.data);
+    this.start = start;
     // The years are shown on the day and division dropdowns and nowhere else,
     // so the calendar they come from is fetched when the reader first reaches
     // for one rather than on the way in - and the options listed again once
@@ -645,35 +885,14 @@ class AliyahChoice extends RefLine<AliyahPart> {
   }
 
   /**
-   * The ways a reading can be read: every day it falls on, and for each of
-   * those every occasion that day can be. A parashah is read on no day of its
-   * own, so its divisions are all filed under the one day `NONE`.
-   *
-   * A day the calendar never comes round to is not one the reader can ever be
-   * reading, so it is left out of every answer rather than only of the
-   * dropdown - which is what keeps a reading carried over from the parashah
-   * before from landing on one (see `divisionFor`). A day whose every
-   * occasion goes that way is no day of ours either. A parashah needs no such
-   * weeding: every division our data lists is one our calendar reads.
+   * The ways a reading can be read (see `readingsOf`), worked out once per
+   * reading - `update` asks for them as often as every scroll event
    */
   private readingsOf(reading: string): Days | undefined {
     const found = this.days.get(reading);
     if (found !== undefined) { return found; }
-    const parashah = this.book.data.aliyahLookup[reading];
-    const all: Days | undefined = parashah !== undefined
-      ? { [NONE]: parashah }
-      : this.holidays.holidays[reading] ?? this.holidays.special[reading];
-    if (all === undefined) { return undefined; }
-
-    const read: Days = {};
-    for (const day of Object.keys(all)) {
-      const divisions = all[day] ?? {};
-      const kept = parashah !== undefined ? divisions : Object.fromEntries(
-        Object.entries(divisions).filter(([occasion]) =>
-          !neverFalls(reading, day, occasion)));
-      if (Object.keys(kept).length > 0) { read[day] = kept; }
-    }
-    this.days.set(reading, read);
+    const read = readingsOf(this.book.data, this.holidays, reading);
+    if (read !== undefined) { this.days.set(reading, read); }
     return read;
   }
 
@@ -794,6 +1013,29 @@ class AliyahChoice extends RefLine<AliyahPart> {
   }
 
   /**
+   * Whether reading on into `next` gives up a pair the reader asked to be
+   * shown other than the way it is shown by default - as one of the two a
+   * pair joins where we would otherwise show the doubled parashah, or as the
+   * doubled parashah where we would otherwise show the two.
+   *
+   * Such a reading stands only while the reader is within it (see
+   * `portionAt`): once they have read past it there is no reading back into
+   * it, the ranking picking the default side of the pair up again instead.
+   * Reading on from one of a pair's singles to the other is the exception,
+   * the pair being kept apart across the two (see `continuesSingle`).
+   */
+  private leavesPairApart(next: string): boolean {
+    const parashah = this.parashah;
+    if (parashah === null || parashah === next) { return false; }
+    const pair = this.pairOf(parashah);
+    if (pair === undefined ||
+        (parashah === pair.doubled) === this.prefersDoubled(pair)) {
+      return false;
+    }
+    return !(pair.singles.includes(parashah) && pair.singles.includes(next));
+  }
+
+  /**
    * How well a portion follows on from the one in force, least first:
    * whether it reads on from a pair the reader has asked to read apart,
    * whether it is the side of a pair they are shown by default, whether it
@@ -874,24 +1116,6 @@ class AliyahChoice extends RefLine<AliyahPart> {
     const found = ofYear.find((d) => divisionPatternName(d) === patternName)
                   ?? ofYear.find((d) => this.preferredDivision(parashah, d));
     return found ?? ofYear[0] ?? FULL_KRIYAH;
-  }
-
-  /**
-   * Which of a holiday's days and occasions to show it under, given the ones
-   * asked for and the ones in force: no two holidays fall on quite the same
-   * set of days, so a reading which has not got the day being asked for falls
-   * back to its first, and likewise for the occasion within that day.
-   */
-  private holidayPortion(reading: string, day: string | undefined,
-                         division: string | undefined): Portion {
-    const days = this.readingsOf(reading) ?? {};
-    const on = day !== undefined && days[day] !== undefined
-      ? day : Object.keys(days)[0];
-    const divisions = days[on] ?? {};
-    return { reading, day: on,
-             division: division !== undefined &&
-                       divisions[division] !== undefined
-               ? division : Object.keys(divisions)[0] };
   }
 
   /**
@@ -1043,8 +1267,45 @@ class AliyahChoice extends RefLine<AliyahPart> {
       this.holidayAliyah = aliyah;
     }
 
+    this.write({ reading: portion.reading, day: portion.day,
+                 aliyah, division: portion.division });
     this.showSelected();
   }
+
+  /**
+   * Write the reference into the URL, as a step of its own through the
+   * history where reading back would not bring the reader to what the URL is
+   * holding now - a reading they asked for and have since read past, or one
+   * they chose from the dropdowns - and in place of it otherwise.
+   *
+   * Nothing is written until the reader has moved off the reading the page
+   * opened at, so that the state they opened it in is what one step back
+   * brings them to.
+   */
+  private write(ref: SavedRef) {
+    if (!this.started) { return; }
+    const search = refSearch(ref);
+    // The first reading shown once the page has opened is the one it opened
+    // at, whether the URL named it or the book simply fell there
+    this.opened ??= search;
+    // A URL which names no reading is one the reader has not moved off yet -
+    // laying the page out again, or turning the device over, being no move of
+    // theirs. It is left as they found it until they are somewhere else,
+    // which is then a step of its own to come back from.
+    if (search === this.opened && Object.keys(readRef()).length === 0) {
+      return;
+    }
+    if (!writeRef(search, this.keep || !this.ownEntry)) { return; }
+    this.keep = false;
+    this.ownEntry = true;
+  }
+
+  /**
+   * Keep the reference now in the URL, the next one being written as a step
+   * of its own through the history - for a reading the reader is leaving
+   * which reading back would not bring them to again
+   */
+  keepEntry() { this.keep = true; }
 
   /**
    * Show the aliyah the line `at` is being read as part of
@@ -1065,6 +1326,10 @@ class AliyahChoice extends RefLine<AliyahPart> {
     if (this.holiday !== null) {
       const aliyah = this.holidayAliyahAt(this.holiday, at);
       if (aliyah !== null) { return this.show(this.holiday, aliyah); }
+      // A holiday is never read into, only asked for, so reading back over
+      // this line will not bring it up again: it is kept as a step of the
+      // history rather than written over
+      this.keep = true;
       this.holiday = null;
     }
 
@@ -1076,6 +1341,7 @@ class AliyahChoice extends RefLine<AliyahPart> {
         portion.division !== this.division) {
       this.maftir = false;
     }
+    if (this.leavesPairApart(portion.reading)) { this.keep = true; }
     this.show(portion, this.aliyahAt(portion, at));
   }
 
@@ -1106,30 +1372,33 @@ class AliyahChoice extends RefLine<AliyahPart> {
     else {
       // Only the dropdown which changed can be read for an answer: the ones
       // below it are still holding the reading before's
-      portion = this.holidayPortion(reading,
+      portion = holidayPortion(days, reading,
         changed === 'day' ? this.selects.day.value : this.holiday?.day,
         changed === 'division' ? this.selects.division.value
                                : this.holiday?.division);
     }
 
-    const aliyot = this.aliyotIn(portion);
-    const numbers = aliyotOf(aliyot);
-    // A change of reading takes that reading's first aliyah, and anything
-    // else keeps the one in force - which only a change below the reading can
-    // leave naming an aliyah this portion has not got, and then the last one
-    // before it stands in
-    const asked = Aliyah.safeParse(this.selects.aliyah.value);
-    const wanted = changed === 'reading' || !asked.success
-      ? undefined : asked.data;
-    const aliyah =
-      wanted === undefined ? numbers[0]
-      : aliyot[wanted] !== undefined ? wanted
-      : numbers.filter((n) => aliyahOrder(n, wanted) < 0).pop() ?? numbers[0];
-    if (aliyah === undefined) { return; }
+    // A choice is the reader asking for a reading rather than reading their
+    // way into it, so the one they are leaving is kept as a step of the
+    // history for them to go back to
+    this.keep = true;
 
-    // A holiday reads its maftir in its own right rather than as the end of
-    // an aliyah before it, so it is one the reader can simply be within
-    this.maftir = kind === 'parashah' && aliyah === MAFTIR;
+    // A change of reading takes that reading's first aliyah, and anything
+    // else keeps the one in force
+    const asked = Aliyah.safeParse(this.selects.aliyah.value);
+    this.goTo(portion, changed === 'reading' || !asked.success
+                         ? undefined : asked.data);
+  }
+
+  /**
+   * Jump to the start of an aliyah of a portion: the one `wanted`, where the
+   * portion has it - and otherwise the last one before it, or, where nothing
+   * was asked for at all, the portion's first.
+   */
+  private goTo(portion: Portion, wanted: Aliyah | undefined) {
+    const aliyot = this.aliyotIn(portion);
+    const aliyah = aliyahIn(aliyot, wanted);
+    if (aliyah === undefined) { return; }
     const range = aliyot[aliyah];
     if (range === undefined) { return; }
     const to = this.lineOf(range.begin);
@@ -1137,10 +1406,92 @@ class AliyahChoice extends RefLine<AliyahPart> {
 
     // Show where we are going before we get there, since laying the page out
     // takes a moment - `update` will confirm it once the scroll has settled
-    this.show(portion, aliyah);
+    this.settle(portion, aliyah);
     this.jumping = true;
     void this.book.goTo(to).finally(() => {
       this.jumping = false;
+      this.update(this.book.currentLine);
+    });
+  }
+
+  /**
+   * Show an aliyah as the one being read, without going anywhere - which is
+   * the whole of a jump to where we already are
+   */
+  private settle(portion: Portion, aliyah: Aliyah) {
+    // A holiday reads its maftir in its own right rather than as the end of
+    // an aliyah before it, so it is one the reader can simply be within
+    this.maftir = this.kindOf(portion.reading) === 'parashah' &&
+                  aliyah === MAFTIR;
+    this.show(portion, aliyah);
+  }
+
+  /**
+   * Show the reading the URL names, on the way in - a URL which names no
+   * reading of ours being passed over, and the book left where it opened.
+   *
+   * `main` asks the URL the same question before opening the book, so we are
+   * very likely there already; and where a line can be read as several
+   * portions, this is which of them the reader asked for, which is more than
+   * the line alone can say (see `portionAt`). So the bar is put in step with
+   * the URL either way, and only a book which opened somewhere else is
+   * actually scrolled - a jump throwing away everything laid out.
+   */
+  restore() {
+    this.goToRef();
+    // Where the page opened is where it opened, whether the URL said so or
+    // not: from here on the reference is the reader's, and is written
+    this.started = true;
+  }
+
+  /**
+   * Show the reading the URL names and take the book to it, where the reader
+   * is not there already - and say whether it named one at all.
+   *
+   * The URL is holding that reading already, whether it was followed in or
+   * stepped back to, so what is shown is written over it rather than beside
+   * it: a link which leaves parts of the reference out names the same
+   * reading as one which spells the whole of it. The step it is holding is
+   * one to keep, so wherever the reader goes on to from it is written as a
+   * step of its own (see `write`).
+   */
+  private goToRef(): boolean {
+    const found = refPortion(this.book.data, this.holidays);
+    if (found === null) { return false; }
+    const { portion, aliyah } = found;
+    // A parashah the URL names is the reader out of whatever holiday they
+    // were shown rather than still within it (see `update`)
+    if (this.kindOf(portion.reading) === 'parashah') { this.holiday = null; }
+    const line = this.book.currentLine;
+    [this.started, this.ownEntry] = [true, true];
+    if (line !== null &&
+        this.within(rangeOf(this.aliyotIn(portion), aliyah), line)) {
+      this.settle(portion, aliyah);
+    }
+    else { this.goTo(portion, aliyah); }
+    this.ownEntry = false;
+    return true;
+  }
+
+  /**
+   * Follow the reader stepping back or forward through the history: show the
+   * reading the URL has come to name, or - where it names none, which is the
+   * step the page opened on - take the book back to where it opened, with
+   * nothing asked for on top of it.
+   */
+  back() {
+    if (this.goToRef()) { return; }
+    // Nothing asked for is the page as it opens: the reading is whatever the
+    // line the book opens at is read as, and nothing is held on to over it
+    [this.parashah, this.division] = [null, FULL_KRIYAH];
+    [this.holiday, this.maftir] = [null, false];
+    // The URL is holding this step already, so nothing is written on the way
+    // back to it - and what the reader goes on to from it is written as a
+    // step of its own, as the first reference of all was
+    this.started = false;
+    this.jumping = true;
+    void this.book.goTo(this.start).finally(() => {
+      [this.jumping, this.started, this.ownEntry] = [false, true, false];
       this.update(this.book.currentLine);
     });
   }
@@ -1156,11 +1507,13 @@ class RefChoice {
   private readonly verse: VerseChoice;
   private readonly aliyah: AliyahChoice;
 
-  constructor(book: TikkunBook) {
+  constructor(book: TikkunBook, start: LineVersesRef) {
     this.element = document.createElement('div');
     this.element.className = 'nav-ref';
-    this.verse = new VerseChoice(book);
-    this.aliyah = new AliyahChoice(book);
+    this.aliyah = new AliyahChoice(book, start);
+    // A jump from the verse line is as much a choice as one from the aliyah
+    // line, and leaves a reading behind for the reader to go back to
+    this.verse = new VerseChoice(book, () => this.aliyah.keepEntry());
     this.element.append(this.verse.element, this.aliyah.element);
   }
 
@@ -1168,6 +1521,10 @@ class RefChoice {
     this.verse.update(verse);
     this.aliyah.update(at);
   }
+
+  restore() { this.aliyah.restore(); }
+
+  back() { this.aliyah.back(); }
 }
 
 /**
@@ -1184,7 +1541,7 @@ export class NavBar {
   private fitted: number | null = null;
 
   constructor(element: HTMLElement, book: TikkunBook,
-              translit: Transliteration) {
+              translit: Transliteration, start: LineVersesRef) {
     this.element = element;
     this.book = book;
     this.element.classList.add('nav-bar');
@@ -1196,7 +1553,7 @@ export class NavBar {
                             (page) => book.updateRightPage(page)),
     };
 
-    this.ref = new RefChoice(book);
+    this.ref = new RefChoice(book, start);
 
     this.element.append(this.choices.left.element, this.ref.element,
                         this.choices.right.element);
@@ -1205,6 +1562,14 @@ export class NavBar {
     // only be worked out by measuring, so we do it at most once a frame
     book.onChange(() => this.updateSoon());
     this.update();
+    // Where the book opened is only a default, which the URL - if it names a
+    // reading of this book - overrides
+    this.ref.restore();
+
+    // A step back or forward through the history is a reading asked for as
+    // much as one chosen from the dropdowns is, the steps being the readings
+    // the reader asked for on the way here (see `AliyahChoice.write`)
+    window.addEventListener('popstate', () => this.ref.back());
 
     // The bar is only as wide as the window, so it is refitted whenever that
     // changes - and once more when the fonts it is measured in have loaded,
